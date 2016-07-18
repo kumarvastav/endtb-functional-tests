@@ -6,12 +6,9 @@ import org.bahmni.test.page.clinical.ObservationsPage;
 import org.bahmni.test.page.clinical.PatientListingPage;
 import org.bahmni.test.page.home.HomePage;
 import org.bahmni.test.page.login.LoginPage;
-import org.bahmni.test.page.program.ProgramManagamentPage;
+import org.bahmni.test.page.program.ProgramManagementPage;
 import org.bahmni.test.page.registration.RegistrationFirstPage;
 import org.bahmni.test.page.registration.RegistrationSearch;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -74,8 +71,8 @@ public class PageFactory {
 		return (RegistrationFirstPage) getPage(REGISTRATION_FIRST_PAGE);
 	}
 
-	public static ProgramManagamentPage getProgramManagementPage() {
-		return (ProgramManagamentPage) getPage(PROGRAMS_PAGE);
+	public static ProgramManagementPage getProgramManagementPage() {
+		return (ProgramManagementPage) getPage(PROGRAMS_PAGE);
 	}
 
 	public static PatientListingPage getPatientListingPage() {

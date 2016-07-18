@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
-public class ProgramManagamentPage extends BahmniPage {
+public class ProgramManagementPage extends BahmniPage {
 
 	@FindBy(how = How.CSS, using = "select.ng-pristine")
 	public WebElement program;
@@ -54,7 +54,7 @@ public class ProgramManagamentPage extends BahmniPage {
 	@FindBy(how= How.CSS, using = "#Id_Number")
 	public WebElement registration_id;
 
-	public ProgramManagamentPage enrollPatientToProgram(Program treatment) {
+	public ProgramManagementPage enrollPatientToProgram(Program treatment) {
 		doActions(treatment);
 		btnEnroll.click();
 		return this;
@@ -105,7 +105,8 @@ public class ProgramManagamentPage extends BahmniPage {
 	}
 
 	protected boolean isProgramAvailable(Program treatment, WebElement programName) {
-		if (programName != null && programName.getText().contains(treatment.getName()))
+
+		if (programName != null && programName.getText().equals(treatment.getName()))
 			return true;
 		else
 			return false;
@@ -140,7 +141,7 @@ public class ProgramManagamentPage extends BahmniPage {
 		programToModify.findElement(By.cssSelector("[value='Save']")).click();
 	}
 
-	public ProgramManagamentPage editProgram(String registration, String facility) {
+	public ProgramManagementPage editProgram(String registration, String facility) {
 		facility_name.sendKeys(facility);
 		registration_id.sendKeys(registration);
 		return this;
