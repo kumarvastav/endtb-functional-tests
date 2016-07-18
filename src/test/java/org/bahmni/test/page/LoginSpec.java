@@ -23,13 +23,12 @@ public class LoginSpec {
 
 	@Step("On the login page")
 	public void navigateToLoginPage() {
-		//System.out.println(PageFactory.getLoginPage().LOGIN_URL);
-		driver.get(PageFactory.getLoginPage().LOGIN_URL);
-	}
+        driver.get(PageFactory.getLoginPage().LOGIN_URL);
+    }
 
 	@Step("Login with username <username> and password <password>")
 	public void login(String username,String password){
-		LoginPage loginPage = PageFactory.getLoginPage();
-		loginPage.login(username,password);
-	}
+        LoginPage loginPage = PageFactory.getLoginPage();
+        loginPage.login(username,password);
+    }
 }

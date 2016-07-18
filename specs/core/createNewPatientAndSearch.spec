@@ -23,3 +23,4 @@ Regular Search and validate the details
 * Click on search patient link
 * Search patient with prefix "GAN" identifier "200"
 * Validate that the search results are displayed
+* Logout the user

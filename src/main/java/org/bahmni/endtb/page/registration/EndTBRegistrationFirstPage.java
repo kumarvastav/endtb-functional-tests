@@ -22,7 +22,6 @@ public class EndTBRegistrationFirstPage extends RegistrationFirstPage {
 
 	@Override
 	protected void doActions(Patient patient) {
-		super.doActions(patient);
 		EndTBPatient endTBPatient = (EndTBPatient) patient;
 		txtNationalIdentificationNumber.sendKeys(endTBPatient.getNationalIdentificationNumber());
 	}

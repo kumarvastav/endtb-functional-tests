@@ -80,17 +80,11 @@ public class RegistrationFirstPage extends BahmniPage {
 		familyName.sendKeys(patient.getLastName());
 		new Select(gender).selectByVisibleText(patient.getGender());
 		ageYears.sendKeys(patient.getAge());
+		doActions(patient);
 		clickSave();
 	}
 
 	protected void doActions(Patient patient) {
-		if (txtRegistrationNumber.isDisplayed()) {
-			txtRegistrationNumber.sendKeys(patient.getIdNumber());
-		}
-		txtPatientName.sendKeys(patient.getFirstName());
-		familyName.sendKeys(patient.getLastName());
-		new Select(gender).selectByVisibleText(patient.getGender());
-		ageYears.sendKeys(patient.getAge());
 		village.sendKeys(patient.getVillage());
 	}
 

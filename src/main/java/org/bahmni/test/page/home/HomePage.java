@@ -7,9 +7,8 @@ import org.openqa.selenium.support.How;
 
 public class HomePage extends BahmniPage {
 
-	public static final String URL = BASE_URL.concat("/bahmni/home/index.html#/dashboard");
+	public static final String URL = BASE_URL.concat("/home/#/dashboard");
 
-	//@FindBy(how= How.CSS, using = "i.icon-bahmni-registration")
 	@FindBy(how= How.CSS, using = "i.icon-bahmni-registration")
     public WebElement registration;
 	
@@ -25,15 +24,11 @@ public class HomePage extends BahmniPage {
 	@FindBy(how= How.CSS, using = "i.icon-bahmni-program")
     public WebElement programs;
 
-	@FindBy(how= How.CSS, using = ".btn-user-info")
+	@FindBy(how = How.CSS, using = "i.fa-caret-down")
 	public WebElement user_info;
 
 	@FindBy(how= How.CSS, using = "i.fa-power-off")
 	public WebElement logout;
-
-//	//TODO: logout doesn't recognize
-//	@FindBy(how= How.XPATH, using = "#view-content > div > header > div > ul > li:nth-child(3) > a > span")
-//	public WebElement logout;
 
     public void clickRegistrationApp(){
     	registration.click();

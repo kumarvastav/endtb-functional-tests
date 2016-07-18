@@ -10,6 +10,7 @@ public class EndTBPatient extends Patient {
 
 	public EndTBPatient(String idNumber, String firstName, String lastName, String gender, Date dateOfBirth, int age, String nationalIdentificationNumber) {
 		super("",idNumber, firstName, lastName, gender, dateOfBirth, age, nationalIdentificationNumber );
+		this.nationalIdentificationNumber = nationalIdentificationNumber;
 	}
 
 	public String getNationalIdentificationNumber() {

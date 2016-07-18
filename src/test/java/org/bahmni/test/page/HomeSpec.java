@@ -49,8 +49,8 @@ public class HomeSpec extends BahmniPage {
 
 	@Step("Logout the user")
 	public void logout(){
-		RegistrationFirstPage registrationPage = PageFactory.getRegistrationFirstPage();
-		registrationPage.logout();
+		homePage = PageFactory.getHomePage();
+		homePage.logout();
 	}
 
 }
