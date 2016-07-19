@@ -13,7 +13,7 @@ Tags: Smoke, Sanity
 * Click on create new patient link
 * Create the following patient
     |EMR_ID_PREFIX|FirstName|Last Name|Gender|Date Of Birth|Address1|nationalIdentificationNumber|
-    |EMR|Bharat|Akkinepalli|Male|20/01/2011|Bilaspur|13892|
+    |EMR|John|Smith|Male|20/01/2011|Bilaspur|13892|
 
 * Click on search patient link
 * Search previously created patient with exact identifier
