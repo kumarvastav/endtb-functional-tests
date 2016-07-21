@@ -28,9 +28,7 @@ public class PageFactory {
 	private static Properties props = new Properties();
 
 	static{
-		String implementationName = System.getenv("bahmni_gauge_impl_name");
-		String fileName = implementationName == null ? "page.properties": implementationName + "-page.properties";
-		InputStream is = ClassLoader.getSystemResourceAsStream(fileName);
+		InputStream is = ClassLoader.getSystemResourceAsStream("page.properties");
 		try {
 			props.load(is);
 		}
