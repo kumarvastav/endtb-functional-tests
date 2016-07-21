@@ -13,6 +13,6 @@ Installation instructions
 * For running the tests, run the command
 
     * export bahmni_gauge_env_url=\<environment_url\>
-    * mvn -DspecsDir=\<location_of_specs\> clean install
-    * mvn -DspecsDir=~/bahmni-code/endtb-config/openmrs/automatedTests clean install
-
+    * mvn clean install
+    * For endtb project, cd bahmni-gauge-endtb
+    * mvn gauge:execute
