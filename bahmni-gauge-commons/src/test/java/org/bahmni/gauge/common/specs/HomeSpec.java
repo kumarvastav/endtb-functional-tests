@@ -1,0 +1,55 @@
+package org.bahmni.gauge.common.specs;
+
+import com.thoughtworks.gauge.BeforeClassSteps;
+import com.thoughtworks.gauge.Step;
+import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.DriverFactory;
+import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.home.HomePage;
+import org.openqa.selenium.WebDriver;
+
+public class HomeSpec extends BahmniPage {
+	private final WebDriver driver;
+	private HomePage homePage;
+
+	public HomeSpec(){
+		this.driver = DriverFactory.getDriver();
+	}
+
+	@BeforeClassSteps
+	public void waitForAppReady(){
+		new BahmniPage().waitForSpinner(driver);
+	}
+
+	@Step("Navigate to dashboard")
+	public void navigateToHomePage() {
+		driver.get(HomePage.URL);
+	}
+
+
+	@Step("Click on registration app")
+	public void goToRegistrationPage(){
+		homePage = PageFactory.getHomePage();
+		homePage.clickRegistrationApp();
+		new BahmniPage().waitForSpinner(driver);
+	}
+
+	@Step("Click on programs app")
+	public void goToProgramsPage(){
+		homePage = PageFactory.getHomePage();
+		homePage.clickProgramsApp();
+	}
+
+	@Step("Click on clinical app")
+	public void goToClinicalPage(){
+		homePage = PageFactory.getHomePage();
+		homePage.clickClinicalApp();
+	}
+
+	@Step("Logout the user")
+	public void logout(){
+		homePage = PageFactory.getHomePage();
+		homePage.logout();
+	}
+
+}

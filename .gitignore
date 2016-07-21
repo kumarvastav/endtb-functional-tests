@@ -8,6 +8,6 @@ target
 */build/
 *.xmi
 logs/
-.gauge/*
+.gauge/
 reports/
 gauge_bin/
