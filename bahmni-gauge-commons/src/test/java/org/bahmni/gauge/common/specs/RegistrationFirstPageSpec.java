@@ -10,6 +10,7 @@ import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
@@ -36,15 +37,9 @@ public class RegistrationFirstPageSpec {
 
 	@Step("Create the following patient <table>")
 	public void createPatients(Table table) {
-		List<TableRow> rows = table.getTableRows();
-		List<String> columnNames = table.getColumnNames();
-
-		if (rows.size() != 1) {
-			throw new TestSpecException("Only one patient should be provided in the table");
-		}
+		Patient patient = transformTableToPatient(table);
 
 		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
-		Patient patient = registrationFirstPage.transformTableRowToPatient(rows.get(0), columnNames);
 		registrationFirstPage.storePatientInSpecStore(patient);
 		registrationFirstPage.registerPatient(patient);
 	}
@@ -83,5 +78,27 @@ public class RegistrationFirstPageSpec {
 	public void enterVisitDetailsPage() {
 		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
 		registrationFirstPage.enterVisitDetailsPage();
+	}
+
+	@Step("Create the following patient using api <table>")
+	public void createPatientThroughAPI(Table table){
+		Patient patient = transformTableToPatient(table);
+		BahmniRestClient.get().createPatient(patient);
+		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
+		registrationFirstPage.storePatientInSpecStore(patient);
+	}
+
+	private Patient transformTableToPatient(Table table){
+		List<TableRow> rows = table.getTableRows();
+		List<String> columnNames = table.getColumnNames();
+
+		if (rows.size() != 1) {
+			throw new TestSpecException("Only one patient should be provided in the table");
+		}
+
+		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
+		Patient patient = registrationFirstPage.transformTableRowToPatient(rows.get(0), columnNames);
+
+		return patient;
 	}
 }

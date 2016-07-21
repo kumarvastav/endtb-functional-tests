@@ -3,6 +3,7 @@ package org.bahmni.gauge.common.registration.domain;
 import java.util.Date;
 
 public class Patient {
+	private String uuid;
 	private String prefix;
 	private String idNumber;
 	private String firstName;
@@ -60,4 +61,12 @@ public class Patient {
 	}
 
 	public String getVillage(){ return village; }
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
 }
