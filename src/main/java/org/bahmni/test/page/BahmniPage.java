@@ -4,6 +4,7 @@ import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import org.bahmni.test.page.program.domain.Program;
 import org.bahmni.test.page.registration.domain.Patient;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -44,5 +45,15 @@ public class BahmniPage {
 
 	public Program getProgramFromSpecStore(){
 		return (Program) DataStoreFactory.getSpecDataStore().get(PROGRAM_KEY);
+	}
+
+	public void acceptAlert(WebDriver driver) {
+		Alert alert = driver.switchTo().alert();
+		alert.accept();
+	}
+
+	public void dismissAlert(WebDriver driver) {
+		Alert alert = driver.switchTo().alert();
+		alert.dismiss();
 	}
 }

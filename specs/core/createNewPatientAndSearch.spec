@@ -12,6 +12,15 @@ Create new Patient and validate the details
 * Validate that the patient edit page is opened for previously created patient
 * Logout the user
 
+Stop Visit
+--------
+
+* On the login page
+* Login with username "superman" and password "Admin123"
+* Click on registration app
+* Search patient with prefix "GAN" identifier "1235068"
+* Enter Visit Details Page
+* Close visit
 
 @Smoke
 Regular Search and validate the details

@@ -1,6 +1,7 @@
 package org.bahmni.test.page.registration;
 
 import org.bahmni.test.page.BahmniPage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -33,6 +34,13 @@ public class RegistrationVisitDetailsPage extends BahmniPage{
 	
 	@FindBy(how= How.CSS, using = ".fa-search")
 	public WebElement searchLink;
+
+	public void closeVisit(WebDriver driver) throws InterruptedException {
+		closeVisit.click();
+		Thread.sleep(300);
+		acceptAlert(driver);
+
+	}
 
 
 }

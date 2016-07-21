@@ -41,6 +41,9 @@ public class RegistrationFirstPage extends BahmniPage {
 	@FindBy(how = How.CSS, using = ".submit-btn")
 	public WebElement save;
 
+	@FindBy(how = How.CSS, using = ".right.confirm")
+	public WebElement enterVisitDetails;
+
 	@FindBy(how = How.CSS, using = "#address1")
 	public WebElement addressLine;
 
@@ -118,5 +121,9 @@ public class RegistrationFirstPage extends BahmniPage {
 	public void logout(){
 		user_info.click();
 		logout.click();
+	}
+
+	public void enterVisitDetailsPage() {
+		enterVisitDetails.click();
 	}
 }

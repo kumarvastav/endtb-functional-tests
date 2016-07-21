@@ -9,6 +9,7 @@ import org.bahmni.test.page.login.LoginPage;
 import org.bahmni.test.page.program.ProgramManagementPage;
 import org.bahmni.test.page.registration.RegistrationFirstPage;
 import org.bahmni.test.page.registration.RegistrationSearch;
+import org.bahmni.test.page.registration.RegistrationVisitDetailsPage;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +21,7 @@ public class PageFactory {
 	private static final String HOME = "home";
 	private static final String REGISTRATION_SEARCH = "registration.search";
 	private static final String REGISTRATION_FIRST_PAGE = "registration.page1";
+	private static final String REGISTRATION_VISIT_PAGE = "registration.visitPage";
 	private static final String PROGRAMS_PAGE = "programs";
 	private static final String PATIENT_LISTING_PAGE = "patient.listing.page";
 	private static final String OBSERVATIONS_PAGE = "observations.page";
@@ -69,6 +71,10 @@ public class PageFactory {
 
 	public static RegistrationFirstPage getRegistrationFirstPage() {
 		return (RegistrationFirstPage) getPage(REGISTRATION_FIRST_PAGE);
+	}
+
+	public static RegistrationVisitDetailsPage getRegistrationVisitPage() {
+		return (RegistrationVisitDetailsPage) getPage(REGISTRATION_VISIT_PAGE);
 	}
 
 	public static ProgramManagementPage getProgramManagementPage() {

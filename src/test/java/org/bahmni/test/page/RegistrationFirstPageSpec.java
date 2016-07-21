@@ -24,7 +24,7 @@ public class RegistrationFirstPageSpec {
 	}
 
 	@BeforeClassSteps
-	public void waitForAppReady(){
+	public void waitForAppReady() {
 		new BahmniPage().waitForSpinner(driver);
 	}
 
@@ -76,5 +76,11 @@ public class RegistrationFirstPageSpec {
 	public void selectCheckToEnterPatientID() {
 		RegistrationFirstPage registrationFirstPage = org.bahmni.test.PageFactory.getRegistrationFirstPage();
 		registrationFirstPage.selectEnterPatientID();
+	}
+
+	@Step("Enter Visit Details Page")
+	public void enterVisitDetailsPage() {
+		RegistrationFirstPage registrationFirstPage = org.bahmni.test.PageFactory.getRegistrationFirstPage();
+		registrationFirstPage.enterVisitDetailsPage();
 	}
 }
