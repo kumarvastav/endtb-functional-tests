@@ -99,11 +99,13 @@ public class BahmniRestClient {
 					.body(requestJson)
 					.asJson();
 
-
-			if(response.getBody() != null && response.getBody().getObject() != null && response.getBody().getObject().get("patient") != null && ((JSONObject)(response.getBody().getObject().get("patient"))).get("uuid")!=null){
+			if(response.getBody() != null && response.getBody().getObject() != null &&
+					response.getBody().getObject().get("patient") != null &&
+					((JSONObject)response.getBody().getObject().get("patient")).get("uuid")!=null){
 				patient.setUuid((String)((JSONObject)(response.getBody().getObject().get("patient"))).get("uuid"));
-				System.out.println(patient.getIdNumber());
 			}else{
+				System.err.println("Response from the server for patient creation:");
+				System.err.println(response.getBody().toString());
 				throw new BahmniAPIException("Patient creation failed!!");
 			}
 		}
