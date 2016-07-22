@@ -35,11 +35,10 @@ public class RegistrationVisitDetailsPage extends BahmniPage{
 	@FindBy(how= How.CSS, using = ".fa-search")
 	public WebElement searchLink;
 
-	public void closeVisit(WebDriver driver) throws InterruptedException {
+	public void closeVisit(WebDriver driver) {
 		closeVisit.click();
-		Thread.sleep(300);
+		waitForAlertPopup(driver);
 		acceptAlert(driver);
-
 	}
 
 

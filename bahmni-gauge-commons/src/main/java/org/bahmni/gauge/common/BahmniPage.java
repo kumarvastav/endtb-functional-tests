@@ -56,4 +56,15 @@ public class BahmniPage {
 		Alert alert = driver.switchTo().alert();
 		alert.dismiss();
 	}
+
+	public void waitForAlertPopup(WebDriver driver) {
+		try {
+			Thread.sleep(300);
+			WebDriverWait wait = new WebDriverWait(driver, 60);
+			wait.until(ExpectedConditions.alertIsPresent());
+
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }

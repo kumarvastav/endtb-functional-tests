@@ -21,7 +21,7 @@ public class RegistrationVisitPageSpec {
     }
 
     @Step("Close visit")
-    public void closeVisit() throws InterruptedException {
+    public void closeVisit() {
         RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         registrationVisitPage.closeVisit(driver);
     }
