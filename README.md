@@ -13,6 +13,9 @@ Installation instructions
 * For running the tests, run the command
 
     * export bahmni_gauge_env_url=\<environment_url\>
+    * bahmni_gauge_env_username=<username> 
+    * bahmni_gauge_env_password=<password>
+    
     * mvn clean install
     * For endtb project, cd bahmni-gauge-endtb
     * mvn gauge:execute

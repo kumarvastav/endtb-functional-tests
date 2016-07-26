@@ -11,3 +11,4 @@ logs/
 .gauge/
 reports/
 gauge_bin/
+out/
