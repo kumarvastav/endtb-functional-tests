@@ -5,7 +5,7 @@ Create EndTB Patient Scenarios
 CREATE PATIENT AND VERIFY
 -------------------------
 
-Tags: Smoke, Sanity
+Tags: regression, sanity
 
 * On the login page
 * Login with username "superman" and password "Admin123"

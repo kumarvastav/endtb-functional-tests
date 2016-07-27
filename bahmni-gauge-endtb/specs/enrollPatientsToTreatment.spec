@@ -4,7 +4,7 @@ Enroll Patients To Treatment
 CREATE A PATIENT AND ENROLL TO THE TREATMENT
 -------------------------------------------
 
-Tags: Smoke, Sanity
+Tags: regression, smoke, sanity
 
 * Create a random patient
 * Click on treatment enrollment
