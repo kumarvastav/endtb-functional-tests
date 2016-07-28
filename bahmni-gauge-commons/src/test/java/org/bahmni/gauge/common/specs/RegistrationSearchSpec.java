@@ -41,6 +41,20 @@ public class RegistrationSearchSpec {
 
 	}
 
+	@Step("Search previously created patient with name")
+	public void searchPreviouslyCreatedPatientWithName(){
+		RegistrationSearch registrationSearch = PageFactory.getRegistrationSearchPage();
+		Patient recentlyCreatedPatient = registrationSearch.getPatientFromSpecStore();
+		registrationSearch.searchByName(recentlyCreatedPatient.getFirstName());
+	}
+
+	@Step("Select the patient from the search results")
+	public void ensureThatTheSearchResultsAreShown(){
+		RegistrationSearch registrationSearch = PageFactory.getRegistrationSearchPage();
+		Patient recentlyCreatedPatient = registrationSearch.getPatientFromSpecStore();
+		registrationSearch.getFirstResult();
+	}
+
 	@Step("Validate that the search results are displayed")
 	public void validateSearchResults() {
 			RegistrationSearch registrationSearch = PageFactory.getRegistrationSearchPage();

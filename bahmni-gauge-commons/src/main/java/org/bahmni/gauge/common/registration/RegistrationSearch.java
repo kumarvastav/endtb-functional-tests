@@ -36,6 +36,9 @@ public class RegistrationSearch extends BahmniPage{
 	@FindBy(how= How.CSS, using = ".registraition-search-results-container > table")
     public WebElement gridSearchResults;
 
+	@FindBy(how= How.CSS, using = "#programAttribute")
+	public WebElement prgm_attribute;
+
     public void clickSearch() {
     	iconSearch.click();
     }
@@ -71,6 +74,16 @@ public class RegistrationSearch extends BahmniPage{
 		txtRegistration.sendKeys(id);
 		btnIdentifierSearch.click();
     }
+
+	public void searchByName(String name){
+		txtName.sendKeys(name);
+		btnIdentifierSearch.click();
+	}
+
+	public void searchByProgramAttribute(String attribute){
+		prgm_attribute.sendKeys(attribute);
+		btnIdentifierSearch.click();
+	}
 
 	public void getFirstResult() {
 		gridSearchResults.findElements(By.tagName("a")).get(0).click();

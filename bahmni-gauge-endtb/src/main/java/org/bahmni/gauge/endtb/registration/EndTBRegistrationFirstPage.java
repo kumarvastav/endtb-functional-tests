@@ -31,7 +31,11 @@ public class EndTBRegistrationFirstPage extends RegistrationFirstPage {
 	}
 
 	public Patient transformTableRowToPatient(TableRow row, List<String> columnNames){
-		String randomPatientId = "EMR"+new Random().nextInt();
+		String randomPatientId;
+		if(row.getCell(columnNames.get(0)).length() <= 3)
+			randomPatientId = "EMR"+ new Random().nextInt();
+		else
+			randomPatientId = row.getCell(columnNames.get(0));
 		EndTBPatient patient = new EndTBPatient(randomPatientId, row.getCell(columnNames.get(1)),
 				row.getCell(columnNames.get(2)), row.getCell(columnNames.get(3)), new Date(), 50,row.getCell(columnNames.get(6)));
 

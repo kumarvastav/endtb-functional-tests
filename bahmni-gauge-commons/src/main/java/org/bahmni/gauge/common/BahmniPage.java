@@ -4,9 +4,11 @@ import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
+import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -50,6 +52,14 @@ public class BahmniPage {
 	public void acceptAlert(WebDriver driver) {
 		Alert alert = driver.switchTo().alert();
 		alert.accept();
+	}
+
+	public void handleExceptions(WebDriver driver){
+		driver.findElement(By.cssSelector(".error-message-container .show-btn")).click();
+	}
+
+	public void validateSystemException(WebDriver driver){
+		Assert.assertNotNull(driver.findElement(By.cssSelector(".error-message-container .show-btn")));
 	}
 
 	public void dismissAlert(WebDriver driver) {
