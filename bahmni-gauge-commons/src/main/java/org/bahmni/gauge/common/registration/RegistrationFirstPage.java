@@ -70,11 +70,12 @@ public class RegistrationFirstPage extends BahmniPage {
 	@FindBy(how= How.CSS, using = "i.fa-power-off")
 	public WebElement logout;
 
+
 	public void clickSave() {
 		save.click();
 	}
 
-	public void registerPatient(Patient patient) {
+	public void registerPatient(Patient patient){
 		if (txtRegistrationNumber.isDisplayed()) {
 			txtRegistrationNumber.sendKeys(patient.getIdNumber());
 		}

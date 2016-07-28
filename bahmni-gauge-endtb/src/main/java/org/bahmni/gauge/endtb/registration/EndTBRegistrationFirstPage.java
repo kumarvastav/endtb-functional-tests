@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+
 public class EndTBRegistrationFirstPage extends RegistrationFirstPage {
 
 	@FindBy(how= How.CSS, using = ".confirm")

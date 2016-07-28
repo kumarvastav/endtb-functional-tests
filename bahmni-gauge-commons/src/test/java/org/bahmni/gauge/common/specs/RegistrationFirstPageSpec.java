@@ -41,8 +41,7 @@ public class RegistrationFirstPageSpec {
 	@Step("Create the following patient <table>")
 	public void createPatients(Table table) {
 		Patient patient = transformTableToPatient(table);
-
-		//RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
+		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
 		registrationFirstPage.storePatientInSpecStore(patient);
 		registrationFirstPage.registerPatient(patient);
 	}
@@ -87,13 +86,20 @@ public class RegistrationFirstPageSpec {
 	public void createPatientThroughAPI(Table table){
 		Patient patient = transformTableToPatient(table);
 		BahmniRestClient.get().createPatient(patient);
-		//RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
+		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
 		registrationFirstPage.storePatientInSpecStore(patient);
 	}
 
 	@Step("Verify the patient creation fails")
-	public void verifyPatientCreationWithSameID(){
+	public void verifyPatientCreationWithSameID() {
 		new BahmniPage().validateSystemException(driver);
+	}
+
+	@Step("Delete the patient")
+	public void deletePatient(){
+		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
+		String uuid = registrationFirstPage.getPatientFromSpecStore().getUuid();
+		BahmniRestClient.get().retirePatient(uuid);
 	}
 
 	private Patient transformTableToPatient(Table table){

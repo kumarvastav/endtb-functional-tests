@@ -27,6 +27,8 @@ public class BahmniRestClient {
 
 	private static final String PATIENT_PROFILE_URL = "/openmrs/ws/rest/v1/bahmnicore/patientprofile";
 
+    private static final String PATIENT_URL = "/openmrs/ws/rest/v1/patient/";
+
 	private Configuration freemarkerConfiguration;
 
 	private String url;
@@ -93,7 +95,7 @@ public class BahmniRestClient {
 			freemarkerTemplate.process(patientData,stringWriter);
 			String requestJson = stringWriter.toString();
 
-			HttpResponse<JsonNode> response = Unirest.post(url + PATIENT_PROFILE_URL)
+            HttpResponse<JsonNode> response = Unirest.post(url + PATIENT_PROFILE_URL)
 					.basicAuth(username,password)
 					.header("content-type", "application/json")
 					.body(requestJson)
@@ -114,4 +116,15 @@ public class BahmniRestClient {
 		}
 	}
 
+	public void retirePatient(String uuid) {
+		try {
+			HttpResponse<String> retirePatient = Unirest.delete(url + PATIENT_URL + uuid)
+					.basicAuth(username, password)
+					.header("content-type", "application/json")
+					.asString();
+		}
+		catch (Exception e) {
+			throw new BahmniAPIException(e);
+		}
+	}
 }

@@ -13,7 +13,7 @@ Tags: regression, sanity
 * Click on create new patient link
 * Create the following patient
     |EMR_ID_PREFIX|FirstName|Last Name|Gender|Date Of Birth|Address1|nationalIdentificationNumber|
-    |EMR|John|Smith|Male|20/01/2011|Bilaspur|13892|
+    |EMR|James|Bond|Male|20/01/2011|Bilaspur|13892|
 
 * Logout the user
 
@@ -50,3 +50,4 @@ Tags: regression, sanity
 * Select the patient from the search results
 * Ensure that the patient edit page is opened for previously created patient
 * Logout the user
+
