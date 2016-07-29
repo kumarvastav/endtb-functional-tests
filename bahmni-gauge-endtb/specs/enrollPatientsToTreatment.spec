@@ -18,3 +18,5 @@ Tags: regression, smoke, sanity
     |Basic management unit TB register|01/01/2015|ABC|Facility1, City1, Country1|
 
 * Ensure that the patient is registered to mentioned program
+* On the login page
+* Logout the user
