@@ -14,8 +14,10 @@ Tags:  sanity
 * Login with username "pihuser1" and password "endTB@123"
 * Verify Login Page
 * Logout the user
+* On the login page
 * Login with username "msfuser1" and password "endTB@123"
 * Verify Login Page
 * Logout the user
+* On the login page
 * Login with username "irduser1" and password "endTB@123"
 * Verify Login Page
