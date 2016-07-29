@@ -40,7 +40,7 @@ SEARCH PATIENT WITH FILTERS
 Tags: regression, sanity
 
 * On the login page
-* Login with username "msfuser1" and password "endTB123"
+* Login with username "msfuser1" and password "endTB@123"
 * Click on registration app
 * Click on search patient link
 * Search previously created patient with exact identifier

@@ -6,7 +6,6 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.home.HomePage;
-import org.eclipse.jetty.servlet.ServletHolder;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
