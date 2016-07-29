@@ -50,5 +50,4 @@ Tags: regression, sanity
 * Select the patient from the search results
 * Ensure that the patient edit page is opened for previously created patient
 * Logout the user
-* Delete the patient
 

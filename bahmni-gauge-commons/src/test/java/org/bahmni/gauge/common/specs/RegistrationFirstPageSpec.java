@@ -1,9 +1,6 @@
 package org.bahmni.gauge.common.specs;
 
-import com.thoughtworks.gauge.BeforeClassSteps;
-import com.thoughtworks.gauge.Step;
-import com.thoughtworks.gauge.Table;
-import com.thoughtworks.gauge.TableRow;
+import com.thoughtworks.gauge.*;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
@@ -32,6 +29,13 @@ public class RegistrationFirstPageSpec {
 	@BeforeClassSteps
 	public void waitForAppReady() {
 		new BahmniPage().waitForSpinner(driver);
+	}
+
+	@AfterScenario
+	public void deletePatient(){
+		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
+		String uuid = registrationFirstPage.getPatientFromSpecStore().getUuid();
+		BahmniRestClient.get().retirePatient(uuid);
 	}
 
 	@Step("On the new patient creation page")
@@ -101,13 +105,6 @@ public class RegistrationFirstPageSpec {
 	@Step("Verify the patient creation fails")
 	public void verifyPatientCreationWithSameID() {
 		new BahmniPage().validateSystemException(driver);
-	}
-
-	@Step("Delete the patient")
-	public void deletePatient(){
-		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
-		String uuid = registrationFirstPage.getPatientFromSpecStore().getUuid();
-		BahmniRestClient.get().retirePatient(uuid);
 	}
 
 	private Patient transformTableToPatient(Table table){
