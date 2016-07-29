@@ -34,8 +34,11 @@ public class RegistrationFirstPageSpec {
 	@AfterScenario
 	public void deletePatient(){
 		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
-		String uuid = registrationFirstPage.getPatientFromSpecStore().getUuid();
-		BahmniRestClient.get().retirePatient(uuid);
+		Patient patient = registrationFirstPage.getPatientFromSpecStore();
+		if (patient != null) {
+			String uuid = patient.getUuid();
+			BahmniRestClient.get().retirePatient(uuid);
+		}
 	}
 
 	@Step("On the new patient creation page")
