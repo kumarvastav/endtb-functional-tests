@@ -14,6 +14,7 @@ import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
+import java.util.Objects;
 
 public class RegistrationFirstPageSpec {
 
@@ -42,8 +43,15 @@ public class RegistrationFirstPageSpec {
 	public void createPatients(Table table) {
 		Patient patient = transformTableToPatient(table);
 		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
-		registrationFirstPage.storePatientInSpecStore(patient);
 		registrationFirstPage.registerPatient(patient);
+
+		waitForAppReady();
+		String path = driver.getCurrentUrl();
+		String uuid = path.substring(path.lastIndexOf('/') + 1);
+		if (!Objects.equals(uuid, "new")) {
+			patient.setUuid(uuid);
+			registrationFirstPage.storePatientInSpecStore(patient);
+		}
 	}
 
 	@Step("Click on search patient link")

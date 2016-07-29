@@ -19,4 +19,3 @@ Tags: regression, smoke, sanity
 
 * Ensure that the patient is registered to mentioned program
 * Delete the patient
-

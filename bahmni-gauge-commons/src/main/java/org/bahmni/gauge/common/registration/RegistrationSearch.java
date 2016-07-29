@@ -30,8 +30,11 @@ public class RegistrationSearch extends BahmniPage{
 	@FindBy(how= How.CSS, using = "#identifierPrefix")
     public List<WebElement> txtIdentifier;
 	
-	@FindBy(how= How.CSS, using = ".reg-srch-btn > button")
+	@FindBy(how= How.CSS, using = ".search-patient-id .reg-srch-btn")
     public WebElement btnIdentifierSearch;
+
+	@FindBy(how = How.CSS, using = ".search-seperator-r .reg-srch-btn")
+	public WebElement btnRegSearch;
 	
 	@FindBy(how= How.CSS, using = ".registraition-search-results-container > table")
     public WebElement gridSearchResults;
@@ -77,12 +80,12 @@ public class RegistrationSearch extends BahmniPage{
 
 	public void searchByName(String name){
 		txtName.sendKeys(name);
-		btnIdentifierSearch.click();
+		btnRegSearch.click();
 	}
 
 	public void searchByProgramAttribute(String attribute){
 		prgm_attribute.sendKeys(attribute);
-		btnIdentifierSearch.click();
+		btnRegSearch.click();
 	}
 
 	public void getFirstResult() {
