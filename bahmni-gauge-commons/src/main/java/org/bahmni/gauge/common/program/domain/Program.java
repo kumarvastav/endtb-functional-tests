@@ -6,6 +6,10 @@ public class Program {
 
 	private String dateOfRegistration;
 
+	private String uuid;
+
+	private String patient_uuid;
+
 	private String treatmentStatus;
 
 	public Program(String name, String dateOfRegistration) {
@@ -24,6 +28,12 @@ public class Program {
 	public void setTreatmentStatus(String treatmentStatus) {
 		this.treatmentStatus = treatmentStatus;
 	}
+
+	public void setUuid(String uuid){ this.uuid = uuid; }
+
+	public void setPatientUuid(String uuid){ this.patient_uuid = uuid; }
+
+	public String getUuid(){ return uuid; }
 
 	public String getTreatmentStatus() {
 		return treatmentStatus;

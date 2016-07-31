@@ -31,7 +31,7 @@ public class RegistrationFirstPageSpec {
 		new BahmniPage().waitForSpinner(driver);
 	}
 
-	@AfterScenario
+	@Step("Delete the patient")
 	public void deletePatient(){
 		Patient patient = registrationFirstPage.getPatientFromSpecStore();
 		if (patient != null) {

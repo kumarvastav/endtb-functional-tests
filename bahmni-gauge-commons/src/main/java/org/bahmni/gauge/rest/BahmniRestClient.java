@@ -12,6 +12,7 @@ import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContexts;
+import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.json.JSONObject;
 
@@ -28,6 +29,8 @@ public class BahmniRestClient {
 	private static final String PATIENT_PROFILE_URL = "/openmrs/ws/rest/v1/bahmnicore/patientprofile";
 
     private static final String PATIENT_URL = "/openmrs/ws/rest/v1/patient/";
+
+	private static final String PROGRAM_ENROLLMENT_URL = "/openmrs/ws/rest/v1/bahmniprogramenrollment";
 
 	private Configuration freemarkerConfiguration;
 
@@ -122,6 +125,39 @@ public class BahmniRestClient {
 					.basicAuth(username, password)
 					.header("content-type", "application/json")
 					.asString();
+		}
+		catch (Exception e) {
+			throw new BahmniAPIException(e);
+		}
+	}
+
+	public void enrollToProgram(Patient patient, Program program){
+		try {
+			Template freemarkerTemplate = freemarkerConfiguration.getTemplate("program_enrollment.ftl");
+			Map<String,Object> programData = new HashMap<>();
+			//program.setPatientUuid(patient.getUuid());
+			programData.put("patient",patient);
+			programData.put("program",program);
+
+			StringWriter stringWriter = new StringWriter();
+			freemarkerTemplate.process(programData,stringWriter);
+			String requestJson = stringWriter.toString();
+
+			HttpResponse<JsonNode> response = Unirest.post(url + PROGRAM_ENROLLMENT_URL)
+					.basicAuth(username,password)
+					.header("content-type", "application/json")
+					.body(requestJson)
+					.asJson();
+
+			if(response.getBody() != null && response.getBody().getObject() != null &&
+					response.getBody().getObject().get("patient") != null &&
+					((JSONObject)response.getBody().getObject().get("patient")).get("uuid")!=null){
+				program.setUuid((String)((JSONObject)(response.getBody().getObject().get("patient"))).get("uuid"));
+			}else{
+				System.err.println("Response from the server for program enrollment:");
+				System.err.println(response.getBody().toString());
+				throw new BahmniAPIException("Program enrollment failed!!");
+			}
 		}
 		catch (Exception e) {
 			throw new BahmniAPIException(e);

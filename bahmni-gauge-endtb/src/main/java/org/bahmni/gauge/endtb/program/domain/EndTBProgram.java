@@ -5,7 +5,6 @@ import org.bahmni.gauge.common.program.domain.Program;
 public class EndTBProgram extends Program {
 
 	private String registrationNumber;
-
 	private String registrationFacility;
 
 	public EndTBProgram(String name, String dateOfRegistration, String registrationNumber, String registrationFacility) {

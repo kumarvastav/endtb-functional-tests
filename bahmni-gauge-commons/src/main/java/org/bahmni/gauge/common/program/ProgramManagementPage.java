@@ -5,13 +5,16 @@ import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.program.domain.Program;
+import org.bahmni.gauge.common.registration.domain.Patient;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class ProgramManagementPage extends BahmniPage {
 
@@ -145,5 +148,11 @@ public class ProgramManagementPage extends BahmniPage {
 		facility_name.sendKeys(facility);
 		registration_id.sendKeys(registration);
 		return this;
+	}
+
+	public Program transformTableRowToProgram(TableRow row, List<String> columnNames) {
+		String registration = row.getCell(columnNames.get(1)) + new Random().nextInt();
+		Program program = new Program(row.getCell(columnNames.get(0)), registration);
+		return program;
 	}
 }

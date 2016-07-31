@@ -20,3 +20,4 @@ Tags: regression, smoke, sanity
 * Ensure that the patient is registered to mentioned program
 * On the login page
 * Logout the user
+* Delete the patient
