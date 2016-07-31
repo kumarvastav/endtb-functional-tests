@@ -33,7 +33,6 @@ public class RegistrationFirstPageSpec {
 
 	@AfterScenario
 	public void deletePatient(){
-		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
 		Patient patient = registrationFirstPage.getPatientFromSpecStore();
 		if (patient != null) {
 			String uuid = patient.getUuid();
@@ -49,7 +48,6 @@ public class RegistrationFirstPageSpec {
 	@Step("Create the following patient <table>")
 	public void createPatients(Table table) {
 		Patient patient = transformTableToPatient(table);
-		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
 		registrationFirstPage.registerPatient(patient);
 
 		waitForAppReady();
@@ -63,37 +61,31 @@ public class RegistrationFirstPageSpec {
 
 	@Step("Click on search patient link")
 	public void navigateToPatientSearch() {
-		//RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
 		registrationFirstPage.navigateToSearchPage();
 	}
 
 	@Step("Validate that the patient edit page is opened for previously created patient")
 	public void validateThePatientPageIsOpened() {
-		//RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
 		registrationFirstPage.verifyPatientWithIdentifierAndName();
 	}
 
 	@Step("Ensure that the patient edit page is opened for previously created patient")
 	public void ensureThePatientPageIsOpened() {
-		//RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
 		registrationFirstPage.verifyPatientWithIdentifierAndName();
 	}
 
 	@Step("Start a visit <visit>")
 	public void startPatientVisit(String visit) throws InterruptedException {
-		//RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
 		registrationFirstPage.startVisit(visit);
 	}
 
 	@Step("Select check to enter patient ID manually")
 	public void selectCheckToEnterPatientID() {
-		//RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
 		registrationFirstPage.selectEnterPatientID();
 	}
 
 	@Step("Enter Visit Details Page")
 	public void enterVisitDetailsPage() {
-		//RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
 		registrationFirstPage.enterVisitDetailsPage();
 	}
 
@@ -101,7 +93,6 @@ public class RegistrationFirstPageSpec {
 	public void createPatientThroughAPI(Table table){
 		Patient patient = transformTableToPatient(table);
 		BahmniRestClient.get().createPatient(patient);
-		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
 		registrationFirstPage.storePatientInSpecStore(patient);
 	}
 
@@ -118,7 +109,6 @@ public class RegistrationFirstPageSpec {
 			throw new TestSpecException("Only one patient should be provided in the table");
 		}
 
-		RegistrationFirstPage registrationFirstPage = PageFactory.getRegistrationFirstPage();
 		Patient patient = registrationFirstPage.transformTableRowToPatient(rows.get(0), columnNames);
 
 		return patient;
