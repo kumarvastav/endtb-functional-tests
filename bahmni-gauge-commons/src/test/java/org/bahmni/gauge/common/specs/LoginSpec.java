@@ -29,6 +29,7 @@ public class LoginSpec {
 	@Step("Login with username <username> and password <password>")
 	public void login(String username,String password){
         LoginPage loginPage = PageFactory.getLoginPage();
-        loginPage.login(username,password);
+		loginPage.waitForLoginPageToLoad(driver);
+		loginPage.login(username,password);
     }
 }

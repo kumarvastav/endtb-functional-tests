@@ -77,4 +77,14 @@ public class BahmniPage {
 			e.printStackTrace();
 		}
 	}
+	public void waitForLoginPageToLoad(WebDriver driver) {
+		try {
+			Thread.sleep(1000);
+			WebDriverWait wait = new WebDriverWait(driver, 60);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#username")));
+		}
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }
