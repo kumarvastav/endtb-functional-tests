@@ -9,6 +9,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -35,14 +36,7 @@ public class BahmniPage {
 	}
 
 	public void waitForSpinner(WebDriver driver) {
-		try {
-			Thread.sleep(1000);
-			WebDriverWait wait = new WebDriverWait(driver, 60);
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#overlay")));
-		}
-		catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		waitForElement(driver,ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#overlay")));
 	}
 
 	public Program getProgramFromSpecStore(){
@@ -68,20 +62,17 @@ public class BahmniPage {
 	}
 
 	public void waitForAlertPopup(WebDriver driver) {
-		try {
-			Thread.sleep(300);
-			WebDriverWait wait = new WebDriverWait(driver, 60);
-			wait.until(ExpectedConditions.alertIsPresent());
-
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		waitForElement(driver,ExpectedConditions.alertIsPresent());
 	}
-	public void waitForLoginPageToLoad(WebDriver driver) {
+	public void waitForElementOnPage(WebDriver driver, String element) {
+		waitForElement(driver,ExpectedConditions.visibilityOfElementLocated(By.cssSelector(element)));
+	}
+
+	private void waitForElement(WebDriver driver, ExpectedCondition expectedCondition){
 		try {
 			Thread.sleep(1000);
 			WebDriverWait wait = new WebDriverWait(driver, 60);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#username")));
+			wait.until(expectedCondition);
 		}
 		catch (InterruptedException e) {
 			e.printStackTrace();
