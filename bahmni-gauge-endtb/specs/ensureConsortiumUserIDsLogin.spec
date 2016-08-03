@@ -11,12 +11,12 @@ Login From MSF,PIH and IRD User IDs and ensure login
 Tags: regression, sanity
 
 * On the login page
-* Login with username "pihuser1" and password "endTB@123"
+* Login with username "pihuser1" and password "endTB123"
 * Verify Login Page
 * Logout the user
-* Login with username "msfuser1" and password "endTB@123"
+* Login with username "msfuser1" and password "endTB123"
 * Verify Login Page
 * Logout the user
-* Login with username "irduser1" and password "endTB@123"
+* Login with username "irduser1" and password "endTB123"
 * Verify Login Page
 * Logout the user
