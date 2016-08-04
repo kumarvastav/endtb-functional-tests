@@ -9,6 +9,7 @@ Tags: regression, smoke, sanity
 * Create random patient through API
 * On the login page
 * Login with username "superman" and password "Admin123"
+* Verify Login Page
 * Click on registration app
 * Click on search patient link
 * Search previously created patient with exact identifier
