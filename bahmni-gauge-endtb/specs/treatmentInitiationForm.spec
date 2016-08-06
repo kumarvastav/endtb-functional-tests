@@ -12,7 +12,7 @@ Tags: regression
 
 * Enroll patient to the treatment through API
 * On the login page
-* Login with username "superman" and password "Admin123"
+* Login to the application
 * On the dashboard page
 * Create a "treatment_initiation" form with following data
     |treatmentStartDate|treatmentNextVisitDate|

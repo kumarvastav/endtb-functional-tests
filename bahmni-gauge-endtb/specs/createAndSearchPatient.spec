@@ -8,7 +8,7 @@ CREATE PATIENT AND VERIFY
 Tags: regression, sanity
 
 * On the login page
-* Login with username "superman" and password "Admin123"
+* Login to the application
 * Verify Login Page
 * Click on registration app
 * Click on create new patient link
@@ -25,7 +25,7 @@ VALIDATE PATIENT CREATE FAILS WITH SAME ID
 Tags: regression, sanity
 
 * On the login page
-* Login with username "superman" and password "Admin123"
+* Login to the application
 * Verify Login Page
 * Click on registration app
 * Click on create new patient link
@@ -42,7 +42,7 @@ SEARCH PATIENT WITH FILTERS
 Tags: regression, sanity
 
 * On the login page
-* Login with username "msfuser1" and password "endTB123"
+* Login with username "BAHMNI_GAUGE_MSF_USER" and password "BAHMNI_GAUGE_MSF_PASSWORD"
 * Verify Login Page
 * Click on registration app
 * Click on search patient link

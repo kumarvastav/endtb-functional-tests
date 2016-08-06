@@ -4,7 +4,7 @@ Patient Registration Scenarios
 Create Pateint and Verify
 -------------------------
 * On the login page
-* Login with username "superman" and password "Admin123"
+* Login to the application
 * Click on registration app
 * Click on create new patient link
 * Create Amman Patient

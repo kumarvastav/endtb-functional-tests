@@ -27,9 +27,14 @@ public class LoginSpec {
     }
 
 	@Step("Login with username <username> and password <password>")
-	public void login(String username,String password){
+	public void login(String username, String password){
         LoginPage loginPage = PageFactory.getLoginPage();
 		loginPage.waitForElementOnPage(driver,"#username");
-		loginPage.login(username,password);
+		loginPage.login(System.getenv(username), System.getenv(password));
+    }
+
+    @Step("Login to the application")
+    public void login() {
+        login("BAHMNI_GAUGE_APP_USER", "BAHMNI_GAUGE_APP_PASSWORD");
     }
 }

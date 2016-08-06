@@ -10,7 +10,7 @@ Create Patient and Enrollment of Patient to Program
 ---------------------------------------------------
 
 * On the login page
-* Login with username "superman" and password "Admin123"
+* Login to the application
 * Click on registration app
 * Click on create new patient link
 * Create the following patient
@@ -18,7 +18,7 @@ Create Patient and Enrollment of Patient to Program
    |GAN|Test|Patient|Male|20/01/2011|50|Bilaspur|
 * Navigate to dashboard
 * Logout the user
-* Login with username "superman" and password "Admin123"
+* Login to the application
 * Click on programs app
 * Select the existing patient from patient listing page under tab "All"
 * Register the patient to following program

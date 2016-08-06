@@ -16,7 +16,7 @@ Stop Visit
 --------
 
 * On the login page
-* Login with username "superman" and password "Admin123"
+* Login to the application
 * Click on registration app
 * Search patient with prefix "GAN" identifier "1235068"
 * Enter Visit Details Page
@@ -27,7 +27,7 @@ Regular Search and validate the details
 -------------------------------
 
 * On the login page
-* Login with username "superman" and password "Admin123"
+* Login to the application
 * Click on registration app
 * Click on search patient link
 * Search patient with prefix "GAN" identifier "200"
