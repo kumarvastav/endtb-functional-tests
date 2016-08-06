@@ -12,10 +12,10 @@ Installation instructions
 Running functional tests
 ------------------------
 * Run the following commands with proper values to setup the required environment variables.
-    * `export BAHMNI_GAUGE_APP_URL=\<bahmni application url\>`
-    * `export BAHMNI_GAUGE_APP_USER=\<bahmni username\>`
-    * `export BAHMNI_GAUGE_APP_PASSWORD=\<bahmni password\>`
-    * `export BAHMNI_GAUGE_APP_IMPL_NAME=\<bahmni implementation name\>`
+    * `export BAHMNI_GAUGE_APP_URL=<bahmni application url>`
+    * `export BAHMNI_GAUGE_APP_USER=<bahmni username>`
+    * `export BAHMNI_GAUGE_APP_PASSWORD=<bahmni password>`
+    * `export BAHMNI_GAUGE_APP_IMPL_NAME=<bahmni implementation name>`
 
 * Running functional tests
     * Run `mvn clean install` at the root project level.
