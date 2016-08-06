@@ -1,5 +1,6 @@
 package org.bahmni.gauge.common;
 
+import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.common.clinical.PatientListingPage;
 import org.bahmni.gauge.common.home.HomePage;
@@ -23,7 +24,7 @@ public class PageFactory {
 	private static final String PROGRAMS_PAGE = "programs";
 	private static final String PATIENT_LISTING_PAGE = "patient.listing.page";
 	private static final String OBSERVATIONS_PAGE = "observations.page";
-	private static final String BASELINE_PAGE = "baseline.pge";
+	private static final String DASHBOARD_PAGE = "dashboard.page";
 
 	private static Properties props = new Properties();
 
@@ -81,4 +82,8 @@ public class PageFactory {
 	}
 
 	public static ObservationsPage getObservationsPage(){ return (ObservationsPage) getPage(OBSERVATIONS_PAGE);}
+
+	public static DashboardPage getDashboardPage(){
+		return (DashboardPage) getPage(DASHBOARD_PAGE);
+	}
 }
