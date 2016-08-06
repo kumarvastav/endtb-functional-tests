@@ -8,7 +8,7 @@ public class Program {
 
 	private String uuid;
 
-	private String patient_uuid;
+	private String patientUuid;
 
 	private String treatmentStatus;
 
@@ -31,7 +31,7 @@ public class Program {
 
 	public void setUuid(String uuid){ this.uuid = uuid; }
 
-	public void setPatientUuid(String uuid){ this.patient_uuid = uuid; }
+	public void setPatientUuid(String uuid){ this.patientUuid = uuid; }
 
 	public String getUuid(){ return uuid; }
 

@@ -2,6 +2,7 @@ package org.bahmni.gauge.common;
 
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
+import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.junit.Assert;
@@ -18,6 +19,7 @@ public class BahmniPage {
 
 	public static final String PATIENT_KEY = "patient";
 	public static final String PROGRAM_KEY = "program";
+	public static final String PATIENT_PROGRAM_KEY = "patient_program";
 
 	public void storePatientInSpecStore(Patient value) {
 		DataStore specStore = DataStoreFactory.getSpecDataStore();
@@ -76,5 +78,15 @@ public class BahmniPage {
 		catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void storePatientProgramInSpecStore(PatientProgram patientProgram) {
+		DataStore specStore = DataStoreFactory.getSpecDataStore();
+		specStore.put(PATIENT_PROGRAM_KEY, patientProgram);
+	}
+
+	public PatientProgram getPatientProgramFromSpecStore(){
+		DataStore specStore = DataStoreFactory.getSpecDataStore();
+		return (PatientProgram) specStore.get(PATIENT_PROGRAM_KEY);
 	}
 }

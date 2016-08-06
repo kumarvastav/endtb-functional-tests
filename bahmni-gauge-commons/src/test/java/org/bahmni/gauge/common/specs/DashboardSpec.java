@@ -8,6 +8,7 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.displaycontrol.ObsDisplayControl;
+import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -45,7 +46,7 @@ public class DashboardSpec {
 		List<String> columnNames = table.getColumnNames();
 
 		for (String columnName : columnNames) {
-			assertEquals("The column [" + columnName + "] has incorrect data",
+			assertEquals("The column [" + columnName + "] has incorrect data for the patient ["+dashboardPage.getPatientFromSpecStore().getIdNumber()+"]",
 					table.getTableRows().get(0).getCell(columnName), keyValues.get(columnName));
 		}
 	}
@@ -63,10 +64,12 @@ public class DashboardSpec {
 
 	}
 
-	@Step("Navigate to our patient")
-	public void tempNavigateToTestPatient() {
-		driver.get(
-				"https://endtb-qa.mybahmni.org/bahmni/clinical/#/default/patient/418b00ec-65e3-49ee-9bd5-901254a97e47/dashboard?dateEnrolled=2016-04-01T00:00:00.000&programUuid=2cc0a68b-266c-47cf-8e2a-7e18c65e47f0&enrollment=9af38863-1710-4b99-8450-1353c6ce83ef");
+	@Step("On the dashboard page")
+	public void navigateToDashboardPage() {
+		DashboardPage dashboardPage = PageFactory.getDashboardPage();
+		PatientProgram patientProgram = dashboardPage.getPatientProgramFromSpecStore();
+		String url = String.format(DashboardPage.URL,patientProgram.getPatient().getUuid(),patientProgram.getPatientProgramUuid());
+		driver.get(url);
 	}
 
 	@Step("Click on <name> dashboard")

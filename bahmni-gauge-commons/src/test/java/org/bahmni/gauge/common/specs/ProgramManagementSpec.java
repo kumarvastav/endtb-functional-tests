@@ -9,6 +9,7 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.program.ProgramManagementPage;
+import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
@@ -54,7 +55,6 @@ public class ProgramManagementSpec {
 	@Step("End the program <TB Program>")
 	public void endTheProgram(Program program) {
 		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
-		Program programDetails = programManagementPage.getProgramFromSpecStore();
 		programManagementPage.endProgram(program);
 	}
 
@@ -62,8 +62,12 @@ public class ProgramManagementSpec {
 	public void enrollPatientToTheProgram(Table table){
 		Program program = transformTableToProgram(table);
 		Patient patient = PageFactory.getRegistrationFirstPage().getPatientFromSpecStore();
-		BahmniRestClient.get().enrollToProgram(patient,program);
-		programManagementPage.storeProgramInSpecStore(program);
+
+		PatientProgram patientProgram = new PatientProgram();
+		patientProgram.setPatient(patient);
+		patientProgram.setProgram(program);
+		BahmniRestClient.get().enrollToProgram(patientProgram);
+		programManagementPage.storePatientProgramInSpecStore(patientProgram);
 	}
 
 	private Program transformTableToProgram(Table table){

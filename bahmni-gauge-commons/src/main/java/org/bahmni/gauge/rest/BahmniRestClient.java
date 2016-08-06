@@ -12,6 +12,7 @@ import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContexts;
+import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.json.JSONObject;
@@ -31,6 +32,8 @@ public class BahmniRestClient {
     private static final String PATIENT_URL = "/openmrs/ws/rest/v1/patient/";
 
 	private static final String PROGRAM_ENROLLMENT_URL = "/openmrs/ws/rest/v1/bahmniprogramenrollment";
+
+	private static final String EMRAPI_URL = "/openmrs/ws/rest/v1/bahmnicore/bahmniencounter";
 
 	private Configuration freemarkerConfiguration;
 
@@ -131,13 +134,12 @@ public class BahmniRestClient {
 		}
 	}
 
-	public void enrollToProgram(Patient patient, Program program){
+	public void enrollToProgram(PatientProgram patientProgram){
 		try {
 			Template freemarkerTemplate = freemarkerConfiguration.getTemplate("program_enrollment.ftl");
 			Map<String,Object> programData = new HashMap<>();
-			//program.setPatientUuid(patient.getUuid());
-			programData.put("patient",patient);
-			programData.put("program",program);
+			programData.put("patient",patientProgram.getPatient());
+			programData.put("program",patientProgram.getProgram());
 
 			StringWriter stringWriter = new StringWriter();
 			freemarkerTemplate.process(programData,stringWriter);
@@ -150,9 +152,9 @@ public class BahmniRestClient {
 					.asJson();
 
 			if(response.getBody() != null && response.getBody().getObject() != null &&
-					response.getBody().getObject().get("patient") != null &&
-					((JSONObject)response.getBody().getObject().get("patient")).get("uuid")!=null){
-				program.setUuid((String)((JSONObject)(response.getBody().getObject().get("patient"))).get("uuid"));
+					response.getBody().getObject().get("program") != null &&
+					((JSONObject)response.getBody().getObject().get("program")).get("uuid")!=null){
+				patientProgram.setPatientProgramUuid((String)response.getBody().getObject().get("uuid"));
 			}else{
 				System.err.println("Response from the server for program enrollment:");
 				System.err.println(response.getBody().toString());
@@ -161,6 +163,30 @@ public class BahmniRestClient {
 		}
 		catch (Exception e) {
 			throw new BahmniAPIException(e);
+		}
+	}
+
+	public void createForm(String formTemplate, Map<String,String> attributes){
+		try{
+			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(formTemplate);
+
+			StringWriter stringWriter = new StringWriter();
+			freemarkerTemplate.process(attributes,stringWriter);
+			String requestJson = stringWriter.toString();
+
+			HttpResponse<JsonNode> response = Unirest.post(url + EMRAPI_URL)
+					.basicAuth(username,password)
+					.header("content-type", "application/json")
+					.body(requestJson)
+					.asJson();
+
+			if(response.getStatus() != 200){
+				throw new BahmniAPIException("Invalid response for ["+formTemplate+"]");
+			}
+
+
+		}catch(Exception ex){
+			throw new BahmniAPIException(ex);
 		}
 	}
 }
