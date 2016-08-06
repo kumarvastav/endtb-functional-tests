@@ -12,10 +12,10 @@ Installation instructions
 
 * For running the tests, run the command
 
-    * export bahmni_gauge_env_url=\<environment_url\>
-    * export bahmni_gauge_env_username=\<username\>
-    * export bahmni_gauge_env_password=\<password\>
-    * export bahmni_impl_name=\<implementation_name\>
+    * export BAHMNI_GAUGE_APP_URL=\<environment_url\>
+    * export BAHMNI_GAUGE_APP_USER=\<username\>
+    * export BAHMNI_GAUGE_APP_PASSWORD=\<password\>
+    * export BAHMNI_GAUGE_APP_IMPL_NAME=\<implementation_name\>
     
     * mvn clean install
     * For endtb project, cd bahmni-gauge-endtb
