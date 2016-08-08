@@ -70,6 +70,11 @@ public class ProgramManagementSpec {
 		programManagementPage.storePatientProgramInSpecStore(patientProgram);
 	}
 
+	@Step("Click on the patients previously program enrolled")
+	public void clickOnThePatientsPreviouslyProgramEnrolled(){
+		programManagementPage.clickTreatmentDashboard(programManagementPage.getProgramFromSpecStore());
+	}
+
 	private Program transformTableToProgram(Table table){
 		List<TableRow> rows = table.getTableRows();
 		List<String> columnNames = table.getColumnNames();

@@ -1,12 +1,13 @@
 package org.bahmni.gauge.common.clinical;
 
+import org.bahmni.gauge.common.BahmniPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 import java.util.List;
 
-public class ConsultationPage {
+public class ConsultationPage extends BahmniPage {
 	
 	@FindBy(how= How.CSS, using = ".btn--success")
     public WebElement clinical;
@@ -19,5 +20,9 @@ public class ConsultationPage {
 	
 	@FindBy(how= How.CSS, using = ".save-consultation")
     public WebElement save;
+
+    public void saveConsultation(){
+        save.click();
+    }
 
 }

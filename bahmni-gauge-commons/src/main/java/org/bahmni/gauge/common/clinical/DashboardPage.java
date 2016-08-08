@@ -33,6 +33,10 @@ public class DashboardPage extends BahmniPage {
 		}
 	}
 
+	public void clickEnterData(){
+		clinical.click();
+	}
+
 	public WebElement findElementById(String id) {
 		return dashboardSections.findElement(By.id(id));
 	}

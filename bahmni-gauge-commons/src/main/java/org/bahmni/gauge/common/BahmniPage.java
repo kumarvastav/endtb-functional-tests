@@ -2,6 +2,7 @@ package org.bahmni.gauge.common;
 
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
+import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
@@ -20,6 +21,7 @@ public class BahmniPage {
 	public static final String PATIENT_KEY = "patient";
 	public static final String PROGRAM_KEY = "program";
 	public static final String PATIENT_PROGRAM_KEY = "patient_program";
+	public static final String BASELINE_KEY = "baselineForm";
 
 	public void storePatientInSpecStore(Patient value) {
 		DataStore specStore = DataStoreFactory.getSpecDataStore();
@@ -34,6 +36,11 @@ public class BahmniPage {
 	public void storeProgramInSpecStore(Program program){
 		DataStore specStore = DataStoreFactory.getSpecDataStore();
 		specStore.put(PROGRAM_KEY, program);
+	}
+
+	public void storeBaselineFormInSpecStore(ObservationForm baselineForm){
+		DataStore specStore = DataStoreFactory.getSpecDataStore();
+		specStore.put(BASELINE_KEY, baselineForm);
 	}
 
 	public void waitForSpinner(WebDriver driver) {
