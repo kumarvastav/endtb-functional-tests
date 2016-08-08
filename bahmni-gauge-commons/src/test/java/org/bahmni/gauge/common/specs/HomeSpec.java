@@ -25,6 +25,7 @@ public class HomeSpec extends BahmniPage {
 	@Step("Navigate to dashboard")
 	public void navigateToHomePage() {
 		driver.get(HomePage.URL);
+		new BahmniPage().waitForSpinner(driver);
 	}
 
 

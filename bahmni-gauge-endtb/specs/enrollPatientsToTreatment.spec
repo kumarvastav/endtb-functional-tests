@@ -4,7 +4,7 @@ Enroll Patients To Treatment
 CREATE A PATIENT AND ENROLL TO THE TREATMENT
 -------------------------------------------
 
-Tags: regression, smoke, sanity
+Tags: regression, sanity
 
 * Create random patient through API
 * On the login page

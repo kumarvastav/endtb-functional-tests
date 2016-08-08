@@ -1,6 +1,8 @@
 package org.bahmni.gauge.common.clinical;
 
 import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.clinical.domain.ObservationForm;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -40,4 +42,12 @@ public class DashboardPage extends BahmniPage {
 	public WebElement findElementById(String id) {
 		return dashboardSections.findElement(By.id(id));
 	}
+
+	public void validateObservation(ObservationForm observationForm, String displayControl){
+		for (WebElement dashboard : dashboards) {
+			if(dashboard.getText().contains(displayControl))
+				Assert.assertTrue(dashboard.getText().contains(observationForm.toString()));
+		}
+	}
+
 }

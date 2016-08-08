@@ -17,7 +17,7 @@ import org.junit.Assert;
 
 import java.util.List;
 
-public class ProgramManagementSpec {
+public class ProgramManagementSpec extends BahmniPage {
 
 	private ProgramManagementPage programManagementPage = null;
 
@@ -72,7 +72,7 @@ public class ProgramManagementSpec {
 
 	@Step("Click on the patients previously program enrolled")
 	public void clickOnThePatientsPreviouslyProgramEnrolled(){
-		programManagementPage.clickTreatmentDashboard(programManagementPage.getProgramFromSpecStore());
+		programManagementPage.clickTreatmentDashboard(programManagementPage.getPatientProgramFromSpecStore());
 	}
 
 	private Program transformTableToProgram(Table table){

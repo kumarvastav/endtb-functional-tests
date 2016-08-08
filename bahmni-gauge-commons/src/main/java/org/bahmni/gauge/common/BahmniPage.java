@@ -3,13 +3,16 @@ package org.bahmni.gauge.common;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
+import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,6 +25,7 @@ public class BahmniPage {
 	public static final String PROGRAM_KEY = "program";
 	public static final String PATIENT_PROGRAM_KEY = "patient_program";
 	public static final String BASELINE_KEY = "baselineForm";
+	public static final String OBSERVATION_KEY = "observation";
 
 	public void storePatientInSpecStore(Patient value) {
 		DataStore specStore = DataStoreFactory.getSpecDataStore();
@@ -69,6 +73,18 @@ public class BahmniPage {
 		alert.dismiss();
 	}
 
+	public void handleAlert(WebDriver driver) {
+		try {
+			Thread.sleep(2000);
+			Alert alert = driver.switchTo().alert();
+			System.out.println("Inside Alert");
+			alert.sendKeys(Keys.ENTER+"");
+		}
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void waitForAlertPopup(WebDriver driver) {
 		waitForElement(driver,ExpectedConditions.alertIsPresent());
 	}
@@ -87,6 +103,16 @@ public class BahmniPage {
 		}
 	}
 
+	public void storeObservationFormInSpecStore(ObservationForm observation){
+		DataStore specStore = DataStoreFactory.getSpecDataStore();
+		specStore.put(OBSERVATION_KEY, observation);
+	}
+
+	public ObservationForm getObservationFormInSpecStore(){
+		DataStore specStore = DataStoreFactory.getSpecDataStore();
+		return (ObservationForm) specStore.get(OBSERVATION_KEY);
+	}
+
 	public void storePatientProgramInSpecStore(PatientProgram patientProgram) {
 		DataStore specStore = DataStoreFactory.getSpecDataStore();
 		specStore.put(PATIENT_PROGRAM_KEY, patientProgram);
@@ -95,5 +121,14 @@ public class BahmniPage {
 	public PatientProgram getPatientProgramFromSpecStore(){
 		DataStore specStore = DataStoreFactory.getSpecDataStore();
 		return (PatientProgram) specStore.get(PATIENT_PROGRAM_KEY);
+	}
+
+	public void closeApp(WebDriver driver){
+		driver.quit();
+	}
+
+	public void navigateToHomePage(WebDriver driver){
+		driver.get(HomePage.URL);
+		dismissAlert(driver);
 	}
 }

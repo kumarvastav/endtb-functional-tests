@@ -8,7 +8,7 @@ Every heading in this file denotes a scenario. Every bulleted point denotes a st
 RECORD OBSERVATIONS FOR ENROLLED PATIENT
 ----------------------------------------
 
-Tags: regression, sanity
+Tags: regression, sanity, smoke
 
 * Enroll patient to the treatment through API
 * On the login page
@@ -25,4 +25,6 @@ Tags: regression, sanity
     |01/01/2015|Married||Yes|Pensioner||No|2016|
 
 * Save the consultation
+* Navigate to patient dashboard
+* Verify previously recorded observations
 * Delete the patient

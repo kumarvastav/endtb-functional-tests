@@ -15,7 +15,7 @@ public class ConsultationPage extends BahmniPage {
 	@FindBy(how= How.CSS, using = ".consultation-tabs .tab-item")
     public List<WebElement> tabs;
 	
-	@FindBy(how= How.CSS, using = ".back-btn-link")
+	@FindBy(how= How.CSS, using = ".patient-info")
     public WebElement patient_profile;
 	
 	@FindBy(how= How.CSS, using = ".save-consultation")
@@ -23,6 +23,10 @@ public class ConsultationPage extends BahmniPage {
 
     public void saveConsultation(){
         save.click();
+    }
+
+    public void clickPatientProfile(){
+        patient_profile.click();
     }
 
 }

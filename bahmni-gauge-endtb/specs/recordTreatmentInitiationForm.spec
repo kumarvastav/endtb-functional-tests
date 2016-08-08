@@ -8,7 +8,7 @@ Every heading in this file denotes a scenario. Every bulleted point denotes a st
 Create a TI form and validate in display control
 -------------------------------------------------
 
-Tags: regression
+Tags: regression, smoke, sanity
 
 * Enroll patient to the treatment through API
 * On the login page
@@ -20,5 +20,7 @@ Tags: regression
 * Click on "Patient Summary" dashboard
 * Ensure that "Treatment-Information" Obs display control with title "Treatment Information" has correct data
      |Current month of treatment|Treatment start date|
-     |1.2|01 Jul 16|
+     |1.3|01 Jul 16|
 * Delete the patient
+* Navigate to dashboard
+* Logout the user

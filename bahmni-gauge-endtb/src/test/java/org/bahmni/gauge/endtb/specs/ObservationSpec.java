@@ -1,5 +1,6 @@
 package org.bahmni.gauge.endtb.specs;
 
+import com.gargoylesoftware.htmlunit.Page;
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
@@ -8,8 +9,10 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.TestSpecException;
+import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
+import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
@@ -24,6 +27,11 @@ import java.util.Map;
 
 public class ObservationSpec {
 
+    private WebDriver driver=null;
+
+    public ObservationSpec(){
+        driver = DriverFactory.getDriver();
+    }
 
     @BeforeClassSteps
     public void waitForAppReady(){ new BahmniPage().waitForSpinner(DriverFactory.getDriver());}
@@ -63,9 +71,10 @@ public class ObservationSpec {
 
     @Step("Fill baseline form <table>")
     public void enterDataInBaselineForm(Table table){
-        ObservationForm baselineForm = transformTableToBaselineForm(table);
-        ObservationsPage observationsPage = PageFactory.getObservationsPage();
-        observationsPage.fillTemplateData(table,baselineForm);
+        ObservationsPage observationPage = PageFactory.getObservationsPage();
+        BaselineForm baselineForm = transformTableToBaselineForm(table);
+        new BahmniPage().storeBaselineFormInSpecStore(baselineForm);
+        observationPage.fillTemplateData(table,baselineForm);
     }
 
     private BaselineForm transformTableToBaselineForm(Table table){
@@ -76,6 +85,18 @@ public class ObservationSpec {
         }
         BaselineForm baselineForm = new EndTBObservationPage().transformTableRowToBaselineForm(rows.get(0), columnNames);
         return baselineForm;
+    }
+
+    @Step("Verify previously recorded observations")
+    public void verifyObservationsOnDashboard(){
+        BaselineForm baselineForm = (BaselineForm) new BahmniPage().getObservationFormInSpecStore();
+        DashboardPage dashboardPage = PageFactory.getDashboardPage();
+        dashboardPage.validateObservation(baselineForm,"Baseline");
+    }
+
+    @Step("Close the app")
+    public void closeApplication(){
+        new BahmniPage().closeApp(driver);
     }
 
 }

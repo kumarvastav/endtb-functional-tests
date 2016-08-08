@@ -4,6 +4,7 @@ import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.TestSpecException;
+import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.openqa.selenium.By;
@@ -96,8 +97,8 @@ public class ProgramManagementPage extends BahmniPage {
 		throw new TestSpecException("The program with name [" + treatment.getName() + "] doesn't exist");
 	}
 
-	public void clickTreatmentDashboard(Program treatment) {
-		WebElement programWidget = findProgram(treatment);
+	public void clickTreatmentDashboard(PatientProgram patientProgram) {
+		WebElement programWidget = findProgram(patientProgram.getProgram());
 		programWidget.findElement(By.id("dashboard-link")).click();
 
 	}
