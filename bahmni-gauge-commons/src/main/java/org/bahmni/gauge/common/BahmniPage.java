@@ -48,7 +48,13 @@ public class BahmniPage {
 	}
 
 	public void waitForSpinner(WebDriver driver) {
-		waitForElement(driver,ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#overlay")));
+		try{
+			Thread.sleep(1000);
+			waitForElement(driver,ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#overlay")));
+		}
+		catch(InterruptedException e){
+			e.printStackTrace();
+		}
 	}
 
 	public Program getProgramFromSpecStore(){
@@ -75,12 +81,11 @@ public class BahmniPage {
 
 	public void handleAlert(WebDriver driver) {
 		try {
-			Thread.sleep(2000);
 			Alert alert = driver.switchTo().alert();
 			System.out.println("Inside Alert");
 			alert.sendKeys(Keys.ENTER+"");
 		}
-		catch (InterruptedException e) {
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -92,13 +97,12 @@ public class BahmniPage {
 		waitForElement(driver,ExpectedConditions.visibilityOfElementLocated(By.cssSelector(element)));
 	}
 
-	private void waitForElement(WebDriver driver, ExpectedCondition expectedCondition){
+	public void waitForElement(WebDriver driver, ExpectedCondition expectedCondition){
 		try {
-			Thread.sleep(1000);
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(expectedCondition);
 		}
-		catch (InterruptedException e) {
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

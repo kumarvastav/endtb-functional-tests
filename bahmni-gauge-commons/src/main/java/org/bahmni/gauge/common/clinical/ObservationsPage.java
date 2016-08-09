@@ -6,6 +6,7 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -50,12 +51,17 @@ public class ObservationsPage extends BahmniPage {
             if (observ_label.getText().contains(columnNames.get(i))) {
                 answer = observation_nodes.get(i).findElement(By.cssSelector(".field-value"));
                 if (answer.getText().length() != 0) {
-                    if(answer.findElement(By.tagName("button")).isEnabled())     //answer.findElement(By.tagName("button")).isDisplayed()
-                        answer.findElement(By.tagName("button")).click();
+                    if(answer.findElement(By.tagName("button")).isEnabled()) {    //answer.findElement(By.tagName("button")).isDisplayed()
+                        Point point = answer.findElement(By.tagName("button")).getLocation();
+                        answer.findElement(By.tagName("button")).getLocation().move(point.getX(),point.getY());
+                        answer.findElement(By.tagName("button")).click(); }
                 }
                 else {
-                    if(answer.findElement(By.tagName("input")).isEnabled())
+                    if(answer.findElement(By.tagName("input")).isEnabled()) {
+                        Point point = answer.findElement(By.tagName("input")).getLocation();
+                        answer.findElement(By.tagName("input")).getLocation().move(point.getX(),point.getY());
                         answer.findElement(By.tagName("input")).sendKeys(rows.get(i).getCell(columnNames.get(i)));
+                    }
                 }
 
             }

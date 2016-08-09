@@ -9,6 +9,7 @@ import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.common.clinical.displaycontrol.ObsDisplayControl;
+import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -78,6 +79,17 @@ public class DashboardSpec {
 		DashboardPage dashboardPage = PageFactory.getDashboardPage();
 		dashboardPage.waitForSpinner(driver);
 		dashboardPage.selectDashboard(name);
+	}
+
+	@Step("Navigate to dashboard")
+	public void navigateToHomePage() {
+		driver.get(HomePage.URL);
+	}
+
+	@Step("Navigate to consultation")
+	public void goToConsultation(){
+		DashboardPage dashboardPage = PageFactory.getDashboardPage();
+		dashboardPage.clickEnterData();
 	}
 
 }

@@ -14,7 +14,7 @@ Tags: regression, sanity
 * Click on create new patient link
 * Create the following patient
     |EMR_ID_PREFIX|FirstName|Last Name|Gender|Date Of Birth|Address1|nationalIdentificationNumber|
-    |EMR|Emily|Bond|Female|20/01/2011|Bilaspur|13892|
+    |EMR|Super|Woman|Female|20/01/2011|Bilaspur|13892|
 
 * Logout the user
 

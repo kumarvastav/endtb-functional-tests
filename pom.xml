@@ -12,6 +12,7 @@
         <module>bahmni-gauge-endtb</module>
         <module>bahmni-gauge-amman</module>
         <module>bahmni-gauge-default</module>
+        <module>bahmni-gauge-possible</module>
     </modules>
 
     <dependencies>

@@ -51,7 +51,6 @@ public class RegistrationSearchSpec {
 	@Step("Select the patient from the search results")
 	public void ensureThatTheSearchResultsAreShown(){
 		RegistrationSearch registrationSearch = PageFactory.getRegistrationSearchPage();
-		Patient recentlyCreatedPatient = registrationSearch.getPatientFromSpecStore();
 		registrationSearch.getFirstResult();
 	}
 

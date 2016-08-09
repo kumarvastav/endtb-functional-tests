@@ -7,7 +7,10 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.home.HomePage;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomeSpec extends BahmniPage {
 	private final WebDriver driver;
@@ -22,11 +25,12 @@ public class HomeSpec extends BahmniPage {
 		new BahmniPage().waitForSpinner(driver);
 	}
 
-	@Step("Navigate to dashboard")
-	public void navigateToHomePage() {
-		driver.get(HomePage.URL);
-		new BahmniPage().waitForSpinner(driver);
-	}
+//	@Step("Navigate to dashboard")
+//	public void navigateToHomePage() {
+//		driver.get(HomePage.URL);
+//		new BahmniPage().we;
+//		//new BahmniPage().waitForSpinner(driver);
+//	}
 
 
 	@Step("Click on registration app")
@@ -50,6 +54,7 @@ public class HomeSpec extends BahmniPage {
 
 	@Step("Logout the user")
 	public void logout(){
+		//new BahmniPage().waitForElementOnPage(driver, ".i.icon-bahmni-registration");
 		homePage = PageFactory.getHomePage();
 		homePage.logout();
 	}
