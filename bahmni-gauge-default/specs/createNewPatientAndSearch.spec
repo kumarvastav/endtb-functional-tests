@@ -33,3 +33,10 @@ Regular Search and validate the details
 * Search patient with prefix "GAN" identifier "200"
 * Validate that the search results are displayed
 * Logout the user
+
+Naviage to medication
+---------------------
+
+* On the login page
+* Login to the application
+* Click on clinical app

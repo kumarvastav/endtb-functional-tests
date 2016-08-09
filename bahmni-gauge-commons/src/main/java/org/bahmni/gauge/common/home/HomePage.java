@@ -30,12 +30,15 @@ public class HomePage extends BahmniPage {
 	@FindBy(how= How.CSS, using = "i.fa-power-off")
 	public WebElement logout;
 
+	@FindBy(how = How.PARTIAL_LINK_TEXT, using = "Clinical")
+	public WebElement clinical;
+
     public void clickRegistrationApp(){
     	registration.click();
     }
 
     public void clickClinicalApp() {
-    	patientDocuments.click();
+    	clinical.click();
     }
 
 
