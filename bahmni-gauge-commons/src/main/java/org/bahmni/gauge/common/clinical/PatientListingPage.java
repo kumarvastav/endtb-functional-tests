@@ -16,8 +16,8 @@ public class PatientListingPage extends BahmniPage {
     @FindBy(how= How.CSS, using = "#patientIdentifier")
     public WebElement searchbox_txt;
     
-    @FindBy(how= How.CSS, using = ".active-patient.patient-id")
-    public WebElement patient;
+    @FindBy(how= How.CSS, using = ".active-patient")
+    public List<WebElement> patient_list;
     
     @FindBy(how= How.CSS, using = ".patient-list-table")
     public WebElement patient_table;
@@ -41,15 +41,13 @@ public class PatientListingPage extends BahmniPage {
     }
     
     public void selectPatient(String Patient){
-    	
-    	List<WebElement> results = patient_table.findElements(By.cssSelector(".ng-binding"));
-    	for(int i=0;i<=results.size();i++){
-    		if(results.get(i).getText().contentEquals(Patient))
-    		{
-    			results.get(i).click();
-    			break;
-    		}
-    	}
+    	for (WebElement patient : patient_list){
+    		if (patient.findElement(By.cssSelector(".patient-id")).getText().contains(Patient) ||
+					patient.findElement(By.cssSelector(".patient-name")).getText().contains(Patient)){
+    			patient.click();
+				return;
+			}
+		}
     }
   
     public void searchSelectPatientFromTab(String patientID, String tab) {

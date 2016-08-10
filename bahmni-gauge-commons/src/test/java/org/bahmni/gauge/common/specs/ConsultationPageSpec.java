@@ -29,4 +29,10 @@ public class ConsultationPageSpec extends BahmniPage {
         ConsultationPage consultationPage = PageFactory.getConsultationPage();
         consultationPage.clickPatientProfile();
     }
+
+    @Step("Go to <tab> tab")
+    public void goToTab(String tab){
+        ConsultationPage consultationPage = PageFactory.getConsultationPage();
+        consultationPage.clickOnTab(tab);
+    }
 }

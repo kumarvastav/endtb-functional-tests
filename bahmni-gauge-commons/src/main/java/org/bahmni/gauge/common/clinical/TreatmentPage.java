@@ -75,20 +75,16 @@ public class TreatmentPage extends BahmniPage{
     @FindBy(how = How.CSS, using = ".order-section-container input[title='date']")
     public WebElement orderSetStartDate;
 
-    @FindBy(how = How.CSS, using = "button .fa-save")
-    public WebElement save;
-
 
     public void createDrugOrder(){
-        drugName.sendKeys();
+        drugName.sendKeys("something");
         freeTextAccept.click();
-        dose.sendKeys();
-        new Select(doseUnits).selectByVisibleText("");
-        new Select(frequency).selectByVisibleText("");
-        new Select(route).selectByVisibleText("");
+        dose.sendKeys("12");
+        new Select(doseUnits).selectByVisibleText("ml");
+        new Select(frequency).selectByVisibleText("Once a day");
+        new Select(route).selectByVisibleText("Oral");
         startDate.sendKeys();
-        duration.sendKeys();
+        duration.sendKeys("10");
         addButton.click();
-        save.click();
     }
 }

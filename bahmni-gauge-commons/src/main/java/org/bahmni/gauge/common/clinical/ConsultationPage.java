@@ -12,7 +12,7 @@ public class ConsultationPage extends BahmniPage {
 	@FindBy(how= How.CSS, using = ".btn--success")
     public WebElement clinical;
 	
-	@FindBy(how= How.CSS, using = ".consultation-tabs .tab-item")
+	@FindBy(how= How.CSS, using = ".consultation-tabs .tab-item a")
     public List<WebElement> tabs;
 	
 	@FindBy(how= How.CSS, using = ".patient-info")
@@ -29,4 +29,12 @@ public class ConsultationPage extends BahmniPage {
         patient_profile.click();
     }
 
+    public void clickOnTab(String tab) {
+        for (WebElement eachTab: tabs){
+            if (eachTab.getText().contains(tab)){
+                eachTab.click();
+                return;
+            }
+        }
+    }
 }

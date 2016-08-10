@@ -40,3 +40,9 @@ Naviage to medication
 * On the login page
 * Login to the application
 * Click on clinical app
+* Select patient "GAN200061" in tab "Active"
+* Navigate to consultation
+* Go to "Medication" tab
+* Create drug order
+* Save the consultation
+

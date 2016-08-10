@@ -11,29 +11,14 @@ import org.openqa.selenium.WebDriver;
 
 public class TreatmentPageSpec {
 
-    private final WebDriver driver;
-    private final ConsultationPage consultationPage;
-
-
-    private TreatmentPage treatmentPage;
-
-    private TreatmentPageSpec(){
-        this.driver = DriverFactory.getDriver();
-        this.treatmentPage = PageFactory.getTreatmentPage();
-        this.consultationPage = PageFactory.getConsultationPage();
-
-    }
-
     @BeforeClassSteps
-    public void waitForAppReady() {
-        new BahmniPage().waitForSpinner(driver);
-    }
+    public void waitForAppReady(){ new BahmniPage().waitForSpinner(DriverFactory.getDriver());}
 
 
 
     @Step("Create drug order")
     public void createDrugOrder(){
-
+        TreatmentPage treatmentPage = PageFactory.getTreatmentPage();
         treatmentPage.createDrugOrder();
     }
 }

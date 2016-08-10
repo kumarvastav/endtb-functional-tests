@@ -22,4 +22,9 @@ public class PatientListingPageSpec extends BahmniPage {
         patientListing.searchSelectPatientFromTab(patient.getIdNumber(),tab);
     }
 
+    @Step("Select patient <patient> in tab <tab>")
+    public void selectPatient(String patientID , String tab){
+        PatientListingPage patientListing = PageFactory.getPatientListingPage();
+        patientListing.searchSelectPatientFromTab(patientID,tab);
+    }
 }
