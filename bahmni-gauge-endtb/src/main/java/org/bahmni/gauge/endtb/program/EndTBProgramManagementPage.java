@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.Random;
+
 public class EndTBProgramManagementPage extends ProgramManagementPage {
 
 	@FindBy(how= How.ID, using = "Registration Number")
@@ -42,8 +44,8 @@ public class EndTBProgramManagementPage extends ProgramManagementPage {
 	public Program transformTableToProgram(Table table) {
 		Program program = super.transformTableToProgram(table);
 
-		String registrationNumber = table.getTableRows().get(0).getCell(table.getColumnNames().get(2));
-		String registrationFacility = table.getTableRows().get(0).getCell(table.getColumnNames().get(3));
+		String registrationNumber = String.valueOf(new Random().nextInt());
+		String registrationFacility = table.getTableRows().get(0).getCell(table.getColumnNames().get(2));
 
 		return new EndTBProgram(program.getName(),program.getDateOfRegistration(),registrationNumber,registrationFacility);
 	}

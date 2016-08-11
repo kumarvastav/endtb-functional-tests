@@ -1,9 +1,5 @@
 Recording Observations for patient
 ==================================
-Created by dharmens on 7/31/16
-
-This is an executable specification file which follows markdown syntax.
-Every heading in this file denotes a scenario. Every bulleted point denotes a step.
      
 RECORD OBSERVATIONS FOR ENROLLED PATIENT
 ----------------------------------------
@@ -27,4 +23,3 @@ Tags: regression, sanity, smoke
 * Save the consultation
 * Navigate to patient dashboard
 * Verify previously recorded observations
-* Delete the patient

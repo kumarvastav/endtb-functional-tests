@@ -8,6 +8,7 @@ import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
+import org.junit.AfterClass;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class RegistrationFirstPageSpec {
 		new BahmniPage().waitForSpinner(driver);
 	}
 
-	@Step("Delete the patient")
+	@AfterClass
 	public void deletePatient(){
 		Patient patient = registrationFirstPage.getPatientFromSpecStore();
 		if (patient != null) {
