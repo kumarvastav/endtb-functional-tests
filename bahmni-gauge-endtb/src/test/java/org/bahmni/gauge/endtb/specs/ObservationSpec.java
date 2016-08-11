@@ -1,6 +1,5 @@
 package org.bahmni.gauge.endtb.specs;
 
-import com.gargoylesoftware.htmlunit.Page;
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
@@ -11,10 +10,7 @@ import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
-import org.bahmni.gauge.common.clinical.domain.ObservationForm;
-import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
-import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.endtb.clinical.EndTBObservationPage;
 import org.bahmni.gauge.endtb.clinical.domain.BaselineForm;

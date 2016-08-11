@@ -23,7 +23,7 @@ public class ObsDisplayControlTest {
 	private WebElement errorMessageElement;
 
 	@Before
-	public void setup() {
+	public void setUp() {
 		initMocks(this);
 	}
 

@@ -6,12 +6,7 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.ConsultationPage;
-import org.bahmni.gauge.common.clinical.DashboardPage;
 
-
-/**
- * Created by dharmens on 8/8/16.
- */
 public class ConsultationPageSpec extends BahmniPage {
 
     @BeforeClassSteps

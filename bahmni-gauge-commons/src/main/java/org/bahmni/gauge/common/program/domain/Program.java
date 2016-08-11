@@ -38,4 +38,8 @@ public class Program {
 	public String getTreatmentStatus() {
 		return treatmentStatus;
 	}
+
+	public String getPatientUuid() {
+		return patientUuid;
+	}
 }

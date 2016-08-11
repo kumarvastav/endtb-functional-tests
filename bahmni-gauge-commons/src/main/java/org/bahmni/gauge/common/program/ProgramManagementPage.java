@@ -6,14 +6,12 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
-import org.bahmni.gauge.common.registration.domain.Patient;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -108,12 +106,8 @@ public class ProgramManagementPage extends BahmniPage {
 		return isProgramAvailable(treatment, programName);
 	}
 
-	protected boolean isProgramAvailable(Program treatment, WebElement programName) {
-
-		if (programName != null && programName.getText().equals(treatment.getName()))
-			return true;
-		else
-			return false;
+	private boolean isProgramAvailable(Program treatment, WebElement programName) {
+		return programName != null && programName.getText().equals(treatment.getName());
 	}
 
 	public Program transformTableToProgram(Table table) {

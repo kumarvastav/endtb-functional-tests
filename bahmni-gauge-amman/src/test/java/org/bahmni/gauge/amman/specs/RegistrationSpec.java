@@ -7,9 +7,7 @@ import org.bahmni.gauge.amman.registration.domain.AmmanPatient;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
-import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 
-import java.util.Date;
 import java.util.Random;
 
 /**

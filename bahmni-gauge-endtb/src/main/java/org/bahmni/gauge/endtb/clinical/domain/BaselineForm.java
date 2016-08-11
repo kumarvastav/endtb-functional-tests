@@ -1,9 +1,6 @@
 package org.bahmni.gauge.endtb.clinical.domain;
 
-import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
-
-import java.util.Date;
 
 /**
  * Created by dharmens on 7/18/16.

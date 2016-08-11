@@ -1,20 +1,13 @@
 package org.bahmni.gauge.endtb.clinical;
 
-import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
-import org.bahmni.gauge.common.clinical.domain.ObservationForm;
-import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.endtb.clinical.domain.BaselineForm;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 public class EndTBObservationPage extends ObservationsPage {
 	
