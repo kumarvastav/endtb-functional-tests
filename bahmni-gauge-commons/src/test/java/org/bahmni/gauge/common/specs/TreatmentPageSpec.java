@@ -7,7 +7,6 @@ import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
-import org.bahmni.gauge.common.clinical.ConsultationPage;
 import org.bahmni.gauge.common.clinical.TreatmentPage;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
@@ -20,24 +19,21 @@ import java.util.List;
 
 public class TreatmentPageSpec {
 
-    private final WebDriver driver;
-    private final ConsultationPage consultationPage;
-    private final TreatmentPage treatmentPage;
+    private WebDriver driver;
+    private TreatmentPage treatmentPage;
 
     public TreatmentPageSpec(){
-        this.driver = DriverFactory.getDriver();
-        this.treatmentPage = PageFactory.getTreatmentPage();
-        this.consultationPage = PageFactory.getConsultationPage();
+        driver = DriverFactory.getDriver();
+        treatmentPage = PageFactory.getTreatmentPage();
     }
 
     @BeforeClassSteps
-    public void waitForAppReady(){ new BahmniPage().waitForSpinner(DriverFactory.getDriver());}
+    public void waitForAppReady(){ new BahmniPage().waitForSpinner(driver);}
 
 
 
     @Step("Create drug order")
     public void createDrugOrder(){
-        TreatmentPage treatmentPage = PageFactory.getTreatmentPage();
         treatmentPage.createDrugOrder();
     }
 
@@ -58,7 +54,10 @@ public class TreatmentPageSpec {
         DrugOrder drugOrder;
 
         for (TableRow row : rows) {
-            drugOrder = new DrugOrder(row.getCell(columnNames.get(0)), row.getCell(columnNames.get(1)), row.getCell(columnNames.get(2)), row.getCell(columnNames.get(3)), row.getCell(columnNames.get(4)), row.getCell(columnNames.get(5)), row.getCell(columnNames.get(6)));
+            drugOrder = new DrugOrder(row.getCell(columnNames.get(0)), row.getCell(columnNames.get(3)), row.getCell(columnNames.get(4)), row.getCell(columnNames.get(5)));
+
+            drugOrder.setUniformDoseInfo(row.getCell(columnNames.get(1)), row.getCell(columnNames.get(2)));
+            drugOrder.setAdditionalInformation("false", "As directed", row.getCell(columnNames.get(6)));
 
             drugOrder.setDrugUuid(row.getCell(columnNames.get(0)));
             drugOrder.setPatientUuid(patient.getUuid());

@@ -2,6 +2,8 @@ package org.bahmni.gauge.common.clinical.domain;
 
 import org.bahmni.gauge.rest.BahmniRestClient;
 
+import java.util.Objects;
+
 public class DrugOrder {
 
     private String patientUuid;
@@ -12,36 +14,22 @@ public class DrugOrder {
     private String frequency;
     private String route;
     private String startDate;
-    private String duration;
-    private String durationUnit;
-    private String quantity;
-    private String quantityUnit;
-    private String sos;
-    private String instructions;
+    private String duration = "";
+    private String durationUnit = "Day(s)";
+    private String quantity = "0";
+    private String quantityUnit = "";
+    private String sos = "false";
+    private String instructions = "As directed";
     private String additionalInstructions;
     private String drugUuid;
 
 
-    public DrugOrder(String drugName, String uniformDose, String uniformDoseUnit, String frequency, String route, String startDate, String duration, String durationUnit, String quantity, String quantityUnit, String sos, String instructions, String additionalInstructions) {
+    public DrugOrder(String drugName, String frequency, String route, String startDate) {
         this.drugName = drugName;
-        this.uniformDose = uniformDose;
-        this.uniformDoseUnit = uniformDoseUnit;
         this.frequency = frequency;
         this.route = route;
         this.startDate = startDate;
-        this.duration = duration;
-        this.durationUnit = durationUnit;
-        this.quantity = quantity;
-        this.quantityUnit = quantityUnit;
-        this.sos = sos;
-        this.instructions = instructions;
-        this.additionalInstructions = additionalInstructions;
     }
-
-    public DrugOrder(String drugName, String uniformDose, String uniformDoseUnit, String frequency, String route, String startDate, String additionalInstructions) {
-        this(drugName, uniformDose, uniformDoseUnit, frequency, route, startDate, "", "Day(s)", "0", uniformDoseUnit, "false", "As directed", additionalInstructions);
-    }
-
 
     public String getDrugName() {
         return drugName;
@@ -72,6 +60,7 @@ public class DrugOrder {
     }
 
     public String getDurationUnit() {
+
         return durationUnit;
     }
 
@@ -80,6 +69,8 @@ public class DrugOrder {
     }
 
     public String getQuantityUnit() {
+        if (Objects.equals(quantityUnit, ""))
+            return uniformDoseUnit;
         return quantityUnit;
     }
 
@@ -101,6 +92,27 @@ public class DrugOrder {
 
     public String getProgramUuid() {
         return programUuid;
+    }
+
+    public void setUniformDoseInfo(String uniformDose, String uniformDoseUnit) {
+        this.uniformDose = uniformDose;
+        this.uniformDoseUnit = uniformDoseUnit;
+    }
+
+    public void setAdditionalInformation(String sos, String instructions, String additionalInstructions) {
+        this.sos = sos;
+        this.instructions = instructions;
+        this.additionalInstructions = additionalInstructions;
+    }
+
+    public void setDurationInfo(String duration, String durationUnit) {
+        this.duration = duration;
+        this.durationUnit = durationUnit;
+    }
+
+    public void setQuantityInfo(String quantity, String quantityUnit) {
+        this.quantity = quantity;
+        this.quantityUnit = quantityUnit;
     }
 
     public void setPatientUuid(String patientUuid) {
