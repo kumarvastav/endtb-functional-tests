@@ -14,8 +14,7 @@ Tags: regression, smoke, sanity
     |treatmentStartDate|treatmentNextVisitDate|
     |2016-07-01|2016-08-23|
 * Click on "Patient Summary" dashboard
-* Ensure that "Treatment-Information" Obs display control with title "Treatment Information" has correct data
-     |Current month of treatment|Treatment start date|
-     |1.4|01 Jul 16|
+* Ensure "Treatment-Information" display control with title "Treatment Information" with "01 Jul 16" as Start Date
+    |Current month of treatment|Treatment start date|
 * On the login page
 * Logout the user

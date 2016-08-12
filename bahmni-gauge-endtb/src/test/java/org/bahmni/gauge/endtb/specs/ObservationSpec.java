@@ -36,6 +36,7 @@ public class ObservationSpec {
     @Step("Select the template <template> from on the observation page")
     public void clickOnTreatmentEnrollment(String template) throws InterruptedException {
         ObservationsPage observationsPage = PageFactory.getObservationsPage();
+        template = template.replace(" ","_");
         observationsPage.selectTemplate(template);
     }
 

@@ -107,7 +107,7 @@ public class RegistrationFirstPage extends BahmniPage {
 	}
 
 	public Patient transformTableRowToPatient(TableRow row, List<String> columnNames) {
-		String randomPatientId = "EMR"+ new Random().nextInt();
+		String randomPatientId = row.getCell(columnNames.get(0)) + new Random().nextInt();
 		Patient patient = new Patient(randomPatientId, row.getCell(columnNames.get(1)),
 				row.getCell(columnNames.get(2)), row.getCell(columnNames.get(3)), new Date(), 50,row.getCell(columnNames.get(6)));
 

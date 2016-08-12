@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 GAUGE_LATEST=$(curl -w "%{url_effective}\n" -L -s -S https://github.com/getgauge/gauge/releases/latest -o /dev/null)
 
 GAUGE_LATEST_VERSION=$(echo $GAUGE_LATEST | sed 's/.*\/v//')

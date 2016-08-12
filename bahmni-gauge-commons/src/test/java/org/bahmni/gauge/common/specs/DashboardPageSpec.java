@@ -13,8 +13,9 @@ import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -32,8 +33,8 @@ public class DashboardPageSpec {
 		new BahmniPage().waitForSpinner(driver);
 	}
 
-	@Step("Ensure that <id> Obs display control with title <title> has correct data <table>")
-	public void validateContentInDisplayControl(String id, String title, Table table) {
+	@Step("Ensure <Treatment-Information> display control with title <Treatment Information> with <01 Jul 16> as Start Date <table>")
+	public void validateContentInDisplayControl(String id, String title, String treatmentStartDate, Table table) throws ParseException {
 		DashboardPage dashboardPage = PageFactory.getDashboardPage();
 		dashboardPage.waitForSpinner(driver);
 
@@ -45,6 +46,9 @@ public class DashboardPageSpec {
 
 		Map<String, String> keyValues = obsDisplayControl.getKeyValues();
 		List<String> columnNames = table.getColumnNames();
+
+		String currentMonthOfTreatment = calculateCurrentMonthOfTreatment(treatmentStartDate);
+		table.addRow(Arrays.asList(currentMonthOfTreatment, treatmentStartDate));
 
 		for (String columnName : columnNames) {
 			assertEquals("The column [" + columnName + "] has incorrect data for the patient ["+dashboardPage.getPatientFromSpecStore().getIdNumber()+"]",
@@ -92,4 +96,10 @@ public class DashboardPageSpec {
 		dashboardPage.clickEnterData();
 	}
 
+	private String calculateCurrentMonthOfTreatment(String treatmentStartDate) throws ParseException {
+		Date startDate = new SimpleDateFormat("dd MMM yy").parse(treatmentStartDate);
+		Date today = new Date();
+
+		return (String.format("%.1f",(today.getTime() - startDate.getTime())/(30.0*24*3600*1000)));
+	}
 }

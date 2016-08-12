@@ -27,7 +27,7 @@ public class EndTBRegistrationFirstPage extends RegistrationFirstPage {
 		txtNationalIdentificationNumber.sendKeys(endTBPatient.getNationalIdentificationNumber());
 	}
 
-	public void clickTreatmentRegistration(){
+	public void clickTreatmentRegistration() {
 		programEnrollment.click();
 	}
 

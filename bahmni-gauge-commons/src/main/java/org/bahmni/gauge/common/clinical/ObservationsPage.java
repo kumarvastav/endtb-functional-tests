@@ -4,12 +4,12 @@ import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+
 import java.util.List;
 
 public class ObservationsPage extends BahmniPage {
@@ -25,9 +25,8 @@ public class ObservationsPage extends BahmniPage {
 
     public void selectTemplate(String templateName) {
         clickTemplateButton();
-
         List<WebElement> allForms = templatePanel.findElements(By.tagName("button"));
-        templateName = templateName.replace(" ","_");
+
         for(int i=0;i<=allForms.size();i++){
             if(allForms.get(i).getText().contains(templateName))
                 allForms.get(i).click();
