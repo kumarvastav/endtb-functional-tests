@@ -1,6 +1,7 @@
 package org.bahmni.gauge.common.clinical;
 
 import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -10,10 +11,10 @@ public class TreatmentPage extends BahmniPage{
 
     //Drug info fields
     @FindBy(how= How.CSS, using = "#drug-name")
-    public WebElement drugName;
+    public WebElement drugNameField;
 
     @FindBy(how= How.CSS, using = ".accept-btn")
-    public WebElement freeTextAccept;
+    public WebElement acceptButton;
 
     @FindBy(how= How.CSS, using = "#uniform-dose")
     public WebElement dose;
@@ -75,16 +76,23 @@ public class TreatmentPage extends BahmniPage{
     @FindBy(how = How.CSS, using = ".order-section-container input[title='date']")
     public WebElement orderSetStartDate;
 
+    @FindBy(how = How.CSS, using = ".ui-menu-item")
+    public WebElement autocomplete;
 
-    public void createDrugOrder(){
-        drugName.sendKeys("something");
-        freeTextAccept.click();
-        dose.sendKeys("12");
-        new Select(doseUnits).selectByVisibleText("ml");
-        new Select(frequency).selectByVisibleText("Once a day");
-        new Select(route).selectByVisibleText("Oral");
-        startDate.sendKeys();
-        duration.sendKeys("10");
+
+    public void createDrugOrder(DrugOrder drugOrder){
+        fillDrugName(drugOrder.getDrugName());
+        dose.sendKeys(drugOrder.getUniformDose());
+        new Select(doseUnits).selectByVisibleText(drugOrder.getUniformDoseUnit());
+        new Select(frequency).selectByVisibleText(drugOrder.getFrequency());
+        new Select(route).selectByVisibleText(drugOrder.getRoute());
+        duration.sendKeys(drugOrder.getDuration());
+        startDate.sendKeys(drugOrder.getStartDate());
         addButton.click();
+    }
+
+    private void fillDrugName(String drugName) {
+        drugNameField.sendKeys(drugName);
+        acceptButton.click();
     }
 }

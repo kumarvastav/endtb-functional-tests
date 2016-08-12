@@ -44,5 +44,8 @@ Naviage to medication
 * Navigate to consultation
 * Go to "Medication" tab
 * Create drug order
+    |Drug Name|Dose|Dose Unit|Frequency|Route|Start Date|Additional Instructions|Duration|Duration Unit|
+    |Paracetamol|2|mg|Immediately|Oral|08/08/2016|Take if Needed|2| Day(s)|
+    |Isoniazid (H)|4|mg|Immediately|Oral|08/08/2016|Take if Needed|2| Day(s)|
 * Save the consultation
 

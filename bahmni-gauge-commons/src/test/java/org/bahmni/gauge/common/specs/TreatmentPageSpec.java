@@ -32,9 +32,12 @@ public class TreatmentPageSpec {
 
 
 
-    @Step("Create drug order")
-    public void createDrugOrder(){
-        treatmentPage.createDrugOrder();
+    @Step("Create drug order <table>")
+    public void createDrugOrder(Table table){
+        List<DrugOrder> drugOrders = transformTableToDrugOrder(table);
+        for (DrugOrder drugOrder: drugOrders){
+            treatmentPage.createDrugOrder(drugOrder);
+        }
     }
 
     @Step("Create the following drug order using API <table>")
@@ -48,8 +51,8 @@ public class TreatmentPageSpec {
 
         List<TableRow> rows = table.getTableRows();
         List<String> columnNames = table.getColumnNames();
-        Patient patient = PageFactory.getRegistrationFirstPage().getPatientFromSpecStore();
-        PatientProgram patientProgram = PageFactory.getProgramManagementPage().getPatientProgramFromSpecStore();
+        //Patient patient = PageFactory.getRegistrationFirstPage().getPatientFromSpecStore();
+        //PatientProgram patientProgram = PageFactory.getProgramManagementPage().getPatientProgramFromSpecStore();
 
         DrugOrder drugOrder;
 
@@ -58,10 +61,10 @@ public class TreatmentPageSpec {
 
             drugOrder.setUniformDoseInfo(row.getCell(columnNames.get(1)), row.getCell(columnNames.get(2)));
             drugOrder.setAdditionalInformation("false", "As directed", row.getCell(columnNames.get(6)));
-
-            drugOrder.setDrugUuid(row.getCell(columnNames.get(0)));
-            drugOrder.setPatientUuid(patient.getUuid());
-            drugOrder.setProgramUuid(patientProgram.getPatientProgramUuid());
+            drugOrder.setDurationInfo(row.getCell(columnNames.get(7)),row.getCell(columnNames.get(8)));
+          //  drugOrder.setDrugUuid(row.getCell(columnNames.get(0)));
+          //  drugOrder.setPatientUuid(patient.getUuid());
+          //  drugOrder.setProgramUuid(patientProgram.getPatientProgramUuid());
 
             drugOrders.add(drugOrder);
         }
