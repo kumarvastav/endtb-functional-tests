@@ -18,7 +18,7 @@ public class DashboardPage extends BahmniPage {
 	@FindBy(how = How.CSS, using = ".btn--success")
 	public WebElement clinical;
 
-	@FindBy(how = How.CSS, using = ".dashboard")
+	@FindBy(how = How.CSS, using = ".dashboard-section")
 	public List<WebElement> dashboards;
 
 	@FindBy(how = How.CSS, using = ".patient-dashboard")
@@ -54,7 +54,7 @@ public class DashboardPage extends BahmniPage {
 	public void validateDrugOrderDisplayControl(DrugOrder drugOrder, String displayControl){
 		for (WebElement dashboard : dashboards) {
 			if(dashboard.getText().contains(displayControl))
-				Assert.assertTrue(dashboard.getText().contains(drugOrder.toString()));
+				Assert.assertTrue(dashboard.getText().contains(drugOrder.getDrugName().toString()));
 		}
 	}
 
