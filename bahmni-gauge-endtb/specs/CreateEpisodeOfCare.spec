@@ -7,7 +7,7 @@ Every heading in this file denotes a scenario. Every bulleted point denotes a st
 
 Create drug orders and validate on Dashbaord
 --------------------------------------------
-Tags: test
+Tags: regression, sanity
 
 * Create a Drug order through the API
 * Enroll patient to the treatment through API
@@ -19,3 +19,5 @@ Tags: test
 * Click on treatment enrollment
 * Click on the patients previously program enrolled
 * Verify prescribed drugs on the dashboard page
+* Navigate to dashboard
+* Logout the user

@@ -41,6 +41,7 @@ SEARCH PATIENT WITH FILTERS
 
 Tags: regression, sanity
 
+* Create random patient through API
 * On the login page
 * Login with username "BAHMNI_GAUGE_MSF_USER" and password "BAHMNI_GAUGE_MSF_PASSWORD"
 * Verify Login Page
