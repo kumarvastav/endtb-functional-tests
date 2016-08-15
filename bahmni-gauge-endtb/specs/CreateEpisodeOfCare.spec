@@ -10,7 +10,6 @@ Create drug orders and validate on Dashbaord
 Tags: regression, sanity
 
 * Create a Drug order through the API
-* Enroll patient to the treatment through API
 * On the login page
 * Login to the application
 * Click on registration app
