@@ -10,6 +10,7 @@ import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
+import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.endtb.clinical.EndTBObservationPage;
@@ -88,8 +89,17 @@ public class ObservationSpec {
     public void verifyObservationsOnDashboard(){
         BaselineForm baselineForm = (BaselineForm) new BahmniPage().getObservationFormInSpecStore();
         DashboardPage dashboardPage = PageFactory.getDashboardPage();
-        dashboardPage.validateObservation(baselineForm,"Baseline");
+        dashboardPage.validateObservationDisplayControl(baselineForm,"Baseline");
     }
+
+    @Step("Verify prescribed drugs on the dashboard page")
+    public void verifyDrugsOnDashboard(){
+        List<DrugOrder> drugOrder = (List<DrugOrder>)new BahmniPage().getDrugOrderFromSpecStore();
+        DashboardPage dashboardPage = PageFactory.getDashboardPage();
+        for(DrugOrder drug: drugOrder)
+            dashboardPage.validateDrugOrderDisplayControl(drug,"All active TB Drugs");
+    }
+
 
     @Step("Close the app")
     public void closeApplication(){

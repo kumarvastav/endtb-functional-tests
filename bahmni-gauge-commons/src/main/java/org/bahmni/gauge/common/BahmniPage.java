@@ -2,6 +2,7 @@ package org.bahmni.gauge.common;
 
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
+import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
@@ -16,6 +17,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class BahmniPage {
 
 	protected static String BASE_URL = System.getenv("BAHMNI_GAUGE_APP_URL");
@@ -25,6 +28,7 @@ public class BahmniPage {
 	public static final String PATIENT_PROGRAM_KEY = "patient_program";
 	public static final String BASELINE_KEY = "baselineForm";
 	public static final String OBSERVATION_KEY = "observation";
+	public static final String DRUG_ORDER_KEY = "drug_order";
 
 	public void storePatientInSpecStore(Patient value) {
 		DataStore specStore = DataStoreFactory.getSpecDataStore();
@@ -36,6 +40,11 @@ public class BahmniPage {
 		return (Patient) specStore.get(PATIENT_KEY);
 	}
 
+	public List<DrugOrder> getDrugOrderFromSpecStore(){
+		DataStore specStore = DataStoreFactory.getSpecDataStore();
+		return (List<DrugOrder>) specStore.get(DRUG_ORDER_KEY);
+	}
+
 	public void storeProgramInSpecStore(Program program){
 		DataStore specStore = DataStoreFactory.getSpecDataStore();
 		specStore.put(PROGRAM_KEY, program);
@@ -44,6 +53,11 @@ public class BahmniPage {
 	public void storeBaselineFormInSpecStore(ObservationForm baselineForm){
 		DataStore specStore = DataStoreFactory.getSpecDataStore();
 		specStore.put(BASELINE_KEY, baselineForm);
+	}
+
+	public void storeDrugOrderInSpecStore(List<DrugOrder> drugOrder){
+		DataStore specStore = DataStoreFactory.getSpecDataStore();
+		specStore.put(DRUG_ORDER_KEY, drugOrder);
 	}
 
 	public void waitForSpinner(WebDriver driver) {

@@ -44,6 +44,7 @@ public class TreatmentPageSpec {
     public void createDrugOrderUsingAPI(Table table) {
         List<DrugOrder> drugOrders = transformTableToDrugOrderForApiCall(table);
         BahmniRestClient.get().createDrugOrders(drugOrders);
+        new BahmniPage().storeDrugOrderInSpecStore(drugOrders);
     }
 
     private List<DrugOrder> transformTableToDrugOrder(Table table) {

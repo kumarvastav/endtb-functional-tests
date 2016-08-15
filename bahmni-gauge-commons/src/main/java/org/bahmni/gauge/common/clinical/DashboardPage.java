@@ -1,6 +1,7 @@
 package org.bahmni.gauge.common.clinical;
 
 import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -43,10 +44,17 @@ public class DashboardPage extends BahmniPage {
 		return dashboardSections.findElement(By.id(id));
 	}
 
-	public void validateObservation(ObservationForm observationForm, String displayControl){
+	public void validateObservationDisplayControl(ObservationForm observationForm, String displayControl){
 		for (WebElement dashboard : dashboards) {
 			if(dashboard.getText().contains(displayControl))
 				Assert.assertTrue(dashboard.getText().contains(observationForm.toString()));
+		}
+	}
+
+	public void validateDrugOrderDisplayControl(DrugOrder drugOrder, String displayControl){
+		for (WebElement dashboard : dashboards) {
+			if(dashboard.getText().contains(displayControl))
+				Assert.assertTrue(dashboard.getText().contains(drugOrder.toString()));
 		}
 	}
 
