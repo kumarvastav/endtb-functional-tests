@@ -32,15 +32,6 @@ public class RegistrationFirstPageSpec {
 		new BahmniPage().waitForSpinner(driver);
 	}
 
-	@AfterClass
-	public void deletePatient(){
-		Patient patient = registrationFirstPage.getPatientFromSpecStore();
-		if (patient != null) {
-			String uuid = patient.getUuid();
-			BahmniRestClient.get().retirePatient(uuid);
-		}
-	}
-
 	@Step("On the new patient creation page")
 	public void navigateToPatientCreatePage() {
 		driver.get(RegistrationFirstPage.URL);

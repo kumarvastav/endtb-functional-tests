@@ -1,8 +1,11 @@
 package org.bahmni.gauge.common;
 
-import com.thoughtworks.gauge.AfterSuite;
-import com.thoughtworks.gauge.BeforeSuite;
+import com.thoughtworks.gauge.AfterSpec;
+import com.thoughtworks.gauge.BeforeSpec;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
+import org.bahmni.gauge.common.registration.RegistrationFirstPage;
+import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,21 +21,25 @@ public class DriverFactory {
 		return driver;
 	}
 
-	@BeforeSuite
+	@BeforeSpec
 	public void setup() {
 		ChromeDriverManager.getInstance().setup();
 		DesiredCapabilities capability = DesiredCapabilities.chrome();
 		capability.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 		driver = new ChromeDriver(capability);
-		//driver = new ChromeDriver();
 		driver.manage().window().setSize(new Dimension(1440, 900));
 	}
 
-	@AfterSuite
+	@AfterSpec
 	public void tearDown() {
 		if (driver != null) {
 			driver.close();
 			driver.quit();
+		}
+		Patient patient = new RegistrationFirstPage().getPatientFromSpecStore();
+		if (patient != null) {
+			String uuid = patient.getUuid();
+			BahmniRestClient.get().retirePatient(uuid);
 		}
 	}
 }

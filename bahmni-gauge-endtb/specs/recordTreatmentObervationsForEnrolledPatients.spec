@@ -1,6 +1,6 @@
 Recording Observations for patient
 ==================================
-     
+
 RECORD OBSERVATIONS FOR ENROLLED PATIENT
 ----------------------------------------
 
@@ -22,4 +22,4 @@ Tags: regression, sanity, smoke
 
 * Save the consultation
 * Navigate to patient dashboard
-* Verify previously recorded observations
+* Verify observations recorded under "Baseline"

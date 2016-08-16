@@ -10,19 +10,19 @@ import org.openqa.selenium.support.How;
 import java.util.List;
 
 public class EndTBObservationPage extends ObservationsPage {
-	
-	@FindBy(how= How.ID, using ="template-control-panel-button")
+
+    @FindBy(how = How.ID, using = "template-control-panel-button")
     public WebElement dateBaselineAssessment;
 
-	@FindBy(how= How.CSS, using =".dashboard-content .leaf-observation-node")
+    @FindBy(how = How.CSS, using = ".dashboard-content .leaf-observation-node")
     public List<WebElement> observation_nodes;
 
-    @FindBy(how= How.CSS, using =".control-label>span[ng-bind='::observation.label']")
+    @FindBy(how = How.CSS, using = ".control-label>span[ng-bind='::observation.label']")
     public List<WebElement> alllabel;
 
     public BaselineForm transformTableRowToBaselineForm(TableRow row, List<String> columnNames) {
-        BaselineForm baselineForm = new BaselineForm(row.getCell(columnNames.get(0)),row.getCell(columnNames.get(1)),row.getCell(columnNames.get(2))
-            ,row.getCell(columnNames.get(3)),row.getCell(columnNames.get(4)),row.getCell(columnNames.get(5)),row.getCell(columnNames.get(6)),row.getCell(columnNames.get(6)));
+        BaselineForm baselineForm = new BaselineForm(row.getCell(columnNames.get(0)), row.getCell(columnNames.get(1)), row.getCell(columnNames.get(2))
+                , row.getCell(columnNames.get(3)), row.getCell(columnNames.get(4)), row.getCell(columnNames.get(5)), row.getCell(columnNames.get(6)), row.getCell(columnNames.get(6)));
         return baselineForm;
     }
 

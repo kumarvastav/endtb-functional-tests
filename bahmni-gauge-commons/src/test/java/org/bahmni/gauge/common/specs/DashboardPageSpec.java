@@ -47,7 +47,7 @@ public class DashboardPageSpec {
 		Map<String, String> keyValues = obsDisplayControl.getKeyValues();
 		List<String> columnNames = table.getColumnNames();
 
-		String currentMonthOfTreatment = calculateCurrentMonthOfTreatment(treatmentStartDate);
+		String currentMonthOfTreatment = dashboardPage.calculateCurrentMonthOfTreatment(treatmentStartDate);
 		table.addRow(Arrays.asList(currentMonthOfTreatment, treatmentStartDate));
 
 		for (String columnName : columnNames) {
@@ -94,12 +94,5 @@ public class DashboardPageSpec {
 	public void goToConsultation(){
 		DashboardPage dashboardPage = PageFactory.getDashboardPage();
 		dashboardPage.clickEnterData();
-	}
-
-	private String calculateCurrentMonthOfTreatment(String treatmentStartDate) throws ParseException {
-		Date startDate = new SimpleDateFormat("dd MMM yy").parse(treatmentStartDate);
-		Date today = new Date();
-
-		return (String.format("%.1f",(today.getTime() - startDate.getTime())/(30.0*24*3600*1000)));
 	}
 }
