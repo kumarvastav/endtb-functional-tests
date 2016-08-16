@@ -43,7 +43,7 @@ public class HomeSpec extends BahmniPage {
 
 	@Step("Logout the user")
 	public void logout(){
-		//new BahmniPage().waitForElementOnPage(driver, ".i.icon-bahmni-registration");
+		//new BahmniPage().waitForElementOnPage(driver, ".i.icon-bahmni-org.bahmi.gauge.possible.registration");
 		homePage = PageFactory.getHomePage();
 		homePage.logout();
 	}

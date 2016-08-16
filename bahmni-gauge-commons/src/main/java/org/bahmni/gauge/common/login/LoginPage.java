@@ -29,6 +29,10 @@ public class LoginPage extends BahmniPage{
 		login(username,password,"Registration Desk","en");
 	}
 
+    public void login(String username, String password, String location){
+        login(username,password,location,"en");
+    }
+
     public void login(String username, String password, String location, String locale){
 	    txtUserName.sendKeys(username);
 	    txtPassword.sendKeys(password);

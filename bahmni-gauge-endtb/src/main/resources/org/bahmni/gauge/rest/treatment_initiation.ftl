@@ -1777,7 +1777,7 @@
 					"Baseline, Past TB treatment drug regimen": {
 						"multiSelect": true
 					},
-					"Baseline, Most recent previous TB treatment registration number": {
+					"Baseline, Most recent previous TB treatment org.bahmi.gauge.possible.registration number": {
 						"conciseText": true
 					},
 					"Baseline, Cancer type": {
@@ -1805,7 +1805,7 @@
 						"conciseText": true,
 						"allowAddMore": true
 					},
-					"Baseline, HIV program registration number": {
+					"Baseline, HIV program org.bahmi.gauge.possible.registration number": {
 						"conciseText": true
 					},
 					"Baseline, Drugs used in ARV treatment": {

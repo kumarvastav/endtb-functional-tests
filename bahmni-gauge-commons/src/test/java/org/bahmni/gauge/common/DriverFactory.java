@@ -6,6 +6,8 @@ import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DriverFactory {
 
@@ -19,7 +21,10 @@ public class DriverFactory {
 	@BeforeSuite
 	public void setup() {
 		ChromeDriverManager.getInstance().setup();
-		driver = new ChromeDriver();
+		DesiredCapabilities capability = DesiredCapabilities.chrome();
+		capability.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+		driver = new ChromeDriver(capability);
+		//driver = new ChromeDriver();
 		driver.manage().window().setSize(new Dimension(1440, 900));
 	}
 

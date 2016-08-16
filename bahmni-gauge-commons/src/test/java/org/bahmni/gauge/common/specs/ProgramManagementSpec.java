@@ -45,7 +45,7 @@ public class ProgramManagementSpec extends BahmniPage {
 		Assert.assertTrue(programManagementPage.isPatientEnrolledToProgram(programDetails));
 	}
 
-	@Step("Edit attribute to registration <registration> and facility <facility>")
+	@Step("Edit attribute to org.bahmi.gauge.possible.registration <org.bahmi.gauge.possible.registration> and facility <facility>")
 	public void editAttributesEnrolledToTheProgram(String registration, String facility) {
 		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
 		Program programDetails = programManagementPage.getProgramFromSpecStore();

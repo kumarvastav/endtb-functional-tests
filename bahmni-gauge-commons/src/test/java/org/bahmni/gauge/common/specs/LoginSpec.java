@@ -33,6 +33,13 @@ public class LoginSpec {
 		loginPage.login(System.getenv(username), System.getenv(password));
     }
 
+	@Step("Login with username <username> and password <password> with location <location>")
+	public void login(String username, String password, String location){
+		LoginPage loginPage = PageFactory.getLoginPage();
+		loginPage.waitForElementOnPage(driver,"#username");
+		loginPage.login(System.getenv(username), System.getenv(password), System.getenv(location));
+	}
+
     @Step("Login to the application")
     public void login() {
         login("BAHMNI_GAUGE_APP_USER", "BAHMNI_GAUGE_APP_PASSWORD");

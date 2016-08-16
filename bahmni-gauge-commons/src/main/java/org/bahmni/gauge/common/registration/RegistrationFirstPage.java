@@ -76,7 +76,8 @@ public class RegistrationFirstPage extends BahmniPage {
 	}
 
 	public void registerPatient(Patient patient){
-		if (txtRegistrationNumber.isDisplayed()) {
+		if(enterID_checkbox.isDisplayed()) {
+			enterID_checkbox.click();
 			txtRegistrationNumber.sendKeys(patient.getIdNumber());
 		}
 		txtPatientName.sendKeys(patient.getFirstName());
