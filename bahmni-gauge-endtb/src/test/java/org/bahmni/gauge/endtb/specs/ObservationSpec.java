@@ -87,11 +87,10 @@ public class ObservationSpec {
         return baselineForm;
     }
 
-    @Step("Verify observations recorded under <formname>")
-    public void verifyObservationsOnDashboard(String formname) {
-        BaselineForm baselineForm = (BaselineForm) new BahmniPage().getObservationFormInSpecStore();
+    @Step("Verify observations recorded under <formName>")
+    public void verifyObservationsOnDashboard(String formName) {
         DashboardPage dashboardPage = PageFactory.getDashboardPage();
-        dashboardPage.validateObservationDisplayControl(formname);
+        dashboardPage.validateObservationDisplayControl(formName);
     }
 
     @Step("Verify prescribed drugs on the dashboard page")
@@ -106,10 +105,5 @@ public class ObservationSpec {
     @Step("Close the app")
     public void closeApplication() {
         new BahmniPage().closeApp(driver);
-    }
-
-    @Step("Verify previously recorded observations under <Baseline>")
-    public void implementation1(Object arg0) {
-
     }
 }

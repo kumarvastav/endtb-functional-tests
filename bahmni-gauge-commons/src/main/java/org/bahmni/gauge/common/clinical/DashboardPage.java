@@ -2,7 +2,7 @@ package org.bahmni.gauge.common.clinical;
 
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
-import org.bahmni.gauge.common.clinical.domain.ObservationForm;
+import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -14,8 +14,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
-import org.joda.time.DateTime;
 
 public class DashboardPage extends BahmniPage {
 

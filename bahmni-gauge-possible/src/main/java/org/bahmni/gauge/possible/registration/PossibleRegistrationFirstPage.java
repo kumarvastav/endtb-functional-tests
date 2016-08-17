@@ -4,8 +4,6 @@ import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.possible.registration.domain.PossiblePatient;
-import org.bahmni.gauge.possible.program.domain.PossibleProgram;
-import org.bahmni.gauge.possible.registration.domain.PossiblePatient;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
