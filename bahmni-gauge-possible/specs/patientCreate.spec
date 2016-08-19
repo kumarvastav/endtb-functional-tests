@@ -16,7 +16,7 @@ Tags: regression, sanity
 * Click on registration app
 * Click on create new patient link
 * Create the following patient
-    |BAH_ID_PREFIX|FirstName|Last Name|Gender|Date Of Birth|Age|Ward|Municipality|District|Country|Caste|
-    |BAH|Super|Woman|Female|20/01/2011|50|Address1-187204|Darna|Achham|Nepal|2 - Janajati|
+    |prefix|idNumber|firstName|gender|dateOfBirth|age|ward|municipality|district|country|caste|
+    |BAH|12345|Super|Female|20/01/2011|50|Address1-187204|Darna|Achham|Nepal|2 - Janajati|
 
 * Logout the user

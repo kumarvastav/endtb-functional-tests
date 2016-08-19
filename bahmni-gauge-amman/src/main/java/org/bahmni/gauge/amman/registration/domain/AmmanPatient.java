@@ -1,14 +1,15 @@
 package org.bahmni.gauge.amman.registration.domain;
 
 import org.bahmni.gauge.common.registration.domain.Patient;
+import java.util.Random;
 
-import java.util.Date;
-
-/**
- * Created by swarup on 7/26/16.
- */
-public class AmmanPatient extends Patient{
-    public AmmanPatient(String idNumber, String firstName, String lastName, String gender, int age) {
-        super("", idNumber, firstName, lastName, gender, new Date(), age, "");
+public class AmmanPatient extends Patient {
+    public AmmanPatient(){
+        this.setPrefix("ID");
+        this.setIdNumber(String.valueOf(new Random().nextInt(100)));
+        this.setFirstName("first name");
+        this.setLastName("last name");
+        this.setGender("Male");
+        this.setAge("20");
     }
 }

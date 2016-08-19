@@ -10,17 +10,16 @@ import org.bahmni.gauge.common.PageFactory;
 
 import java.util.Random;
 
-/**
- * Created by swarup on 7/26/16.
- */
 public class RegistrationSpec {
     @BeforeClassSteps
-    public void waitForAppReady(){ new BahmniPage().waitForSpinner(DriverFactory.getDriver());}
+    public void waitForAppReady() {
+        new BahmniPage().waitForSpinner(DriverFactory.getDriver());
+    }
 
     @Step("Create Amman Patient")
-    public void createAmmanPatient(){
+    public void createAmmanPatient() {
         AmmanRegistrationPage registrationPage = (AmmanRegistrationPage) PageFactory.getRegistrationFirstPage();
-        AmmanPatient ammanPatient = new AmmanPatient("ID1231".concat(String.valueOf(new Random().nextInt(100))),"first name","last name","Male", 20);
+        AmmanPatient ammanPatient = new AmmanPatient();
         registrationPage.storePatientInSpecStore(ammanPatient);
         registrationPage.createPatient(ammanPatient);
     }

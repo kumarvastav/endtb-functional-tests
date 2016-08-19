@@ -1,72 +1,117 @@
 package org.bahmni.gauge.common.registration.domain;
 
-import java.util.Date;
-
 public class Patient {
-	private String uuid;
-	private String prefix;
-	private String idNumber;
-	private String firstName;
-	private String lastName;
-	private String gender;
-	private int age;
-	private Date dateOfBirth;
-	private String village;
 
-	public Patient(String prefix,String idNumber, String firstName, String lastName, String gender, Date dateOfBirth, int age, String village) {
-		this.prefix = prefix;
-		this.idNumber = idNumber;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.gender = gender;
-		this.dateOfBirth = dateOfBirth;
-		this.age = age;
-		this.village = village;
-	}
+    private String uuid;
+    private String prefix;
+    private String idNumber;
+    private String identifier;
+    private String firstName;
+    private String lastName;
+    private String gender;
+    private String age;
+    private String dateOfBirth;
+    private String district;
+    private String village;
+    private String country;
 
-	public Patient(String firstName, String lastName, String gender, Date dateOfBirth, int age, String village) {
-		this("","",firstName,lastName,gender,dateOfBirth,age,village);
-	}
+    public String getUuid() {
+        return uuid;
+    }
 
-	public Patient(String idNumber,String firstName, String lastName, String gender, Date dateOfBirth, int age, String village) {
-		this("",idNumber,firstName,lastName,gender,dateOfBirth,age,village);
-	}
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
-	public String getPrefix() {
-		return prefix;
-	}
+    public String getIdentifier() {
+        if ("".equals(identifier) || null == identifier) {
+            return prefix + idNumber;
+        }
+        return identifier;
+    }
 
-	public String getIdNumber() {
-		return idNumber;
-	}
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getPrefix() {
+        return prefix;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
 
-	public String getGender() {
-		return gender;
-	}
+    public String getIdNumber() {
+        return idNumber;
+    }
 
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
+    }
 
-	public String getAge() {
-		return age + "";
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getVillage(){ return village; }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getUuid() {
-		return uuid;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getVillage() {
+        return village;
+    }
+
+    public void setVillage(String village) {
+        this.village = village;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 }
+

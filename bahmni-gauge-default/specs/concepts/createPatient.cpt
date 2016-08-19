@@ -5,5 +5,6 @@
 * Click on registration app
 * Click on create new patient link
 * Create the following patient
-    |ID_PREFIX|FirstName|Last Name|Gender|Date Of Birth|Age|Address1|
+
+    |prefix|firstName|lastName|gender|dateOfBirth|age|district|
     |GAN|Test|Patient|Male|20/01/2011|50|Bilaspur|

@@ -13,7 +13,8 @@ Tags: regression, sanity
 * Click on registration app
 * Click on create new patient link
 * Create the following patient
-    |EMR_ID_PREFIX|FirstName|Last Name|Gender|Date Of Birth|Address1|nationalIdentificationNumber|
+
+    |prefix|firstName|lastName|gender|dateOfBirth|district|nationalIdentificationNumber|
     |EMR|Super|Woman|Female|20/01/2011|Bilaspur|13892|
 
 * Logout the user
@@ -30,8 +31,9 @@ Tags: regression, sanity
 * Click on registration app
 * Click on create new patient link
 * Create the following patient
-    |EMR_ID_PREFIX|FirstName|Last Name|Gender|Date Of Birth|Address1|nationalIdentificationNumber|
-    |EMR1101614870|John|Smith|Male|20/01/2011|Bilaspur|13892|
+
+    |prefix|idNumber|firstName|lastName|gender|dateOfBirth|district|nationalIdentificationNumber|
+    |EMR|1101614870|John|Smith|Male|20/01/2011|Bilaspur|13892|
 
 * Verify the patient creation fails
 * Logout the user

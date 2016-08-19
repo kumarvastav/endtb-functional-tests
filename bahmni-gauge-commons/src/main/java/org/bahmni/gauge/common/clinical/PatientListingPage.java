@@ -21,6 +21,9 @@ public class PatientListingPage extends BahmniPage {
     
     @FindBy(how= How.CSS, using = ".patient-list-table")
     public WebElement patient_table;
+
+	@FindBy(how= How.CSS, using = "button[type='submit']")
+	public WebElement search_btn;
     
     public WebElement findTab(String Tab){
     	for(int i=0;i<=tab.size();i++)
@@ -53,6 +56,10 @@ public class PatientListingPage extends BahmniPage {
     public void searchSelectPatientFromTab(String patientID, String tab) {
 		clickTab(tab);
     	enterPatientIDOrName(patientID);
+		/*one enter is missing*/
+		if("All".equals(tab)){
+			search_btn.click();
+		}
     	selectPatient(patientID);
     }
 }

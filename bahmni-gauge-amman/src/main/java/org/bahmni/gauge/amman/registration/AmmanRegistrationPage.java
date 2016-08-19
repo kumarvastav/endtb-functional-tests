@@ -11,7 +11,7 @@ public class AmmanRegistrationPage extends RegistrationFirstPage{
         txtPatientName.sendKeys(ammanPatient.getFirstName());
         familyName.sendKeys(ammanPatient.getLastName());
         new Select(gender).selectByVisibleText(ammanPatient.getGender());
-        ageYears.sendKeys(ammanPatient.getAge());
+        ageYears.sendKeys(String.valueOf(ammanPatient.getAge()));
         clickSave();
 
     }

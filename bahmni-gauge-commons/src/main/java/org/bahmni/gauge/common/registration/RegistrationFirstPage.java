@@ -1,6 +1,8 @@
 package org.bahmni.gauge.common.registration;
 
 import com.thoughtworks.gauge.TableRow;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.openqa.selenium.WebElement;
@@ -8,9 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 public class RegistrationFirstPage extends BahmniPage {
 
@@ -107,12 +107,30 @@ public class RegistrationFirstPage extends BahmniPage {
 		enterID_checkbox.click();
 	}
 
-	public Patient transformTableRowToPatient(TableRow row, List<String> columnNames) {
-		String randomPatientId = row.getCell(columnNames.get(0)) + new Random().nextInt();
-		Patient patient = new Patient(randomPatientId, row.getCell(columnNames.get(1)),
-				row.getCell(columnNames.get(2)), row.getCell(columnNames.get(3)), new Date(), 50,row.getCell(columnNames.get(6)));
+	public Patient transformTableRowToPatient(TableRow row, List<String> headers) throws Exception {
+		Patient patient = new Patient();
+		return transform(row,patient,headers);
+	}
 
+	public Patient transform(TableRow row,Patient patient,List<String> headers) throws Exception {
+		for (String header : headers) {
+			String value = row.getCell(header);
+			try {
+				if(propertyExists(patient,header)){
+					BeanUtils.setProperty(patient, header, value);
+				} else {
+					throw new Exception("Property :"+header+" not found in "+patient.getClass());
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new Exception(e.getMessage());
+			}
+		}
 		return patient;
+	}
+
+	private static boolean propertyExists (Object object, String property) {
+		return PropertyUtils.isReadable(object, property) && PropertyUtils.isWriteable(object, property);
 	}
 
 	public void startVisit(String visit) {

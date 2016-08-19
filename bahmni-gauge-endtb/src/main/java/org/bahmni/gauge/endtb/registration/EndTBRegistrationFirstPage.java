@@ -31,15 +31,13 @@ public class EndTBRegistrationFirstPage extends RegistrationFirstPage {
 		programEnrollment.click();
 	}
 
-	public Patient transformTableRowToPatient(TableRow row, List<String> columnNames){
-		String randomPatientId;
-		if(row.getCell(columnNames.get(0)).length() <= 3)
-			randomPatientId = "EMR"+ new Random().nextInt();
-		else
-			randomPatientId = row.getCell(columnNames.get(0));
-		EndTBPatient patient = new EndTBPatient(randomPatientId, row.getCell(columnNames.get(1)),
-				row.getCell(columnNames.get(2)), row.getCell(columnNames.get(3)), new Date(), 50,row.getCell(columnNames.get(6)));
-
-		return patient;
+	public Patient transformTableRowToPatient(TableRow row, List<String> headers) throws Exception {
+		EndTBPatient patient = new EndTBPatient();
+        /* set default values to the patient*/
+		patient.setPrefix("EMR");
+        patient.setIdNumber(String.valueOf(new Random().nextInt()));
+		patient.setDateOfBirth(String.valueOf(new Date()));
+		patient.setAge("50");
+		return transform(row, patient, headers);
 	}
 }

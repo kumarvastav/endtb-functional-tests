@@ -92,4 +92,7 @@ public class PageFactory {
     public static TreatmentPage getTreatmentPage() {
     	return (TreatmentPage) getPage(TREATMENT_PAGE);
     }
+	public static BahmniPage getPage(Class<? extends BahmniPage> page) {
+		return org.openqa.selenium.support.PageFactory.initElements(DriverFactory.getDriver(), page);
+	}
 }

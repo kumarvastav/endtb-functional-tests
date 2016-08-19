@@ -20,7 +20,7 @@ public class RegistrationFirstPageSpec {
 
 	private final WebDriver driver;
 
-	private RegistrationFirstPage registrationFirstPage;
+	public RegistrationFirstPage registrationFirstPage;
 
 	public static final String PATIENT_KEY = "patient";
 
@@ -40,7 +40,7 @@ public class RegistrationFirstPageSpec {
 	}
 
 	@Step("Create the following patient <table>")
-	public void createPatients(Table table) {
+	public void createPatients(Table table) throws Exception {
 		Patient patient = transformTableToPatient(table);
 		registrationFirstPage.registerPatient(patient);
 
@@ -84,7 +84,7 @@ public class RegistrationFirstPageSpec {
 	}
 
 	@Step("Create the following patient using api <table>")
-	public void createPatientThroughAPI(Table table){
+	public void createPatientThroughAPI(Table table) throws Exception {
 		Patient patient = transformTableToPatient(table);
 		BahmniRestClient.get().createPatient(patient);
 		registrationFirstPage.storePatientInSpecStore(patient);
@@ -95,7 +95,7 @@ public class RegistrationFirstPageSpec {
 		new BahmniPage().validateSystemException(driver);
 	}
 
-	private Patient transformTableToPatient(Table table){
+	private Patient transformTableToPatient(Table table) throws Exception {
 		List<TableRow> rows = table.getTableRows();
 		List<String> columnNames = table.getColumnNames();
 
@@ -103,8 +103,6 @@ public class RegistrationFirstPageSpec {
 			throw new TestSpecException("Only one patient should be provided in the table");
 		}
 
-		Patient patient = registrationFirstPage.transformTableRowToPatient(rows.get(0), columnNames);
-
-		return patient;
+		return registrationFirstPage.transformTableRowToPatient(rows.get(0), columnNames);
 	}
 }

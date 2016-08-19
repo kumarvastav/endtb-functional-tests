@@ -14,13 +14,15 @@ Create Patient and Enrollment of Patient to Program
 * Click on registration app
 * Click on create new patient link
 * Create the following patient
-   |ID_PREFIX|FirstName|Last Name|Gender|Date Of Birth|Age|Address1|
-   |GAN|Test|Patient|Male|20/01/2011|50|Bilaspur|
+
+    |prefix|firstName|lastName|gender|dateOfBirth|age|district|
+    |GAN|Test|Patient|Male|20/01/2011|50|Bilaspur|
+
 * Navigate to dashboard
 * Logout the user
 * Login to the application
 * Click on programs app
-* Select the existing patient from patient listing page under tab "All"
+* Select existing patient from patient listing page under tab "All"
 * Register the patient to following program
     |TB Register|Date Of Registration|Registration Number|Registration Facility|
     |Basic management unit TB register|01/01/2015|ABC|Facility1, City1, Country1|
@@ -32,7 +34,7 @@ Editing of Program Attributes
 
 * Navigate to dashboard
 * Click on programs app
-* Select the existing patient from patient listing page under tab "All"
+* Select existing patient from patient listing page under tab "All"
 * Edit attribute to registration "DEF" and facility "Facility1, City1, Country1"
 * Ensure that the patient is registered to mentioned program
 
@@ -42,6 +44,6 @@ End the Program Enrolled for Patient
 
 * Navigate to dashboard
 * Click on programs app
-* Select the existing patient from patient listing page under tab "All"
+* Select existing patient from patient listing page under tab "All"
 * End the program "TB Program"
 * Ensure that the patient is registered to mentioned program
