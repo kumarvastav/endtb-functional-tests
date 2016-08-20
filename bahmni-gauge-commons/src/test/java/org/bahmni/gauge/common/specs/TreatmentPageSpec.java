@@ -4,6 +4,7 @@ import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
+import org.apache.commons.beanutils.BeanUtils;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
@@ -14,6 +15,7 @@ import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.WebDriver;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +44,14 @@ public class TreatmentPageSpec {
 
     @Step("Create the following drug order using API <table>")
     public void createDrugOrderUsingAPI(Table table) {
-        List<DrugOrder> drugOrders = transformTableToDrugOrderForApiCall(table);
+        List<DrugOrder> drugOrders = transformTableToDrugOrder(table);
+        Patient patient = PageFactory.getRegistrationFirstPage().getPatientFromSpecStore();
+        PatientProgram patientProgram = PageFactory.getProgramManagementPage().getPatientProgramFromSpecStore();
+
+        for (DrugOrder drugOrder : drugOrders){
+            drugOrder.setPatientUuid(patient.getUuid());
+            drugOrder.setProgramUuid(patientProgram.getPatientProgramUuid());
+        }
         BahmniRestClient.get().createDrugOrders(drugOrders);
         new BahmniPage().storeDrugOrderInSpecStore(drugOrders);
     }
@@ -56,35 +65,21 @@ public class TreatmentPageSpec {
         DrugOrder drugOrder;
 
         for (TableRow row : rows) {
-            drugOrder = new DrugOrder(row.getCell(columnNames.get(0)), row.getCell(columnNames.get(3)), row.getCell(columnNames.get(4)), row.getCell(columnNames.get(5)));
+            drugOrder = new DrugOrder();
+            for (String columnName:columnNames){
 
-            drugOrder.setUniformDoseInfo(row.getCell(columnNames.get(1)), row.getCell(columnNames.get(2)));
-            drugOrder.setAdditionalInformation("false", "As directed", row.getCell(columnNames.get(6)));
-            drugOrder.setDurationInfo(row.getCell(columnNames.get(7)),row.getCell(columnNames.get(8)));
-            drugOrders.add(drugOrder);
-        }
-        return drugOrders;
-    }
+                try {
+                    BeanUtils.getProperty(drugOrder, columnName);
+                    BeanUtils.setProperty(drugOrder, columnName, row.getCell(columnName));
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                }
 
-    private List<DrugOrder> transformTableToDrugOrderForApiCall(Table table) {
-        List<DrugOrder> drugOrders = new ArrayList<>();
-
-        List<TableRow> rows = table.getTableRows();
-        List<String> columnNames = table.getColumnNames();
-        Patient patient = PageFactory.getRegistrationFirstPage().getPatientFromSpecStore();
-        PatientProgram patientProgram = PageFactory.getProgramManagementPage().getPatientProgramFromSpecStore();
-
-        DrugOrder drugOrder;
-
-        for (TableRow row : rows) {
-            drugOrder = new DrugOrder(row.getCell(columnNames.get(0)), row.getCell(columnNames.get(3)), row.getCell(columnNames.get(4)), row.getCell(columnNames.get(5)));
-
-            drugOrder.setUniformDoseInfo(row.getCell(columnNames.get(1)), row.getCell(columnNames.get(2)));
-            drugOrder.setAdditionalInformation("false", "As directed", row.getCell(columnNames.get(6)));
-            drugOrder.setDrugUuid(row.getCell(columnNames.get(0)));
-            drugOrder.setPatientUuid(patient.getUuid());
-            drugOrder.setProgramUuid(patientProgram.getPatientProgramUuid());
-
+            }
             drugOrders.add(drugOrder);
         }
         return drugOrders;

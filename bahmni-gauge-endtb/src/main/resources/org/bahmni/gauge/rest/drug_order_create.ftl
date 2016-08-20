@@ -25,8 +25,8 @@
 		"orderType": "Drug Order",
 		"dosingInstructionType": "org.openmrs.module.bahmniemrapi.drugorder.dosinginstructions.FlexibleDosingInstructions",
 		"dosingInstructions": {
-			"dose": "${drugOrder.uniformDose}",
-			"doseUnits": "${drugOrder.uniformDoseUnit}",
+			"dose": "${drugOrder.dose}",
+			"doseUnits": "${drugOrder.doseUnit}",
 			"route": "${drugOrder.route}",
 			"frequency": "${drugOrder.frequency}",
 			"asNeeded": "${drugOrder.sos}",

@@ -82,8 +82,8 @@ public class TreatmentPage extends BahmniPage{
 
     public void createDrugOrder(DrugOrder drugOrder){
         fillDrugName(drugOrder.getDrugName());
-        dose.sendKeys(drugOrder.getUniformDose());
-        new Select(doseUnits).selectByVisibleText(drugOrder.getUniformDoseUnit());
+        dose.sendKeys(drugOrder.getDose());
+        new Select(doseUnits).selectByVisibleText(drugOrder.getDoseUnit());
         new Select(frequency).selectByVisibleText(drugOrder.getFrequency());
         new Select(route).selectByVisibleText(drugOrder.getRoute());
         duration.sendKeys(drugOrder.getDuration());
