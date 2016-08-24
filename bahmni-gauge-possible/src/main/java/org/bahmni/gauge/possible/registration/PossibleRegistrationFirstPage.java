@@ -1,16 +1,20 @@
 package org.bahmni.gauge.possible.registration;
 
+import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.possible.registration.domain.PossiblePatient;
+import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class PossibleRegistrationFirstPage extends RegistrationFirstPage {
@@ -47,7 +51,16 @@ public class PossibleRegistrationFirstPage extends RegistrationFirstPage {
         PossiblePatient patient = new PossiblePatient();
         /* set default values to the patient*/
         patient.setLastName("possiblePatient");
-        return transform(row, patient, headers);
+        transform(row, patient, headers);
+        patient.setDateOfBirth(convertDate(patient.getDateOfBirth()));
+        return patient;
+    }
+
+    private String convertDate(String dateOfBirth) throws ParseException {
+        SimpleDateFormat userFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat serverFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        return serverFormat.format(userFormat.parse(dateOfBirth));
+
     }
 
     public void storePatientInSpecStore(Patient value) {
@@ -55,4 +68,9 @@ public class PossibleRegistrationFirstPage extends RegistrationFirstPage {
         specStore.put(PATIENT_KEY, value);
     }
 
+    public void createPatientUsingApi(Table table) throws Exception {
+        Patient patient = transformTableToPatient(table);
+        BahmniRestClient.get().createPatient(patient, "patient_create.ftl");
+        storePatientInSpecStore(patient);
+    }
 }

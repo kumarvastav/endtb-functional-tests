@@ -56,6 +56,10 @@ public class ProgramManagementPage extends BahmniPage {
 	@FindBy(how= How.CSS, using = "#Id_Number")
 	public WebElement registration_id;
 
+	@FindBy(how= How.CSS, using = ".delete-program-popup")
+	public WebElement deleteProgramPopUp;
+
+
 	public ProgramManagementPage enrollPatientToProgram(Program treatment) {
 		doActions(treatment);
 		btnEnroll.click();
@@ -86,13 +90,16 @@ public class ProgramManagementPage extends BahmniPage {
 		//TODO: Write modification for DateOfRegistration
 	}
 
-	private WebElement findProgram(Program treatment) {
-		for (int i = 0; i < allActivePrograms.size(); i++) {
-			if (allActivePrograms.get(i).getText().contains(treatment.getName())) {
-				return allActivePrograms.get(i);
+	private WebElement findProgram(Program program) {
+		return findProgram(program.getName());
+	}
+	public WebElement findProgram(String programName) {
+		for (WebElement allActiveProgram : allActivePrograms) {
+			if (allActiveProgram.getText().contains(programName)) {
+				return allActiveProgram;
 			}
 		}
-		throw new TestSpecException("The program with name [" + treatment.getName() + "] doesn't exist");
+		throw new TestSpecException("The program with name [" + programName + "] doesn't exist");
 	}
 
 	public void clickTreatmentDashboard(PatientProgram patientProgram) {
@@ -106,8 +113,8 @@ public class ProgramManagementPage extends BahmniPage {
 		return isProgramAvailable(treatment, programName);
 	}
 
-	private boolean isProgramAvailable(Program treatment, WebElement programName) {
-		return programName != null && programName.getText().equals(treatment.getName());
+	private boolean isProgramAvailable(Program enrolledProgram, WebElement programName) {
+		return programName != null && programName.getText().equals(enrolledProgram.getName());
 	}
 
 	public Program transformTableToProgram(Table table) {
@@ -150,4 +157,12 @@ public class ProgramManagementPage extends BahmniPage {
 		Program program = new Program(row.getCell(columnNames.get(0)), registration);
 		return program;
 	}
+
+	public void deleteProgram(WebElement program){
+		program.findElement(By.cssSelector("[id=\"delete_btn\"]")).click();
+		program.findElement(By.cssSelector("[ng-model=\"patientProgram.voidReason\"]")).sendKeys("Deleting the program");
+		program.findElement(By.cssSelector("[value=\"Delete\"]")).click();
+		deleteProgramPopUp.findElement(By.cssSelector("[id=\"delete\"]")).click();
+	}
+
 }

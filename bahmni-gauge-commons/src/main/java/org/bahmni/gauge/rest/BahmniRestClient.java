@@ -15,6 +15,7 @@ import org.apache.http.ssl.SSLContexts;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.net.ssl.SSLContext;
@@ -93,9 +94,9 @@ public class BahmniRestClient {
 		}
 	}
 
-	public void createPatient(Patient patient) {
+	public void createPatient(Patient patient,String templateName) {
 		try {
-			Template freemarkerTemplate = freemarkerConfiguration.getTemplate("patient_create.ftl");
+			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(templateName);
 			Map<String, Object> patientData = new HashMap<>();
 			patientData.put("patient", patient);
 
@@ -112,7 +113,9 @@ public class BahmniRestClient {
 			if (response.getBody() != null && response.getBody().getObject() != null &&
 					response.getBody().getObject().get("patient") != null &&
 					((JSONObject) response.getBody().getObject().get("patient")).get("uuid") != null) {
-				patient.setUuid((String) ((JSONObject) (response.getBody().getObject().get("patient"))).get("uuid"));
+				JSONObject patientRes = (JSONObject) (response.getBody().getObject().get("patient"));
+				patient.setUuid((String) patientRes.get("uuid"));
+				patient.setIdentifier(getIdentifier(patientRes));
 			} else {
 				System.err.println("Response from the server for patient creation:");
 				System.err.println(response.getBody().toString());
@@ -122,7 +125,16 @@ public class BahmniRestClient {
 			throw new BahmniAPIException(e);
 		}
 	}
-
+	private String getIdentifier(JSONObject patientRes) {
+		JSONArray identifiers = (JSONArray)patientRes.get("identifiers");
+		for (Object identifier : identifiers) {
+            JSONObject jsonObject = (JSONObject) identifier;
+            if(jsonObject.get("preferred").equals(true)){
+                return (String) jsonObject.get("identifier");
+            }
+        }
+		return null;
+	}
 	public void retirePatient(String uuid) {
 		try {
 			Unirest.delete(url + PATIENT_URL + uuid)

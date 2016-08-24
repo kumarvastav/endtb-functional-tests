@@ -29,6 +29,7 @@ public class BahmniPage {
 	public static final String BASELINE_KEY = "baselineForm";
 	public static final String OBSERVATION_KEY = "observation";
 	public static final String DRUG_ORDER_KEY = "drug_order";
+	protected WebDriver driver;
 
 	public void storePatientInSpecStore(Patient value) {
 		DataStore specStore = DataStoreFactory.getSpecDataStore();
@@ -60,6 +61,7 @@ public class BahmniPage {
 		specStore.put(DRUG_ORDER_KEY, drugOrder);
 	}
 
+	@Deprecated
 	public void waitForSpinner(WebDriver driver) {
 		try{
 			Thread.sleep(1000);
@@ -68,6 +70,9 @@ public class BahmniPage {
 		catch(InterruptedException e){
 			e.printStackTrace();
 		}
+	}
+	public void waitForSpinner(){
+		waitForSpinner(driver);
 	}
 
 	public Program getProgramFromSpecStore(){
@@ -147,5 +152,9 @@ public class BahmniPage {
 	public void navigateToHomePage(WebDriver driver){
 		driver.get(HomePage.URL);
 		dismissAlert(driver);
+	}
+
+	public void setDriver(WebDriver driver) {
+		this.driver = driver;
 	}
 }

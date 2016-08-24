@@ -9,7 +9,7 @@ public class HomePage extends BahmniPage {
 
 	public static final String URL = BASE_URL.concat("/home#/dashboard");
 
-	@FindBy(how= How.CSS, using = "i.icon-bahmni-registration")
+	@FindBy(how= How.ID, using = "bahmni.registration")
     public WebElement registration;
 	
 	@FindBy(how= How.CSS, using = "i.icon-bahmni-documents")

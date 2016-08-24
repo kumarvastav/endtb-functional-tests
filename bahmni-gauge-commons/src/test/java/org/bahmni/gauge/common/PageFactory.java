@@ -7,6 +7,7 @@ import org.bahmni.gauge.common.program.ProgramManagementPage;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.RegistrationSearch;
 import org.bahmni.gauge.common.registration.RegistrationVisitDetailsPage;
+import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,7 +46,9 @@ public class PageFactory {
 			throw new TestSpecException("The page key ["+key+"] is not defined in page.properties file");
 		}
 		try {
-			BahmniPage bahmniPage = (BahmniPage) org.openqa.selenium.support.PageFactory.initElements(DriverFactory.getDriver(), Class.forName((String) props.get(key)));
+			WebDriver driver = DriverFactory.getDriver();
+			BahmniPage bahmniPage = (BahmniPage) org.openqa.selenium.support.PageFactory.initElements(driver, Class.forName((String) props.get(key)));
+			bahmniPage.setDriver(driver);
 			return bahmniPage;
 		}
 		catch (ClassNotFoundException e) {
@@ -93,6 +96,9 @@ public class PageFactory {
     	return (TreatmentPage) getPage(TREATMENT_PAGE);
     }
 	public static BahmniPage getPage(Class<? extends BahmniPage> page) {
-		return org.openqa.selenium.support.PageFactory.initElements(DriverFactory.getDriver(), page);
+		WebDriver driver = DriverFactory.getDriver();
+		BahmniPage bahmniPage = org.openqa.selenium.support.PageFactory.initElements(driver, page);
+		bahmniPage.setDriver(driver);
+		return bahmniPage;
 	}
 }

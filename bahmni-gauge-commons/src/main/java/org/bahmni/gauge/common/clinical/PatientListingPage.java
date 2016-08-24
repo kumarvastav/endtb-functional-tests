@@ -56,7 +56,6 @@ public class PatientListingPage extends BahmniPage {
     public void searchSelectPatientFromTab(String patientID, String tab) {
 		clickTab(tab);
     	enterPatientIDOrName(patientID);
-		/*one enter is missing*/
 		if("All".equals(tab)){
 			search_btn.click();
 		}

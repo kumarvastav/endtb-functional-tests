@@ -24,9 +24,6 @@ public class Patient {
     }
 
     public String getIdentifier() {
-        if ("".equals(identifier) || null == identifier) {
-            return prefix + idNumber;
-        }
         return identifier;
     }
 

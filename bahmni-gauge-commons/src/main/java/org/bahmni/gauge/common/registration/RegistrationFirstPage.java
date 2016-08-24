@@ -1,16 +1,20 @@
 package org.bahmni.gauge.common.registration;
 
+import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+import java.util.Objects;
 
 public class RegistrationFirstPage extends BahmniPage {
 
@@ -144,5 +148,41 @@ public class RegistrationFirstPage extends BahmniPage {
 
 	public void enterVisitDetailsPage() {
 		enterVisitDetails.click();
+	}
+
+    public void createPatientUsingApi(Table table) throws Exception {
+		List<TableRow> rows = table.getTableRows();
+		List<String> columnNames = table.getColumnNames();
+
+		if (rows.size() != 1) {
+			throw new TestSpecException("Only one patient should be provided in the table");
+		}
+
+		Patient patient = transformTableRowToPatient(rows.get(0), columnNames);
+        BahmniRestClient.get().createPatient(patient,"patient_create.ftl");
+        storePatientInSpecStore(patient);
+    }
+
+	public void createPatients(Table table) throws Exception {
+		Patient patient = transformTableToPatient(table);
+		registerPatient(patient);
+
+		waitForSpinner();
+		String path = driver.getCurrentUrl();
+		String uuid = path.substring(path.lastIndexOf('/') + 1);
+		if (!Objects.equals(uuid, "new")) {
+			patient.setUuid(uuid);
+			storePatientInSpecStore(patient);
+		}
+	}
+	public Patient transformTableToPatient(Table table) throws Exception {
+		List<TableRow> rows = table.getTableRows();
+		List<String> columnNames = table.getColumnNames();
+
+		if (rows.size() != 1) {
+			throw new TestSpecException("Only one patient should be provided in the table");
+		}
+
+		return transformTableRowToPatient(rows.get(0), columnNames);
 	}
 }

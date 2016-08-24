@@ -14,6 +14,7 @@ import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
@@ -45,6 +46,13 @@ public class ProgramManagementSpec extends BahmniPage {
 		Assert.assertTrue(programManagementPage.isPatientEnrolledToProgram(programDetails));
 	}
 
+	@Step("Ensure that the patient is registered to <program>")
+	public void verifyThePatientIsEnrolledToGivenProgram(String programName) {
+		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
+		WebElement program = programManagementPage.findProgram(programName);
+		Assert.assertNotNull("Patient is not enrolled to program "+programName+". Expected to be enrolled", program);
+	}
+
 	@Step("Edit attribute to org.bahmi.gauge.possible.registration <org.bahmi.gauge.possible.registration> and facility <facility>")
 	public void editAttributesEnrolledToTheProgram(String registration, String facility) {
 		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
@@ -73,6 +81,23 @@ public class ProgramManagementSpec extends BahmniPage {
 	@Step("Click on the patients previously program enrolled")
 	public void clickOnThePatientsPreviouslyProgramEnrolled(){
 		programManagementPage.clickTreatmentDashboard(programManagementPage.getPatientProgramFromSpecStore());
+	}
+
+	@Step("Unenroll patient from <program> program")
+	public void unenrollPatientFromTheProgram(String programName){
+		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
+		WebElement program = programManagementPage.findProgram(programName);
+		programManagementPage.deleteProgram(program);
+	}
+
+	@Step("Ensure that the patient is not registered to <program>")
+	public void verifyPatientIsNotEnrolledToGivenProgram(String programName) {
+		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
+		WebElement program = null;
+		try {
+			program = programManagementPage.findProgram(programName);
+		} catch (Exception e){}
+		Assert.assertNull("Patient is enrolled to program "+programName+". Expected not to be", program);
 	}
 
 	private Program transformTableToProgram(Table table){

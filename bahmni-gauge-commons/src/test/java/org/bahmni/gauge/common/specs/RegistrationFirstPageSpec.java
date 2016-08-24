@@ -3,26 +3,17 @@ package org.bahmni.gauge.common.specs;
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
-import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
-import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
-import org.bahmni.gauge.common.registration.domain.Patient;
-import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.WebDriver;
-
-import java.util.List;
-import java.util.Objects;
 
 public class RegistrationFirstPageSpec {
 
 	private final WebDriver driver;
 
 	public RegistrationFirstPage registrationFirstPage;
-
-	public static final String PATIENT_KEY = "patient";
 
 	public RegistrationFirstPageSpec() {
 		this.driver = DriverFactory.getDriver();
@@ -41,16 +32,7 @@ public class RegistrationFirstPageSpec {
 
 	@Step("Create the following patient <table>")
 	public void createPatients(Table table) throws Exception {
-		Patient patient = transformTableToPatient(table);
-		registrationFirstPage.registerPatient(patient);
-
-		waitForAppReady();
-		String path = driver.getCurrentUrl();
-		String uuid = path.substring(path.lastIndexOf('/') + 1);
-		if (!Objects.equals(uuid, "new")) {
-			patient.setUuid(uuid);
-			registrationFirstPage.storePatientInSpecStore(patient);
-		}
+		registrationFirstPage.createPatients(table);
 	}
 
 	@Step("Click on search patient link")
@@ -85,9 +67,7 @@ public class RegistrationFirstPageSpec {
 
 	@Step("Create the following patient using api <table>")
 	public void createPatientThroughAPI(Table table) throws Exception {
-		Patient patient = transformTableToPatient(table);
-		BahmniRestClient.get().createPatient(patient);
-		registrationFirstPage.storePatientInSpecStore(patient);
+		registrationFirstPage.createPatientUsingApi(table);
 	}
 
 	@Step("Verify the patient creation fails")
@@ -95,14 +75,4 @@ public class RegistrationFirstPageSpec {
 		new BahmniPage().validateSystemException(driver);
 	}
 
-	private Patient transformTableToPatient(Table table) throws Exception {
-		List<TableRow> rows = table.getTableRows();
-		List<String> columnNames = table.getColumnNames();
-
-		if (rows.size() != 1) {
-			throw new TestSpecException("Only one patient should be provided in the table");
-		}
-
-		return registrationFirstPage.transformTableRowToPatient(rows.get(0), columnNames);
-	}
 }
