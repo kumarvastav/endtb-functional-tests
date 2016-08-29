@@ -103,11 +103,13 @@ public class ProgramManagementPage extends BahmniPage {
 	}
 
 	public void clickTreatmentDashboard(PatientProgram patientProgram) {
-		WebElement programWidget = findProgram(patientProgram.getProgram());
+		clickTreatmentDashboard(patientProgram.getProgram());
+	}
+	public void clickTreatmentDashboard(Program program){
+		WebElement programWidget = findProgram(program);
 		programWidget.findElement(By.id("dashboard-link")).click();
 
 	}
-
 	public boolean isPatientEnrolledToProgram(Program treatment) {
 		WebElement programName = activeProgramContainer.findElement(By.cssSelector(".programName"));
 		return isProgramAvailable(treatment, programName);

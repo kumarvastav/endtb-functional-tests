@@ -100,6 +100,11 @@ public class ProgramManagementSpec extends BahmniPage {
 		Assert.assertNull("Patient is enrolled to program "+programName+". Expected not to be", program);
 	}
 
+	@Step("Navigate to previous program dashboard")
+	public void navigateToProgramDashboard(){
+		programManagementPage.clickTreatmentDashboard(programManagementPage.getProgramFromSpecStore());
+	}
+
 	private Program transformTableToProgram(Table table){
 		List<TableRow> rows = table.getTableRows();
 		List<String> columnNames = table.getColumnNames();
