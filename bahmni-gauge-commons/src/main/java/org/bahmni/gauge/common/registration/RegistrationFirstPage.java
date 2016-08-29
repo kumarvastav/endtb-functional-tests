@@ -1,5 +1,4 @@
 package org.bahmni.gauge.common.registration;
-
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.apache.commons.beanutils.BeanUtils;
@@ -12,7 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
-
 import java.util.List;
 import java.util.Objects;
 

@@ -33,8 +33,13 @@ Tags: regression, sanity
 * Create the following patient
 
     |prefix|idNumber|firstName|lastName|gender|dateOfBirth|district|nationalIdentificationNumber|
-    |EMR|1101614870|John|Smith|Male|20/01/2011|Bilaspur|13892|
+    |EMR|211|John|Smith|Male|20/01/2011|Bilaspur|13892|
+    
+* Click on create new patient link
+* Create the following patient
 
+    |prefix|idNumber|firstName|lastName|gender|dateOfBirth|district|nationalIdentificationNumber|
+    |EMR|211|John|Smith|Male|20/01/2011|Bilaspur|13892|
 * Verify the patient creation fails
 * Logout the user
 
