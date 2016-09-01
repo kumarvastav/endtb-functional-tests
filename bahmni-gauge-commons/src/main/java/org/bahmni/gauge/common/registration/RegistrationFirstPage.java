@@ -7,14 +7,10 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -94,17 +90,21 @@ public class RegistrationFirstPage extends BahmniPage {
 			enterID_checkbox.click();
 			txtRegistrationNumber.sendKeys(patient.getIdNumber());
 		}
+
 		txtPatientName.sendKeys(patient.getFirstName());
 		familyName.sendKeys(patient.getLastName());
 		new Select(gender).selectByVisibleText(patient.getGender());
 		ageYears.sendKeys(patient.getAge());
 		doActions(patient);
 		clickSave();
-		Thread.sleep(2000);
-		//WebDriverWait wait = new WebDriverWait(driver, 5);
-		if (driver.findElements(By.cssSelector("#modal-refill-button")).size() != 0 ) {
-			//wait.until(ExpectedConditions.elementToBeClickable(sequenceConfirm));
-			driver.findElement(By.cssSelector(".ngdialog-content #modal-refill-button")).click();
+
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("modal-refill-button")));
+
+		List<WebElement> elements = driver.findElements(By.cssSelector("#modal-refill-button"));
+
+		if (elements.size() != 0 ) {
+			elements.get(0).click();
 		}
 	}
 
