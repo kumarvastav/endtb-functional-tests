@@ -7,10 +7,18 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -73,11 +81,15 @@ public class RegistrationFirstPage extends BahmniPage {
 	public WebElement logout;
 
 
+	@FindBy(how= How.CSS, using = ".ngdialog-content #modal-refill-button")
+	public WebElement sequenceConfirm;
+
+
 	public void clickSave() {
 		save.click();
 	}
 
-	public void registerPatient(Patient patient){
+	public void registerPatient(Patient patient) throws InterruptedException {
 		if(enterID_checkbox.isDisplayed()) {
 			enterID_checkbox.click();
 			txtRegistrationNumber.sendKeys(patient.getIdNumber());
@@ -88,6 +100,12 @@ public class RegistrationFirstPage extends BahmniPage {
 		ageYears.sendKeys(patient.getAge());
 		doActions(patient);
 		clickSave();
+		Thread.sleep(2000);
+		//WebDriverWait wait = new WebDriverWait(driver, 5);
+		if (driver.findElements(By.cssSelector("#modal-refill-button")).size() != 0 ) {
+			//wait.until(ExpectedConditions.elementToBeClickable(sequenceConfirm));
+			driver.findElement(By.cssSelector(".ngdialog-content #modal-refill-button")).click();
+		}
 	}
 
 	protected void doActions(Patient patient) {
