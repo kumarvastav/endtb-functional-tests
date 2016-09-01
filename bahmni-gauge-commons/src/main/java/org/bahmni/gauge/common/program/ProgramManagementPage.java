@@ -10,10 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.Random;
@@ -166,11 +163,7 @@ public class ProgramManagementPage extends BahmniPage {
         program.findElement(By.cssSelector("[id=\"delete_btn\"]")).click();
         program.findElement(By.cssSelector("[ng-model=\"patientProgram.voidReason\"]")).sendKeys("Deleting the program");
         program.findElement(By.cssSelector("[value=\"Delete\"]")).click();
-
-        By popupLocator = By.className("delete-program-popup");
-        WebDriverWait wait = new WebDriverWait(this.driver, 15);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(popupLocator));
-        WebElement deletePopup = this.driver.findElement(popupLocator);
+        WebElement deletePopup = waitForElementOnPage(".delete-program-popup");
         WebElement deleteButton = deletePopup.findElement(By.cssSelector("[id=\"delete\"]"));
         deleteButton.click();
     }
