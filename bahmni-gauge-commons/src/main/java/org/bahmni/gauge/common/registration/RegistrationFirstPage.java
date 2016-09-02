@@ -98,14 +98,17 @@ public class RegistrationFirstPage extends BahmniPage {
 		doActions(patient);
 		clickSave();
 
-		WebDriverWait wait = new WebDriverWait(driver, 5);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("modal-refill-button")));
+		try {
+            WebDriverWait wait = new WebDriverWait(driver, 3);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("modal-refill-button")));
 
-		List<WebElement> elements = driver.findElements(By.cssSelector("#modal-refill-button"));
+            List<WebElement> elements = driver.findElements(By.cssSelector("#modal-refill-button"));
 
-		if (elements.size() != 0 ) {
-			elements.get(0).click();
-		}
+            if (elements.size() != 0) {
+                elements.get(0).click();
+            }
+        } catch (Exception e) {
+        }
 	}
 
 	protected void doActions(Patient patient) {

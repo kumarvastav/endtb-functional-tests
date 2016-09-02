@@ -34,7 +34,7 @@ Tags: regression, sanity
 
     |prefix|idNumber|firstName|lastName|gender|dateOfBirth|district|nationalIdentificationNumber|
     |EMR|211|John|Smith|Male|20/01/2011|Bilaspur|13892|
-    
+
 * Click on create new patient link
 * Create the following patient
 
