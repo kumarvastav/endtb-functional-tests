@@ -1,10 +1,12 @@
 package org.bahmni.gauge.common.specs;
 
+import com.thoughtworks.gauge.AfterScenario;
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
+import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.openqa.selenium.WebDriver;
@@ -33,6 +35,11 @@ public class RegistrationFirstPageSpec {
 	@Step("Create the following patient <table>")
 	public void createPatients(Table table) throws Exception {
 		registrationFirstPage.createPatients(table);
+	}
+
+	@Step("Create patient with manual id <table>")
+	public void createPatientWithId(Table table) throws Exception {
+		registrationFirstPage.createPatientWithId(table);
 	}
 
 	@Step("Click on search patient link")

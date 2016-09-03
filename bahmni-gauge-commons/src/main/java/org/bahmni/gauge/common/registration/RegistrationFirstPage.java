@@ -17,6 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 public class RegistrationFirstPage extends BahmniPage {
 
@@ -86,9 +87,10 @@ public class RegistrationFirstPage extends BahmniPage {
 	}
 
 	public void registerPatient(Patient patient) throws InterruptedException {
-		if(enterID_checkbox.isDisplayed()) {
+		if(enterID_checkbox.isDisplayed() & patient.getIdNumber()!= null) {
 			enterID_checkbox.click();
 			txtRegistrationNumber.sendKeys(patient.getIdNumber());
+			//+new Random().nextInt()
 		}
 
 		txtPatientName.sendKeys(patient.getFirstName());
@@ -109,6 +111,29 @@ public class RegistrationFirstPage extends BahmniPage {
             }
         } catch (Exception e) {
         }
+	}
+
+	public void registerPatientWithID(Patient patient) throws InterruptedException {
+		enterID_checkbox.click();
+		txtRegistrationNumber.sendKeys(patient.getIdNumber());
+		txtPatientName.sendKeys(patient.getFirstName());
+		familyName.sendKeys(patient.getLastName());
+		new Select(gender).selectByVisibleText(patient.getGender());
+		ageYears.sendKeys(patient.getAge());
+		doActions(patient);
+		clickSave();
+
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 3);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("modal-refill-button")));
+
+			List<WebElement> elements = driver.findElements(By.cssSelector("#modal-refill-button"));
+
+			if (elements.size() != 0) {
+				elements.get(0).click();
+			}
+		} catch (Exception e) {
+		}
 	}
 
 	protected void doActions(Patient patient) {
@@ -194,6 +219,20 @@ public class RegistrationFirstPage extends BahmniPage {
 			storePatientInSpecStore(patient);
 		}
 	}
+
+	public void createPatientWithId(Table table) throws Exception {
+		Patient patient = transformTableToPatient(table);
+		registerPatientWithID(patient);
+
+		waitForSpinner();
+		String path = driver.getCurrentUrl();
+		String uuid = path.substring(path.lastIndexOf('/') + 1);
+		if (!Objects.equals(uuid, "new")) {
+			patient.setUuid(uuid);
+			storePatientInSpecStore(patient);
+		}
+	}
+
 	public Patient transformTableToPatient(Table table) throws Exception {
 		List<TableRow> rows = table.getTableRows();
 		List<String> columnNames = table.getColumnNames();

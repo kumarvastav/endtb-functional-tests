@@ -2,6 +2,6 @@ Created by dharmens on 8/10/16
 # Create random patient through API
 
 * Create the following patient using api
-        |EMR_ID_PREFIX|FirstName|LastName|Gender|Date Of Birth|Address1|nationalIdentificationNumber|
-        |EAN|Helene|Fernandes|F|20/01/2011|Bilaspur|13892|
+        |prefix|firstName|gender|dateOfBirth|age|ward|municipality|district|country|caste|
+        |BAH|Super|Female|20/01/2011|50|Address1-187204|Darna|Achham|Nepal|2 - Janajati|
         
