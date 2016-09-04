@@ -13,6 +13,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContexts;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
+import org.bahmni.gauge.common.clinical.domain.Specimen;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.json.JSONArray;
@@ -20,6 +21,7 @@ import org.json.JSONObject;
 
 import javax.net.ssl.SSLContext;
 import java.io.StringWriter;
+import java.net.URLEncoder;
 import java.security.cert.X509Certificate;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +40,8 @@ public class BahmniRestClient {
 	private static final String EMRAPI_URL = "/openmrs/ws/rest/v1/bahmnicore/bahmniencounter";
 
 	private static final String GET_DRUG_LIST_URL = "/openmrs/ws/rest/v1/drug";
+
+	private static final String GET_CONCEPT_ANSWER_URL = "/openmrs/ws/rest/v1/concept?q=%s&v=custom:(uuid,name:(uuid,name),answers:(uuid,display))";
 
 	private Configuration freemarkerConfiguration;
 
@@ -177,7 +181,7 @@ public class BahmniRestClient {
 		}
 	}
 
-	public void createForm(String formTemplate, Map<String, String> attributes) {
+	public void createForm(String formTemplate, Map<String, Object> attributes) {
 		try {
 			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(formTemplate);
 
@@ -194,7 +198,6 @@ public class BahmniRestClient {
 			if (response.getStatus() != 200) {
 				throw new BahmniAPIException("Invalid response for [" + formTemplate + "]");
 			}
-
 
 		} catch (Exception ex) {
 			throw new BahmniAPIException(ex);
@@ -246,4 +249,47 @@ public class BahmniRestClient {
 		}
 		return null;
 	}
+
+
+	public Map<String,String> getConceptAnswersForConceptName(String conceptName){
+		Map<String,String> conceptAnswerDetailsMap = new HashMap<>();
+
+		try {
+			String conceptUrl = url + String.format(GET_CONCEPT_ANSWER_URL,URLEncoder.encode(conceptName,"UTF-8"));
+
+			HttpResponse<JsonNode> response = Unirest.get(conceptUrl)
+					.basicAuth(username, password)
+					.header("content-type", "application/json")
+					.asJson();
+
+			if (response.getBody() != null && response.getBody().getObject() != null &&
+					response.getBody().getObject().get("results") != null &&
+					((JSONArray) response.getBody().getObject().get("results")).get(0) != null) {
+
+				JSONObject result =(JSONObject) ((JSONArray) response.getBody().getObject().get("results")).get(0);
+				JSONArray answers = (JSONArray)result.get("answers");
+
+				for(int i=0; i< answers.length(); i++){
+					conceptAnswerDetailsMap.put(((JSONObject)answers.get(i)).get("display").toString(), ((JSONObject)answers.get(i)).get("uuid").toString());
+				}
+
+			}
+		} catch (Exception e) {
+			throw new BahmniAPIException(e);
+		}
+		return conceptAnswerDetailsMap;
+	}
+
+
+	public void createBacteriologySpecimen(String formTemplate,Specimen specimen, Patient patient, PatientProgram patientProgram){
+		Map<String,Object> attributes = new HashMap<>();
+		attributes.put("patient", patient);
+		attributes.put("patientProgram", patientProgram);
+		attributes.put("specimen", specimen);
+
+		createForm(formTemplate,attributes);
+	}
+
+
+
 }

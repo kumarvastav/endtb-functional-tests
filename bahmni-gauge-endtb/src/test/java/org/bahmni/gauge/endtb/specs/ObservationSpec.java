@@ -48,7 +48,7 @@ public class ObservationSpec {
         Patient patient = new BahmniPage().getPatientFromSpecStore();
         PatientProgram patientProgram = new BahmniPage().getPatientProgramFromSpecStore();
 
-        Map<String, String> formAttributes = new HashMap<>();
+        Map<String, Object> formAttributes = new HashMap<>();
         formAttributes.put("patientUuid", patient.getUuid());
         formAttributes.put("patientProgramUuid", patientProgram.getPatientProgramUuid());
         formAttributes.putAll(transformTableToMap(table));

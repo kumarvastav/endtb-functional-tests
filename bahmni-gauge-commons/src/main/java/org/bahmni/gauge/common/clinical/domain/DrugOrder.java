@@ -151,7 +151,7 @@ public class DrugOrder {
         return drugUuid;
     }
 
-    public void setDrugUuid(String drugName) {
-        this.drugUuid = BahmniRestClient.get().getUuidOfDrug(drugName);
+    public void setDrugUuid(String drugUuid) {
+        this.drugUuid = drugUuid;
     }
 }

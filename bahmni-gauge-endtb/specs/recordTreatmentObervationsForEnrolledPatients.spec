@@ -23,3 +23,17 @@ Tags: regression, sanity, smoke
 * Save the consultation
 * Navigate to patient dashboard
 * Verify observations recorded under "Baseline"
+
+
+Record Smear Test Results for enrolled patient and validate
+----------------------------------------------------------
+
+* Enroll patient to the treatment through API
+* Create a bacteriology specimen smear result
+    |dateOfSampleCollection|identifier|typeOfSample|typeOfVisit|laboratoryName|smearDateOfTest|smearTestId|smearResult|
+    |2016-09-01T00:00:00.000+05:30|899|Sputum|Baseline|Other|2016-09-04|SA12445|Two plus|
+* On the login page
+* Login to the application
+* On the dashboard page
+* Click on "Patient Summary" dashboard
+* Logout the user

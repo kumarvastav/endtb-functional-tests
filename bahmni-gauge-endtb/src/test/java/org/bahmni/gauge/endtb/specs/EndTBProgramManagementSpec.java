@@ -6,6 +6,9 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.endtb.registration.EndTBRegistrationFirstPage;
+import org.bahmni.gauge.rest.BahmniRestClient;
+
+import java.util.Map;
 
 public class EndTBProgramManagementSpec {
 
@@ -16,5 +19,11 @@ public class EndTBProgramManagementSpec {
 	public void clickOnTreatmentEnrollment() {
 		EndTBRegistrationFirstPage registrationPage = (EndTBRegistrationFirstPage) PageFactory.getRegistrationFirstPage();
 		registrationPage.clickTreatmentRegistration();
+	}
+
+	@Step("Get Answers for <concept> concept")
+	public void getAnswersForConcept(String concept){
+		Map<String,String> results = BahmniRestClient.get().getConceptAnswersForConceptName(concept);
+
 	}
 }

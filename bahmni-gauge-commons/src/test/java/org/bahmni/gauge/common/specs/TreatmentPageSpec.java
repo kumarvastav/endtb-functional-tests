@@ -49,6 +49,7 @@ public class TreatmentPageSpec {
         PatientProgram patientProgram = PageFactory.getProgramManagementPage().getPatientProgramFromSpecStore();
 
         for (DrugOrder drugOrder : drugOrders){
+            drugOrder.setDrugUuid(BahmniRestClient.get().getUuidOfDrug(drugOrder.getDrugName()));
             drugOrder.setPatientUuid(patient.getUuid());
             drugOrder.setProgramUuid(patientProgram.getPatientProgramUuid());
         }
