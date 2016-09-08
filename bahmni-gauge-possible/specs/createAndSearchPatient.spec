@@ -70,7 +70,7 @@ Tags: regression, sanity
 SEARCH PATIENT WITH FILTERS
 ---------------------------
 
-Tags: regression, sanity, test
+Tags: regression, sanity
 
 * Create random patient through API
 * On the login page

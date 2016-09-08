@@ -58,7 +58,7 @@ public class BahmniPage {
         specStore.put(DRUG_ORDER_KEY, drugOrder);
     }
 
-    @Deprecated
+    //@Deprecated
     public void waitForSpinner(WebDriver driver) {
         try {
             waitForElement(driver, ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#overlay")));

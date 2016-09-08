@@ -1,4 +1,4 @@
-package org.bahmni.gauge.endtb.specs;
+package org.bahmni.gauge.common.specs;
 
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
@@ -11,20 +11,19 @@ import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
+import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
-import org.bahmni.gauge.endtb.clinical.EndTBObservationPage;
-import org.bahmni.gauge.endtb.clinical.domain.BaselineForm;
 import org.bahmni.gauge.rest.BahmniRestClient;
-import org.openqa.selenium.WebDriver;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ObservationSpec {
-
-    private WebDriver driver = null;
+/**
+ * Created by dharmens on 9/5/16.
+ */
+public class ObservationSpec extends BahmniPage {
 
     public ObservationSpec() {
         driver = DriverFactory.getDriver();
@@ -67,24 +66,6 @@ public class ObservationSpec {
         }
 
         return formVariables;
-    }
-
-    @Step("Fill baseline form <table>")
-    public void enterDataInBaselineForm(Table table) {
-        ObservationsPage observationPage = PageFactory.getObservationsPage();
-        BaselineForm baselineForm = transformTableToBaselineForm(table);
-        observationPage.fillTemplateData(table, baselineForm);
-        new BahmniPage().storeObservationFormInSpecStore(baselineForm);
-    }
-
-    private BaselineForm transformTableToBaselineForm(Table table) {
-        List<TableRow> rows = table.getTableRows();
-        List<String> columnNames = table.getColumnNames();
-        if (rows.size() != 1) {
-            throw new TestSpecException("Only one patient should be provided in the table");
-        }
-        BaselineForm baselineForm = new EndTBObservationPage().transformTableRowToBaselineForm(rows.get(0), columnNames);
-        return baselineForm;
     }
 
     @Step("Verify observations recorded under <formName>")
