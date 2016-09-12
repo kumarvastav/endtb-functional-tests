@@ -18,9 +18,9 @@ public class PatientListingPageSpec extends BahmniPage {
     @Step("Select existing patient from patient listing page under tab <tab>")
     public void selectPatientFromTab(String tab) {
         PatientListingPage patientListing = (PatientListingPage)PageFactory.getPage(PatientListingPage.class);
-        //Patient patient = getPatientFromSpecStore();
-        //patientListing.searchSelectPatientFromTab(patient.getIdentifier(),tab);
-        patientListing.searchSelectPatientFromTab("BAH253047",tab);
+        Patient patient = getPatientFromSpecStore();
+        patientListing.searchSelectPatientFromTab(patient.getIdentifier(),tab);
+        //patientListing.searchSelectPatientFromTab("BAH253047",tab);
     }
 
     @Step("Select patient <patient> in tab <tab>")

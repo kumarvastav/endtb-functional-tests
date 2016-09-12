@@ -94,6 +94,7 @@ public class DashboardPageSpec {
 	@Step("Navigate to consultation")
 	public void goToConsultation(){
 		DashboardPage dashboardPage = PageFactory.getDashboardPage();
+		waitForAppReady();
 		dashboardPage.clickEnterData();
 	}
 }

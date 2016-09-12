@@ -17,7 +17,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 public class RegistrationFirstPage extends BahmniPage {
 
@@ -57,7 +56,10 @@ public class RegistrationFirstPage extends BahmniPage {
 	public WebElement new_patient;
 
 	@FindBy(how = How.CSS, using = ".buttonClass")
-	public List<WebElement> btnVisit;
+	public List<WebElement> visitTypeOptions;
+
+	@FindBy(how= How.CSS, using = ".submit-btn-container .toggle-button")
+	public WebElement visitTypeOptionsBtn;
 
 	@FindBy(how = How.CSS, using = ".fa-search")
 	public WebElement searchLink;
@@ -77,6 +79,8 @@ public class RegistrationFirstPage extends BahmniPage {
 	@FindBy(how= How.CSS, using = "i.fa-power-off")
 	public WebElement logout;
 
+	@FindBy(how= How.ID, using = "patientIdentifierValue")
+	public WebElement patientIdentifierValue;
 
 	@FindBy(how= How.CSS, using = ".ngdialog-content #modal-refill-button")
 	public WebElement sequenceConfirm;
@@ -181,8 +185,8 @@ public class RegistrationFirstPage extends BahmniPage {
 		return PropertyUtils.isReadable(object, property) && PropertyUtils.isWriteable(object, property);
 	}
 
-	public void startVisit(String visit) {
-		//TODO: add startVisit
+	public WebElement findVisit(String visit) {
+		return find(visitTypeOptions,visit);
 	}
 
 	public void logout(){
@@ -216,6 +220,7 @@ public class RegistrationFirstPage extends BahmniPage {
 		String uuid = path.substring(path.lastIndexOf('/') + 1);
 		if (!Objects.equals(uuid, "new")) {
 			patient.setUuid(uuid);
+			patient.setIdentifier(patientIdentifierValue.getText());
 			storePatientInSpecStore(patient);
 		}
 	}
@@ -242,5 +247,9 @@ public class RegistrationFirstPage extends BahmniPage {
 		}
 
 		return transformTableRowToPatient(rows.get(0), columnNames);
+	}
+
+	public void showAllVisitTypeOptions(){
+		visitTypeOptionsBtn.click();
 	}
 }

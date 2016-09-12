@@ -41,6 +41,12 @@ public class HomeSpec extends BahmniPage {
 		homePage.clickClinicalApp();
 	}
 
+	@Step("Click on inpatient app")
+	public void goToInpatientPage(){
+		homePage = PageFactory.getHomePage();
+		homePage.clickInpatientApp();
+	}
+
 	@Step("Logout the user")
 	public void logout(){
 		//new BahmniPage().waitForElementOnPage(driver, ".i.icon-bahmni-org.bahmi.gauge.possible.registration");

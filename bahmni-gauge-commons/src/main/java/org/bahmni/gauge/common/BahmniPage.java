@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Collection;
 import java.util.List;
 
 public class BahmniPage {
@@ -27,6 +28,15 @@ public class BahmniPage {
     public static final String OBSERVATION_KEY = "observation";
     public static final String DRUG_ORDER_KEY = "drug_order";
     protected WebDriver driver;
+
+    protected static WebElement find(Collection<WebElement> elements, String elementText) {
+        for (WebElement element : elements) {
+            if(element.getText().contains(elementText)){
+                return element;
+            }
+        }
+        return null;
+    }
 
     public void storePatientInSpecStore(Patient value) {
         DataStore specStore = DataStoreFactory.getSpecDataStore();

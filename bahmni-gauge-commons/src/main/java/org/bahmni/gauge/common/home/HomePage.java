@@ -11,6 +11,9 @@ public class HomePage extends BahmniPage {
 
 	@FindBy(how= How.ID, using = "bahmni.registration")
     public WebElement registration;
+
+	@FindBy(how = How.ID, using = "bahmni.adt")
+	public WebElement inpatient;
 	
 	@FindBy(how= How.CSS, using = "i.icon-bahmni-documents")
     public WebElement patientDocuments;
@@ -58,5 +61,8 @@ public class HomePage extends BahmniPage {
     public void clickProgramsApp(){
     	programs.click();
     }
+	public void clickInpatientApp(){
+		inpatient.click();
+	}
 
 }

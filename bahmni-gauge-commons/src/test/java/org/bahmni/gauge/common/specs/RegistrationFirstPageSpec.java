@@ -1,16 +1,13 @@
 package org.bahmni.gauge.common.specs;
 
-import com.thoughtworks.gauge.AfterScenario;
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
-import org.bahmni.gauge.common.registration.RegistrationSearch;
-import org.bahmni.gauge.common.registration.domain.Patient;
-import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
+import org.bahmni.gauge.common.registration.RegistrationSearch;
 import org.openqa.selenium.WebDriver;
 
 public class RegistrationFirstPageSpec {
@@ -70,7 +67,8 @@ public class RegistrationFirstPageSpec {
 
 	@Step("Start a visit <visit>")
 	public void startPatientVisit(String visit) throws InterruptedException {
-		registrationFirstPage.startVisit(visit);
+		registrationFirstPage.showAllVisitTypeOptions();
+		registrationFirstPage.findVisit(visit).click();;
 	}
 
 	@Step("Select check to enter patient ID manually")
