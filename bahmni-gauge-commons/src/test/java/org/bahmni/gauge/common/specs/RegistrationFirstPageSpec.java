@@ -6,6 +6,8 @@ import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
+import org.bahmni.gauge.common.registration.RegistrationSearch;
+import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
@@ -39,6 +41,15 @@ public class RegistrationFirstPageSpec {
 
 	@Step("Create patient with manual id <table>")
 	public void createPatientWithId(Table table) throws Exception {
+		registrationFirstPage.createPatientWithId(table);
+	}
+
+	@Step("Create the following patient with ID as recently created Patient <table>")
+	public void createPatientsWithExistingID(Table table) throws Exception {
+		RegistrationSearch registrationSearch = PageFactory.getRegistrationSearchPage();
+		String recentlyCreatedPatientID = registrationSearch.getPatientFromSpecStore().getIdNumber();
+		table.getTableRows().get(0).addCell("idNumber", recentlyCreatedPatientID.toString());
+		table.getColumnNames().add(1,"idNumber");
 		registrationFirstPage.createPatientWithId(table);
 	}
 
