@@ -11,7 +11,7 @@ public class DispositionPageSpec extends BahmniPage {
     private DispositionPage dispositionPage;
 
     public DispositionPageSpec() {
-        dispositionPage = (DispositionPage) PageFactory.getPage(DispositionPage.class);
+        dispositionPage = PageFactory.getPage(DispositionPage.class);
     }
 
     @BeforeClassSteps

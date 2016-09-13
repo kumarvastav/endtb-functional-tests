@@ -95,9 +95,9 @@ public class PageFactory {
     public static TreatmentPage getTreatmentPage() {
     	return (TreatmentPage) getPage(TREATMENT_PAGE);
     }
-	public static BahmniPage getPage(Class<? extends BahmniPage> page) {
+	public static <T extends BahmniPage> T getPage(Class<T> page) {
 		WebDriver driver = DriverFactory.getDriver();
-		BahmniPage bahmniPage = org.openqa.selenium.support.PageFactory.initElements(driver, page);
+		T bahmniPage = org.openqa.selenium.support.PageFactory.initElements(driver, page);
 		bahmniPage.setDriver(driver);
 		return bahmniPage;
 	}
