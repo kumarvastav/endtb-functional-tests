@@ -5,7 +5,7 @@ Create EndTB Patient Scenarios
 CREATE PATIENT AND VERIFY
 -------------------------
 
-Tags: regression, sanity
+Tags: sanity
 
 * On the login page
 * Login to the application
@@ -23,7 +23,7 @@ Tags: regression, sanity
 VALIDATE PATIENT CREATE FAILS WITH SAME ID
 ------------------------------------------
 
-Tags: regression, sanity
+Tags: sanity
 
 * On the login page
 * Login to the application
@@ -46,7 +46,7 @@ Tags: regression, sanity
 SEARCH PATIENT WITH FILTERS
 ---------------------------
 
-Tags: regression, sanity
+Tags: sanity
 
 * Create random patient through API
 * On the login page
