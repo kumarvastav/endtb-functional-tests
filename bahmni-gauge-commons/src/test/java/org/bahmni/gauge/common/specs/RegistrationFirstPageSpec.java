@@ -43,7 +43,7 @@ public class RegistrationFirstPageSpec {
 
 	@Step("Create the following patient with ID as recently created Patient <table>")
 	public void createPatientsWithExistingID(Table table) throws Exception {
-		RegistrationSearch registrationSearch = PageFactory.getRegistrationSearchPage();
+        RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
 		String recentlyCreatedPatientID = registrationSearch.getPatientFromSpecStore().getIdNumber();
 		table.getTableRows().get(0).addCell("idNumber", recentlyCreatedPatientID.toString());
 		table.getColumnNames().add(1,"idNumber");

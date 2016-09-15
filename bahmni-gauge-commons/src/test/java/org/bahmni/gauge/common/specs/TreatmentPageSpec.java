@@ -26,7 +26,7 @@ public class TreatmentPageSpec {
 
     public TreatmentPageSpec(){
         driver = DriverFactory.getDriver();
-        treatmentPage = PageFactory.getTreatmentPage();
+        treatmentPage = PageFactory.get(TreatmentPage.class);
     }
 
     @BeforeClassSteps

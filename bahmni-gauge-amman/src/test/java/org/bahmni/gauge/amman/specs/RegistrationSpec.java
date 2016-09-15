@@ -17,7 +17,7 @@ import java.util.List;
 
 public class RegistrationSpec {
     private AmmanPatient ammanPatient = new AmmanPatient();
-    private AmmanRegistrationPage registrationPage = (AmmanRegistrationPage) PageFactory.getPage(AmmanRegistrationPage.class);
+    private AmmanRegistrationPage registrationPage = (AmmanRegistrationPage) PageFactory.get(AmmanRegistrationPage.class);
 
     @BeforeClassSteps
     public void waitForAppReady() {

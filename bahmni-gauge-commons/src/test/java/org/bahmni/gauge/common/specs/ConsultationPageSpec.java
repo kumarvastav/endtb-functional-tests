@@ -14,20 +14,20 @@ public class ConsultationPageSpec extends BahmniPage {
 
     @Step("Save the consultation")
     public void saveConsultation(){
-        ConsultationPage consultationPage = PageFactory.getConsultationPage();
+        ConsultationPage consultationPage = PageFactory.get(ConsultationPage.class);
         consultationPage.saveConsultation();
         waitForAppReady();
     }
 
     @Step("Navigate to patient dashboard")
     public void clickOnDashboard(){
-        ConsultationPage consultationPage = PageFactory.getConsultationPage();
+        ConsultationPage consultationPage = PageFactory.get(ConsultationPage.class);
         consultationPage.clickPatientProfile();
     }
 
     @Step("Go to <tab> tab")
     public void goToTab(String tab){
-        ConsultationPage consultationPage = PageFactory.getConsultationPage();
+        ConsultationPage consultationPage = PageFactory.get(ConsultationPage.class);
         waitForAppReady();
         consultationPage.clickOnTab(tab);
     }

@@ -12,6 +12,6 @@ public class PossibleRegistrationFirstPageSpec extends RegistrationFirstPageSpec
 
     public PossibleRegistrationFirstPageSpec() {
         this.driver = DriverFactory.getDriver();
-        this.registrationFirstPage = PageFactory.getPage(PossibleRegistrationFirstPage.class);
+        this.registrationFirstPage = PageFactory.get(PossibleRegistrationFirstPage.class);
     }
 }

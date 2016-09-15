@@ -36,7 +36,7 @@ public class DashboardPageSpec {
 
 	@Step("Ensure <Treatment-Information> display control with title <Treatment Information> with <01 Jul 16> as Start Date <table>")
 	public void validateContentInDisplayControl(String id, String title, String treatmentStartDate, Table table) throws ParseException {
-		DashboardPage dashboardPage = PageFactory.getDashboardPage();
+        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		dashboardPage.waitForSpinner(driver);
 
 		WebElement displayControl = dashboardPage.findElementById(id);
@@ -59,7 +59,7 @@ public class DashboardPageSpec {
 
 	@Step("Ensure that <id> Obs display control has the message <message>")
 	public void validateNoContentInDisplayControl(String id, String message) {
-		DashboardPage dashboardPage = PageFactory.getDashboardPage();
+        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		dashboardPage.waitForSpinner(driver);
 
 		WebElement displayControl = dashboardPage.findElementById(id);
@@ -72,7 +72,7 @@ public class DashboardPageSpec {
 
 	@Step("On the dashboard page")
 	public void navigateToDashboardPage() {
-		DashboardPage dashboardPage = PageFactory.getDashboardPage();
+        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		PatientProgram patientProgram = dashboardPage.getPatientProgramFromSpecStore();
 		String url = String.format(DashboardPage.URL,patientProgram.getPatient().getUuid(),patientProgram.getPatientProgramUuid());
 		driver.get(url);
@@ -80,7 +80,7 @@ public class DashboardPageSpec {
 
 	@Step("Click on <name> dashboard")
 	public void clickOnDashboard(String name) {
-		DashboardPage dashboardPage = PageFactory.getDashboardPage();
+        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		dashboardPage.waitForSpinner(driver);
 		dashboardPage.selectDashboard(name);
 	}
@@ -93,7 +93,7 @@ public class DashboardPageSpec {
 
 	@Step("Navigate to consultation")
 	public void goToConsultation(){
-		DashboardPage dashboardPage = PageFactory.getDashboardPage();
+        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		waitForAppReady();
 		dashboardPage.clickEnterData();
 	}

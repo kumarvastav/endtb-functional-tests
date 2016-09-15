@@ -3,8 +3,6 @@ package org.bahmni.gauge.endtb.specs;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.PageFactory;
-import org.bahmni.gauge.common.clinical.BacteriologyPage;
-import org.bahmni.gauge.common.clinical.domain.Specimen;
 import org.bahmni.gauge.common.login.LoginPage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
@@ -18,7 +16,7 @@ public class EndTBBacteriologySpec {
 
     @Step("Create a bacteriology specimen smear result <table>")
     public void createBacteriologySmearResult(Table table){
-        LoginPage page = PageFactory.getLoginPage();
+        LoginPage page = PageFactory.get(LoginPage.class);
 
         EndTBSpecimen specimen = new TableTransformer<>(EndTBSpecimen.class).transformToTable(table);
         specimen.setTypeOfVisitUuid(getConceptAnswerUuidForConceptName("Bacteriology, Type of Visit", specimen.getTypeOfVisit()));

@@ -23,19 +23,19 @@ public class LoginSpec {
 
 	@Step("On the login page")
 	public void navigateToLoginPage() {
-        driver.get(PageFactory.getLoginPage().LOGIN_URL);
+        driver.get(PageFactory.get(LoginPage.class).LOGIN_URL);
     }
 
 	@Step("Login with username <username> and password <password>")
 	public void login(String username, String password){
-        LoginPage loginPage = PageFactory.getLoginPage();
+        LoginPage loginPage = PageFactory.get(LoginPage.class);
 		loginPage.waitForElementOnPage(driver,"#username");
 		loginPage.login(System.getenv(username), System.getenv(password));
     }
 
 	@Step("Login with username <username> and password <password> with location <location>")
 	public void login(String username, String password, String location){
-		LoginPage loginPage = PageFactory.getLoginPage();
+        LoginPage loginPage = PageFactory.get(LoginPage.class);
 		loginPage.waitForElementOnPage(driver,"#username");
 		loginPage.login(System.getenv(username), System.getenv(password), System.getenv(location));
 	}

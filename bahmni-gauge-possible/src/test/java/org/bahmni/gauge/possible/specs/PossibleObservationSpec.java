@@ -9,7 +9,6 @@ import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.possible.clinical.PossibleObservationPage;
-import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.bahmni.gauge.possible.clinical.domain.PatientVitals;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class PossibleObservationSpec extends BahmniPage {
 
     @Step("Fill patient vitals form <table>")
     public void enterDataInPatientVitalsForm(Table table) {
-        ObservationsPage observationPage = PageFactory.getObservationsPage();
+        ObservationsPage observationPage = PageFactory.get(ObservationsPage.class);
         PatientVitals patientVitals = transformTableToPatientVitals(table);
         observationPage.fillTemplateData(table, patientVitals);
         new BahmniPage().storeObservationFormInSpecStore(patientVitals);
