@@ -7,7 +7,13 @@ public class PatientAttribute {
     private String identifier;
     private String value;
 
-    public String getAttibuteType() {
+    public PatientAttribute(String attributeName, String attributeType, String identifier) {
+        this.attributeName = attributeName;
+        this.attibuteType = attributeType;
+        this.identifier = identifier;
+    }
+
+    public String getAttributeType() {
         return attibuteType;
     }
 
