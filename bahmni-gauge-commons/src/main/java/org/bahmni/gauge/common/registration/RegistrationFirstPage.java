@@ -79,9 +79,6 @@ public class RegistrationFirstPage extends BahmniPage {
 	@FindBy(how= How.CSS, using = "i.fa-power-off")
 	public WebElement logout;
 
-	@FindBy(how= How.ID, using = "patientIdentifierValue")
-	public WebElement patientIdentifierValue;
-
 	@FindBy(how= How.CSS, using = ".ngdialog-content #modal-refill-button")
 	public WebElement sequenceConfirm;
 
@@ -220,7 +217,6 @@ public class RegistrationFirstPage extends BahmniPage {
 		String uuid = path.substring(path.lastIndexOf('/') + 1);
 		if (!Objects.equals(uuid, "new")) {
 			patient.setUuid(uuid);
-			patient.setIdentifier(patientIdentifierValue.getText());
 			storePatientInSpecStore(patient);
 		}
 	}
