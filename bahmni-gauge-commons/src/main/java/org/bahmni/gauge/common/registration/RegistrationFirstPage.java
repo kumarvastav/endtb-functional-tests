@@ -52,8 +52,14 @@ public class RegistrationFirstPage extends BahmniPage {
 	@FindBy(how = How.CSS, using = "#address1")
 	public WebElement addressLine;
 
-	@FindBy(how = How.CSS, using = "strong > span")
-	public WebElement new_patient;
+	//release-0.85
+	@FindBy(how= How.ID, using = "patientIdentifierValue")
+	public WebElement patientIdentifierValue;
+
+	//support for release-0.84
+	@Deprecated
+	@FindBy(how = How.CSS, using = ".registraion_legend strong > span")
+	public WebElement _patientIdentifierValue;
 
 	@FindBy(how = How.CSS, using = ".buttonClass")
 	public List<WebElement> visitTypeOptions;
@@ -78,9 +84,6 @@ public class RegistrationFirstPage extends BahmniPage {
 
 	@FindBy(how= How.CSS, using = "i.fa-power-off")
 	public WebElement logout;
-
-	@FindBy(how= How.ID, using = "patientIdentifierValue")
-	public WebElement patientIdentifierValue;
 
 	@FindBy(how= How.CSS, using = ".ngdialog-content #modal-refill-button")
 	public WebElement sequenceConfirm;
@@ -220,7 +223,7 @@ public class RegistrationFirstPage extends BahmniPage {
 		String uuid = path.substring(path.lastIndexOf('/') + 1);
 		if (!Objects.equals(uuid, "new")) {
 			patient.setUuid(uuid);
-			patient.setIdentifier(patientIdentifierValue.getText());
+			patient.setIdentifier(_patientIdentifierValue.getText());
 			storePatientInSpecStore(patient);
 		}
 	}

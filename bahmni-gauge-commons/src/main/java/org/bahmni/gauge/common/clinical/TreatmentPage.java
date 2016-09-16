@@ -87,7 +87,9 @@ public class TreatmentPage extends BahmniPage{
         new Select(frequency).selectByVisibleText(drugOrder.getFrequency());
         new Select(route).selectByVisibleText(drugOrder.getRoute());
         duration.sendKeys(drugOrder.getDuration());
-        startDate.sendKeys(drugOrder.getStartDate());
+        if(null != drugOrder.getStartDate()){
+            startDate.sendKeys(drugOrder.getStartDate());
+        }
         addButton.click();
     }
 

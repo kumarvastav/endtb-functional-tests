@@ -1,6 +1,6 @@
 Program Enrollemnt, Editing of Program Attributes and End the Program
 =====================================================================
-Tags: regression, sanity
+Tags: regression, sanity, enrollPatientToProgram
 
 Create Patient and Enrol to a Program
 ---------------------------------------------------

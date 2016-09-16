@@ -74,4 +74,8 @@ public class DashboardPage extends BahmniPage {
 		Days days = Days.daysBetween(startDateTime, endDateTime);
 		return String.format("%.1f", days.getDays() / 30.0F);
 	}
+
+	public WebElement getDisplayControl(String displayControlName) {
+		return find(displayControls, displayControlName);
+	}
 }

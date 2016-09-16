@@ -12,14 +12,12 @@ import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
+import org.junit.Assert;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by dharmens on 9/5/16.
- */
 public class ObservationSpec extends BahmniPage {
 
     public ObservationSpec() {
@@ -78,9 +76,21 @@ public class ObservationSpec extends BahmniPage {
             dashboardPage.validateDrugOrderDisplayControl(drug, "All active TB Drugs");
     }
 
+    @Step("Verify display control <displayControlName> on dashboard, has the following details <table>")
+    public void verifyDisplayControlContent(String name,Table table){
+        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+        String displayControlText = dashboardPage.getDisplayControl(name).getText();
+        for (String drugOrder : table.getColumnValues("details")) {
+            Assert.assertTrue(stringDoesNotExist(drugOrder),displayControlText.contains(drugOrder));
+        }
+    }
 
     @Step("Close the app")
     public void closeApplication() {
         new BahmniPage().closeApp(driver);
+    }
+
+    private static String stringDoesNotExist(String content){
+        return "String `"+content+"` does not exist";
     }
 }
