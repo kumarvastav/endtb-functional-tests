@@ -28,9 +28,10 @@ public class ObservationsPage extends BahmniPage {
         List<WebElement> allForms = templatePanel.findElements(By.tagName("button"));
 
         for(int i=0;i<=allForms.size();i++){
-            if(allForms.get(i).getText().contains(templateName))
+            if(allForms.get(i).getText().contains(templateName)) {
                 allForms.get(i).click();
-            break;
+                break;
+            }
         }
     }
 

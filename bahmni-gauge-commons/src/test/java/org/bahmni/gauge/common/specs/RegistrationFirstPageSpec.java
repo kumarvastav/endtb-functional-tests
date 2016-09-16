@@ -45,7 +45,7 @@ public class RegistrationFirstPageSpec {
 	public void createPatientsWithExistingID(Table table) throws Exception {
         RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
 		String recentlyCreatedPatientID = registrationSearch.getPatientFromSpecStore().getIdNumber();
-		table.getTableRows().get(0).addCell("idNumber", recentlyCreatedPatientID.toString());
+		table.getTableRows().get(0).addCell("idNumber", recentlyCreatedPatientID);
 		table.getColumnNames().add(1,"idNumber");
 		registrationFirstPage.createPatientWithId(table);
 	}
@@ -68,7 +68,7 @@ public class RegistrationFirstPageSpec {
 	@Step("Start a visit <visit>")
 	public void startPatientVisit(String visit) throws InterruptedException {
 		registrationFirstPage.showAllVisitTypeOptions();
-		registrationFirstPage.findVisit(visit).click();;
+		registrationFirstPage.findVisit(visit).click();
 	}
 
 	@Step("Select check to enter patient ID manually")

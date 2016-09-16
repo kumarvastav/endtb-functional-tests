@@ -9,13 +9,10 @@ import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.endtb.clinical.EndTBObservationPage;
 import org.bahmni.gauge.endtb.clinical.domain.BaselineForm;
-import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
 public class EndTBObservationSpec {
-
-    private WebDriver driver = null;
 
     @Step("Fill baseline form <table>")
     public void enterDataInBaselineForm(Table table) {

@@ -35,8 +35,7 @@ public class ObservationSpec extends BahmniPage {
     @Step("Select the template <template> from on the observation page")
     public void clickOnTreatmentEnrollment(String template) throws InterruptedException {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
-        template = template.replace(" ", "_");
-        observationsPage.selectTemplate(template);
+        observationsPage.selectTemplate(template.replace(" ", "_"));
     }
 
     @Step("Create a <formName> form with following data <table>")

@@ -1,7 +1,5 @@
 package org.bahmni.gauge.common.clinical.domain;
 
-import org.bahmni.gauge.rest.BahmniRestClient;
-
 import java.util.Objects;
 
 public class DrugOrder {
@@ -22,8 +20,6 @@ public class DrugOrder {
     private String instructions = "As directed";
     private String additionalInstructions;
     private String drugUuid;
-
-    public DrugOrder(){}
 
     public String getPatientUuid() {
         return patientUuid;

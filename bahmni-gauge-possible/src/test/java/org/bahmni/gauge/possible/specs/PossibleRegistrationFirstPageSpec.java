@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 public class PossibleRegistrationFirstPageSpec extends RegistrationFirstPageSpec {
 
-    private final WebDriver driver;
+    private WebDriver driver;
 
     public PossibleRegistrationFirstPageSpec() {
         this.driver = DriverFactory.getDriver();
