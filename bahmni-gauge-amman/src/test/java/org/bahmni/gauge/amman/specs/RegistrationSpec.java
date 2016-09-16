@@ -33,20 +33,10 @@ public class RegistrationSpec {
     @Step("Save Patient")
     public void savePatient() {
         registrationPage.clickSave();
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     @Step("Verify Legal Rep Values")
     public void verifyLegalRepValues(){
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         registrationPage.verifyLegalRepValues();
     }
 

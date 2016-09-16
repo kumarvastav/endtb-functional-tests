@@ -10,6 +10,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class AmmanRegistrationPage extends BahmniPage {
@@ -25,7 +28,6 @@ public class AmmanRegistrationPage extends BahmniPage {
             } else if (patientAttribute.getAttributeType().equals("checkbox") && patientAttribute.getValue().equals("True")) {
                 element.click();
             } else {
-                element.
                 element.sendKeys(patientAttribute.getValue());
             }
         }
@@ -40,18 +42,28 @@ public class AmmanRegistrationPage extends BahmniPage {
     }
 
     private void compareFields(Fields expected, Fields actual) {
-        PatientAttribute patientAttribute = expected.getPatientAttribute();
-        String expectedValue = patientAttribute.getValue();
+        String expectedValue = expected.getPatientAttribute().getValue();
 
+        PatientAttribute patientAttribute = actual.getPatientAttribute();
         String identifier = patientAttribute.getIdentifier();
         WebElement element = driver.findElement(By.cssSelector(identifier));
         String actualValue = element.getAttribute("value");
         if (patientAttribute.getAttributeType().equals("dropdown")) {
             actualValue = new Select(element).getFirstSelectedOption().getText();
         }
-        System.out.println("expectedValue: " + expectedValue);
-        System.out.println("actualValue: " + actualValue);
-        Assert.assertTrue(actualValue.equals(expectedValue));
+        if (patientAttribute.getAttributeType().equals("date")) {
+            SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-mm-dd");
+            SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("dd-mm-yyyy");
+            try {
+                Date expectedDate = simpleDateFormat1.parse(expectedValue);
+                Date actualDate = simpleDateFormat2.parse(actualValue);
+                Assert.assertTrue(actualDate.equals(expectedDate));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Assert.assertTrue(actualValue.equals(expectedValue));
+        }
     }
 
     public void clickSave() {
