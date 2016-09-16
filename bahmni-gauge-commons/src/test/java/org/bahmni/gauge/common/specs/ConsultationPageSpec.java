@@ -10,7 +10,7 @@ import org.bahmni.gauge.common.clinical.ConsultationPage;
 public class ConsultationPageSpec extends BahmniPage {
 
     @BeforeClassSteps
-    public void waitForAppReady(){ new BahmniPage().waitForSpinner(DriverFactory.getDriver());}
+    public void waitForAppReady(){ BahmniPage.waitForSpinner(DriverFactory.getDriver());}
 
     @Step("Save the consultation")
     public void saveConsultation(){

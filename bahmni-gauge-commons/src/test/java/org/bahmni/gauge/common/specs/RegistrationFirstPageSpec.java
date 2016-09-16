@@ -23,7 +23,7 @@ public class RegistrationFirstPageSpec {
 
 	@BeforeClassSteps
 	public void waitForAppReady() {
-		new BahmniPage().waitForSpinner(driver);
+		BahmniPage.waitForSpinner(driver);
 	}
 
 	@Step("On the new patient creation page")

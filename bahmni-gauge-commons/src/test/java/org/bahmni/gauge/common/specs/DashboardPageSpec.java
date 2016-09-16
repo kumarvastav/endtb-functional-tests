@@ -31,7 +31,7 @@ public class DashboardPageSpec {
 
 	@BeforeClassSteps
 	public void waitForAppReady() {
-		new BahmniPage().waitForSpinner(driver);
+		BahmniPage.waitForSpinner(driver);
 	}
 
 	@Step("Ensure <Treatment-Information> display control with title <Treatment Information> with <01 Jul 16> as Start Date <table>")

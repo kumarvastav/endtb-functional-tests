@@ -12,7 +12,7 @@ public class PatientListingPageSpec extends BahmniPage {
 
     @BeforeClassSteps
     public void waitForAppReady(){
-        new BahmniPage().waitForSpinner(DriverFactory.getDriver());
+        BahmniPage.waitForSpinner(DriverFactory.getDriver());
     }
 
     @Step("Select existing patient from patient listing page under tab <tab>")

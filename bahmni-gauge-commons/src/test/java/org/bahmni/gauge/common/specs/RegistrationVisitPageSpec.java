@@ -17,7 +17,7 @@ public class RegistrationVisitPageSpec {
 
     @BeforeClassSteps
     public void waitForAppReady() {
-        new BahmniPage().waitForSpinner(driver);
+        BahmniPage.waitForSpinner(driver);
     }
 
     @Step("Close visit")

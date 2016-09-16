@@ -15,7 +15,7 @@ public class DispositionPageSpec extends BahmniPage {
     }
 
     @BeforeClassSteps
-    public void waitForAppReady(){ new BahmniPage().waitForSpinner(DriverFactory.getDriver());}
+    public void waitForAppReady(){ BahmniPage.waitForSpinner(DriverFactory.getDriver());}
 
     @Step("Select <Disposition Type> disposition")
     public void captureDataForDisposition(String dispositionType){

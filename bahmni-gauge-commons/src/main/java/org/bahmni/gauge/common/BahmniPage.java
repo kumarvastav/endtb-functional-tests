@@ -69,7 +69,7 @@ public class BahmniPage {
     }
 
     //@Deprecated
-    public void waitForSpinner(WebDriver driver) {
+    public static void waitForSpinner(WebDriver driver) {
         try {
             waitForElement(driver, ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#overlay")));
             Thread.sleep(1000);

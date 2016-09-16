@@ -26,7 +26,7 @@ public class ObservationSpec extends BahmniPage {
 
     @BeforeClassSteps
     public void waitForAppReady() {
-        new BahmniPage().waitForSpinner(DriverFactory.getDriver());
+        BahmniPage.waitForSpinner(DriverFactory.getDriver());
     }
 
 

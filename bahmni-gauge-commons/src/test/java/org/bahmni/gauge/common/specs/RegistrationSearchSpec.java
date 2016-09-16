@@ -12,7 +12,7 @@ public class RegistrationSearchSpec {
 
 	@BeforeClassSteps
 	public void waitForAppReady(){
-		new BahmniPage().waitForSpinner(DriverFactory.getDriver());
+		BahmniPage.waitForSpinner(DriverFactory.getDriver());
 	}
 
 	@Step("Click on create new patient link")

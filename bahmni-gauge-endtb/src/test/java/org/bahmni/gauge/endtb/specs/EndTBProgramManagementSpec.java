@@ -13,7 +13,7 @@ import java.util.Map;
 public class EndTBProgramManagementSpec {
 
 	@BeforeClassSteps
-	public void waitForAppReady(){ new BahmniPage().waitForSpinner(DriverFactory.getDriver());}
+	public void waitForAppReady(){ BahmniPage.waitForSpinner(DriverFactory.getDriver());}
 
 	@Step("Click on treatment enrollment")
 	public void clickOnTreatmentEnrollment() {

@@ -5,6 +5,7 @@ import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
@@ -16,11 +17,11 @@ import java.util.List;
 /**
  * Created by dharmens on 9/5/16.
  */
-public class PossibleObservationSpec extends BahmniPage {
+public class PossibleObservationSpec {
 
     @BeforeClassSteps
     public void waitForAppReady() {
-        new BahmniPage().waitForSpinner();
+        BahmniPage.waitForSpinner(DriverFactory.getDriver());
     }
 
     @Step("Fill patient vitals form <table>")

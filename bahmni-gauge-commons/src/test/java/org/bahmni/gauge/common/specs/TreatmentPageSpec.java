@@ -30,7 +30,7 @@ public class TreatmentPageSpec {
     }
 
     @BeforeClassSteps
-    public void waitForAppReady(){ new BahmniPage().waitForSpinner(driver);}
+    public void waitForAppReady(){ BahmniPage.waitForSpinner(driver);}
 
 
 

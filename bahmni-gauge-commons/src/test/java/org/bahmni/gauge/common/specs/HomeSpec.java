@@ -19,14 +19,14 @@ public class HomeSpec extends BahmniPage {
 
 	@BeforeClassSteps
 	public void waitForAppReady(){
-		new BahmniPage().waitForSpinner(driver);
+		BahmniPage.waitForSpinner(driver);
 	}
 
 	@Step("Click on registration app")
 	public void goToRegistrationPage(){
 		homePage = PageFactory.getHomePage();
 		homePage.clickRegistrationApp();
-		new BahmniPage().waitForSpinner(driver);
+		BahmniPage.waitForSpinner(driver);
 	}
 
 	@Step("Click on programs app")

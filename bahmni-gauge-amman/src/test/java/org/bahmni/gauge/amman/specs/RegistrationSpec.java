@@ -21,7 +21,7 @@ public class RegistrationSpec {
 
     @BeforeClassSteps
     public void waitForAppReady() {
-        new BahmniPage().waitForSpinner(DriverFactory.getDriver());
+        BahmniPage.waitForSpinner(DriverFactory.getDriver());
     }
 
     @Step({"Enter Patient Details <table>", "Enter Legal Rep Details <table>", "Enter Caretaker Details <table>"} )

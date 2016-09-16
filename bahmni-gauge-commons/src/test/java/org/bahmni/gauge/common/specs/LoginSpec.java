@@ -18,7 +18,7 @@ public class LoginSpec {
 
 	@BeforeClassSteps
 	public void waitForAppReady(){
-		new BahmniPage().waitForSpinner(driver);
+		BahmniPage.waitForSpinner(driver);
 	}
 
 	@Step("On the login page")
