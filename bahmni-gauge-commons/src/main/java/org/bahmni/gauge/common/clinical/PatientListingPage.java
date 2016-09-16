@@ -59,6 +59,7 @@ public class PatientListingPage extends BahmniPage {
 		if("All".equals(tab)){
 			search_btn.click();
 		}
+		waitForSpinner();
     	selectPatient(patientID);
     }
 }
