@@ -23,6 +23,9 @@ public class ObservationsPage extends BahmniPage {
 	@FindBy(how= How.CSS, using = ".template-control-panel")
     public WebElement templatePanel;
 
+    @FindBy(how= How.CSS, using = ".concept-set-title")
+    public List<WebElement> observationTemplates;
+
     public void selectTemplate(String templateName) {
         clickTemplateButton();
         List<WebElement> allForms = templatePanel.findElements(By.tagName("button"));
@@ -32,6 +35,13 @@ public class ObservationsPage extends BahmniPage {
                 allForms.get(i).click();
                 break;
             }
+        }
+    }
+
+    public void expandObservationTemplate(String form){
+        for(WebElement template : observationTemplates){
+            if(template.getText().equalsIgnoreCase(form))
+                template.click();
         }
     }
 
@@ -51,7 +61,7 @@ public class ObservationsPage extends BahmniPage {
             if (observ_label.getText().contains(columnNames.get(i))) {
                 answer = observation_nodes.get(i).findElement(By.cssSelector(".field-value"));
                 if (answer.getText().length() != 0) {
-                    if(answer.findElement(By.tagName("button")).isEnabled()) {    //answer.findElement(By.tagName("button")).isDisplayed()
+                    if(answer.findElement(By.tagName("button")).isEnabled()) {
                         Point point = answer.findElement(By.tagName("button")).getLocation();
                         answer.findElement(By.tagName("button")).getLocation().move(point.getX(),point.getY());
                         answer.findElement(By.tagName("button")).click(); }
@@ -60,7 +70,7 @@ public class ObservationsPage extends BahmniPage {
                     if(answer.findElement(By.tagName("input")).isEnabled()) {
                         Point point = answer.findElement(By.tagName("input")).getLocation();
                         answer.findElement(By.tagName("input")).getLocation().move(point.getX(),point.getY());
-                        answer.findElement(By.tagName("input")).sendKeys(rows.get(i).getCell(columnNames.get(i)));
+                        answer.findElement(By.tagName("input")).sendKeys(rows.get(0).getCell(columnNames.get(i)));
                     }
                 }
 

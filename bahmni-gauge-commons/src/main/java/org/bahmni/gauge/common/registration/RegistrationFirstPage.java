@@ -237,6 +237,7 @@ public class RegistrationFirstPage extends BahmniPage {
 		String uuid = path.substring(path.lastIndexOf('/') + 1);
 		if (!Objects.equals(uuid, "new")) {
 			patient.setUuid(uuid);
+			patient.setIdentifier(_patientIdentifierValue.getText());
 			storePatientInSpecStore(patient);
 		}
 	}

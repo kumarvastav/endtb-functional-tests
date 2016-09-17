@@ -23,6 +23,7 @@ Tags: regression, sanity, test
 * Click on clinical app
 * Select existing patient from patient listing page under tab "All"
 * Navigate to consultation
+* Expand the form "Patient Vitals"
 * Fill patient vitals form
     |Systolic|Diastolic|Posture|Temperature|Heart Rate|Respiratory Rate|Oxygen Saturation|Weight|
     |150|85|Sitting|110|75|15|90|140|

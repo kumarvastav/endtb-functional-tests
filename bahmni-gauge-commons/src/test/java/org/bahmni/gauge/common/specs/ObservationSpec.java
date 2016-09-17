@@ -85,6 +85,12 @@ public class ObservationSpec extends BahmniPage {
         }
     }
 
+    @Step("Expand the form <template>")
+    public void expandForm(String template){
+        ObservationsPage obsPage = PageFactory.get(ObservationsPage.class);
+        obsPage.expandObservationTemplate(template);
+    }
+
     @Step("Close the app")
     public void closeApplication() {
         new BahmniPage().closeApp(driver);

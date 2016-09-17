@@ -5,14 +5,13 @@ Created by dharmens on 8/9/16
 This is an executable specification file which follows markdown syntax.
 Every heading in this file denotes a scenario. Every bulleted point denotes a step.
 
-Create Patient with ID, Verify
------------------------
+Create Patient with manual ID, Verify
+-------------------------------------
 
-Tags: regression, sanity
+Tags: sanity
 
 * On the login page
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
-* Verify Login Page
 * Click on registration app
 * Click on create new patient link
 * Create patient with manual id
@@ -24,14 +23,13 @@ Tags: regression, sanity
 * Ensure that the patient edit page is opened for previously created patient
 * Logout the user
 
-Create Patient, Verify
-------------------------------
+Create Patient with autoID, Verify
+----------------------------------
 
 Tags: regression, sanity
 
 * On the login page
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
-* Verify Login Page
 * Click on registration app
 * Click on create new patient link
 * Create the following patient
@@ -51,13 +49,7 @@ Tags: regression, sanity
 
 * On the login page
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
-* Verify Login Page
 * Click on registration app
-* Click on create new patient link
-* Create patient with manual id
-    |prefix|idNumber|firstName|gender|dateOfBirth|age|ward|municipality|district|country|caste|
-    |BAH|8888881|Super|Female|20/01/2011|50|Address1-187204|Darna|Achham|Nepal|2 - Janajati|
-
 * Click on create new patient link
 * Create patient with manual id
     |prefix|idNumber|firstName|gender|dateOfBirth|age|ward|municipality|district|country|caste|
@@ -75,11 +67,7 @@ Tags: regression, sanity
 * Create random patient through API
 * On the login page
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
-* Verify Login Page
 * Click on registration app
-* Click on search patient link
-* Search previously created patient with exact identifier
-* Ensure that the patient edit page is opened for previously created patient
 * Click on search patient link
 * Search previously created patient with name
 * Select the patient from the search results
