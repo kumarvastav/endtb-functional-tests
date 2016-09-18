@@ -11,6 +11,7 @@ import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.program.ProgramManagementPage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
+import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.junit.Assert;
@@ -28,12 +29,12 @@ public class ProgramManagementSpec extends BahmniPage {
 	}
 
 	public ProgramManagementSpec(){
-		this.programManagementPage = PageFactory.getProgramManagementPage();
+		this.programManagementPage = PageFactory.get(ProgramManagementPage.class);
 	}
 
 	@Step("Register the patient to following program <programDetails>")
 	public void enrollPatientToProgram(Table programDetails) {
-		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
+		ProgramManagementPage programManagementPage = PageFactory.get(ProgramManagementPage.class);
 		Program treatment = programManagementPage.transformTableToProgram(programDetails);
 		programManagementPage.storeProgramInSpecStore(treatment);
 		programManagementPage.enrollPatientToProgram(treatment);
@@ -41,35 +42,35 @@ public class ProgramManagementSpec extends BahmniPage {
 
 	@Step("Ensure that the patient is registered to mentioned program")
 	public void verifyThePatientIsEnrolledToTheProgram() {
-		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
+		ProgramManagementPage programManagementPage = PageFactory.get(ProgramManagementPage.class);
 		Program programDetails = programManagementPage.getProgramFromSpecStore();
 		Assert.assertTrue(programManagementPage.isPatientEnrolledToProgram(programDetails));
 	}
 
 	@Step("Ensure that the patient is registered to <program>")
 	public void verifyThePatientIsEnrolledToGivenProgram(String programName) {
-		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
+		ProgramManagementPage programManagementPage = PageFactory.get(ProgramManagementPage.class);
 		WebElement program = programManagementPage.findProgram(programName);
 		Assert.assertNotNull("Patient is not enrolled to program "+programName+". Expected to be enrolled", program);
 	}
 
 	@Step("Edit attribute to org.bahmi.gauge.possible.registration <org.bahmi.gauge.possible.registration> and facility <facility>")
 	public void editAttributesEnrolledToTheProgram(String registration, String facility) {
-		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
+		ProgramManagementPage programManagementPage = PageFactory.get(ProgramManagementPage.class);
 		Program programDetails = programManagementPage.getProgramFromSpecStore();
 		programManagementPage.editProgramAttributes(programDetails, registration, facility);
 	}
 
 	@Step("End the program <TB Program>")
 	public void endTheProgram(Program program) {
-		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
+		ProgramManagementPage programManagementPage = PageFactory.get(ProgramManagementPage.class);
 		programManagementPage.endProgram(program);
 	}
 
 	@Step("Enroll patient to the program <table>")
 	public void enrollPatientToTheProgram(Table table){
 		Program program = transformTableToProgram(table);
-		Patient patient = PageFactory.getRegistrationFirstPage().getPatientFromSpecStore();
+		Patient patient = PageFactory.get(RegistrationFirstPage.class).getPatientFromSpecStore();
 
 		PatientProgram patientProgram = new PatientProgram();
 		patientProgram.setPatient(patient);
@@ -85,14 +86,14 @@ public class ProgramManagementSpec extends BahmniPage {
 
 	@Step("Unenroll patient from <program> program")
 	public void unenrollPatientFromTheProgram(String programName){
-		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
+		ProgramManagementPage programManagementPage = PageFactory.get(ProgramManagementPage.class);
 		WebElement program = programManagementPage.findProgram(programName);
 		programManagementPage.deleteProgram(program);
 	}
 
 	@Step("Ensure that the patient is not registered to <program>")
 	public void verifyPatientIsNotEnrolledToGivenProgram(String programName) {
-		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
+		ProgramManagementPage programManagementPage = PageFactory.get(ProgramManagementPage.class);
 		WebElement program = null;
 		try {
 			program = programManagementPage.findProgram(programName);

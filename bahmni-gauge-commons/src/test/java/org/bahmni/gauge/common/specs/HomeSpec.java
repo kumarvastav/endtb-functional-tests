@@ -24,39 +24,39 @@ public class HomeSpec extends BahmniPage {
 
 	@Step("Click on registration app")
 	public void goToRegistrationPage(){
-		homePage = PageFactory.getHomePage();
+		homePage = PageFactory.get(HomePage.class);
 		homePage.clickRegistrationApp();
 		BahmniPage.waitForSpinner(driver);
 	}
 
 	@Step("Click on programs app")
 	public void goToProgramsPage(){
-		homePage = PageFactory.getHomePage();
+		homePage = PageFactory.get(HomePage.class);
 		homePage.clickProgramsApp();
 	}
 
 	@Step("Click on clinical app")
 	public void goToClinicalPage(){
-		homePage = PageFactory.getHomePage();
+		homePage = PageFactory.get(HomePage.class);
 		homePage.clickClinicalApp();
 	}
 
 	@Step("Click on inpatient app")
 	public void goToInpatientPage(){
-		homePage = PageFactory.getHomePage();
+		homePage = PageFactory.get(HomePage.class);
 		homePage.clickInpatientApp();
 	}
 
 	@Step("Logout the user")
 	public void logout(){
 		//new BahmniPage().waitForElementOnPage(driver, ".i.icon-bahmni-org.bahmi.gauge.possible.registration");
-		homePage = PageFactory.getHomePage();
+		homePage = PageFactory.get(HomePage.class);
 		homePage.logout();
 	}
 
 	@Step("Verify Login Page")
 	public void validateLogin() {
-		homePage = PageFactory.getHomePage();
+		homePage = PageFactory.get(HomePage.class);
 		Assert.assertTrue(homePage.registration.isDisplayed());
 		Assert.assertTrue(homePage.admin.isDisplayed());
 		Assert.assertTrue(homePage.exports.isDisplayed());
