@@ -70,7 +70,7 @@ public class ProgramManagementPage extends BahmniPage {
 
     public void modifyProgramEnrollment(Program treatment) {
 
-        WebElement programToModify = findProgram(treatment);
+        WebElement programToModify = findProgram(treatment.getName());
         programToModify.findElement(By.cssSelector("[value='Edit']")).click();
         doModifyEnrollmentDetails(programToModify, treatment);
         programToModify.findElement(By.cssSelector("[value='Save']")).click();
@@ -86,10 +86,6 @@ public class ProgramManagementPage extends BahmniPage {
         //TODO: Write modification for DateOfRegistration
     }
 
-    private WebElement findProgram(Program program) {
-        return findProgram(program.getName());
-    }
-
     public WebElement findProgram(String programName) {
         for (WebElement allActiveProgram : allActivePrograms) {
             if (allActiveProgram.getText().contains(programName)) {
@@ -100,13 +96,16 @@ public class ProgramManagementPage extends BahmniPage {
     }
 
     public void clickTreatmentDashboard(PatientProgram patientProgram) {
-        clickTreatmentDashboard(patientProgram.getProgram());
+        clickTreatmentDashboard(patientProgram.getProgram().getName());
     }
 
     public void clickTreatmentDashboard(Program program) {
+        clickTreatmentDashboard(program.getName());
+    }
+
+    public void clickTreatmentDashboard(String program){
         WebElement programWidget = findProgram(program);
         programWidget.findElement(By.id("dashboard-link")).click();
-
     }
 
     public boolean isPatientEnrolledToProgram(Program treatment) {
@@ -133,14 +132,14 @@ public class ProgramManagementPage extends BahmniPage {
     }
 
     public void editProgramAttributes(Program treatment, String registration, String facility) {
-        WebElement programToModify = findProgram(treatment);
+        WebElement programToModify = findProgram(treatment.getName());
         programToModify.findElement(By.cssSelector("[value='Edit']")).click();
         editProgram(registration, facility);
         programToModify.findElement(By.cssSelector("[value='Save']")).click();
     }
 
     public void endProgram(Program treatment) {
-        WebElement programToModify = findProgram(treatment);
+        WebElement programToModify = findProgram(treatment.getName());
         programToModify.findElement(By.cssSelector("[value='Edit']")).click();
         WebElement outcome = programToModify.findElement(By.cssSelector("[ng-model='patientProgram.outcomeData']"));
         new Select(outcome).selectByVisibleText(treatment.getTreatmentStatus());

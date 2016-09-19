@@ -3,6 +3,7 @@ package org.bahmni.gauge.amman.registration;
 import org.bahmni.gauge.amman.registration.domain.Fields;
 import org.bahmni.gauge.amman.registration.domain.PatientAttribute;
 import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -15,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class AmmanRegistrationPage extends BahmniPage {
+public class AmmanRegistrationPage extends RegistrationFirstPage {
 
     @FindBy(how = How.CSS, using = ".submit-btn")
     public WebElement save;

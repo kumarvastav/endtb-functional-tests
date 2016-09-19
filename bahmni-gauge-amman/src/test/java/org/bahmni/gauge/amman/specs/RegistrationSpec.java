@@ -35,6 +35,11 @@ public class RegistrationSpec {
         registrationPage.clickSave();
     }
 
+    @Step("Enter Clinical Details")
+    public void enterClinicalDetails(){
+        registrationPage.enterVisitDetailsPage();
+    }
+
     @Step("Verify Legal Rep Values")
     public void verifyLegalRepValues(){
         registrationPage.verifyLegalRepValues();

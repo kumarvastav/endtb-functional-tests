@@ -106,6 +106,11 @@ public class ProgramManagementSpec extends BahmniPage {
 		programManagementPage.clickTreatmentDashboard(programManagementPage.getProgramFromSpecStore());
 	}
 
+	@Step("Navigate to <program> program dashboard")
+	public void navgateToGivenProgramDashboard(String program){
+		programManagementPage.clickTreatmentDashboard(program);
+	}
+
 	private Program transformTableToProgram(Table table){
 		List<TableRow> rows = table.getTableRows();
 		List<String> columnNames = table.getColumnNames();
