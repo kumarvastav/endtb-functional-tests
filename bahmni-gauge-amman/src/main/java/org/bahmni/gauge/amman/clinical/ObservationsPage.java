@@ -33,15 +33,15 @@ public class ObservationsPage extends org.bahmni.gauge.common.clinical.Observati
 
     public void fillTemplateData(Table table){
         List<TableRow> rows = table.getTableRows();
-        List<String> columnNames = table.getColumnNames();
 
-        for (String columnName: columnNames){
-            boolean columnFound = false;
+        for (TableRow row: rows){
+            boolean fieldFound = false;
+            String fieldName = row.getCell("FIELD");
+            String value = row.getCell("VALUE");
             for (WebElement observationNode: observationNodes) {
                 String observLabel = observationNode.findElement(By.tagName("label")).getText();
-                String value = rows.get(0).getCell(columnName);
-                if (observLabel.contains(columnName)){
-                    columnFound = true;
+                if (observLabel.contains(fieldName)){
+                    fieldFound = true;
                     if (hasTag(observationNode, "input")){
                         observationNode.findElement(By.tagName("input")).sendKeys(value);
                     }
@@ -62,8 +62,8 @@ public class ObservationsPage extends org.bahmni.gauge.common.clinical.Observati
 
                 }
             }
-            if (!columnFound){
-                Assert.fail("Field "+ columnName + " not found");}
+            if (!fieldFound){
+                Assert.fail("Field "+ fieldName + " not found");}
         }
 
     }

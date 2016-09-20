@@ -8,8 +8,8 @@ Create Patient Under Age 18 and Fill Legal Rep
 * Click on registration app
 * Click on create new patient link
 * Enter Patient Details
-    |firstName|lastName|givenNameArabic|familyNameArabic|gender|age|governorate|country|phoneNumber1|spokenLanguages|nationality1|
-    |Al|Hassan|أل |حسن |Male|12|Amman|Jordan|+9898989898|English|Egyptian|
+| firstName | lastName | givenNameArabic | familyNameArabic | gender | age | governorate | country | phoneNumber1 | spokenLanguages | nationality1 |
+| Al        | Hassan   | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     |
 * Enter Legal Rep Details
     |legalRepFullNameEnglish|legalRepFullNameArabic|legalRepRelationWithPatient|legalRepGender|legalRepDob|legalRepNationality|
     |Al Bangalore|حسن |Brother|Male|
@@ -22,11 +22,11 @@ Create Patient And Fill Caretaker
 * Click on registration app
 * Click on create new patient link
 * Enter Patient Details
-    |firstName|lastName|givenNameArabic|familyNameArabic|gender|age|governorate|country|phoneNumber1|spokenLanguages|nationality1|isCareTakerRequiredCheckBox|
-    |Kamal|Hassan|أل |حسن |Male|12|Amman|Jordan|+9898989898|English|Egyptian|True|
+| firstName | lastName | givenNameArabic | familyNameArabic | gender | age | governorate | country | phoneNumber1 | spokenLanguages | nationality1 | isCareTakerRequiredCheckBox |
+| Kamal     | Hassan   | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     | True                        |
 * Enter Caretaker Details
-    |caretakerNameEnglish|caretakerDocumentType|caretakerPhoneNumber1|
-    |Shruthi Hassan|Passport|+987653234567|
+| caretakerNameEnglish | caretakerDocumentType | caretakerPhoneNumber1 |
+| Shruthi Hassan       | Passport              | +987653234567         |
 * Save Patient
 
 Create Patient And Verify Legal Rep Same As Caretaker
@@ -36,10 +36,10 @@ Create Patient And Verify Legal Rep Same As Caretaker
 * Click on registration app
 * Click on create new patient link
 * Enter Patient Details
-    |firstName|lastName|givenNameArabic|familyNameArabic|gender|age|governorate|country|phoneNumber1|spokenLanguages|nationality1|isCareTakerRequiredCheckBox|
-    |Amitab|Bachan|أل |حسن |Male|12|Amman|Jordan|+9898989898|English|Egyptian|True|
+| firstName | lastName | givenNameArabic | familyNameArabic | gender | age | governorate | country | phoneNumber1 | spokenLanguages | nationality1 | isCareTakerRequiredCheckBox |
+| Amitab    | Bachan   | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     | True                        |
 * Enter Caretaker Details
-    |caretakerNameEnglish|caretakerNameArabic|caretakerGender|caretakerDob|caretakerNationality|legalRepalsoCaretaker|
-    |Shruthi Hassan|سن |Female|28-01-1986|Iraqi|Yes|
+| caretakerNameEnglish | caretakerNameArabic | caretakerGender | caretakerDob | caretakerNationality | legalRepalsoCaretaker |
+| Shruthi Hassan       | سن                  | Female          | 28-01-1986   | Iraqi                | Yes                   |
 * Verify Legal Rep Values
 * Save Patient
