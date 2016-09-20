@@ -25,3 +25,6 @@ Delete a Program
 * Ensure that the patient is registered to "ANC Program"
 * Unenroll patient from "ANC Program" program
 * Ensure that the patient is not registered to "ANC Program"
+
+* Navigate to dashboard
+* Logout the user
