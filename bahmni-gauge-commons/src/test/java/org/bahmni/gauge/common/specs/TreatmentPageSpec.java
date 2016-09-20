@@ -10,9 +10,7 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.TreatmentPage;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
-import org.bahmni.gauge.common.program.ProgramManagementPage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
-import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.WebDriver;
@@ -47,8 +45,8 @@ public class TreatmentPageSpec {
     @Step("Create the following drug order using API <table>")
     public void createDrugOrderUsingAPI(Table table) {
         List<DrugOrder> drugOrders = transformTableToDrugOrder(table);
-        Patient patient = PageFactory.get(RegistrationFirstPage.class).getPatientFromSpecStore();
-        PatientProgram patientProgram = PageFactory.get(ProgramManagementPage.class).getPatientProgramFromSpecStore();
+        Patient patient = PageFactory.getRegistrationFirstPage().getPatientFromSpecStore();
+        PatientProgram patientProgram = PageFactory.getProgramManagementPage().getPatientProgramFromSpecStore();
 
         for (DrugOrder drugOrder : drugOrders){
             drugOrder.setDrugUuid(BahmniRestClient.get().getUuidOfDrug(drugOrder.getDrugName()));

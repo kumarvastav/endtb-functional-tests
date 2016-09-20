@@ -17,7 +17,7 @@ public class EndTBProgramManagementSpec {
 
 	@Step("Click on treatment enrollment")
 	public void clickOnTreatmentEnrollment() {
-		EndTBRegistrationFirstPage registrationPage = PageFactory.get(EndTBRegistrationFirstPage.class);
+		EndTBRegistrationFirstPage registrationPage = (EndTBRegistrationFirstPage) PageFactory.getRegistrationFirstPage();
 		registrationPage.clickTreatmentRegistration();
 	}
 

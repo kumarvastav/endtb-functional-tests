@@ -18,7 +18,7 @@ public class RegistrationFirstPageSpec {
 
 	public RegistrationFirstPageSpec() {
 		this.driver = DriverFactory.getDriver();
-		this.registrationFirstPage = PageFactory.get(RegistrationFirstPage.class);
+		this.registrationFirstPage = PageFactory.getRegistrationFirstPage();
 	}
 
 	@BeforeClassSteps

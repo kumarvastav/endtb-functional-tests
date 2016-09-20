@@ -22,7 +22,7 @@ public class RegistrationVisitPageSpec {
 
     @Step("Close visit")
     public void closeVisit() {
-        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.get(RegistrationVisitDetailsPage.class);
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         registrationVisitPage.closeVisit(driver);
     }
 }
