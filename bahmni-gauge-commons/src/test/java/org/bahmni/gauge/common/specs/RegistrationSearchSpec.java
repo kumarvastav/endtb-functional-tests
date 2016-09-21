@@ -7,6 +7,7 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.registration.RegistrationSearch;
 import org.bahmni.gauge.common.registration.domain.Patient;
+import org.openqa.selenium.WebDriver;
 
 public class RegistrationSearchSpec {
 

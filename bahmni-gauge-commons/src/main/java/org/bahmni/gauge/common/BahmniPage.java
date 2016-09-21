@@ -137,6 +137,11 @@ public class BahmniPage {
         return waitForElement(this.driver, expectedCondition);
     }
 
+    public WebElement waitForElementOnPage(WebElement element) {
+        ExpectedCondition<WebElement> expectedCondition = ExpectedConditions.elementToBeClickable(element);
+        return waitForElement(this.driver, expectedCondition);
+    }
+
     public static <T> T waitForElement(WebDriver driver, ExpectedCondition<T> expectedCondition) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, 60);
