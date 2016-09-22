@@ -9,7 +9,7 @@ Create Patient Under Age 18 and Fill Legal Rep
 * Click on create new patient link
 * Enter Patient Details
 | firstName | lastName | givenNameArabic | familyNameArabic | gender | age | governorate | country | phoneNumber1 | spokenLanguages | nationality1 |
-| Al        | Hassan   | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     |
+| Al adasd       | Hassan   | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     |
 * Enter Legal Rep Details
     |legalRepFullNameEnglish|legalRepFullNameArabic|legalRepRelationWithPatient|legalRepGender|legalRepDob|legalRepNationality|
     |Al Bangalore|حسن |Brother|Male|

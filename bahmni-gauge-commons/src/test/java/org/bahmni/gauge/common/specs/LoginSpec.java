@@ -23,6 +23,7 @@ public class LoginSpec {
 
 	@Step("On the login page")
 	public void navigateToLoginPage() {
+		driver.manage().deleteAllCookies();
         driver.get(PageFactory.get(LoginPage.class).LOGIN_URL);
     }
 
