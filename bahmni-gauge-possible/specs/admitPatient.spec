@@ -1,9 +1,11 @@
 Admit Patient
 =================================
-Tags: regression, sanity, Admit Patient
+
 
 Create Patient and perform Inpatient Flow
 ---------------------------------------------------
+
+Tags: regression, sanity, AdmitPatient
 
 * On the login page
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
@@ -16,7 +18,7 @@ Create Patient and perform Inpatient Flow
 * Start a visit "General"
 * Navigate to dashboard
 * Click on clinical app
-* Select existing patient from patient listing page under tab "All"
+* Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
 * Go to "Disposition" tab
 * Select "Admit Patient" disposition
