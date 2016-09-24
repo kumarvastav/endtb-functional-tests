@@ -23,6 +23,7 @@ public class ConsultationPageSpec extends BahmniPage {
     public void clickOnDashboard(){
         ConsultationPage consultationPage = PageFactory.get(ConsultationPage.class);
         consultationPage.clickPatientProfile();
+        waitForAppReady();
     }
 
     @Step("Go to <tab> tab")
@@ -30,5 +31,6 @@ public class ConsultationPageSpec extends BahmniPage {
         ConsultationPage consultationPage = PageFactory.get(ConsultationPage.class);
         waitForAppReady();
         consultationPage.clickOnTab(tab);
+        waitForAppReady();
     }
 }
