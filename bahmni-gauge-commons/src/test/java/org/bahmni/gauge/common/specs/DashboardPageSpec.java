@@ -83,6 +83,7 @@ public class DashboardPageSpec {
 		DashboardPage dashboardPage = PageFactory.getDashboardPage();
 		dashboardPage.waitForSpinner(driver);
 		dashboardPage.selectDashboard(name);
+		waitForAppReady();
 	}
 
 	@Step("Navigate to dashboard")
@@ -96,5 +97,6 @@ public class DashboardPageSpec {
 		DashboardPage dashboardPage = PageFactory.getDashboardPage();
 		waitForAppReady();
 		dashboardPage.clickEnterData();
+		waitForAppReady();
 	}
 }
