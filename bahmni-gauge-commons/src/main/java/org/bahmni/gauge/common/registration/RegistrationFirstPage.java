@@ -165,25 +165,25 @@ public class RegistrationFirstPage extends BahmniPage {
 
 	public Patient transformTableRowToPatient(TableRow row, List<String> headers) throws Exception {
 		Patient patient = new Patient();
-		return transform(row,patient,headers);
+		return (Patient)transform(row,patient,headers);
 	}
 
-	public Patient transform(TableRow row,Patient patient,List<String> headers) throws Exception {
-		for (String header : headers) {
-			String value = row.getCell(header);
-			try {
-				if(propertyExists(patient,header)){
-					BeanUtils.setProperty(patient, header, value);
-				} else {
-					throw new Exception("Property :"+header+" not found in "+patient.getClass());
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new Exception(e.getMessage());
-			}
-		}
-		return patient;
-	}
+//	public Patient transform(TableRow row,Patient patient,List<String> headers) throws Exception {
+//		for (String header : headers) {
+//			String value = row.getCell(header);
+//			try {
+//				if(propertyExists(patient,header)){
+//					BeanUtils.setProperty(patient, header, value);
+//				} else {
+//					throw new Exception("Property :"+header+" not found in "+patient.getClass());
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				throw new Exception(e.getMessage());
+//			}
+//		}
+//		return patient;
+//	}
 
 	private static boolean propertyExists (Object object, String property) {
 		return PropertyUtils.isReadable(object, property) && PropertyUtils.isWriteable(object, property);

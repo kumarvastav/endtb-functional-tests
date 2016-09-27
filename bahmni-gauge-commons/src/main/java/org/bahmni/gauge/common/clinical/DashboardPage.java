@@ -1,7 +1,9 @@
 package org.bahmni.gauge.common.clinical;
 
 import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.clinical.displaycontrol.ProgramsDisplayControl;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
+import org.bahmni.gauge.common.program.domain.Program;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.junit.Assert;
@@ -80,4 +82,11 @@ public class DashboardPage extends BahmniPage {
         waitForSpinner();
 		return displayControl.getText().replace("\n","");
     }
+
+	public void validateProgramsDisplayControl(Program program) {
+		for (WebElement dispControls : displayControls) {
+			if (dispControls.getText().contains("Programs"))
+				(new ProgramsDisplayControl(dispControls)).validateActiveProgram(program);
+		}
+	}
 }

@@ -1,19 +1,32 @@
 package org.bahmni.gauge.common.program;
 
+import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
+import com.thoughtworks.selenium.webdriven.commands.WaitForPageToLoad;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
+import org.bahmni.gauge.common.registration.domain.Patient;
+import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
+
+import static org.openqa.selenium.By.*;
 
 public class ProgramManagementPage extends BahmniPage {
 
@@ -33,6 +46,9 @@ public class ProgramManagementPage extends BahmniPage {
     public List<WebElement> allActivePrograms;
 
     @FindBy(how = How.CSS, using = ".inactive-program-tiles")
+    public List<WebElement> allInactivePrograms;
+
+    @FindBy(how = How.CSS, using = ".inactive-program-tiles")
     public List<WebElement> inactive_progs;
 
     @FindBy(how = How.CSS, using = "[ng-model='patientProgram.outcomeData']")
@@ -43,6 +59,9 @@ public class ProgramManagementPage extends BahmniPage {
 
     @FindBy(how = How.CSS, using = ".active-program-container")
     public WebElement activeProgramContainer;
+
+    @FindBy(how = How.CSS, using = ".inactive-program-container")
+    public WebElement inactiveProgramContainer;
 
     @FindBy(how = How.CSS, using = "[id='Facility Name']")
     public WebElement facility_name;
@@ -71,15 +90,15 @@ public class ProgramManagementPage extends BahmniPage {
     public void modifyProgramEnrollment(Program treatment) {
 
         WebElement programToModify = findProgram(treatment.getName());
-        programToModify.findElement(By.cssSelector("[value='Edit']")).click();
+        programToModify.findElement(cssSelector("[value='Edit']")).click();
         doModifyEnrollmentDetails(programToModify, treatment);
-        programToModify.findElement(By.cssSelector("[value='Save']")).click();
+        programToModify.findElement(cssSelector("[value='Save']")).click();
     }
 
     protected void doModifyEnrollmentDetails(WebElement programToModify, Program treatment) {
 
         if (treatment.getTreatmentStatus() != null) {
-            WebElement outcome = programToModify.findElement(By.cssSelector("[ng-model='patientProgram.outcomeData']"));
+            WebElement outcome = programToModify.findElement(cssSelector("[ng-model='patientProgram.outcomeData']"));
             new Select(outcome).selectByVisibleText(treatment.getTreatmentStatus());
         }
 
@@ -94,7 +113,14 @@ public class ProgramManagementPage extends BahmniPage {
         }
         throw new TestSpecException("The program with name [" + programName + "] doesn't exist");
     }
-
+    public WebElement findInactiveProgram(String programName) {
+        for (WebElement allInactiveProgram : allInactivePrograms) {
+            if (allInactiveProgram.getText().contains(programName)) {
+                return allInactiveProgram;
+            }
+        }
+        throw new TestSpecException("The program with name [" + programName + "] doesn't exist");
+    }
     public void clickTreatmentDashboard(PatientProgram patientProgram) {
         clickTreatmentDashboard(patientProgram.getProgram().getName());
     }
@@ -105,18 +131,81 @@ public class ProgramManagementPage extends BahmniPage {
 
     public void clickTreatmentDashboard(String program){
         WebElement programWidget = findProgram(program);
-        programWidget.findElement(By.id("dashboard-link")).click();
+        programWidget.findElement(id("dashboard-link")).click();
     }
 
     public boolean isPatientEnrolledToProgram(Program treatment) {
-        WebElement programName = activeProgramContainer.findElement(By.cssSelector(".programName"));
-        return isProgramAvailable(treatment, programName);
+        waitForElementOnPage(cssSelector(".programName"));
+        WebElement programName = activeProgramContainer.findElement(cssSelector(".programName"));
+        if(isProgramAvailable(treatment, programName)){
+            return isStartDateProper(treatment) && isTreatmentDateProper(treatment) && isPatientStageProper(treatment) && isProgramStateProper(treatment);
+
+        }
+        return false;
+
+    }
+    private boolean isStartDateProper(Program treatment){
+        if (treatment.getDateOfRegistration()!=null){
+            WebElement actualStartDate=activeProgramContainer.findElement(cssSelector(".ProgramEnrollInfo>.form-field .field-value span"));//xpath(".//*[contains(text(),'Start Date')]//parent::*/parent::*/descendant::*[@class='field-value']/span"));
+            Date actualDate= null;
+            try {
+                actualDate = (new SimpleDateFormat("dd MMM yy")).parse(actualStartDate.getText());
+                Date expectedDate=(new SimpleDateFormat("dd/MM/yyyy")).parse(treatment.getDateOfRegistration());
+                if(actualDate.equals(expectedDate))
+                    return true;
+                else
+                    return false;
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+        }
+        return false;
+    }
+    private boolean isTreatmentDateProper(Program treatment){
+        if (treatment.getTreatmentDate()!=null){
+            WebElement actualTreatmentDate=activeProgramContainer.findElement(xpath(".//*[contains(text(),'Treatment Date')]/parent::*/parent::*/descendant::*[@class='field-value']/span"));
+            Date actualDate= null;
+            try {
+                actualDate = (new SimpleDateFormat("dd MMM yy")).parse(actualTreatmentDate.getText());
+                Date expectedDate=(new SimpleDateFormat("dd/MM/yyyy")).parse(treatment.getTreatmentDate());
+                if(actualDate.equals(expectedDate))
+                    return true;
+                else
+                    return false;
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+        }
+        return true;
+    }
+
+    private boolean isPatientStageProper(Program treatment){
+        if (treatment.getPatientStatus()!=null){
+            WebElement actualPatientStage=activeProgramContainer.findElement(xpath(".//*[contains(text(),'Patient Stage')]/parent::*/parent::*/descendant::*[@class='field-value']/span"));
+            return actualPatientStage.getText().trim().equals(treatment.getPatientStatus());
+
+        }
+        return true;
+    }
+
+    private boolean isProgramStateProper(Program treatment){
+        if (treatment.getTreatmentStatus()!=null){
+            WebElement actualPatientStage=activeProgramContainer.findElement(cssSelector(".program-state-container span"));
+            return actualPatientStage.getText().trim().equals(treatment.getPatientStatus());
+
+        }
+        return true;
     }
 
     private boolean isProgramAvailable(Program enrolledProgram, WebElement programName) {
         return programName != null && programName.getText().equals(enrolledProgram.getName());
     }
-
     public Program transformTableToProgram(Table table) {
         List<TableRow> rows = table.getTableRows();
         List<String> columnNames = table.getColumnNames();
@@ -127,23 +216,28 @@ public class ProgramManagementPage extends BahmniPage {
 
         String programName = rows.get(0).getCell(columnNames.get(0));
         String dateOfRegistration = rows.get(0).getCell(columnNames.get(1));
+        Program program=new Program(programName, dateOfRegistration);
+        return (Program) transform(rows.get(0), program, columnNames);
 
-        return new Program(programName, dateOfRegistration);
     }
+
+
 
     public void editProgramAttributes(Program treatment, String registration, String facility) {
         WebElement programToModify = findProgram(treatment.getName());
-        programToModify.findElement(By.cssSelector("[value='Edit']")).click();
+        programToModify.findElement(cssSelector("[value='Edit']")).click();
         editProgram(registration, facility);
-        programToModify.findElement(By.cssSelector("[value='Save']")).click();
+        programToModify.findElement(cssSelector("[value='Save']")).click();
     }
 
     public void endProgram(Program treatment) {
         WebElement programToModify = findProgram(treatment.getName());
-        programToModify.findElement(By.cssSelector("[value='Edit']")).click();
-        WebElement outcome = programToModify.findElement(By.cssSelector("[ng-model='patientProgram.outcomeData']"));
+        programToModify.findElement(cssSelector("[value='Edit']")).click();
+        WebElement outcome = programToModify.findElement(cssSelector("[ng-model='patientProgram.outcomeData']"));
         new Select(outcome).selectByVisibleText(treatment.getTreatmentStatus());
-        programToModify.findElement(By.cssSelector("[value='Save']")).click();
+        programToModify.findElement(cssSelector("[value='Save']")).click();
+        treatment.setProgramStopDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+
     }
 
     public ProgramManagementPage editProgram(String registration, String facility) {
@@ -152,19 +246,70 @@ public class ProgramManagementPage extends BahmniPage {
         return this;
     }
 
-    public Program transformTableRowToProgram(TableRow row, List<String> columnNames) {
+    public Program transformTableRowToProgram(TableRow row, List<String> columnNames) throws Exception {
         String registration = row.getCell(columnNames.get(1)) + new Random().nextInt();
         Program program = new Program(row.getCell(columnNames.get(0)), registration);
-        return program;
+        return (Program)transform(row,program,columnNames);
     }
 
     public void deleteProgram(WebElement program) {
-        program.findElement(By.cssSelector("[id=\"delete_btn\"]")).click();
-        program.findElement(By.cssSelector("[ng-model=\"patientProgram.voidReason\"]")).sendKeys("Deleting the program");
-        program.findElement(By.cssSelector("[value=\"Delete\"]")).click();
+        program.findElement(cssSelector("[id=\"delete_btn\"]")).click();
+        program.findElement(cssSelector("[ng-model=\"patientProgram.voidReason\"]")).sendKeys("Deleting the program");
+        program.findElement(cssSelector("[value=\"Delete\"]")).click();
         WebElement deletePopup = waitForElementOnPage(".delete-program-popup");
-        WebElement deleteButton = deletePopup.findElement(By.cssSelector("[id=\"delete\"]"));
+        WebElement deleteButton = deletePopup.findElement(cssSelector("[id=\"delete\"]"));
         deleteButton.click();
     }
 
+    public ProgramManagementPage editProgram(Program targetProgram,Program programData){
+        WebElement weProgram=findProgram(targetProgram.getName());
+        weProgram.findElement(cssSelector("input[value='Edit']")).click();
+        if(programData.getDateOfRegistration()!=null) {
+            weProgram.findElement(cssSelector("[ng-model=\"patientProgram.dateEnrolled\"]")).sendKeys(programData.getDateOfRegistration());
+            targetProgram.setDateOfRegistration(programData.getDateOfRegistration());}
+
+        if(programData.getTreatmentDate()!=null) {
+            weProgram.findElement(id("Date")).sendKeys(programData.getTreatmentDate());
+            targetProgram.setTreatmentDate(programData.getTreatmentDate());}
+        if(programData.getPatientStatus()!=null) {
+            (new Select(weProgram.findElement(cssSelector("select[id='Stage']")))).selectByVisibleText(programData.getPatientStatus());
+            targetProgram.setPatientStatus(programData.getPatientStatus());
+        }
+        if(programData.getProgramStatus()!=null)
+        {
+            (new Select(weProgram.findElement(cssSelector("select[ng-model='programEdited.selectedState']")))).selectByVisibleText(programData.getProgramStatus());
+            targetProgram.setProgramStatus(programData.getProgramStatus());
+        }
+        weProgram.findElement(cssSelector("input[value='Save']")).click();
+
+        return this;
+
+    }
+
+    public void verifyProgramStopped(Program program) {
+        WebElement weProgram=findInactiveProgram(program.getName());
+        WebElement weProgramOutcome= weProgram.findElement(xpath(".//label[contains(text(),'Program Outcome:')]/parent::*/following-sibling::*/span"));
+        WebElement weStartDate= weProgram.findElement(xpath(".//label[contains(text(),'Start Date:')]/parent::*/following-sibling::*/span"));
+        WebElement weStopDate= weProgram.findElement(xpath(".//label[contains(text(),'Stop Date:')]/parent::*/following-sibling::*/span"));
+
+        if(weProgram!=null){
+            Assert.assertEquals(weProgramOutcome.getText(),program.getTreatmentStatus());
+            try {
+                Assert.assertEquals(new SimpleDateFormat("dd MMM yy").parse(weStartDate.getText()),new SimpleDateFormat("dd/MM/yyyy").parse(program.getDateOfRegistration()));
+                Assert.assertEquals(new SimpleDateFormat("dd MMM yy").parse(weStopDate.getText()),new SimpleDateFormat("dd/MM/yyyy").parse(program.getProgramStopDate()));
+            } catch (ParseException e) {
+                Assert.fail("Date formats are not correct");
+                e.printStackTrace();
+            }
+            try{
+                weProgram.findElement(cssSelector("[value=\"Edit\"]"));
+                Assert.fail("Edit link visible");
+            } catch (NoSuchElementException ex) {
+
+            }
+
+        } else {
+            Assert.fail("Program not found in Inactive programs");
+        }
+    }
 }

@@ -13,7 +13,9 @@ import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
+import org.bahmni.gauge.util.TableTransformer;
 import org.junit.Assert;
+import org.junit.experimental.theories.Theories;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -32,7 +34,7 @@ public class ProgramManagementSpec extends BahmniPage {
 	}
 
 	@Step("Register the patient to following program <programDetails>")
-	public void enrollPatientToProgram(Table programDetails) {
+	public void enrollPatientToProgram(Table programDetails) throws Exception {
 		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
 		Program treatment = programManagementPage.transformTableToProgram(programDetails);
 		programManagementPage.storeProgramInSpecStore(treatment);
@@ -60,14 +62,22 @@ public class ProgramManagementSpec extends BahmniPage {
 		programManagementPage.editProgramAttributes(programDetails, registration, facility);
 	}
 
-	@Step("End the program <TB Program>")
-	public void endTheProgram(Program program) {
+	@Step("End the program <table>")
+	public void endTheProgram(Table program) throws Exception {
 		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
+		programManagementPage.endProgram(transformTableToProgram(program));
+	}
+
+	@Step("End previously mentioned program")
+	public void endPreviousProgram(){
+		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
+		Program program=getProgramFromSpecStore();
+		program.setTreatmentStatus("Cured");
 		programManagementPage.endProgram(program);
 	}
 
 	@Step("Enroll patient to the program <table>")
-	public void enrollPatientToTheProgram(Table table){
+	public void enrollPatientToTheProgram(Table table) throws Exception {
 		Program program = transformTableToProgram(table);
 		Patient patient = PageFactory.getRegistrationFirstPage().getPatientFromSpecStore();
 
@@ -75,6 +85,7 @@ public class ProgramManagementSpec extends BahmniPage {
 		patientProgram.setPatient(patient);
 		patientProgram.setProgram(program);
 		BahmniRestClient.get().enrollToProgram(patientProgram);
+		programManagementPage.storeProgramInSpecStore(program);
 		programManagementPage.storePatientProgramInSpecStore(patientProgram);
 	}
 
@@ -110,7 +121,19 @@ public class ProgramManagementSpec extends BahmniPage {
 		programManagementPage.clickTreatmentDashboard(program);
 	}
 
-	private Program transformTableToProgram(Table table){
+	@Step("Edit created Program with following details <table>")
+	public void editCreateProgram(Table table) throws Exception {
+		Program program=programManagementPage.getPatientProgramFromSpecStore().getProgram();
+		Program program1=transformTableToProgram(table);
+		PageFactory.getProgramManagementPage().editProgram(program,program1);
+	}
+
+	@Step("Ensure that the program is updated")
+	public void verifyProgramUpdated(){
+		Program program=programManagementPage.getProgramFromSpecStore();
+		PageFactory.getProgramManagementPage().isPatientEnrolledToProgram(program);
+	}
+	private Program transformTableToProgram(Table table) throws Exception {
 		List<TableRow> rows = table.getTableRows();
 		List<String> columnNames = table.getColumnNames();
 		if (rows.size() != 1) {
@@ -119,6 +142,11 @@ public class ProgramManagementSpec extends BahmniPage {
 		Program program = programManagementPage.transformTableRowToProgram(rows.get(0), columnNames);
 
 		return program;
+	}
+
+	@Step("Ensure that the mentioned program is stopped")
+	public void verifyPrgramStopped(){
+		programManagementPage.verifyProgramStopped(programManagementPage.getProgramFromSpecStore());
 	}
 
 

@@ -1,7 +1,11 @@
 package org.bahmni.gauge.common;
 
+import com.google.common.base.Function;
+import com.thoughtworks.gauge.TableRow;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.bahmni.gauge.common.home.HomePage;
@@ -9,11 +13,13 @@ import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.junit.Assert;
+import org.junit.experimental.theories.internal.BooleanSupplier;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.List;
 
@@ -84,6 +90,7 @@ public class BahmniPage {
     public void waitForSpinner() {
         waitForSpinner(driver);
     }
+
 
     public Program getProgramFromSpecStore() {
         return (Program) DataStoreFactory.getSpecDataStore().get(PROGRAM_KEY);
@@ -180,7 +187,25 @@ public class BahmniPage {
         driver.get(HomePage.URL);
         dismissAlert(driver);
     }
+    private static boolean propertyExists (Object object, String property) {
+        return PropertyUtils.isReadable(object, property) && PropertyUtils.isWriteable(object, property);
+    }
 
+    public Object transform(TableRow row,Object object, List<String> headers){
+        for (String header : headers) {
+            String value = row.getCell(header);
+            try {
+                if(propertyExists(object,header)){
+                    BeanUtils.setProperty(object, header, value);
+                } else {
+                    throw new Exception("Property :"+header+" not found in "+object.getClass());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return object;
+    }
     public void setDriver(WebDriver driver) {
         this.driver = driver;
     }

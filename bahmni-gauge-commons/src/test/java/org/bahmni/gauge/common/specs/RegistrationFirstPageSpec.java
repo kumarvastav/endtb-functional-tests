@@ -1,5 +1,6 @@
 package org.bahmni.gauge.common.specs;
 
+import com.gargoylesoftware.htmlunit.javascript.host.Console;
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;

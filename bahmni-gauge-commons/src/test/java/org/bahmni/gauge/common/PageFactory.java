@@ -1,7 +1,10 @@
 package org.bahmni.gauge.common;
 
+import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.program.ProgramManagementPage;
+import org.bahmni.gauge.common.program.TreatmentPage;
+import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.RegistrationVisitDetailsPage;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +19,7 @@ public class PageFactory {
 	private static final String REGISTRATION_FIRST_PAGE = "registration.page1";
 	private static final String REGISTRATION_VISIT_PAGE = "registration.visitPage";
 	private static final String PROGRAMS_PAGE = "programs";
+	private static final String PROGRAM_DASHBOARD_PAGE = "program.dashboard";
 	private static Properties props = new Properties();
 
 	static{
@@ -56,6 +60,12 @@ public class PageFactory {
 
 	public static ProgramManagementPage getProgramManagementPage() {
 		return (ProgramManagementPage) get(PROGRAMS_PAGE);
+
+	}
+
+	public static DashboardPage getProgramDashboardPage(){
+		return (DashboardPage) get(PROGRAM_DASHBOARD_PAGE);
+
 	}
 
 	public static <T extends BahmniPage> T get(Class<T> page) {

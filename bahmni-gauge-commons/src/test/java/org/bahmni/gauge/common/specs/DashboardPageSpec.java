@@ -10,6 +10,7 @@ import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.displaycontrol.ObsDisplayControl;
 import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
+import org.bahmni.gauge.common.program.domain.Program;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -96,5 +97,12 @@ public class DashboardPageSpec {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		waitForAppReady();
 		dashboardPage.clickEnterData();
+	}
+
+	@Step("Ensure that the program is updated on patient program dashboard")
+	public void verifyProgramUpdatedOnDashboard(){
+		Program program=PageFactory.getProgramManagementPage().getProgramFromSpecStore();
+		PageFactory.getProgramDashboardPage().validateProgramsDisplayControl(program);
+
 	}
 }

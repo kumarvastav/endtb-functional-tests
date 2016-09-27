@@ -6,5 +6,5 @@
 * Click on create new patient link
 * Create the following patient
 
-    |prefix|firstName|lastName|gender|dateOfBirth|age|district|
-    |GAN|Test|Patient|Male|20/01/2011|50|Bilaspur|
+    |prefix|firstName|lastName|gender|dateOfBirth|age|district|village|
+    |GAN|Test|Patient|Male|20/01/2011|50|Bilaspur|Khanapur|
