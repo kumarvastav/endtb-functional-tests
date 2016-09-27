@@ -79,14 +79,20 @@ public class DashboardPage extends BahmniPage {
 
 	public String getDisplayControlText(String displayControlName) {
 		WebElement displayControl = findElement(By.id(displayControlName));
-        waitForSpinner();
-		return displayControl.getText().replace("\n","");
-    }
+		waitForSpinner();
+		return displayControl.getText().replace("\n", "");
+	}
 
 	public void validateProgramsDisplayControl(Program program) {
 		for (WebElement dispControls : displayControls) {
 			if (dispControls.getText().contains("Programs"))
 				(new ProgramsDisplayControl(dispControls)).validateActiveProgram(program);
 		}
+	}
+
+	public void selectDisplayControl(String name) {
+		if (name.toLowerCase().contains("program"))
+			new ProgramsDisplayControl(findElementById("Programs")).validateActiveProgram(this.getProgramFromSpecStore());
+
 	}
 }

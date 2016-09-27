@@ -102,4 +102,9 @@ public class DashboardPageSpec {
 		PageFactory.getProgramDashboardPage().validateProgramsDisplayControl(program);
 
 	}
+	@Step("Verify details on dashboard <Programs> display control")
+	public void selectDisplayControl(String name) {
+		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+		dashboardPage.selectDisplayControl(name);
+	}
 }

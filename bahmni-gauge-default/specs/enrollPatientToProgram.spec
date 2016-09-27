@@ -47,22 +47,43 @@ End the Program Enrolled for Patient
 * Select existing patient from patient listing page under tab "All"
 * End the program "TB Program"
 * Ensure that the patient is registered to mentioned program
-
-Program Management Workflows - Create
------------------------------------
-* Create the following patient using api
-        |prefix|firstName|lastName|gender|dateOfBirth|district|
-        |EMR|Hanah|Jones|F|20/01/2011|Bilaspur|
+Program Management Workflows - Create & Add Patient to a Program
+----------------
 * On the login page
 * Login to the application
+* Create the following patient using api
+     |prefix|firstName|lastName|gender|dateOfBirth|district|
+     |EMR|Hanah|Jones|F|20/01/2011|Bilaspur|
 * Click on programs app
 * Select existing patient from patient listing page under tab "All"
 * Register the patient to following program
-    |name|dateOfRegistration|
-    |TB Program|05/05/2015|
+    |name|dateOfRegistration|registrationNumber|registrationFacility|
+    |TB Program|21/09/2016|ABC|Facility1, City1, Country1|
 * Ensure that the patient is registered to mentioned program
-* Navigate to previous program dashboard
-* Ensure that the program is updated on patient program dashboard
+* Navigate to "TB Program" program dashboard
+* Verify details on dashboard "Programs" display control
+* Navigate to dashboard
+* Logout the user
+
+
+Program Management Workflows - Delete the patient from an active Program
+----------------
+* On the login page
+* Login to the application
+* Create the following patient using api
+    |prefix|firstName|lastName|gender|dateOfBirth|district|
+    |EMR|Hanah|Jones|F|20/01/2011|Bilaspur|
+* Enroll patient to the program
+    |name|dateOfRegistration|patientStatus|treatmentDate|programStatus|
+    |TB Program|21/09/2016|Stage 1|23/09/2016|Initial Treatment Phase|
+* Click on programs app
+* Select existing patient from patient listing page under tab "All"
+* Ensure that the patient is registered to mentioned program
+* Unenroll patient from "TB Program" program
+* Navigate to dashboard
+* Logout the user
+
+
 Program Management Workflows - Edit
 -----------------------------------
 * Create the following patient using api
@@ -77,7 +98,7 @@ Program Management Workflows - Edit
 * Select existing patient from patient listing page under tab "All"
 * Edit created Program with following details
     |name|dateOfRegistration|treatmentDate|patientStatus|programStatus|
-    |TB Program|01/02/2015|06/07/2015|Stage 1|Sputum Positive|
+    |TB Program|01/02/2015|06/07/2015|Stage 2|Sputum Positive|
 * Ensure that the program is updated
 * Navigate to previous program dashboard
 * Ensure that the program is updated on patient program dashboard
@@ -87,6 +108,7 @@ Program Managmnt Workflows - Stop
 ---------------------------------
 * Create the following patient using api
     |prefix|firstName|lastName|gender|dateOfBirth|district|
+    |EMR|Hanah|Jones|F|20/01/2011|Bilaspur|
 * Enroll patient to the program
     |name|dateOfRegistration|treatmentDate|patientStatus|programStatus|
     |TB Program|01/01/2015|06/06/2015|Stage 1|Sputum Positive|
