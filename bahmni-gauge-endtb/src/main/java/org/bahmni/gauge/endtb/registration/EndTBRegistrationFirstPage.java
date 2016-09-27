@@ -38,6 +38,6 @@ public class EndTBRegistrationFirstPage extends RegistrationFirstPage {
         patient.setIdNumber(String.valueOf(new Random().nextInt()));
 		patient.setDateOfBirth(String.valueOf(new Date()));
 		patient.setAge("50");
-		return transform(row, patient, headers);
+		return (EndTBPatient)transform(row, patient, headers);
 	}
 }
