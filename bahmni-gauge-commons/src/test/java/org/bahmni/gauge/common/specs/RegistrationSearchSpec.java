@@ -34,6 +34,12 @@ public class RegistrationSearchSpec {
 		registrationSearch.searchByIdentifier(prefix, identifier);
 	}
 
+	@Step("Search patient with name <name>")
+	public void searchPatientByName(String name){
+		RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
+		registrationSearch.searchByName(name);
+	}
+
 	@Step("Search previously created patient with exact identifier")
 	public void searchPreviousCreatedPatientWithIdentifier() {
         RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);

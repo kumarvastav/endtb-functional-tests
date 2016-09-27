@@ -8,12 +8,6 @@ import java.util.List;
 public class AmmanPatient extends Patient {
 
     private List<PatientAttribute> patientAttributes;
-    public AmmanPatient(){
-        this.setFirstName("first");
-        this.setLastName("last");
-        this.setGender("Male");
-        this.setAge("20");
-    }
 
     public List<PatientAttribute> getPatientAttributes() {
         return patientAttributes;

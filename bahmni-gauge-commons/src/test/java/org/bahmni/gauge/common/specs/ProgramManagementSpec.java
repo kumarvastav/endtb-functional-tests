@@ -39,6 +39,7 @@ public class ProgramManagementSpec extends BahmniPage {
 		Program treatment = programManagementPage.transformTableToProgram(programDetails);
 		programManagementPage.storeProgramInSpecStore(treatment);
 		programManagementPage.enrollPatientToProgram(treatment);
+		waitForAppReady();
 	}
 
 	@Step("Ensure that the patient is registered to mentioned program")
@@ -60,6 +61,7 @@ public class ProgramManagementSpec extends BahmniPage {
 		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
 		Program programDetails = programManagementPage.getProgramFromSpecStore();
 		programManagementPage.editProgramAttributes(programDetails, registration, facility);
+		waitForAppReady();
 	}
 
 	@Step("End the program <table>")
@@ -92,6 +94,7 @@ public class ProgramManagementSpec extends BahmniPage {
 	@Step("Click on the patients previously program enrolled")
 	public void clickOnThePatientsPreviouslyProgramEnrolled(){
 		programManagementPage.clickTreatmentDashboard(programManagementPage.getPatientProgramFromSpecStore());
+		waitForAppReady();
 	}
 
 	@Step("Unenroll patient from <program> program")

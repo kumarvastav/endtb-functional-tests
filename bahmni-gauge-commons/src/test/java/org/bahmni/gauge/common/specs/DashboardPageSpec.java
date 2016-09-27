@@ -14,8 +14,6 @@ import org.bahmni.gauge.common.program.domain.Program;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.text.ParseException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +22,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class DashboardPageSpec {
 
-	private final WebDriver driver;
+	protected final WebDriver driver;
 
 	public DashboardPageSpec() {
 		this.driver = DriverFactory.getDriver();
@@ -35,10 +33,10 @@ public class DashboardPageSpec {
 		BahmniPage.waitForSpinner(driver);
 	}
 
-	@Step("Ensure <Treatment-Information> display control with title <Treatment Information> with <01 Jul 16> as Start Date <table>")
-	public void validateContentInDisplayControl(String id, String title, String treatmentStartDate, Table table) throws ParseException {
-        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-		dashboardPage.waitForSpinner(driver);
+	@Step("Ensure that <id> Obs display control with title <title> has correct data <table>")
+	public void validateContentInDisplayControl(String id, String title, Table table) {
+		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+		DashboardPage.waitForSpinner(driver);
 
 		WebElement displayControl = dashboardPage.findElementById(id);
 		assertNotNull("The display control with id [" + id + "] not found", displayControl);
@@ -49,9 +47,6 @@ public class DashboardPageSpec {
 		Map<String, String> keyValues = obsDisplayControl.getKeyValues();
 		List<String> columnNames = table.getColumnNames();
 
-		String currentMonthOfTreatment = dashboardPage.calculateCurrentMonthOfTreatment(treatmentStartDate);
-		table.addRow(Arrays.asList(currentMonthOfTreatment, treatmentStartDate));
-
 		for (String columnName : columnNames) {
 			assertEquals("The column [" + columnName + "] has incorrect data for the patient ["+dashboardPage.getPatientFromSpecStore().getIdNumber()+"]",
 					table.getTableRows().get(0).getCell(columnName), keyValues.get(columnName));
@@ -61,7 +56,7 @@ public class DashboardPageSpec {
 	@Step("Ensure that <id> Obs display control has the message <message>")
 	public void validateNoContentInDisplayControl(String id, String message) {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-		dashboardPage.waitForSpinner(driver);
+		BahmniPage.waitForSpinner(driver);
 
 		WebElement displayControl = dashboardPage.findElementById(id);
 		assertNotNull("The display control with id [" + id + "] not found", displayControl);
@@ -82,8 +77,9 @@ public class DashboardPageSpec {
 	@Step("Click on <name> dashboard")
 	public void clickOnDashboard(String name) {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-		dashboardPage.waitForSpinner(driver);
+		BahmniPage.waitForSpinner(driver);
 		dashboardPage.selectDashboard(name);
+		waitForAppReady();
 	}
 
 	@Step("Navigate to dashboard")
@@ -97,6 +93,7 @@ public class DashboardPageSpec {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		waitForAppReady();
 		dashboardPage.clickEnterData();
+		waitForAppReady();
 	}
 
 	@Step("Ensure that the program is updated on patient program dashboard")

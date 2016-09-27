@@ -19,6 +19,7 @@ public class EndTBProgramManagementSpec {
 	public void clickOnTreatmentEnrollment() {
 		EndTBRegistrationFirstPage registrationPage = (EndTBRegistrationFirstPage) PageFactory.getRegistrationFirstPage();
 		registrationPage.clickTreatmentRegistration();
+		waitForAppReady();
 	}
 
 	@Step("Get Answers for <concept> concept")
