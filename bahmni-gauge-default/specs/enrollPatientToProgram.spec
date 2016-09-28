@@ -9,6 +9,8 @@ Every heading in this file denotes a scenario. Every bulleted point denotes a st
 Create Patient and Enrollment of Patient to Program
 ---------------------------------------------------
 
+Tags: regression, sanity
+
 * On the login page
 * Login to the application
 * Click on registration app
@@ -32,6 +34,8 @@ Create Patient and Enrollment of Patient to Program
 Editing of Program Attributes
 -----------------------------
 
+Tags: regression, sanity
+
 * Navigate to dashboard
 * Click on programs app
 * Select existing patient from patient listing page under tab "All"
@@ -42,6 +46,8 @@ Editing of Program Attributes
 End the Program Enrolled for Patient
 ------------------------------------
 
+Tags: regression, sanity
+
 * Navigate to dashboard
 * Click on programs app
 * Select existing patient from patient listing page under tab "All"
@@ -50,7 +56,10 @@ End the Program Enrolled for Patient
 
 
 Program Management Workflows - Create & Add Patient to a Program
-----------------
+----------------------------------------------------------------
+
+Tags: regression, sanity
+
 * On the login page
 * Login to the application
 * Create the following patient using api
@@ -69,7 +78,10 @@ Program Management Workflows - Create & Add Patient to a Program
 
 
 Program Management Workflows - Delete the patient from an active Program
-----------------
+------------------------------------------------------------------------
+
+Tags: regression, sanity
+
 * On the login page
 * Login to the application
 * Create the following patient using api

@@ -8,7 +8,7 @@ Every heading in this file denotes a scenario. Every bulleted point denotes a st
 Create Patient with manual ID, Verify
 -------------------------------------
 
-Tags: sanity
+Tags:
 
 * On the login page
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
@@ -26,7 +26,7 @@ Tags: sanity
 Create Patient with autoID, Verify
 ----------------------------------
 
-Tags: regression, sanity
+Tags: regression, sanity, smoke
 
 * On the login page
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
@@ -45,7 +45,7 @@ Tags: regression, sanity
 Create Patient fails with same ID
 ---------------------------------
 
-Tags: regression, sanity
+Tags:
 
 * On the login page
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"

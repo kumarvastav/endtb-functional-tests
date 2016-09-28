@@ -3,7 +3,10 @@ Program Enrollemnt, Editing of Program Attributes and End the Program
 Tags: regression, sanity, enrollPatientToProgram
 
 Create Patient and Enrol to a Program
----------------------------------------------------
+-------------------------------------
+
+Tags: regression, sanity
+
 * On the login page
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
 * Create the following patient using api
