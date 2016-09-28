@@ -47,6 +47,8 @@ End the Program Enrolled for Patient
 * Select existing patient from patient listing page under tab "All"
 * End the program "TB Program"
 * Ensure that the patient is registered to mentioned program
+
+
 Program Management Workflows - Create & Add Patient to a Program
 ----------------
 * On the login page
