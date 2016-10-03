@@ -29,7 +29,6 @@ public class ConsultationPageSpec extends BahmniPage {
     @Step("Go to <tab> tab")
     public void goToTab(String tab){
         ConsultationPage consultationPage = PageFactory.get(ConsultationPage.class);
-        waitForAppReady();
         consultationPage.clickOnTab(tab);
         waitForAppReady();
     }

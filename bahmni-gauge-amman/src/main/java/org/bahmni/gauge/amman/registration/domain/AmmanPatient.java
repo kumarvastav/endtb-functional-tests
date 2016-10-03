@@ -23,4 +23,13 @@ public class AmmanPatient extends Patient {
         }
         this.patientAttributes.add(patientAttribute);
     }
+
+    public String getPatientAttributeDataFor(String attribute){
+        for (PatientAttribute patientAttribute:patientAttributes){
+            if (patientAttribute.getAttributeName().equals(attribute)){
+                return patientAttribute.getValue();
+            }
+        }
+        return null;
+    }
 }

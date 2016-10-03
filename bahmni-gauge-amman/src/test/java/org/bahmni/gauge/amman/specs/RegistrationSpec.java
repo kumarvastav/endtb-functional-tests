@@ -24,7 +24,7 @@ public class RegistrationSpec {
         BahmniPage.waitForSpinner(DriverFactory.getDriver());
     }
 
-    @Step({"Enter Patient Details <table>", "Enter Legal Rep Details <table>", "Enter Caretaker Details <table>"} )
+    @Step({"Enter Patient Details <table>", "Enter Legal Rep Details <table>", "Enter Caretaker Details <table>" ,"Enter ID Document Details <table>"})
     public void enterPatientDetails(Table table) throws Exception {
         List<PatientAttribute> patientAttributes = transformTableToPatientAttributes(table);
         registrationPage.fillAttributes(patientAttributes);
@@ -33,6 +33,7 @@ public class RegistrationSpec {
     @Step("Save Patient")
     public void savePatient() {
         registrationPage.clickSave();
+        waitForAppReady();
     }
 
     @Step("Enter Clinical Details")

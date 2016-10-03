@@ -44,13 +44,15 @@ public class PatientListingPage extends BahmniPage {
     }
     
     public void selectPatient(String Patient){
+		WebElement lastElement = null;
     	for (WebElement patient : patient_list){
     		if (patient.findElement(By.cssSelector(".patient-id")).getText().contains(Patient) ||
 					patient.findElement(By.cssSelector(".patient-name")).getText().contains(Patient)){
-    			patient.click();
-				return;
+    			lastElement = patient;
 			}
 		}
+		lastElement.click();
+		return;
     }
   
     public void searchSelectPatientFromTab(String patientID, String tab) {
