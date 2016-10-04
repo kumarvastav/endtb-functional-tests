@@ -100,7 +100,7 @@ public class ObservationSpec extends BahmniPage {
 
 
     @Step("Verify the <template> concept set is <displayType>")
-    public void verifyObservationFormContent(String displayType,String template) {
+    public void verifyObservationFormContent(String template, String displayType) {
             DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
             if(displayType.toLowerCase().equals("not displayed"))
                 Assert.assertFalse("Element "+template+" is displayed", dashboardPage.isDisplayed("#concept-set-4"));
