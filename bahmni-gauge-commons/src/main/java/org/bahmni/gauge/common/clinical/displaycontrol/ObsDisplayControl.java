@@ -1,6 +1,7 @@
 package org.bahmni.gauge.common.clinical.displaycontrol;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import java.util.HashMap;
@@ -36,9 +37,14 @@ public class ObsDisplayControl {
 	}
 
 	private void transformWebElementToKeyValues(WebElement element, Map<String, String> keyValues) {
-		WebElement keyElement = element.findElement(By.className("testUnderPanel"));
-		WebElement valueElement = element.findElement(By.className("value-text-only"));
+		WebElement valueElement = null;
+		WebElement keyElement = null;
+		try {
+			keyElement = element.findElement(By.className("testUnderPanel"));
+			valueElement = element.findElement(By.className("value-text-only"));
+		} catch (NoSuchElementException e) {
 
+		}
 		if (valueElement == null || keyElement == null) {
 			return;
 		}
@@ -49,6 +55,7 @@ public class ObsDisplayControl {
 		String key = keyElement.findElement(By.tagName("label")).getText();
 		String value = preElement.getText() + spanElement.getText();
 		keyValues.put(key, value);
+
 
 	}
 

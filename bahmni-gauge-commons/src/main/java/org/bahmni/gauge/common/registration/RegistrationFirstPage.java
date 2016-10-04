@@ -212,6 +212,8 @@ public class RegistrationFirstPage extends BahmniPage {
 
 		Patient patient = transformTableRowToPatient(rows.get(0), columnNames);
         BahmniRestClient.get().createPatient(patient,"patient_create.ftl");
+		patient.setIdNumber(patient.getIdentifier().substring(3));
+		patient.setPrefix(patient.getIdentifier().substring(0,3));
         storePatientInSpecStore(patient);
     }
 

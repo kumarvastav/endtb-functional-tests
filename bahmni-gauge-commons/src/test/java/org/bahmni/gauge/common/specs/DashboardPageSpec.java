@@ -91,6 +91,7 @@ public class DashboardPageSpec {
 	@Step("Navigate to consultation")
 	public void goToConsultation(){
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+		waitForAppReady();
 		dashboardPage.clickEnterData();
 		waitForAppReady();
 	}
@@ -105,5 +106,22 @@ public class DashboardPageSpec {
 	public void selectDisplayControl(String name) {
 		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		dashboardPage.selectDisplayControl(name);
+	}
+
+	@Step("Verify data on Obs display control")
+	public void verifyObsDisplayControl(){
+		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+		dashboardPage.validateVitalsObservationDisplayControl();
+	}
+
+	@Step("Navigate to Program Management Page from dashboard page")
+	public void navigateToProgramManagementPageFromDashboardPage(){
+		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+	}
+
+	@Step("Verify Vitals display control is empty")
+	public void verifyDisplayControlEmpty(){
+		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+		dashboardPage.verifyNoVitals();
 	}
 }

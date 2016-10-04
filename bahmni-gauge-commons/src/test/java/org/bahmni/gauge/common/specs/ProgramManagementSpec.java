@@ -33,10 +33,10 @@ public class ProgramManagementSpec extends BahmniPage {
 		this.programManagementPage = PageFactory.getProgramManagementPage();
 	}
 
-	@Step("Register the patient to following program <table>")
-	public void enrollPatientToProgram(Table table) throws Exception {
+	@Step("Register the patient to following program <programDetails>")
+	public void enrollPatientToProgram(Table programDetails) throws Exception {
 		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
-		Program treatment = programManagementPage.transformTableToProgram(table);
+		Program treatment = programManagementPage.transformTableToProgram(programDetails);
 		programManagementPage.storeProgramInSpecStore(treatment);
 		programManagementPage.enrollPatientToProgram(treatment);
 		waitForAppReady();
@@ -151,6 +151,8 @@ public class ProgramManagementSpec extends BahmniPage {
 	public void verifyPrgramStopped(){
 		programManagementPage.verifyProgramStopped(programManagementPage.getProgramFromSpecStore());
 	}
+
+
 
 
 }

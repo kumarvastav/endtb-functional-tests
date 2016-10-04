@@ -6,9 +6,11 @@ import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.clinical.ConsultationPage;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
+import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
@@ -93,5 +95,19 @@ public class ObservationSpec extends BahmniPage {
 
     private static String stringDoesNotExist(String content){
         return "String `"+content+"` does not exist";
+    }
+
+    @Step("Fill <Vitals> template with following observation details <table>")
+    public void enterObservations(String template,Table table){
+        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+        observationsPage.enterObservations(template,table);
+//        storeObservationFormInSpecStore(observationForm);
+    }
+
+    @Step("Navigate back to program dashboard")
+    public void navigateBackToDashboard(){
+        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+        observationsPage.navigateToDashboard();
+        waitForAppReady();
     }
 }
