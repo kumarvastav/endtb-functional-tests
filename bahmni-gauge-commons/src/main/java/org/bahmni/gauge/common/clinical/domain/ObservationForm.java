@@ -22,7 +22,7 @@ public class ObservationForm {
     public Map<String, String> getData() {
         return data;
     }
-    private Map<String,String> data;
+    private Map<String,String> data=new HashMap<>();
 
     public ObservationForm(WebElement observationForm) {
         observationNodes = observationForm.findElements(By.cssSelector(".leaf-observation-node"));

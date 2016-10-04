@@ -51,7 +51,8 @@ public class PatientListingPage extends BahmniPage {
     			lastElement = patient;
 			}
 		}
-		lastElement.click();
+		if(lastElement!=null)
+			lastElement.click();
 		return;
     }
   
