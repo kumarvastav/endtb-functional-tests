@@ -124,6 +124,7 @@ public class ProgramManagementPage extends BahmniPage {
 
     public void clickTreatmentDashboard(String program){
         WebElement programWidget = findProgram(program);
+        waitForElementOnPage(programWidget);
         programWidget.findElement(id("dashboard-link")).click();
     }
 

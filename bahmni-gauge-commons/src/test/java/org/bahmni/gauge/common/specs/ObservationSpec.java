@@ -15,6 +15,7 @@ import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +37,15 @@ public class ObservationSpec extends BahmniPage {
     public void clickOnTreatmentEnrollment(String template) throws InterruptedException {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.selectTemplate(template.replace(" ", "_"));
+        waitForAppReady();
+    }
+
+    @Step("Enter values in <template> template <table>")
+    public void enterTemplateValues(String template, Table table) throws InterruptedException {
+        ObservationForm observationForm = null;
+        if(template.toLowerCase().contains("obstetrics"))
+            observationForm = new ObservationForm(driver.findElement(By.cssSelector("#concept-set-4")));
+        observationForm.fillUp(table);
         waitForAppReady();
     }
 
@@ -80,13 +90,24 @@ public class ObservationSpec extends BahmniPage {
     }
 
     @Step("Verify display control <displayControlName> on dashboard, has the following details <table>")
-    public void verifyDisplayControlContent(String displayControlName,Table table){
+    public void verifyDisplayControlContent(String displayControlName,Table table) {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
         String displayControlText = dashboardPage.getDisplayControlText(displayControlName);
         for (String drugOrder : table.getColumnValues("details")) {
             Assert.assertTrue(stringDoesNotExist(drugOrder),displayControlText.contains(drugOrder));
         }
     }
+
+
+    @Step("Verify the <template> concept set is <displayType>")
+    public void verifyObservationFormContent(String displayType,String template) {
+            DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+            if(displayType.toLowerCase().equals("not displayed"))
+                Assert.assertFalse("Element "+template+"is displayed", dashboardPage.isDisplayed("#concept-set-4"));
+            else
+                Assert.assertTrue("Element "+template+"is not displayed", dashboardPage.isDisplayed("#concept-set-4"));
+    }
+
 
     @Step("Close the app")
     public void closeApplication() {

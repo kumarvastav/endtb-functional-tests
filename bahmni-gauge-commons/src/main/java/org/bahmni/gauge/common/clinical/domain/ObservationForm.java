@@ -8,36 +8,36 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
+
 
 /**
  * Created by dharmens on 8/1/16.
  */
 public class ObservationForm {
-    private final List<WebElement> observationNodes;
 
+    private List<WebElement> observationNodes;
     public Map<String, String> getData() {
         return data;
     }
-
     private Map<String,String> data;
+
     public ObservationForm(WebElement observationForm) {
         observationNodes = observationForm.findElements(By.cssSelector(".leaf-observation-node"));
-        data=new HashMap<>();
-
     }
 
     public ObservationForm() {
         observationNodes = null;
     }
 
+
     public void fillUp(Table table) {
         List<TableRow> rows = table.getTableRows();
         List<String> columnNames = table.getColumnNames();
         if (rows.size() != 1) {
-            throw new TestSpecException("Only one observation row should be provided in the table");
+            throw new TestSpecException("Only one patient should be provided in the table");
         }
         TableRow row = rows.get(0);
         for (String header : columnNames) {
@@ -50,6 +50,7 @@ public class ObservationForm {
             }
         }
     }
+
 
     private static FormElement getFieldType(WebElement fieldset) {
         for(FormElement type : FormElement.allTypes){
@@ -71,4 +72,6 @@ public class ObservationForm {
             return false;
         }
     }
+
+
 }

@@ -11,6 +11,7 @@ import org.bahmni.gauge.common.clinical.displaycontrol.ObsDisplayControl;
 import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -87,6 +88,10 @@ public class DashboardPageSpec {
 		driver.get(HomePage.URL);
 	}
 
+	@Step("Navigate to dashboard link")
+	public void navigateToDashboardLink() {
+		driver.findElement(By.id("dashboard-link")).click();
+	}
 
 	@Step("Navigate to consultation")
 	public void goToConsultation(){

@@ -149,9 +149,24 @@ public class BahmniPage {
         return waitForElement(this.driver, expectedCondition);
     }
 
+    public WebElement waitForElementOnPagewithTimeout(String cssLocator, long timeout) {
+        ExpectedCondition<WebElement> expectedCondition = ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssLocator));
+        return waitForElementwithTimeOut(this.driver, expectedCondition, timeout);
+    }
+
     public static <T> T waitForElement(WebDriver driver, ExpectedCondition<T> expectedCondition) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, 60);
+            return wait.until(expectedCondition);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static <T> T waitForElementwithTimeOut(WebDriver driver, ExpectedCondition<T> expectedCondition, long timeout) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, timeout);
             return wait.until(expectedCondition);
         } catch (Exception e) {
             e.printStackTrace();

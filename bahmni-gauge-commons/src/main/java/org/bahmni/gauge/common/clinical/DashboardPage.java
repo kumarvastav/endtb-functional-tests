@@ -119,6 +119,16 @@ public class DashboardPage extends BahmniPage {
 			new ProgramsDisplayControl(findElementById("Programs")).validateActiveProgram(this.getProgramFromSpecStore());
 
 	}
+
+	public boolean isDisplayed(String cssLocator) {
+		try{
+			driver.findElement(By.cssSelector(cssLocator));
+			return true;
+		} catch (NoSuchElementException ex) {
+			return false;
+		}
+
+	}
 	public void verifyNoVitals() {
 		WebElement obsDate = null;
 		WebElement noVitalstext=null;
