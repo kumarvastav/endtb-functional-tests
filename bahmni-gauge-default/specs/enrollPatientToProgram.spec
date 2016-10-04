@@ -83,7 +83,7 @@ Tags: regression, sanity
 * Logout the user
 
 
-Program Management Workflows - Filter Medication Tab Based on Program
+Program Management Workflows - Verify Observation Templates based on program Filter
 ------------------------------------------------------------------
 Tags: regression, sanity
 
