@@ -103,16 +103,19 @@ public class OrderSetPage extends BahmniPage {
 
         WebElement root=orderSetMembers.get(index);
 
-        //Order Type
-        new Select(root.findElement(locOrderType)).selectByVisibleText(orderSetMember.getOrderType());
+        if(orderSetMember.getOrderType()!=null) {
+            //Order Type
+            new Select(root.findElement(locOrderType)).selectByVisibleText(orderSetMember.getOrderType());
+        }
+        if(orderSetMember.getConceptName()!=null) {
 
-        //Concept
-        WebElement autoComplete=root.findElement(locConcept);
-        autoComplete.sendKeys(orderSetMember.getConceptName());
-        autoComplete.sendKeys(Keys.DOWN);
-        waitForElementOnPage(By.xpath(".//a[text()=\""+orderSetMember.getConceptName()+"\"]"));
-        findElement(By.xpath(".//a[text()=\""+orderSetMember.getConceptName()+"\"]")).click();
-
+            //Concept
+            WebElement autoComplete = root.findElement(locConcept);
+            autoComplete.sendKeys(orderSetMember.getConceptName());
+            autoComplete.sendKeys(Keys.DOWN);
+            waitForElementOnPage(By.xpath(".//a[text()=\"" + orderSetMember.getConceptName() + "\"]"));
+            findElement(By.xpath(".//a[text()=\"" + orderSetMember.getConceptName() + "\"]")).click();
+        }
         doActions(root,orderSetMember);
 
         getOrderSetInSpecStore().getOrderSetMembers().add(orderSetMember);
@@ -120,31 +123,48 @@ public class OrderSetPage extends BahmniPage {
 
     public void doActions(WebElement root,OrderSetMember orderSetMember){
         waitForElementOnPage(By.cssSelector("input[ng-model=\"orderSetMember.orderTemplate.drug.name\""));
-        //Drug
-        WebElement autoComplete=root.findElement(By.cssSelector("input[ng-model=\"orderSetMember.orderTemplate.drug.name\""));
-        autoComplete.sendKeys(orderSetMember.getDrugName());
-        autoComplete.sendKeys(Keys.DOWN);
-        waitForElementOnPage(By.xpath(".//a[text()=\""+orderSetMember.getDrugName()+"\"]"));
-        findElement(By.xpath(".//a[text()=\""+orderSetMember.getDrugName()+"\"]")).click();
 
-        root.findElement(By.cssSelector("input[ng-model=\"orderSetMember.orderTemplate.dosingInstructions.dose\"]")).sendKeys(orderSetMember.getDose());
+        if(orderSetMember.getDrugName()!=null) {
 
-        new Select(root.findElement(By.cssSelector("select[ng-model=\"orderSetMember.orderTemplate.dosingInstructions.doseUnits\"]"))).selectByVisibleText(orderSetMember.getDoseUnit());
+            //Drug
+            WebElement autoComplete = root.findElement(By.cssSelector("input[ng-model=\"orderSetMember.orderTemplate.drug.name\""));
+            autoComplete.sendKeys(orderSetMember.getDrugName());
+            autoComplete.sendKeys(Keys.DOWN);
+            waitForElementOnPage(By.xpath(".//a[text()=\"" + orderSetMember.getDrugName() + "\"]"));
+            findElement(By.xpath(".//a[text()=\"" + orderSetMember.getDrugName() + "\"]")).click();
+        }
 
+        if(orderSetMember.getDose()!=null)
 
-        new Select(root.findElement(By.cssSelector("select[ng-model=\"orderSetMember.orderTemplate.dosingInstructions.frequency\"]"))).selectByVisibleText(orderSetMember.getFrequency());
+            root.findElement(By.cssSelector("input[ng-model=\"orderSetMember.orderTemplate.dosingInstructions.dose\"]")).sendKeys(orderSetMember.getDose());
+        if(orderSetMember.getDoseUnit()!=null)
 
-        new Select(root.findElement(By.cssSelector("select[ng-model=\"orderSetMember.orderTemplate.administrationInstructions\"]"))).selectByVisibleText(orderSetMember.getInstruction());
+            new Select(root.findElement(By.cssSelector("select[ng-model=\"orderSetMember.orderTemplate.dosingInstructions.doseUnits\"]"))).selectByVisibleText(orderSetMember.getDoseUnit());
 
-        new Select(root.findElement(By.cssSelector("select[ng-model=\"orderSetMember.orderTemplate.durationUnits\"]"))).selectByVisibleText(orderSetMember.getDurationUnit());
+        if(orderSetMember.getFrequency()!=null)
 
-        new Select(root.findElement(By.cssSelector("select[ng-model=\"orderSetMember.orderTemplate.dosingInstructions.route\"]"))).selectByVisibleText(orderSetMember.getRoute());
+            new Select(root.findElement(By.cssSelector("select[ng-model=\"orderSetMember.orderTemplate.dosingInstructions.frequency\"]"))).selectByVisibleText(orderSetMember.getFrequency());
 
-        root.findElement(By.cssSelector("input[ng-model=\"orderSetMember.orderTemplate.dosingInstructions.dose\"]")).sendKeys(orderSetMember.getDose());
+        if(orderSetMember.getInstruction()!=null)
 
-        root.findElement(By.cssSelector("input[ng-model=\"orderSetMember.orderTemplate.duration\"]")).sendKeys(orderSetMember.getDuration());
+            new Select(root.findElement(By.cssSelector("select[ng-model=\"orderSetMember.orderTemplate.administrationInstructions\"]"))).selectByVisibleText(orderSetMember.getInstruction());
 
-        root.findElement(By.cssSelector("textarea[ng-model=\"orderSetMember.orderTemplate.additionalInstructions\"]")).sendKeys(orderSetMember.getAdditionalInstructions());
+        if(orderSetMember.getDurationUnit()!=null)
+
+            new Select(root.findElement(By.cssSelector("select[ng-model=\"orderSetMember.orderTemplate.durationUnits\"]"))).selectByVisibleText(orderSetMember.getDurationUnit());
+
+        if(orderSetMember.getRoute()!=null)
+
+            new Select(root.findElement(By.cssSelector("select[ng-model=\"orderSetMember.orderTemplate.dosingInstructions.route\"]"))).selectByVisibleText(orderSetMember.getRoute());
+//        if(orderSetMember.getDose()!=null)
+//
+//            root.findElement(By.cssSelector("input[ng-model=\"orderSetMember.orderTemplate.dosingInstructions.dose\"]")).sendKeys(orderSetMember.getDose());
+        if(orderSetMember.getDuration()!=null)
+
+            root.findElement(By.cssSelector("input[ng-model=\"orderSetMember.orderTemplate.duration\"]")).sendKeys(orderSetMember.getDuration());
+        if(orderSetMember.getAdditionalInstructions()!=null)
+
+            root.findElement(By.cssSelector("textarea[ng-model=\"orderSetMember.orderTemplate.additionalInstructions\"]")).sendKeys(orderSetMember.getAdditionalInstructions());
 
 
 

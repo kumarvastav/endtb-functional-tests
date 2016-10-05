@@ -24,7 +24,7 @@ public class OrderSetDashboardPage extends BahmniPage {
     }
 
     public void ordersetExists(OrderSet orderSet) {
-        waitForElementOnPage(createNew);
+        waitForElementOnPage(By.xpath(".//a[text()='" + orderSet.getName() + "']"));
         WebElement orderSetButton = null;
         try {
             orderSetButton = findElement(By.xpath(".//a[text()='" + orderSet.getName() + "']"));
