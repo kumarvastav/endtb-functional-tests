@@ -2,7 +2,7 @@ package org.bahmni.gauge.common.clinical;
 
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-import javafx.scene.control.Tab;
+//import javafx.scene.control.Tab;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
