@@ -162,3 +162,30 @@ Tags: regression, sanity
     |HIV Program|21/09/2016|
 * Navigate to "HIV Program" program dashboard
 * Verify Vitals display control is empty
+
+Order Set - Add
+---------------
+Tags: regression, sanity
+* On the login page
+* Login to the application
+* Click on admin app
+* Click on order set app
+* Click on create new button on orderset dashboard
+* Create orderset and enter following orderset details
+    |name|description|operator|
+    |Orderset|Test orderset|ALL|
+* Enter following orderset members
+    |orderType|conceptName|drugName|dose|doseUnit|frequency|instruction|duration|durationUnit|route|additionalInstructions|
+    |Drug Order|Paracetamol|Paracetamol 60ml|2|Tablet(s)|Twice a day|After meals|3|Day(s)|Oral|Dont skip this medicine|
+    |Drug Order|Aspirin|Aspirin 75mg|2|Tablet(s)|Twice a day|After meals|3|Day(s)|Oral|Dont skip this medicine|
+    |Drug Order|Tetanus Antitoxin|Tetanus Antitoxin 0.5ml|2|Tablet(s)|Twice a day|After meals|3|Day(s)|Oral|Dont skip this medicine|
+* Save the orderset
+* Click on back button on orderset page
+* Verify orderset created
+Order Set - Edit
+----------------
+Tags: regression, sanity
+
+Order Set - Delete
+------------------
+Tags: regression, sanity

@@ -6,6 +6,7 @@ import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.bahmni.gauge.common.admin.domain.OrderSet;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.bahmni.gauge.common.home.HomePage;
@@ -25,6 +26,7 @@ import java.util.List;
 
 public class BahmniPage {
 
+    private static final Object ORDERSET_KEY = "order_set";
     protected static String BASE_URL = System.getenv("BAHMNI_GAUGE_APP_URL");
 
     public static final String PATIENT_KEY = "patient";
@@ -184,6 +186,16 @@ public class BahmniPage {
         return (ObservationForm) specStore.get(OBSERVATION_KEY);
     }
 
+    public void storeOrderSetInSpecStore(OrderSet orderSet) {
+        DataStore specStore = DataStoreFactory.getSpecDataStore();
+        specStore.put(ORDERSET_KEY, orderSet);
+    }
+
+    public OrderSet getOrderSetInSpecStore() {
+        DataStore specStore = DataStoreFactory.getSpecDataStore();
+        return (OrderSet) specStore.get(ORDERSET_KEY);
+    }
+
     public void storePatientProgramInSpecStore(PatientProgram patientProgram) {
         DataStore specStore = DataStoreFactory.getSpecDataStore();
         specStore.put(PATIENT_PROGRAM_KEY, patientProgram);
@@ -224,4 +236,6 @@ public class BahmniPage {
     public void setDriver(WebDriver driver) {
         this.driver = driver;
     }
+
+
 }

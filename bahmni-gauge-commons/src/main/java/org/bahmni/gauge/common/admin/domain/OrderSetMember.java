@@ -1,0 +1,112 @@
+package org.bahmni.gauge.common.admin.domain;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by atmaramn on 05/10/2016.
+ */
+public class OrderSetMember {
+    private String orderType;
+    private String conceptName;
+
+    private String drugName;
+    private String dose;
+    private String doseUnit;
+    private String frequency;
+    private String instruction;
+    private String duration;
+    private String durationUnit;
+    private String route;
+    private String additionalInstructions;
+
+    public String getDrugName() {
+        return drugName;
+    }
+
+    public String getDose() {
+        return dose;
+    }
+
+    public String getDoseUnit() {
+        return doseUnit;
+    }
+
+    public String getFrequency() {
+        return frequency;
+    }
+
+    public String getInstruction() {
+        return instruction;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public String getDurationUnit() {
+        return durationUnit;
+    }
+
+    public String getRoute() {
+        return route;
+    }
+
+    public String getAdditionalInstructions() {
+        return additionalInstructions;
+    }
+
+    public void setDrugName(String drugName) {
+        this.drugName = drugName;
+    }
+
+    public void setDose(String dose) {
+        this.dose = dose;
+    }
+
+    public void setDoseUnit(String doseUnit) {
+        this.doseUnit = doseUnit;
+    }
+
+    public void setFrequency(String frequency) {
+        this.frequency = frequency;
+    }
+
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public void setDurationUnit(String durationUnit) {
+        this.durationUnit = durationUnit;
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
+    }
+
+    public void setAdditionalInstructions(String additionalInstructions) {
+        this.additionalInstructions = additionalInstructions;
+    }
+
+    public String getOrderType() {
+        return orderType;
+    }
+
+    public String getConceptName() {
+        return conceptName;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
+    }
+
+    public void setConceptName(String conceptName) {
+        this.conceptName = conceptName;
+    }
+
+}
