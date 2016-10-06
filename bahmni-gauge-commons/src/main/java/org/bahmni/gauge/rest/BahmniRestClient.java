@@ -12,6 +12,8 @@ import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContexts;
+import org.bahmni.gauge.common.admin.domain.OrderSet;
+import org.bahmni.gauge.common.admin.domain.OrderSetMember;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.clinical.domain.Specimen;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
@@ -31,6 +33,8 @@ public class BahmniRestClient {
 
 	private static BahmniRestClient bahmniRestClient;
 
+	private static final String ORDERSET_CREATE_URL = "/openmrs/ws/rest/v1/bahmniorderset";
+
 	private static final String PATIENT_PROFILE_URL = "/openmrs/ws/rest/v1/bahmnicore/patientprofile";
 
 	private static final String PATIENT_URL = "/openmrs/ws/rest/v1/patient/";
@@ -40,6 +44,10 @@ public class BahmniRestClient {
 	private static final String EMRAPI_URL = "/openmrs/ws/rest/v1/bahmnicore/bahmniencounter";
 
 	private static final String GET_DRUG_LIST_URL = "/openmrs/ws/rest/v1/drug";
+
+	private static final String GET_DRUG_UNDER_CONCEPT_URL="/openmrs/ws/rest/v1/drug?conceptUuid=%s&q=%s&s=ordered&v=custom:(uuid,name,dosageForm:(uuid,display))";
+
+	private static final String GET_CONCEPT_UUID_URL = "/openmrs/ws/rest/v1/concept?q=%s&v=custom:(uuid,display)";
 
 	private static final String GET_CONCEPT_ANSWER_URL = "/openmrs/ws/rest/v1/concept?q=%s&v=custom:(uuid,name:(uuid,name),answers:(uuid,display))";
 
@@ -249,7 +257,46 @@ public class BahmniRestClient {
 		}
 		return null;
 	}
+	public String getUuidOfDrugWithConcept(String drugName,String conceptUuid){
+		try {
+			HttpResponse<JsonNode> request = Unirest.get(url + String.format(GET_DRUG_UNDER_CONCEPT_URL,URLEncoder.encode(conceptUuid,"UTF-8"),URLEncoder.encode(drugName,"UTF-8")))
+					.basicAuth(username, password)
+					.header("content-type", "application/json")
+					.asJson();
 
+			int size = request.getBody().getArray().getJSONObject(0).getJSONArray("results").length();
+
+			for (int pos = 0; pos < size; pos++) {
+				if (request.getBody().getArray().getJSONObject(0).getJSONArray("results").getJSONObject(pos).get("name").equals(drugName)) {
+					return String.valueOf(request.getBody().getArray().getJSONObject(0).getJSONArray("results").getJSONObject(pos).get("uuid"));
+				}
+			}
+
+		} catch (Exception e) {
+			throw new BahmniAPIException(e);
+		}
+		return null;
+	}
+	public String getUuidOfConceptName(String conceptName){
+		try {
+			HttpResponse<JsonNode> request = Unirest.get(url + String.format(GET_CONCEPT_UUID_URL,URLEncoder.encode(conceptName,"UTF-8")))
+					.basicAuth(username, password)
+					.header("content-type", "application/json")
+					.asJson();
+
+			int size = request.getBody().getArray().getJSONObject(0).getJSONArray("results").length();
+
+			for (int pos = 0; pos < size; pos++) {
+				if (request.getBody().getArray().getJSONObject(0).getJSONArray("results").getJSONObject(pos).get("display").equals(conceptName)) {
+					return String.valueOf(request.getBody().getArray().getJSONObject(0).getJSONArray("results").getJSONObject(pos).get("uuid"));
+				}
+			}
+
+		} catch (Exception e) {
+			throw new BahmniAPIException(e);
+		}
+		return null;
+	}
 
 	public Map<String,String> getConceptAnswersForConceptName(String conceptName){
 		Map<String,String> conceptAnswerDetailsMap = new HashMap<>();
@@ -291,5 +338,40 @@ public class BahmniRestClient {
 	}
 
 
+    public void createOrderSet(OrderSet orderSet, String templateName) {
+		try {
+			for(OrderSetMember member:orderSet.getOrderSetMembers()){
+				String conceptUuid=getUuidOfConceptName(member.getConceptName());
+				member.setDrugUuid(getUuidOfDrugWithConcept(member.getDrugName(),conceptUuid));
+				member.setConceptUuid(conceptUuid);
+			}
+			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(templateName);
+			Map<String, Object> orderSetData = new HashMap<>();
+			orderSetData.put("orderSet", orderSet);
 
+			StringWriter stringWriter = new StringWriter();
+			freemarkerTemplate.process(orderSetData, stringWriter);
+			String requestJson = stringWriter.toString();
+
+			HttpResponse<JsonNode> response = Unirest.post(url + ORDERSET_CREATE_URL)
+					.basicAuth(username, password)
+					.header("content-type", "application/json")
+					.body(requestJson)
+					.asJson();
+
+			if (response.getBody() != null && response.getBody().getObject() != null &&
+					response.getBody().getObject() != null &&
+					(response.getBody().getObject()).get("uuid") != null) {
+				JSONObject orderSetRes = response.getBody().getObject();
+//				orderSet.setUuid((String) patientRes.get("uuid"));
+//				orderSet.setIdentifier(getIdentifier(patientRes));
+			} else {
+				System.err.println("Response from the server for patient creation:");
+				System.err.println(response.getBody().toString());
+				throw new BahmniAPIException("Patient creation failed!!");
+			}
+		} catch (Exception e) {
+			throw new BahmniAPIException(e);
+		}
+    }
 }

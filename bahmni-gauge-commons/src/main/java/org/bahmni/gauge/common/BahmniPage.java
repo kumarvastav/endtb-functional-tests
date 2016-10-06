@@ -83,7 +83,7 @@ public class BahmniPage {
     public static void waitForSpinner(WebDriver driver) {
         try {
             waitForElement(driver, ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#overlay")));
-            Thread.sleep(1000);
+            Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -17,7 +17,6 @@ public class AdminPage extends BahmniPage {
     public WebElement orderSet;
 
     public void clickOrderSet(){
-        waitForSpinner();
         orderSet.click();
     }
 

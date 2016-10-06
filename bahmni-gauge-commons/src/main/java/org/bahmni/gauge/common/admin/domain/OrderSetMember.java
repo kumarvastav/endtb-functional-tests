@@ -10,8 +10,10 @@ import java.util.Map;
 public class OrderSetMember {
     private String orderType;
     private String conceptName;
+    private String conceptUuid;
 
     private String drugName;
+    private String drugUuid;
     private String dose;
     private String doseUnit;
     private String frequency;
@@ -23,6 +25,22 @@ public class OrderSetMember {
 
     public String getDrugName() {
         return drugName;
+    }
+
+    public String getDrugUuid() {
+        return drugUuid;
+    }
+
+    public void setDrugUuid(String drugUuid) {
+        this.drugUuid = drugUuid;
+    }
+
+    public String getConceptUuid() {
+        return conceptUuid;
+    }
+
+    public void setConceptUuid(String conceptUuid) {
+        this.conceptUuid = conceptUuid;
     }
 
     public String getDose() {
