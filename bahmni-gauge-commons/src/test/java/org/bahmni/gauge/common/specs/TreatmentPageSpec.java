@@ -42,6 +42,16 @@ public class TreatmentPageSpec {
         }
     }
 
+    @Step("Add <orderset> drug order set")
+    public void createDrugOrder(String orderset){
+        treatmentPage.addOrderSet(orderset,0);
+    }
+
+    @Step("Add <orderset> drug order set with previous date")
+    public void createDrugOrderPrevious(String orderset){
+        treatmentPage.addOrderSet(orderset, -1);
+    }
+
     @Step("Create the following drug order using API <table>")
     public void createDrugOrderUsingAPI(Table table) {
         List<DrugOrder> drugOrders = transformTableToDrugOrder(table);

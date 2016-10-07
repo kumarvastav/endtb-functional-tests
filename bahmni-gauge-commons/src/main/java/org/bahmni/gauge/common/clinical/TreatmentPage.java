@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class TreatmentPage extends BahmniPage{
 
@@ -79,6 +82,14 @@ public class TreatmentPage extends BahmniPage{
     @FindBy(how = How.CSS, using = ".ui-menu-item")
     public WebElement autocomplete;
 
+    @FindBy(how = How.CSS, using = ".search-order-set.ng-valid")
+    public WebElement orderSetName;
+
+    @FindBy(how = How.CSS, using = ".Order-section-orderDrug.form.clearfix .field-value:nth-of-type(4) input")
+    public WebElement orderStartDate;
+
+    @FindBy(how = How.CSS, using = ".orderSet-orders.clearfix:nth-of-type(1) h2 div button:nth-of-type(1)")
+    public WebElement addOrderSet;
 
     public void createDrugOrder(DrugOrder drugOrder){
         fillDrugName(drugOrder.getDrugName());
@@ -97,4 +108,19 @@ public class TreatmentPage extends BahmniPage{
         drugNameField.sendKeys(drugName);
         acceptButton.click();
     }
+
+    public void addOrderSet(String orderset, int days) {
+        orderSetName.sendKeys(orderset);
+        if(days!=0)
+        {
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.DATE, -1);
+            orderStartDate.sendKeys(df.format(cal.getTime()));
+        }
+        waitForElementOnPage(addOrderSet);
+        addOrderSet.click();
+    }
+
+
 }

@@ -259,4 +259,13 @@ public class RegistrationFirstPage extends BahmniPage {
 	public void showAllVisitTypeOptions(){
 		visitTypeOptionsBtn.click();
 	}
+
+	public void enterVisitDetails() {
+		waitForSpinner();
+		List<WebElement> webElements = driver.findElements(By.cssSelector(".field-value>div>div>input"));
+		webElements.get(0).sendKeys("10");
+		webElements.get(1).sendKeys("10");
+		webElements.get(2).sendKeys("100");
+		driver.findElement(By.cssSelector(".confirm")).click();
+	}
 }

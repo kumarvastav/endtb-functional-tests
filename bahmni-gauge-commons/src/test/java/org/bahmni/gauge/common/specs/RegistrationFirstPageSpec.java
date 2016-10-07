@@ -82,6 +82,11 @@ public class RegistrationFirstPageSpec {
 		registrationFirstPage.enterVisitDetailsPage();
 	}
 
+	@Step("Enter visit details")
+	public void enterVisitDetails() {
+		registrationFirstPage.enterVisitDetails();
+	}
+
 	@Step("Create the following patient using api <table>")
 	public void createPatientThroughAPI(Table table) throws Exception {
 		registrationFirstPage.createPatientUsingApi(table);
