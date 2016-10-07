@@ -43,6 +43,8 @@ public class BahmniRestClient {
 
 	private static final String EMRAPI_URL = "/openmrs/ws/rest/v1/bahmnicore/bahmniencounter";
 
+	private static final String GET_ORDERTYPE_LIST_URL = "/openmrs/ws/rest/v1/ordertype?v=custom:(uuid,display)";
+
 	private static final String GET_DRUG_LIST_URL = "/openmrs/ws/rest/v1/drug";
 
 	private static final String GET_DRUG_UNDER_CONCEPT_URL="/openmrs/ws/rest/v1/drug?conceptUuid=%s&q=%s&s=ordered&v=custom:(uuid,name,dosageForm:(uuid,display))";
@@ -257,6 +259,28 @@ public class BahmniRestClient {
 		}
 		return null;
 	}
+
+	public String getUuidOfOrderType(String orderType) {
+		try {
+			HttpResponse<JsonNode> request = Unirest.get(url + GET_ORDERTYPE_LIST_URL)
+					.basicAuth(username, password)
+					.header("content-type", "application/json")
+					.asJson();
+
+			int size = request.getBody().getArray().getJSONObject(0).getJSONArray("results").length();
+
+			for (int pos = 0; pos < size; pos++) {
+				if (request.getBody().getArray().getJSONObject(0).getJSONArray("results").getJSONObject(pos).get("display").equals(orderType)) {
+					return String.valueOf(request.getBody().getArray().getJSONObject(0).getJSONArray("results").getJSONObject(pos).get("uuid"));
+				}
+			}
+
+		} catch (Exception e) {
+			throw new BahmniAPIException(e);
+		}
+		return null;
+	}
+
 	public String getUuidOfDrugWithConcept(String drugName,String conceptUuid){
 		try {
 			HttpResponse<JsonNode> request = Unirest.get(url + String.format(GET_DRUG_UNDER_CONCEPT_URL,URLEncoder.encode(conceptUuid,"UTF-8"),URLEncoder.encode(drugName,"UTF-8")))
@@ -344,6 +368,8 @@ public class BahmniRestClient {
 				String conceptUuid=getUuidOfConceptName(member.getConceptName());
 				member.setDrugUuid(getUuidOfDrugWithConcept(member.getDrugName(),conceptUuid));
 				member.setConceptUuid(conceptUuid);
+				member.setOrderTypeUuid(getUuidOfOrderType(member.getOrderType()));
+
 			}
 			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(templateName);
 			Map<String, Object> orderSetData = new HashMap<>();

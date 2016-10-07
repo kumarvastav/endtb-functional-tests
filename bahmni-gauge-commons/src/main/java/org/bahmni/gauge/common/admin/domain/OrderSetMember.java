@@ -9,6 +9,7 @@ import java.util.Map;
  */
 public class OrderSetMember {
     private String orderType;
+    private String orderTypeUuid;
     private String conceptName;
     private String conceptUuid;
 
@@ -22,6 +23,14 @@ public class OrderSetMember {
     private String durationUnit;
     private String route;
     private String additionalInstructions;
+
+    public String getOrderTypeUuid() {
+        return orderTypeUuid;
+    }
+
+    public void setOrderTypeUuid(String orderTypeUuid) {
+        this.orderTypeUuid = orderTypeUuid;
+    }
 
     public String getDrugName() {
         return drugName;
