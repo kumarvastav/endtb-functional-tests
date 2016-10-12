@@ -5,17 +5,14 @@ import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.FormElement;
 import org.bahmni.gauge.common.TestSpecException;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.bahmni.gauge.common.BahmniPage.hasChild;
 
-/**
- * Created by dharmens on 8/1/16.
- */
 public class ObservationForm {
 
     private List<WebElement> observationNodes;
@@ -64,14 +61,5 @@ public class ObservationForm {
     private static boolean hasField(WebElement fieldset, String fieldName) {
         return fieldset.findElement(By.tagName("label")).getText().contains(fieldName);
     }
-
-    private static boolean hasChild(WebElement parent, By childSelector) {
-        try{
-            return null != parent.findElement(childSelector);
-        } catch (NoSuchElementException e){
-            return false;
-        }
-    }
-
 
 }

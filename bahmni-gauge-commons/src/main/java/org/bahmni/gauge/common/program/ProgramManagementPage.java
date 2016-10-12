@@ -7,7 +7,6 @@ import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.junit.Assert;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -286,24 +285,15 @@ public class ProgramManagementPage extends BahmniPage {
         WebElement weStartDate= weProgram.findElement(xpath(".//label[contains(text(),'Start Date:')]/parent::*/following-sibling::*/span"));
         WebElement weStopDate= weProgram.findElement(xpath(".//label[contains(text(),'Stop Date:')]/parent::*/following-sibling::*/span"));
 
-        if(weProgram!=null){
-            Assert.assertEquals(weProgramOutcome.getText(),program.getTreatmentStatus());
-            try {
-                Assert.assertEquals(new SimpleDateFormat("dd MMM yy").parse(weStartDate.getText()),new SimpleDateFormat("dd/MM/yyyy").parse(program.getDateOfRegistration()));
-                Assert.assertEquals(new SimpleDateFormat("dd MMM yy").parse(weStopDate.getText()),new SimpleDateFormat("dd/MM/yyyy").parse(program.getProgramStopDate()));
-            } catch (ParseException e) {
-                Assert.fail("Date formats are not correct");
-                e.printStackTrace();
-            }
-            try{
-                weProgram.findElement(cssSelector("[value=\"Edit\"]"));
-                Assert.fail("Edit link visible");
-            } catch (NoSuchElementException ex) {
-
-            }
-
-        } else {
-            Assert.fail("Program not found in Inactive programs");
+        Assert.assertNotNull("Program not found in Inactive programs",weProgram);
+        Assert.assertEquals(weProgramOutcome.getText(),program.getTreatmentStatus());
+        try {
+            Assert.assertEquals(new SimpleDateFormat("dd MMM yy").parse(weStartDate.getText()),new SimpleDateFormat("dd/MM/yyyy").parse(program.getDateOfRegistration()));
+            Assert.assertEquals(new SimpleDateFormat("dd MMM yy").parse(weStopDate.getText()),new SimpleDateFormat("dd/MM/yyyy").parse(program.getProgramStopDate()));
+        } catch (ParseException e) {
+            Assert.fail("Date formats are not correct");
+            e.printStackTrace();
         }
+        Assert.assertFalse("Edit link visible", hasChild(weProgram,cssSelector("[value=\"Edit\"]")));
     }
 }

@@ -4,10 +4,11 @@ import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.FormElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+
+import static org.bahmni.gauge.common.BahmniPage.hasChild;
 
 public class ObservationForm {
     private final List<WebElement> observationNodes;
@@ -42,11 +43,4 @@ public class ObservationForm {
         return fieldset.findElement(By.tagName("label")).getText().contains(fieldName);
     }
 
-    private static boolean hasChild(WebElement parent, By childSelector) {
-        try{
-            return null != parent.findElement(childSelector);
-        } catch (NoSuchElementException e){
-            return false;
-        }
-    }
 }

@@ -1,12 +1,13 @@
 package org.bahmni.gauge.common.clinical.displaycontrol;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.bahmni.gauge.common.BahmniPage.findChild;
 
 public class ObsDisplayControl {
 
@@ -37,14 +38,8 @@ public class ObsDisplayControl {
 	}
 
 	private void transformWebElementToKeyValues(WebElement element, Map<String, String> keyValues) {
-		WebElement valueElement = null;
-		WebElement keyElement = null;
-		try {
-			keyElement = element.findElement(By.className("testUnderPanel"));
-			valueElement = element.findElement(By.className("value-text-only"));
-		} catch (NoSuchElementException e) {
-
-		}
+		WebElement valueElement = findChild(element, By.className("value-text-only"));
+		WebElement keyElement = findChild(element, By.className("testUnderPanel"));
 		if (valueElement == null || keyElement == null) {
 			return;
 		}

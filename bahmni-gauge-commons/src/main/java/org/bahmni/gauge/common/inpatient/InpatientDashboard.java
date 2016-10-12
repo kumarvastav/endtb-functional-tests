@@ -14,6 +14,6 @@ public class InpatientDashboard extends BahmniPage {
     public boolean isAdmitted() {
         waitForSpinner();
         WebElement patientProfileDisplayControl = findElement(By.tagName("patient-profile"));
-        return hasElement(patientProfileDisplayControl,By.cssSelector(".ipd-indication"));
+        return hasChild(patientProfileDisplayControl,By.cssSelector(".ipd-indication"));
     }
 }

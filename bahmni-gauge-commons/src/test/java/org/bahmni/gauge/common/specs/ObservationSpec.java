@@ -105,9 +105,9 @@ public class ObservationSpec extends BaseSpec{
     public void verifyObservationFormContent(String template, String displayType) {
             DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
             if(displayType.toLowerCase().equals("not displayed"))
-                Assert.assertFalse("Element "+template+" is displayed", dashboardPage.isDisplayed("#concept-set-4"));
+                Assert.assertFalse("Element "+template+" is displayed", dashboardPage.hasElement(By.cssSelector("#concept-set-4")));
             else
-                Assert.assertTrue("Element "+template+" is not displayed", dashboardPage.isDisplayed("#concept-set-4"));
+                Assert.assertTrue("Element "+template+" is not displayed", dashboardPage.hasElement(By.cssSelector("#concept-set-4")));
     }
 
 

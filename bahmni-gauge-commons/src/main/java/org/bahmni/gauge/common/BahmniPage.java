@@ -42,10 +42,6 @@ public class BahmniPage {
         }
         return null;
     }
-    public WebElement findElement(By by) {
-        waitForSpinner();
-        return driver.findElement(by);
-    }
 
     public void storePatientInSpecStore(Patient value) {
         DataStore specStore = DataStoreFactory.getSpecDataStore();
@@ -235,23 +231,37 @@ public class BahmniPage {
         this.driver = driver;
     }
 
+    public WebElement findElement(By by) {
+        return findElement(driver,by);
+    }
+    public Boolean hasElement(By child){
+        return hasElement(driver,child);
+    }
+
+    public static WebElement findElement(WebDriver driver, By by) {
+        waitForSpinner(driver);
+        try{
+            return driver.findElement(by);
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+    public static Boolean hasElement(WebDriver driver, By child){
+        return null != findElement(driver, child);
+    }
+    public static WebElement findChild(WebElement parent, By child) {
+        try{
+            return parent.findElement(child);
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+    public static Boolean hasChild(WebElement parent, By child){
+        return null != findChild(parent, child);
+    }
     public WebElement findButtonByText(String text) {
         return findElement(By.xpath("//button[contains(text(),'" + text + "')]"));
-    }
-    protected static Boolean hasElement(WebElement parent, By child){
-        try{
-            parent.findElement(child);
-            return Boolean.TRUE;
-        } catch (NoSuchElementException e) {
-            return Boolean.FALSE;
-        }
-    }
-    protected Boolean hasElement(By child){
-        try{
-            driver.findElement(child);
-            return Boolean.TRUE;
-        } catch (NoSuchElementException e) {
-            return Boolean.FALSE;
-        }
     }
 }

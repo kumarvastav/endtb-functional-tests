@@ -9,7 +9,6 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -119,25 +118,9 @@ public class DashboardPage extends BahmniPage {
 
 	}
 
-	public boolean isDisplayed(String cssLocator) {
-		try{
-			driver.findElement(By.cssSelector(cssLocator));
-			return true;
-		} catch (NoSuchElementException ex) {
-			return false;
-		}
-
-	}
-	public void verifyNoVitals() {
-		WebElement obsDate = null;
-		WebElement noVitalstext=null;
-		try {
-			noVitalstext=findElement(By.xpath("//p[text()='No Vitals for this patient']"));
-			obsDate = driver.findElement(By.cssSelector(".obs-date"));
-		} catch (NoSuchElementException e) {
-
-		}
-		Assert.assertTrue("Vitals Display control has vitals data",obsDate == null && noVitalstext!=null);
+    public void verifyNoVitals() {
+		Assert.assertTrue("Vitals Display control has vitals data",!hasElement(By.cssSelector(".obs-date")));
+		Assert.assertTrue("Vitals Display control has vitals data",hasElement(By.xpath("//p[text()='No Vitals for this patient']")));
 	}
 	public void openCurrentVisit() {
 		By currentVisit = By.xpath("//i[@id='currentVisitIcon']/parent::a[@class='visit']");
