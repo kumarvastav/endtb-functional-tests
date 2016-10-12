@@ -4,7 +4,6 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.displaycontrol.ObsDisplayControl;
 import org.bahmni.gauge.common.clinical.displaycontrol.ProgramsDisplayControl;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
-import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
@@ -101,8 +100,8 @@ public class DashboardPage extends BahmniPage {
 		return String.format("%.1f", days.getDays() / 30.0F);
 	}
 
-	public String getDisplayControlText(String displayControlName) {
-		WebElement displayControl = findElement(By.id(displayControlName));
+	public String getDisplayControlText(String displayControlId) {
+		WebElement displayControl = findElement(By.id(displayControlId));
 		waitForSpinner();
 		return displayControl.getText().replace("\n", "");
 	}
@@ -140,5 +139,8 @@ public class DashboardPage extends BahmniPage {
 		}
 		Assert.assertTrue("Vitals Display control has vitals data",obsDate == null && noVitalstext!=null);
 	}
-
+	public void openCurrentVisit() {
+		By currentVisit = By.xpath("//i[@id='currentVisitIcon']/parent::a[@class='visit']");
+		waitForElementOnPage(currentVisit).click();
+	}
 }

@@ -14,12 +14,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-public class InpatientSpec {
+public class InpatientSpec extends BaseSpec{
     private final WebDriver driver;
 
     public InpatientSpec() {
@@ -58,39 +53,24 @@ public class InpatientSpec {
     }
 
     @Step("Ensure inpatient icon exists on Patient Profile display control")
-    public void ensureAdmission(){
+    public void ensureAdmitted(){
         InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
         Assert.assertTrue("inpatient icon doesn't exist", dashboardPage.isAdmitted());
     }
 
-    @Step("Verify display control <displayControlName> on inpatient dashboard, has the following details <table>")
-    public void verifyDisplayControlContent(String displayControlName, Table table) {
+    @Step("Verify display control <displayControlId> on inpatient dashboard, has the following details <table>")
+    public void verifyDisplayControlContent(String displayControlId, Table table) {
         InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
-        String displayControlText = dashboardPage.getDisplayControlText(displayControlName);
+        String displayControlText = dashboardPage.getDisplayControlText(displayControlId);
         for (String drugOrder : table.getColumnValues("details")) {
-            drugOrder = putTime(drugOrder);
+            drugOrder = setDateTime(drugOrder);
             Assert.assertTrue(stringDoesNotExist(drugOrder),displayControlText.contains(drugOrder));
         }
     }
 
-    private static String stringDoesNotExist(String content){
-        return "String `"+content+"` does not exist";
-    }
-
-    /*
-    *   date format: <NOW[simpleDateFormat]>
-    *   example: <NOW[dd-MM-yy]>
-    *   result: 31-12-95
-    *   putTime("Date Of Obs: <NOW[dd-MM-yy hh:mm a]>") will give "Date Of Obs: 31-12-95 09:30 PM"
-    */
-    private static String putTime(String content){
-        String pattern = "<NOW\\[(.*)\\]>";
-        Matcher matcher = Pattern.compile(".*"+pattern+".*").matcher(content);
-        String dateFormat = "dd-MM-yy";
-        while(matcher.find()){
-            dateFormat = matcher.group(1);
-        }
-        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
-        return content.replaceAll(pattern,formatter.format(new Date()));
+    @Step("Ensure inpatient icon does not exist on Patient Profile display control")
+    public void ensureNotAdmitted(){
+        InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
+        Assert.assertFalse("inpatient icon exists", dashboardPage.isAdmitted());
     }
 }

@@ -238,4 +238,20 @@ public class BahmniPage {
     public WebElement findButtonByText(String text) {
         return findElement(By.xpath("//button[contains(text(),'" + text + "')]"));
     }
+    protected static Boolean hasElement(WebElement parent, By child){
+        try{
+            parent.findElement(child);
+            return Boolean.TRUE;
+        } catch (NoSuchElementException e) {
+            return Boolean.FALSE;
+        }
+    }
+    protected Boolean hasElement(By child){
+        try{
+            driver.findElement(child);
+            return Boolean.TRUE;
+        } catch (NoSuchElementException e) {
+            return Boolean.FALSE;
+        }
+    }
 }

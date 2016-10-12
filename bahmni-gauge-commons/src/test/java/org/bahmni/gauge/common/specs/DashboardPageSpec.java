@@ -129,4 +129,9 @@ public class DashboardPageSpec {
 		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		dashboardPage.verifyNoVitals();
 	}
+	@Step("Open the current visit")
+	public void openCurrentVisit(){
+		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+		dashboardPage.openCurrentVisit();
+	}
 }

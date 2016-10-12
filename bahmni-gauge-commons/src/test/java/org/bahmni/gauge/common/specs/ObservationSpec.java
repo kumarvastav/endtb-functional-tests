@@ -6,7 +6,6 @@ import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
-import org.bahmni.gauge.common.clinical.ConsultationPage;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
@@ -16,12 +15,14 @@ import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ObservationSpec extends BahmniPage {
+public class ObservationSpec extends BaseSpec{
+    private final WebDriver driver;
 
     public ObservationSpec() {
         driver = DriverFactory.getDriver();
@@ -89,11 +90,12 @@ public class ObservationSpec extends BahmniPage {
             dashboardPage.validateDrugOrderDisplayControl(drug, "All active TB Drugs");
     }
 
-    @Step("Verify display control <displayControlName> on dashboard, has the following details <table>")
-    public void verifyDisplayControlContent(String displayControlName,Table table) {
+    @Step("Verify display control <displayControlId> on dashboard, has the following details <table>")
+    public void verifyDisplayControlContent(String displayControlId,Table table) {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-        String displayControlText = dashboardPage.getDisplayControlText(displayControlName);
+        String displayControlText = dashboardPage.getDisplayControlText(displayControlId);
         for (String drugOrder : table.getColumnValues("details")) {
+            drugOrder = setDateTime(drugOrder);
             Assert.assertTrue(stringDoesNotExist(drugOrder),displayControlText.contains(drugOrder));
         }
     }
@@ -112,10 +114,6 @@ public class ObservationSpec extends BahmniPage {
     @Step("Close the app")
     public void closeApplication() {
         new BahmniPage().closeApp(driver);
-    }
-
-    private static String stringDoesNotExist(String content){
-        return "String `"+content+"` does not exist";
     }
 
     @Step("Fill <Vitals> template with following observation details <table>")
