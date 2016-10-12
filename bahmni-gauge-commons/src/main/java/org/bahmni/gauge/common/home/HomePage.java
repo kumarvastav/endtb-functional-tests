@@ -50,8 +50,8 @@ public class HomePage extends BahmniPage {
     }
 
 	public void logout() {
-		user_info.click();
-		logout.click();
+		waitForElementOnPage(user_info).click();
+		waitForElementOnPage(logout).click();
 	}
 
     public void clickExportsApp(){

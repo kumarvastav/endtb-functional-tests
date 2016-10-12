@@ -50,7 +50,7 @@ public class DashboardPage extends BahmniPage {
 	}
 
 	public void clickEnterData() {
-		clinical.click();
+		waitForElementOnPage(clinical).click();
 	}
 
 	public WebElement findElementById(String id) {

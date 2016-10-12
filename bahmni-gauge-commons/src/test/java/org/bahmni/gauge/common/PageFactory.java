@@ -3,8 +3,6 @@ package org.bahmni.gauge.common;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.program.ProgramManagementPage;
-import org.bahmni.gauge.common.program.TreatmentPage;
-import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.RegistrationVisitDetailsPage;
 import org.openqa.selenium.WebDriver;

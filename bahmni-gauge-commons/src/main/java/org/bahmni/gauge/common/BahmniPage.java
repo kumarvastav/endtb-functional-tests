@@ -1,6 +1,5 @@
 package org.bahmni.gauge.common;
 
-import com.google.common.base.Function;
 import com.thoughtworks.gauge.TableRow;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
@@ -14,13 +13,11 @@ import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.junit.Assert;
-import org.junit.experimental.theories.internal.BooleanSupplier;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.List;
 
@@ -46,6 +43,7 @@ public class BahmniPage {
         return null;
     }
     public WebElement findElement(By by) {
+        waitForSpinner();
         return driver.findElement(by);
     }
 
@@ -237,5 +235,7 @@ public class BahmniPage {
         this.driver = driver;
     }
 
-
+    public WebElement findButtonByText(String text) {
+        return findElement(By.xpath("//button[contains(text(),'" + text + "')]"));
+    }
 }
