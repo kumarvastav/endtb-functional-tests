@@ -101,6 +101,7 @@ public class TreatmentPage extends BahmniPage{
         if(null != drugOrder.getStartDate()){
             startDate.sendKeys(drugOrder.getStartDate());
         }
+        durationUnits.sendKeys(drugOrder.getDurationUnit());
         addButton.click();
     }
 

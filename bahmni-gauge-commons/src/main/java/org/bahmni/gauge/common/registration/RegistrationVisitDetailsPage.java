@@ -1,6 +1,7 @@
 package org.bahmni.gauge.common.registration;
 
 import org.bahmni.gauge.common.BahmniPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,11 +36,24 @@ public class RegistrationVisitDetailsPage extends BahmniPage{
 	@FindBy(how= How.CSS, using = ".fa-search")
 	public WebElement searchLink;
 
+	@FindBy(how= How.CSS, using = "#visitDisplayTable tr:nth-last-child(1) a")
+	public WebElement openLastVisit;
+
 	public void closeVisit(WebDriver driver) {
 		closeVisit.click();
 		waitForAlertPopup(driver);
 		acceptAlert(driver);
 	}
 
+	public void openLastVisit() {
+		openLastVisit.click();
+	}
 
+	public String getDisplayControlText(String displayControlName) {
+			waitForElementOnPage("[data-ng-switch-when*='"+displayControlName+"']");
+			WebElement displayControl = findElement(By.cssSelector("[data-ng-switch-when*='"+displayControlName+"']"));
+			waitForSpinner();
+			return displayControl.getText().replace("\n", "");
+
+	}
 }

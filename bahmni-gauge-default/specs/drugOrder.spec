@@ -15,6 +15,7 @@ Tags: regression, sanity
 * Click on registration app
 * Search previously created patient with exact identifier
 * Start a visit "OPD"
+* Enter visit details
 * Navigate to dashboard
 * Click on clinical app
 * Select existing patient from patient listing page under tab "All"
@@ -31,6 +32,11 @@ Tags: regression, sanity
     |details|
     |Atenolol 25mg (Tablet) 1 Tablet(s), Twice a day, Before meals, Oral - 2 Day(s)|
     |Amlodipine & Atenolol 5mg + 50mg (Tablet) 3 Capsule(s), Once a day, After meals, Oral - 2 Day(s)|
+*Navigate to latest visit page
+*Verify display control "treatment" on visit page, has the following details
+     |details|
+     |Atenolol 25mg (Tablet) 1 Tablet(s), Twice a day, Before meals, Oral - 2 Day(s)|
+     |Amlodipine & Atenolol 5mg + 50mg (Tablet) 3 Capsule(s), Once a day, After meals, Oral - 2 Day(s)|
 * Navigate to dashboard
 * Logout the user
 
@@ -61,6 +67,12 @@ Tags: regression, sanity
 * Navigate to patient dashboard
 * Verify display control "Treatments" on dashboard, has the following details
     |details|
+     |Ibuprofen & Paracetamol 225mg/5ml (Suspension) 0.2 mg, Twice a day, Nasal - 3 Day(s)|
+     |Warfarin 1mg (Tablet) 5 mg, Once a day, Intramuscular - 4 Day(s)|
+     |Polyvalent Anti Snake Serum (Injection) 30 mg, Once a day, Intramuscular - 3 Day(s)|
+*Navigate to latest visit page
+*Verify display control "treatment" on visit page, has the following details
+     |details|
      |Ibuprofen & Paracetamol 225mg/5ml (Suspension) 0.2 mg, Twice a day, Nasal - 3 Day(s)|
      |Warfarin 1mg (Tablet) 5 mg, Once a day, Intramuscular - 4 Day(s)|
      |Polyvalent Anti Snake Serum (Injection) 30 mg, Once a day, Intramuscular - 3 Day(s)|
@@ -95,6 +107,51 @@ Tags: regression, sanity
     |details|
     |Atenolol 25mg (Tablet) 1 Tablet(s), Twice a day, Before meals, Oral - 2 Day(s)|
     |Amlodipine & Atenolol 5mg + 50mg (Tablet) 3 Capsule(s), Once a day, After meals, Oral - 2 Day(s)|
+*Navigate to latest visit page
+*Verify display control "treatment" on visit page, has the following details
+     |details|
+     |Atenolol 25mg (Tablet) 1 Tablet(s), Twice a day, Before meals, Oral - 2 Day(s)|
+     |Amlodipine & Atenolol 5mg + 50mg (Tablet) 3 Capsule(s), Once a day, After meals, Oral - 2 Day(s)|
+* Navigate to dashboard
+* Logout the user
+
+
+
+Ability to add free text drug order to a patient and Verify the details in Medication Display Control, Dashboard Treatment Display Control and Visit page
+----------------------------------
+
+Tags: regression, sanity
+
+* Enroll patient to program through API
+* On the login page
+* Login to the application
+* Click on registration app
+* Search previously created patient with exact identifier
+* Start a visit "OPD"
+* Navigate to dashboard
+* Click on clinical app
+* Select existing patient from patient listing page under tab "All"
+* Navigate to consultation
+* Go to "Medications" tab
+* Create drug order
+    |drugName|dose|doseUnit|frequency|route|additionalInstructions|duration|durationUnit|
+    |Paracetamol|2|mg|Immediately|Oral|Take if Needed|2| Day(s)|
+    |Isoniazid (H)|4|mg|Immediately|Oral|Take if Needed|2| Day(s)|
+* Save the consultation
+*Verify display control "Recent" on medications tab, has the following details
+    |details|
+    |Paracetamol 2 mg, Immediately, Oral - 2 Day(s)(4 mg)|
+    |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)(8 mg)|
+* Navigate to patient dashboard
+* Verify display control "Treatments" on dashboard, has the following details
+    |details|
+    |Paracetamol 2 mg, Immediately, Oral - 2 Day(s)|
+    |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)|
+*Navigate to latest visit page
+*Verify display control "treatment" on visit page, has the following details
+     |details|
+     |Paracetamol 2 mg, Immediately, Oral - 2 Day(s)|
+     |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)|
 * Navigate to dashboard
 * Logout the user
 
