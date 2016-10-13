@@ -212,6 +212,7 @@ public class BahmniPage {
         return PropertyUtils.isReadable(object, property) && PropertyUtils.isWriteable(object, property);
     }
 
+    @Deprecated
     public Object transform(TableRow row,Object object, List<String> headers){
         for (String header : headers) {
             String value = row.getCell(header);

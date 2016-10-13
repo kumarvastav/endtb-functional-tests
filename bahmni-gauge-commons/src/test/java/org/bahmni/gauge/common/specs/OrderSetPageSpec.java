@@ -10,8 +10,10 @@ import org.bahmni.gauge.common.admin.OrderSetDashboardPage;
 import org.bahmni.gauge.common.admin.OrderSetPage;
 import org.bahmni.gauge.common.admin.domain.OrderSet;
 import org.bahmni.gauge.common.admin.domain.OrderSetMember;
+import org.bahmni.gauge.util.TableTransformer;
 import org.openqa.selenium.WebDriver;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -58,14 +60,30 @@ public class OrderSetPageSpec extends BahmniPage {
         orderSetPage.back();
         waitForSpinner(this.driver);
     }
+    public OrderSet createOrderSet(String namePrefix, String description, String operator){
+        ArrayList<String> headers=new ArrayList<>();
+        headers.add("name");
+        headers.add("description");
+        headers.add("operator");
+        Table table=new Table(headers);
+        ArrayList<String> row=new ArrayList<>();
+        row.add(namePrefix);
+        row.add(description);
+        row.add(operator);
 
+        table.addRow(row);
+
+        TableTransformer<OrderSet> osTT=new TableTransformer<>(OrderSet.class);
+        OrderSet orderSet=osTT.transformTableToEntity(table);
+        return orderSet;
+
+    }
     @Step("Create orderset <namePrefix>, description <description>, operator <operator> with following members using api <table>")
     public void createOrderSetUsingApi(String namePrefix, String description, String operator, Table orderSetMembers){
+
         orderSetPage= PageFactory.get(OrderSetPage.class);
-        OrderSet orderSet=new OrderSet();
-        orderSet.setName(namePrefix + (new Random().nextInt()));
-        orderSet.setDescription(description);
-        orderSet.setOperator(operator);
+        OrderSet orderSet=createOrderSet(namePrefix,description,operator);
+
         for(OrderSetMember orderSetMember : orderSetPage.transformTableToOrderSetMembers(orderSetMembers))
         {
             orderSet.getOrderSetMembers().add(orderSetMember);
@@ -79,10 +97,15 @@ public class OrderSetPageSpec extends BahmniPage {
     public void editOrderSet(String namePrefix, String description, String operator, Table orderSetMembers){
         orderSetPage= PageFactory.get(OrderSetPage.class);
         OrderSet orderSet=getOrderSetInSpecStore();
-        orderSet.setName(namePrefix + (new Random().nextInt()));
-        orderSet.setDescription(description);
-        orderSet.setOperator(operator);
+        TableTransformer<OrderSet> tableTransformer=new TableTransformer<>(OrderSet.class);
+
+        tableTransformer.updateEntityProperty(orderSet,"name",namePrefix);
+        tableTransformer.updateEntityProperty(orderSet,"description",description);
+        tableTransformer.updateEntityProperty(orderSet,"operator",operator);
+
         orderSet.getOrderSetMembers().clear();
+
+
         for(OrderSetMember orderSetMember : orderSetPage.transformTableToOrderSetMembers(orderSetMembers))
         {
             orderSet.getOrderSetMembers().add(orderSetMember);

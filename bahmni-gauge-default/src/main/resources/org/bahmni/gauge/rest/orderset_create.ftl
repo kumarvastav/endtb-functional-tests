@@ -8,7 +8,7 @@
       "orderType": {
         "uuid": "${member.orderTypeUuid}"
       },
-      "orderTemplate": "{\"drug\":{\"name\":\"${member.drugName}\",\"uuid\":\"${member.drugUuid}\"},\"dosingInstructions\":{\"dose\":${member.dose},\"doseUnits\":\"${member.doseUnit}\",\"frequency\":\"${member.frequency}\",\"route\":\"${member.route}\"},\"administrationInstructions\":\"${member.instruction}\",\"duration\":${member.duration},\"durationUnits\":\"Day(s)\",\"additionalInstructions\":\"Inst1\"}",
+      "orderTemplate": "{\"drug\":{\"name\":\"${member.drugName}\",\"uuid\":\"${member.drugUuid}\"},\"dosingInstructions\":{\"dose\":${member.dose},\"doseUnits\":\"${member.doseUnit}\",\"frequency\":\"${member.frequency}\",\"route\":\"${member.route}\"},\"administrationInstructions\":\"${member.instruction}\",\"duration\":${member.duration},\"durationUnits\":\"Day(s)\",\"additionalInstructions\":\"${member.additionalInstructions}\"}",
       "concept": {
         "display": "${member.conceptName}",
         "uuid": "${member.conceptUuid}"

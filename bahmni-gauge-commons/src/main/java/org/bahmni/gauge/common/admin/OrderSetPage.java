@@ -8,6 +8,7 @@ import org.bahmni.gauge.common.admin.domain.OrderSet;
 import org.bahmni.gauge.common.admin.domain.OrderSetMember;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.rest.BahmniRestClient;
+import org.bahmni.gauge.util.TableTransformer;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -57,6 +58,7 @@ public class OrderSetPage extends BahmniPage {
     public OrderSet transformTableRowToOrderSet(TableRow row, List<String> columnNames) {
         String name = row.getCell(columnNames.get(0)) + new Random().nextInt();
         OrderSet orderSet = new OrderSet();
+
         OrderSet returnValue = (OrderSet)transform(row,orderSet,columnNames);
         returnValue.setName(name);
         return returnValue;
@@ -70,14 +72,15 @@ public class OrderSetPage extends BahmniPage {
     }
 
     public OrderSet transformTableToOrderSet(Table table) {
-        List<TableRow> rows = table.getTableRows();
-        List<String> columnNames = table.getColumnNames();
+//        List<TableRow> rows = table.getTableRows();
+//        List<String> columnNames = table.getColumnNames();
+//
+//        if (rows.size() != 1) {
+//            throw new TestSpecException("Only one patient should be provided in the table");
+//        }
+        TableTransformer<OrderSet> tableTransformer=new TableTransformer<>(OrderSet.class);
 
-        if (rows.size() != 1) {
-            throw new TestSpecException("Only one patient should be provided in the table");
-        }
-
-        return transformTableRowToOrderSet(rows.get(0),columnNames);
+        return tableTransformer.transformTableToEntity(table);
 
     }
 
@@ -96,15 +99,17 @@ public class OrderSetPage extends BahmniPage {
     }
 
     public List<OrderSetMember> transformTableToOrderSetMembers(Table table) {
-        List<TableRow> rows = table.getTableRows();
-        List<String> columnNames = table.getColumnNames();
-
-        ArrayList members=new ArrayList();
-        for(TableRow row:rows){
-            OrderSetMember orderSetMember=transformTableRowToOrderSetMember(row,columnNames);
-            members.add(orderSetMember);
-        }
-        return members;
+        TableTransformer<OrderSetMember> transformer=new TableTransformer<>(OrderSetMember.class);
+        return transformer.transformTableToEntityList(table);
+//        List<TableRow> rows = table.getTableRows();
+//        List<String> columnNames = table.getColumnNames();
+//
+//        ArrayList members=new ArrayList();
+//        for(TableRow row:rows){
+//            OrderSetMember orderSetMember=transformTableRowToOrderSetMember(row,columnNames);
+//            members.add(orderSetMember);
+//        }
+//        return members;
     }
 
     public void enterMember(int index,OrderSetMember orderSetMember) {

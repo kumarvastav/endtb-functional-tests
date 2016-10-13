@@ -80,7 +80,8 @@ public class ProgramManagementSpec extends BahmniPage {
 
 	@Step("Enroll patient to the program <table>")
 	public void enrollPatientToTheProgram(Table table) throws Exception {
-		Program program = transformTableToProgram(table);
+		Program program = new TableTransformer<Program>(Program.class).transformTableToEntity(table); //
+		//transformTableToProgram(table);
 		Patient patient = PageFactory.getRegistrationFirstPage().getPatientFromSpecStore();
 
 		PatientProgram patientProgram = new PatientProgram();

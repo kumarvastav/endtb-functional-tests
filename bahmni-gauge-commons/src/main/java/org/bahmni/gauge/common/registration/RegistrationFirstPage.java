@@ -7,6 +7,7 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
+import org.bahmni.gauge.util.TableTransformer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -46,7 +47,7 @@ public class RegistrationFirstPage extends BahmniPage {
 	@FindBy(how = How.CSS, using = ".submit-btn")
 	public WebElement save;
 
-	@FindBy(how = How.CSS, using = ".right.confirm")
+	@FindBy(how = How.CSS, using = "div[option-click=\"visitControl.startVisit\"] li.primaryOption  button")
 	public WebElement enterVisitDetails;
 
 	@FindBy(how = How.CSS, using = "#address1")
@@ -203,14 +204,15 @@ public class RegistrationFirstPage extends BahmniPage {
 	}
 
     public void createPatientUsingApi(Table table) throws Exception {
-		List<TableRow> rows = table.getTableRows();
-		List<String> columnNames = table.getColumnNames();
+//		List<TableRow> rows = table.getTableRows();
+//		List<String> columnNames = table.getColumnNames();
+//
+//		if (rows.size() != 1) {
+//			throw new TestSpecException("Only one patient should be provided in the table");
+//		}
 
-		if (rows.size() != 1) {
-			throw new TestSpecException("Only one patient should be provided in the table");
-		}
-
-		Patient patient = transformTableRowToPatient(rows.get(0), columnNames);
+		Patient patient = new TableTransformer<Patient>(Patient.class).transformTableToEntity(table);
+		//transformTableRowToPatient(rows.get(0), columnNames);
         BahmniRestClient.get().createPatient(patient,"patient_create.ftl");
 		patient.setIdNumber(patient.getIdentifier().substring(3));
 		patient.setPrefix(patient.getIdentifier().substring(0,3));

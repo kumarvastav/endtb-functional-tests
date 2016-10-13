@@ -6,6 +6,7 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
+import org.bahmni.gauge.util.TableTransformer;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -199,18 +200,20 @@ public class ProgramManagementPage extends BahmniPage {
     private boolean isProgramAvailable(Program enrolledProgram, WebElement programName) {
         return programName != null && programName.getText().equals(enrolledProgram.getName());
     }
+    @Deprecated
     public Program transformTableToProgram(Table table) {
-        List<TableRow> rows = table.getTableRows();
-        List<String> columnNames = table.getColumnNames();
-
-        if (rows.size() != 1) {
-            throw new TestSpecException("Only one patient should be provided in the table");
-        }
-
-        String programName = rows.get(0).getCell(columnNames.get(0));
-        String dateOfRegistration = rows.get(0).getCell(columnNames.get(1));
-        Program program=new Program(programName, dateOfRegistration);
-        return (Program) transform(rows.get(0), program, columnNames);
+        return new TableTransformer<Program>(Program.class).transformTableToEntity(table);
+//        List<TableRow> rows = table.getTableRows();
+//        List<String> columnNames = table.getColumnNames();
+//
+//        if (rows.size() != 1) {
+//            throw new TestSpecException("Only one patient should be provided in the table");
+//        }
+//
+//        String programName = rows.get(0).getCell(columnNames.get(0));
+//        String dateOfRegistration = rows.get(0).getCell(columnNames.get(1));
+//        Program program=new Program(programName, dateOfRegistration);
+//        return (Program) transform(rows.get(0), program, columnNames);
 
     }
 
@@ -238,7 +241,7 @@ public class ProgramManagementPage extends BahmniPage {
         registration_id.sendKeys(registration);
         return this;
     }
-
+    @Deprecated
     public Program transformTableRowToProgram(TableRow row, List<String> columnNames) throws Exception {
         String registration = row.getCell(columnNames.get(1)) + new Random().nextInt();
         Program program = new Program(row.getCell(columnNames.get(0)), registration);
