@@ -11,6 +11,7 @@ import org.bahmni.gauge.common.clinical.displaycontrol.ObsDisplayControl;
 import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -133,5 +134,18 @@ public class DashboardPageSpec {
 	public void openCurrentVisit(){
 		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		dashboardPage.openCurrentVisit();
+	}
+	@Step("Verify Consultation button is not present")
+	public void verifyConsultationNotPresent(){
+		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+		waitForAppReady();
+		Assert.assertFalse("Consultation button is present",dashboardPage.isEnterDataPresent());
+		waitForAppReady();
+	}
+	@Step("Verify <visits> Active visits for patient")
+	public void verifyVisitsCount(int visits){
+		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+		waitForAppReady();
+		Assert.assertEquals("Total Number of visits don't match",visits,dashboardPage.getVisitsCount());
 	}
 }

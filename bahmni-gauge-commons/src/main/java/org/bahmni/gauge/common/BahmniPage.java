@@ -12,6 +12,7 @@ import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.data.StoreHelper;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -44,13 +45,11 @@ public class BahmniPage {
     }
 
     public void storePatientInSpecStore(Patient value) {
-        DataStore specStore = DataStoreFactory.getSpecDataStore();
-        specStore.put(PATIENT_KEY, value);
+        StoreHelper.storeEntityInSpectStore(value);
     }
 
     public Patient getPatientFromSpecStore() {
-        DataStore specStore = DataStoreFactory.getSpecDataStore();
-        return (Patient) specStore.get(PATIENT_KEY);
+        return StoreHelper.getEntityInSpectStore(Patient.class);
     }
 
     public List<DrugOrder> getDrugOrderFromSpecStore() {
@@ -59,8 +58,7 @@ public class BahmniPage {
     }
 
     public void storeProgramInSpecStore(Program program) {
-        DataStore specStore = DataStoreFactory.getSpecDataStore();
-        specStore.put(PROGRAM_KEY, program);
+        StoreHelper.storeEntityInSpectStore(program);
     }
 
     public void storeBaselineFormInSpecStore(ObservationForm baselineForm) {
@@ -89,7 +87,7 @@ public class BahmniPage {
 
 
     public Program getProgramFromSpecStore() {
-        return (Program) DataStoreFactory.getSpecDataStore().get(PROGRAM_KEY);
+        return StoreHelper.getEntityInSpectStore(Program.class);
     }
 
     public void acceptAlert(WebDriver driver) {
@@ -171,23 +169,20 @@ public class BahmniPage {
     }
 
     public void storeObservationFormInSpecStore(ObservationForm observation) {
-        DataStore specStore = DataStoreFactory.getSpecDataStore();
-        specStore.put(OBSERVATION_KEY, observation);
+        StoreHelper.storeEntityInSpectStore(observation);
     }
 
     public ObservationForm getObservationFormInSpecStore() {
-        DataStore specStore = DataStoreFactory.getSpecDataStore();
-        return (ObservationForm) specStore.get(OBSERVATION_KEY);
+        return StoreHelper.getEntityInSpectStore(ObservationForm.class);
     }
 
     public void storeOrderSetInSpecStore(OrderSet orderSet) {
-        DataStore specStore = DataStoreFactory.getSpecDataStore();
-        specStore.put(ORDERSET_KEY, orderSet);
+
+        StoreHelper.storeEntityInSpectStore(orderSet);
     }
 
     public OrderSet getOrderSetInSpecStore() {
-        DataStore specStore = DataStoreFactory.getSpecDataStore();
-        return (OrderSet) specStore.get(ORDERSET_KEY);
+        return StoreHelper.getEntityInSpectStore(OrderSet.class);
     }
 
     public void storePatientProgramInSpecStore(PatientProgram patientProgram) {

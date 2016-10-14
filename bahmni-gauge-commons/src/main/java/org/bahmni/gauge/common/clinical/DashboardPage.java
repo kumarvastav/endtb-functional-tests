@@ -9,6 +9,8 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -46,7 +48,18 @@ public class DashboardPage extends BahmniPage {
 			}
 		}
 	}
+	public boolean isEnterDataPresent(){
+		try {
+			if (clinical.isDisplayed()) {
+				return true;
+			}else{
+				return false;
+			}
 
+		}catch (Exception ex){
+			return false;
+		}
+	}
 	public void clickEnterData() {
 		waitForElementOnPage(clinical).click();
 	}
@@ -125,5 +138,14 @@ public class DashboardPage extends BahmniPage {
 	public void openCurrentVisit() {
 		By currentVisit = By.xpath("//i[@id='currentVisitIcon']/parent::a[@class='visit']");
 		waitForElementOnPage(currentVisit).click();
+	}
+
+	public int getVisitsCount() {
+		try {
+			List<WebElement> visits = driver.findElements(By.cssSelector("a.visit"));
+			return visits.size();
+		} catch (NoSuchElementException ex) {
+			return 0;
+		}
 	}
 }

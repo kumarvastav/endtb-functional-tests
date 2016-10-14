@@ -7,9 +7,13 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.PatientListingPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
+import org.junit.Assert;
 
 public class PatientListingPageSpec extends BahmniPage {
-
+//    PatientListingPage patientListing;
+//    PatientListingPageSpec(){
+//        //patientListing = PageFactory.get(PatientListingPage.class);
+//    }
     @BeforeClassSteps
     public void waitForAppReady(){
         BahmniPage.waitForSpinner(DriverFactory.getDriver());
@@ -27,5 +31,13 @@ public class PatientListingPageSpec extends BahmniPage {
     public void selectPatient(String patientID , String tab){
         PatientListingPage patientListing = PageFactory.get(PatientListingPage.class);
         patientListing.searchSelectPatientFromTab(patientID,tab);
+    }
+
+    @Step("Verify previous patient is not listed on patient listing page under tab <tab>")
+    public void verifyPatientPresent(String tab){
+        PatientListingPage patientListing = PageFactory.get(PatientListingPage.class);
+        Patient patient = getPatientFromSpecStore();
+        Assert.assertFalse(patientListing.isPatientListedOnTab(patient.getIdentifier(),tab));
+
     }
 }

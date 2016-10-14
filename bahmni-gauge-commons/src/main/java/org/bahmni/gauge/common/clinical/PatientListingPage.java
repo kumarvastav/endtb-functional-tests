@@ -2,6 +2,7 @@ package org.bahmni.gauge.common.clinical;
 
 import org.bahmni.gauge.common.BahmniPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -65,4 +66,19 @@ public class PatientListingPage extends BahmniPage {
 		waitForSpinner();
     	selectPatient(patientID);
     }
+
+	public boolean isPatientListedOnTab(String patientID, String tab) {
+		clickTab(tab);
+		enterPatientIDOrName(patientID);
+		waitForSpinner();
+		try {
+			WebElement element = findElement(By.cssSelector(".active-patient"));
+			if(element!=null)
+				return true;
+			else
+				return false;
+		} catch (NoSuchElementException ex){
+			return false;
+		}
+	}
 }
