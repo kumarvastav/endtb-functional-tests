@@ -135,22 +135,26 @@ Tags: regression, sanity
 * Go to "Medications" tab
 * Create drug order
     |drugName|dose|doseUnit|frequency|route|additionalInstructions|duration|durationUnit|
-    |Paracetamol|2|mg|Immediately|Oral|Take if Needed|2| Day(s)|
+    |Paracetamol|2|Tablet(s)|Twice a day|Intravenous|After meals|2| Month(s)|
     |Isoniazid (H)|4|mg|Immediately|Oral|Take if Needed|2| Day(s)|
 * Save the consultation
 *Verify display control "Recent" on medications tab, has the following details
     |details|
-    |Paracetamol 2 mg, Immediately, Oral - 2 Day(s)(4 mg)|
+    |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)(240 Tablet(s))|
+    |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)(8 mg)|
+*Verify display control "current visit" on medications tab, has the following details
+    |details|
+    |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)(240 Tablet(s))|
     |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)(8 mg)|
 * Navigate to patient dashboard
 * Verify display control "Treatments" on dashboard, has the following details
     |details|
-    |Paracetamol 2 mg, Immediately, Oral - 2 Day(s)|
+    |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
     |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)|
 *Navigate to latest visit page
 *Verify display control "treatment" on visit page, has the following details
      |details|
-     |Paracetamol 2 mg, Immediately, Oral - 2 Day(s)|
+     |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
      |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)|
 * Navigate to dashboard
 * Logout the user
