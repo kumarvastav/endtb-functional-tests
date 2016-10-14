@@ -136,7 +136,7 @@ Tags: regression, sanity
 
 * Create the following patient using api
     |prefix|firstName|lastName|gender|dateOfBirth|district|
-    |GAN|Hanah|Jones|F|20/01/2011|Bilaspur|
+    |GAN|Hanah1|Jones|F|20/01/2011|Bilaspur|
 * Enroll patient to the program
     |name|dateOfRegistration|patientStatus|treatmentDate|programStatus|
     |TB Program|21/09/2016|Stage 1|23/09/2016|Initial Treatment Phase|
