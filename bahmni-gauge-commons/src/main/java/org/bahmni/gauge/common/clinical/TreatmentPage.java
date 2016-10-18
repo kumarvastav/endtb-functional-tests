@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class TreatmentPage extends BahmniPage{
@@ -145,5 +146,18 @@ public class TreatmentPage extends BahmniPage{
                 drug.findElement(By.cssSelector(".stop-drug-btn")).click();
         }
 
+    }
+
+    public String getDisplayControlText(String displayTabName) {
+
+        if (displayTabName.toLowerCase().equals("recent"))
+            return driver.findElement(By.cssSelector(".drug-orders-history .tabs .tab:nth-of-type(1) .table-mimic")).getText().trim().replace("\n", "");
+        else if(displayTabName.equalsIgnoreCase("current visit")) {
+            DateFormat df = new SimpleDateFormat("dd MMM yy");
+            Date date = new Date();
+            return driver.findElement(By.xpath(".//label[contains(.,'"+df.format(date)+"')]/../div/div/ul")).getText().trim().replace("\n", "");
+        }
+        else
+            return driver.findElement(By.cssSelector(".drug-orders-history .tabs .tab:nth-of-type(2) .table-mimic")).getText().trim().replace("\n", "");
     }
 }

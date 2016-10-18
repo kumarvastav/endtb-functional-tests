@@ -10,6 +10,8 @@ import org.bahmni.gauge.common.registration.RegistrationVisitDetailsPage;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
+import static org.bahmni.gauge.common.specs.BaseSpec.setDateTime;
+
 public class RegistrationVisitPageSpec {
     private final WebDriver driver;
 
@@ -39,6 +41,7 @@ public class RegistrationVisitPageSpec {
         RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         String displayControlText = registrationVisitPage.getDisplayControlText(displayControl);
         for (String drugOrder : table.getColumnValues("details")) {
+            drugOrder = setDateTime(drugOrder);
             Assert.assertTrue("String "+drugOrder+" does not exist. Actual String :"+displayControlText,displayControlText.contains(drugOrder));
         }
     }

@@ -311,17 +311,33 @@ Tags: regression, sanity
 * Save the consultation
 *Verify display control "Recent" on medications tab, has the following details
     |details|
-    |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)(240 Tablet(s))|
-    |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)(8 mg)|
+    |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)(240 Tablet(s))DStopRefillstarted on <NOW[dd MMM yy]>|
+    |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)(8 mg)DStopRefillstarted on <NOW[dd MMM yy]>|
 *Stop the following drugs
 |details|
 |Paracetamol|
 |Isoniazid |
 *Save the consultation
-*Verify display control "Recent" on medications tab, has the following details
+*Verify display control "current visit" on medications tab, has the following details
     |details|
-    |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)(240 Tablet(s))|
-    |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)(8 mg)|
+    |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)(240 Tablet(s))DStopRefillStopped on <NOW[dd MMM yy]>|
+    |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)(8 mg)DStopRefillStopped on <NOW[dd MMM yy]>|
+* Navigate to patient dashboard
+* Verify display control "Treatments" on dashboard, has the following details
+    |details|
+    |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)Stopped on <NOW[dd MMM yy]>|
+    |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)Stopped on <NOW[dd MMM yy]>|
+* click  "Treatments" on dashboard, and verify displayed dialog has the following details
+        |details|
+        |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)Stopped on <NOW[dd MMM yy]>|
+        |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)Stopped on <NOW[dd MMM yy]>|
+*Navigate to latest visit page
+*Verify display control "treatment" on visit page, has the following details
+     |details|
+     |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)Stopped on <NOW[dd MMM yy]>|
+     |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)Stopped on <NOW[dd MMM yy]>|
+* Navigate to dashboard
+* Logout the user
 
 Refill Drug order
 ----------------

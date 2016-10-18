@@ -13,11 +13,15 @@ import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.bahmni.gauge.common.specs.BaseSpec.setDateTime;
+import static org.bahmni.gauge.common.specs.BaseSpec.stringDoesNotExist;
 
 public class TreatmentPageSpec {
 
@@ -64,6 +68,15 @@ public class TreatmentPageSpec {
     public void stopDrug(Table table){
     for (String drugName:table.getColumnValues("details"))
         treatmentPage.stopDrugOrder(drugName);
+    }
+
+    @Step("Verify display control <displayTabName> on medications tab, has the following details <table>")
+    public void verifyDisplayControlContent(String displayTabName,Table table) {
+        String displayControlText = treatmentPage.getDisplayControlText(displayTabName);
+        for (String drugOrder : table.getColumnValues("details")) {
+            drugOrder = setDateTime(drugOrder);
+            Assert.assertTrue(stringDoesNotExist(drugOrder)+"Actual string : "+displayControlText,displayControlText.contains(drugOrder));
+        }
     }
 
     @Step("Create the following drug order using API <table>")
