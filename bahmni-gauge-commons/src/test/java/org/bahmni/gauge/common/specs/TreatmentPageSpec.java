@@ -60,6 +60,12 @@ public class TreatmentPageSpec {
         treatmentPage.addOrderSet(orderset, -1);
     }
 
+@Step("Stop the following drugs <table>")
+    public void stopDrug(Table table){
+    for (String drugName:table.getColumnValues("details"))
+        treatmentPage.stopDrugOrder(drugName);
+    }
+
     @Step("Create the following drug order using API <table>")
     public void createDrugOrderUsingAPI(Table table) {
         List<DrugOrder> drugOrders = transformTableToDrugOrder(table);

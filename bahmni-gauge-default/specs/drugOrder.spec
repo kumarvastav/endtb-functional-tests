@@ -124,7 +124,7 @@ Tags: regression, sanity
 
 * Enroll patient to program through API
 * On the login page
-* Login to the application
+* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
 * Click on registration app
 * Search previously created patient with exact identifier
 * Start a visit "OPD"
@@ -151,6 +151,10 @@ Tags: regression, sanity
     |details|
     |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
     |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)|
+* click  "Treatments" on dashboard, and verify displayed dialog has the following details
+        |details|
+        |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
+        |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)|
 *Navigate to latest visit page
 *Verify display control "treatment" on visit page, has the following details
      |details|
@@ -281,3 +285,40 @@ Tags: regression, sanity
 
 * Navigate to dashboard
 * Logout the user
+
+
+
+Stop drug and Verify the details in Medication Display Control, Dashboard Treatment Display Control and Visit page
+----------------------------------
+
+Tags: regression, sanity
+
+* Enroll patient to program through API
+* On the login page
+* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
+* Click on registration app
+* Search previously created patient with exact identifier
+* Start a visit "OPD"
+* Navigate to dashboard
+* Click on clinical app
+* Select existing patient from patient listing page under tab "All"
+* Navigate to consultation
+* Go to "Medications" tab
+* Create drug order
+    |drugName|dose|doseUnit|frequency|route|additionalInstructions|duration|durationUnit|
+    |Paracetamol|2|Tablet(s)|Twice a day|Intravenous|After meals|2| Month(s)|
+    |Isoniazid (H)|4|mg|Immediately|Oral|Take if Needed|2| Day(s)|
+* Save the consultation
+*Verify display control "Recent" on medications tab, has the following details
+    |details|
+    |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)(240 Tablet(s))|
+    |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)(8 mg)|
+*Stop the following drugs
+|details|
+|Paracetamol|
+|Isoniazid |
+*Save the consultation
+*Verify display control "Recent" on medications tab, has the following details
+    |details|
+    |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)(240 Tablet(s))|
+    |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)(8 mg)|

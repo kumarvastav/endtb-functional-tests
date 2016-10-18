@@ -51,7 +51,7 @@ public class RegistrationVisitDetailsPage extends BahmniPage{
 
 	public String getDisplayControlText(String displayControlName) {
 			waitForElementOnPage("[data-ng-switch-when*='"+displayControlName+"']");
-			WebElement displayControl = findElement(By.cssSelector("[data-ng-switch-when*='"+displayControlName+"']"));
+			WebElement displayControl = findElement(By.cssSelector("[data-ng-switch-when*='"+displayControlName.toLowerCase()+"']"));
 			waitForSpinner();
 			return displayControl.getText().replace("\n", "");
 

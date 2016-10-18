@@ -2,6 +2,7 @@ package org.bahmni.gauge.common.clinical;
 
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -95,6 +96,9 @@ public class TreatmentPage extends BahmniPage{
     @FindBy(how = How.CSS, using = "button[ng-click=\"revise(drugOrder, drugOrderGroup.drugOrders)\"]")
     public List<WebElement> editDrugOrderbuttons;
 
+    @FindBy(how = How.CSS, using = ".tab:nth-of-type(1) .table-mimic #ordered-drug-orders")
+    public List<WebElement> stopRecentDrugOrder;
+
     public void createDrugOrder(DrugOrder drugOrder){
         fillDrugName(drugOrder.getDrugName());
         dose.clear();
@@ -134,4 +138,12 @@ public class TreatmentPage extends BahmniPage{
     }
 
 
+    public void stopDrugOrder(String drugName) {
+
+        for (WebElement drug:stopRecentDrugOrder) {
+            if(drug.findElement(By.cssSelector(".drug-details")).getText().contains(drugName))
+                drug.findElement(By.cssSelector(".stop-drug-btn")).click();
+        }
+
+    }
 }
