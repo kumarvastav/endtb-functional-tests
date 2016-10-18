@@ -41,7 +41,15 @@ public class TreatmentPageSpec {
             treatmentPage.createDrugOrder(drugOrder);
         }
     }
-
+    @Step("Edit previous drug order <table>")
+    public void editDrugOrder(Table table){
+        int i =0;
+        List<DrugOrder> drugOrders = transformTableToDrugOrder(table);
+        for (DrugOrder drugOrder: drugOrders){
+            treatmentPage.editDrugOrderbuttons.get(i++).click();
+            treatmentPage.createDrugOrder(drugOrder);
+        }
+    }
     @Step("Add <orderset> drug order set")
     public void createDrugOrder(String orderset){
         treatmentPage.addOrderSet(orderset,0);

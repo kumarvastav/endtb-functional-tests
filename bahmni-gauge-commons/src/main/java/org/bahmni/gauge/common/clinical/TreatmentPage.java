@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 public class TreatmentPage extends BahmniPage{
 
@@ -91,14 +92,20 @@ public class TreatmentPage extends BahmniPage{
     @FindBy(how = How.CSS, using = ".orderSet-orders.clearfix:nth-of-type(1) h2 div button:nth-of-type(1)")
     public WebElement addOrderSet;
 
+    @FindBy(how = How.CSS, using = "button[ng-click=\"revise(drugOrder, drugOrderGroup.drugOrders)\"]")
+    public List<WebElement> editDrugOrderbuttons;
+
     public void createDrugOrder(DrugOrder drugOrder){
         fillDrugName(drugOrder.getDrugName());
+        dose.clear();
         dose.sendKeys(drugOrder.getDose());
         new Select(doseUnits).selectByVisibleText(drugOrder.getDoseUnit());
         new Select(frequency).selectByVisibleText(drugOrder.getFrequency());
         new Select(route).selectByVisibleText(drugOrder.getRoute());
+        duration.clear();
         duration.sendKeys(drugOrder.getDuration());
         if(null != drugOrder.getStartDate()){
+            startDate.clear();
             startDate.sendKeys(drugOrder.getStartDate());
         }
         durationUnits.sendKeys(drugOrder.getDurationUnit());
@@ -106,8 +113,11 @@ public class TreatmentPage extends BahmniPage{
     }
 
     private void fillDrugName(String drugName) {
-        drugNameField.sendKeys(drugName);
-        acceptButton.click();
+        if(drugNameField.isEnabled()) {
+            drugNameField.sendKeys(drugName);
+
+            acceptButton.click();
+        }
     }
 
     public void addOrderSet(String orderset, int days) {

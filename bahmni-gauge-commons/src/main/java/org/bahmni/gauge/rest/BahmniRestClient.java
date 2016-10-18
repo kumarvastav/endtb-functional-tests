@@ -12,6 +12,7 @@ import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContexts;
+import org.bahmni.gauge.common.Entity;
 import org.bahmni.gauge.common.admin.domain.OrderSet;
 import org.bahmni.gauge.common.admin.domain.OrderSetMember;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
@@ -351,7 +352,31 @@ public class BahmniRestClient {
 		return conceptAnswerDetailsMap;
 	}
 
+	public  <T extends Entity> T create (T entity){
+		try {
+			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(entity.getMRSName()+"_create.ftl");
+			Map<String, Object> objectData = new HashMap<>();
 
+			objectData.put("object", entity);
+
+			StringWriter stringWriter = new StringWriter();
+			freemarkerTemplate.process(objectData, stringWriter);
+
+			String requestJson = stringWriter.toString();
+
+			HttpResponse<JsonNode> response = Unirest.post(url + "/openmrs/ws/rest/v1/"+entity.getMRSName())
+					.basicAuth(username, password)
+					.header("content-type", "application/json")
+					.body(requestJson)
+					.asJson();
+
+			if (response.getStatus() != 200 && response.getStatus() != 201)
+				throw new BahmniAPIException(entity.getClass() + " Creation Failed!!");
+		} catch (Exception e) {
+			throw new BahmniAPIException(e);
+		}
+		return entity;
+	}
 	public void createBacteriologySpecimen(String formTemplate,Specimen specimen, Patient patient, PatientProgram patientProgram){
 		Map<String,Object> attributes = new HashMap<>();
 		attributes.put("patient", patient);

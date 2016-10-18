@@ -117,6 +117,11 @@ public class DashboardPage extends BahmniPage {
 		waitForSpinner();
 		return displayControl.getText().replace("\n", "");
 	}
+	public String getDialogText(By parent) {
+		WebElement dialog = findElement(parent);
+		waitForSpinner();
+		return dialog.getText().replace("\n", "");
+	}
 
 	public void validateProgramsDisplayControl(Program program) {
 		for (WebElement dispControls : displayControls) {
@@ -147,5 +152,13 @@ public class DashboardPage extends BahmniPage {
 		} catch (NoSuchElementException ex) {
 			return 0;
 		}
+	}
+
+    public void clickDisplayControlHeader(String displayControlId) {
+		findElementById(displayControlId).findElement(By.cssSelector("h2")).click();
+    }
+
+	public void closeDialog() {
+		findElement(By.cssSelector(".ngdialog-close")).click();
 	}
 }

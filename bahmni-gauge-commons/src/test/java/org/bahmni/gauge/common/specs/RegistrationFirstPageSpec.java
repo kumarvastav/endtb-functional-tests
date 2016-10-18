@@ -9,6 +9,10 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.RegistrationSearch;
+import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.common.registration.domain.Visit;
+import org.bahmni.gauge.data.StoreHelper;
+import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.WebDriver;
 
 public class RegistrationFirstPageSpec {
@@ -97,4 +101,12 @@ public class RegistrationFirstPageSpec {
 		new BahmniPage().validateSystemException(driver);
 	}
 
+	@Step("Open Visit for patient using api")
+	public void openVisitThroughApi(){
+		Visit visit=new Visit();
+		visit.setPatient(StoreHelper.getEntityInSpectStore(Patient.class));
+		visit.setLocation("c1f25be5-3f10-11e4-adec-0800271c1b75");
+		visit.setType("c22a5000-3f10-11e4-adec-0800271c1b75");
+		BahmniRestClient.get().create(visit);
+	}
 }

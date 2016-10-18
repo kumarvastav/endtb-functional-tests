@@ -228,3 +228,63 @@ Tags: regression, sanity
 * verify previous orderset deleted
 * Navigate to dashboard
 * Logout the user
+
+Drug order - Edit
+----------------
+Tags: regression, sanity
+* Create a new patient through API
+* Open Visit for patient using api
+* On the login page
+* Login to the application
+* Navigate to dashboard
+* Click on clinical app
+* Select existing patient from patient listing page under tab "All"
+* Navigate to consultation
+* Go to "Medications" tab
+* Create drug order
+    |drugName|dose|doseUnit|frequency|route|additionalInstructions|duration|durationUnit|
+    |Paracetamol|2|Tablet(s)|Twice a day|Intravenous|After meals|2| Month(s)|
+    |Isoniazid (H)|4|mg|Immediately|Oral|Take if Needed|2| Day(s)|
+* Save the consultation
+* Edit previous drug order
+    |drugName|dose|doseUnit|frequency|route|additionalInstructions|duration|durationUnit|
+    |Paracetamol|4|mg|Immediately|Oral|Take if Needed|2| Day(s)|
+    |Isoniazid (H)|2|Tablet(s)|Twice a day|Intravenous|After meals|2| Month(s)|
+
+* Save the consultation
+* Verify display control "Recent" on medications tab, has the following details
+    |details|
+    |Paracetamol 4 mg, Immediately, Oral - 2 Day(s)(8 mg)|
+    |Isoniazid (H) 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)(240 Tablet(s))|
+
+* Verify display control "current visit" on medications tab, has the following details
+    |details|
+    |Paracetamol 4 mg, Immediately, Oral - 2 Day(s)(8 mg)|
+    |Isoniazid (H) 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)(240 Tablet(s))|
+
+* Navigate to patient dashboard
+* Verify display control "Treatments" on dashboard, has the following details
+    |details|
+    |Paracetamol 4 mg, Immediately, Oral - 2 Day(s)|
+    |Isoniazid (H) 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
+
+* click  "Treatments" on dashboard, and verify displayed dialog has the following details
+    |details|
+    |Paracetamol 4 mg, Immediately, Oral - 2 Day(s)|
+    |Isoniazid (H) 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
+
+* Navigate to latest visit page
+* Verify display control "treatment" on visit page, has the following details
+     |details|
+     |Paracetamol 4 mg, Immediately, Oral - 2 Day(s)|
+     |Isoniazid (H) 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
+
+* Navigate to dashboard
+* Logout the user
+
+
+cp
+----------------
+
+* Enroll patient to program through API
+* Open Visit for patient using api

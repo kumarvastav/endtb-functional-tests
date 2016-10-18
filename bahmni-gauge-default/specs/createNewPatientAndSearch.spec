@@ -70,7 +70,7 @@ Tags: regression, sanity
     |71|111|77|Sitting|99|17|99|
 * Navigate to dashboard
 * Logout the user
-* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
+* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_ANOTHER_LOCATION"
 * Click on clinical app
 * Verify previous patient is not listed on patient listing page under tab "Active"
 * Navigate to dashboard
