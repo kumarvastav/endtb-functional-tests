@@ -63,10 +63,10 @@ public class PossibleRegistrationFirstPage extends RegistrationFirstPage {
 
     }
 
-    public void storePatientInSpecStore(Patient value) {
-        DataStore specStore = DataStoreFactory.getSpecDataStore();
-        specStore.put(PATIENT_KEY, value);
-    }
+//    public void storePatientInSpecStore(Patient value) {
+//        DataStore specStore = DataStoreFactory.getSpecDataStore();
+//        specStore.put(PATIENT_KEY, value);
+//    }
 
     public void createPatientUsingApi(Table table) throws Exception {
         Patient patient = transformTableToPatient(table);

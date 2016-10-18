@@ -13,6 +13,7 @@ import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.data.StoreHelper;
+import org.bahmni.gauge.util.TableTransformer;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -24,14 +25,14 @@ import java.util.List;
 
 public class BahmniPage {
 
-    private static final Object ORDERSET_KEY = "order_set";
+//    private static final Object ORDERSET_KEY = "order_set";
     protected static String BASE_URL = System.getenv("BAHMNI_GAUGE_APP_URL");
 
-    public static final String PATIENT_KEY = "patient";
-    public static final String PROGRAM_KEY = "program";
-    public static final String PATIENT_PROGRAM_KEY = "patient_program";
-    public static final String BASELINE_KEY = "baselineForm";
-    public static final String OBSERVATION_KEY = "observation";
+//    public static final String PATIENT_KEY = "patient";
+//    public static final String PROGRAM_KEY = "program";
+//    public static final String PATIENT_PROGRAM_KEY = "patient_program";
+//    public static final String BASELINE_KEY = "baselineForm";
+//    public static final String OBSERVATION_KEY = "observation";
     public static final String DRUG_ORDER_KEY = "drug_order";
     protected WebDriver driver;
 
@@ -45,7 +46,7 @@ public class BahmniPage {
     }
 
     public void storePatientInSpecStore(Patient value) {
-        StoreHelper.storeEntityInSpectStore(value);
+        StoreHelper.storeEntityInSpectStore(Patient.class,value);
     }
 
     public Patient getPatientFromSpecStore() {
@@ -58,12 +59,13 @@ public class BahmniPage {
     }
 
     public void storeProgramInSpecStore(Program program) {
-        StoreHelper.storeEntityInSpectStore(program);
+        StoreHelper.storeEntityInSpectStore(Program.class,program);
     }
 
     public void storeBaselineFormInSpecStore(ObservationForm baselineForm) {
-        DataStore specStore = DataStoreFactory.getSpecDataStore();
-        specStore.put(BASELINE_KEY, baselineForm);
+//        DataStore specStore = DataStoreFactory.getSpecDataStore();
+//        specStore.put(BASELINE_KEY, baselineForm);
+        StoreHelper.storeEntityInSpectStore(ObservationForm.class,baselineForm);
     }
 
     public void storeDrugOrderInSpecStore(List<DrugOrder> drugOrder) {
@@ -169,7 +171,7 @@ public class BahmniPage {
     }
 
     public void storeObservationFormInSpecStore(ObservationForm observation) {
-        StoreHelper.storeEntityInSpectStore(observation);
+        StoreHelper.storeEntityInSpectStore(ObservationForm.class,observation);
     }
 
     public ObservationForm getObservationFormInSpecStore() {
@@ -178,7 +180,7 @@ public class BahmniPage {
 
     public void storeOrderSetInSpecStore(OrderSet orderSet) {
 
-        StoreHelper.storeEntityInSpectStore(orderSet);
+        StoreHelper.storeEntityInSpectStore(OrderSet.class,orderSet);
     }
 
     public OrderSet getOrderSetInSpecStore() {
@@ -186,13 +188,15 @@ public class BahmniPage {
     }
 
     public void storePatientProgramInSpecStore(PatientProgram patientProgram) {
-        DataStore specStore = DataStoreFactory.getSpecDataStore();
-        specStore.put(PATIENT_PROGRAM_KEY, patientProgram);
+//        DataStore specStore = DataStoreFactory.getSpecDataStore();
+//        specStore.put(PATIENT_PROGRAM_KEY, patientProgram);
+        StoreHelper.storeEntityInSpectStore(PatientProgram.class,patientProgram);
     }
 
     public PatientProgram getPatientProgramFromSpecStore() {
-        DataStore specStore = DataStoreFactory.getSpecDataStore();
-        return (PatientProgram) specStore.get(PATIENT_PROGRAM_KEY);
+//        DataStore specStore = DataStoreFactory.getSpecDataStore();
+//        return (PatientProgram) specStore.get(PATIENT_PROGRAM_KEY);
+        return StoreHelper.getEntityInSpectStore(PatientProgram.class);
     }
 
     public void closeApp(WebDriver driver) {
@@ -217,7 +221,7 @@ public class BahmniPage {
             String value = row.getCell(header);
             try {
                 if(propertyExists(object,header)){
-                    BeanUtils.setProperty(object, header, value);
+                    BeanUtils.setProperty(object, header, TableTransformer.fieldTransform(value));
                 } else {
                     throw new Exception("Property :"+header+" not found in "+object.getClass());
                 }

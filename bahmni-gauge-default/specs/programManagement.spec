@@ -140,11 +140,9 @@ Tags: regression, sanity
 * Enroll patient to the program
     |name|dateOfRegistration|patientStatus|treatmentDate|programStatus|
     |TB Program|21/09/2016|Stage 1|23/09/2016|Initial Treatment Phase|
+* Open Visit for patient using api
 * On the login page
 * Login to the application
-* Click on registration app
-* Search previously created patient with exact identifier
-* Start a visit "OPD"
 * Navigate to dashboard
 * Click on programs app
 * Select existing patient from patient listing page under tab "All"

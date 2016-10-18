@@ -16,7 +16,7 @@ Tags:
 * Click on create new patient link
 * Create patient with manual id
     |prefix|idNumber|firstName|gender|dateOfBirth|age|ward|municipality|district|country|caste|
-    |BAH|8888882|Super|Female|20/01/2011|50|Address1-187204|Darna|Achham|Nepal|2 - Janajati|
+    |BAH|########|Super|Female|20/01/2011|50|Address1-187204|Darna|Achham|Nepal|2 - Janajati|
 
 * Click on search patient link
 * Search previously created patient with exact identifier
