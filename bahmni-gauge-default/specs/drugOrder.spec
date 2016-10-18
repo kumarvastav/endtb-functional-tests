@@ -281,10 +281,3 @@ Tags: regression, sanity
 
 * Navigate to dashboard
 * Logout the user
-
-
-cp
-----------------
-
-* Enroll patient to program through API
-* Open Visit for patient using api
