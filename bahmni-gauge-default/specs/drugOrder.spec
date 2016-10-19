@@ -237,7 +237,7 @@ Drug order - Edit
 ----------------
 Tags: regression, sanity
 * Create a new patient through API
-* Open Visit for patient using api
+* Open Visit for previous patient using api
 * On the login page
 * Login to the application
 * Navigate to dashboard
