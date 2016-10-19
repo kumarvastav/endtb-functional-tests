@@ -6,7 +6,7 @@ This is an executable specification file which follows markdown syntax.
 Every heading in this file denotes a scenario. Every bulleted point denotes a step.
 Program Management Workflows - Create & Add Patient to a Program
 ----------------
-Tags: regression, sanity
+Tags: regression, sanity, Debug
 * On the login page
 * Login to the application
 * Create the following patient using api
@@ -26,7 +26,7 @@ Tags: regression, sanity
 
 Program Management Workflows - Delete the patient from an active Program
 --------------------------------------
-Tags: regression, sanity
+Tags: regression, sanity, Debug
 * On the login page
 * Login to the application
 * Create the following patient using api
@@ -44,7 +44,7 @@ Tags: regression, sanity
 
 Program Management Workflows - Edit
 -----------------------------------
-Tags: regression, sanity
+Tags: regression, sanity, Debug
 * Create the following patient using api
      |prefix|firstName|lastName|gender|dateOfBirth|district|
      |EMR|Hanah|Jones|F|20/01/2011|Bilaspur|
@@ -66,7 +66,7 @@ Tags: regression, sanity
 
 Program Managmnt Workflows - Stop
 ---------------------------------
-Tags: regression, sanity
+Tags: regression, sanity, Debug
 * Create the following patient using api
     |prefix|firstName|lastName|gender|dateOfBirth|district|
     |EMR|Hanah|Jones|F|20/01/2011|Bilaspur|
@@ -140,7 +140,7 @@ Tags: regression, sanity
 * Enroll patient to the program
     |name|dateOfRegistration|patientStatus|treatmentDate|programStatus|
     |TB Program|21/09/2016|Stage 1|23/09/2016|Initial Treatment Phase|
-* Open Visit for patient using api
+* Open visit for previous patient using api
 * On the login page
 * Login to the application
 * Navigate to dashboard
