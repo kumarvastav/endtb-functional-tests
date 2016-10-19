@@ -345,7 +345,7 @@ Refill Drug order
 Tags: regression, sanity
 
  * Create a new patient through API
- * Open Visit for patient using api
+ * Open visit for previous patient using api
  * On the login page
  * Login to the application
  * Navigate to dashboard
@@ -357,4 +357,47 @@ Tags: regression, sanity
      |drugName|dose|doseUnit|frequency|route|additionalInstructions|duration|durationUnit|
      |Paracetamol|2|Tablet(s)|Twice a day|Intravenous|After meals|2| Month(s)|
      |Isoniazid (H)|4|mg|Immediately|Oral|Take if Needed|2| Day(s)|
+
  * Save the consultation
+ * Refill previous drug order as following
+     |drugName|dose|doseUnit|frequency|route|additionalInstructions|duration|durationUnit|
+     |Paracetamol|4|Tablet(s)|Twice a day|Intravenous|After meals|2| Month(s)|
+     |Isoniazid (H)|8|mg|Immediately|Oral|Take if Needed|2| Day(s)|
+
+* Save the consultation
+* Verify display control "Recent" on medications tab, has the following details
+     |details|
+     |Paracetamol 4 Tablet(s), Twice a day, Intravenous - 2 Month(s)(480 Tablet(s))|
+     |Isoniazid (H) 8 mg, Immediately, Oral - 2 Day(s)(16 mg)|
+     |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)(240 Tablet(s))|
+     |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)(8 mg)|
+
+* Verify display control "current visit" on medications tab, has the following details
+    |details|
+    |Paracetamol 4 Tablet(s), Twice a day, Intravenous - 2 Month(s)(480 Tablet(s))|
+    |Isoniazid (H) 8 mg, Immediately, Oral - 2 Day(s)(16 mg)|
+    |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)(240 Tablet(s))|
+    |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)(8 mg)|
+
+ * Navigate to patient dashboard
+ * Verify display control "Treatments" on dashboard, has the following details
+     |details|
+     |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
+     |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)|
+     |Isoniazid (H) 8 mg, Immediately, Oral - 2 Day(s)|
+     |Paracetamol 4 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
+
+ * click  "Treatments" on dashboard, and verify displayed dialog has the following details
+    |details|
+    |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
+    |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)|
+    |Isoniazid (H) 8 mg, Immediately, Oral - 2 Day(s)|
+    |Paracetamol 4 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
+
+ * Navigate to latest visit page
+ * Verify display control "treatment" on visit page, has the following details
+    |details|
+    |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
+    |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)|
+    |Isoniazid (H) 8 mg, Immediately, Oral - 2 Day(s)|
+    |Paracetamol 4 Tablet(s), Twice a day, Intravenous - 2 Month(s)|

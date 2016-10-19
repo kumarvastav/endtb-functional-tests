@@ -101,7 +101,7 @@ public class RegistrationFirstPageSpec {
 		new BahmniPage().validateSystemException(driver);
 	}
 
-	@Step("Open Visit for patient using api")
+	@Step("Open visit for previous patient using api")
 	public void openVisitThroughApi(){
 		Visit visit=new Visit();
 		visit.setPatient(StoreHelper.getEntityInSpectStore(Patient.class));

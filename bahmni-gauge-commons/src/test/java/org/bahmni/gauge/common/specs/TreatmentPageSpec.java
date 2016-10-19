@@ -93,6 +93,15 @@ public class TreatmentPageSpec {
         BahmniRestClient.get().createDrugOrders(drugOrders);
         new BahmniPage().storeDrugOrderInSpecStore(drugOrders);
     }
+    @Step("Refill previous drug order as following <table>")
+    public void refillDrugOrder(Table table){
+        int i =0;
+        List<DrugOrder> drugOrders = transformTableToDrugOrder(table);
+        for (DrugOrder drugOrder: drugOrders){
+            treatmentPage.refillDrugOrder(drugOrder,i++);
+
+        }
+    }
 
     private List<DrugOrder> transformTableToDrugOrder(Table table) {
         List<DrugOrder> drugOrders = new ArrayList<>();

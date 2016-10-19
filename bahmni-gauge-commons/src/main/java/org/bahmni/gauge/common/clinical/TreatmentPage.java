@@ -97,6 +97,11 @@ public class TreatmentPage extends BahmniPage{
     @FindBy(how = How.CSS, using = "button[ng-click=\"revise(drugOrder, drugOrderGroup.drugOrders)\"]")
     public List<WebElement> editDrugOrderbuttons;
 
+
+
+    @FindBy(how = How.CSS, using = ".refill-btn")
+    public List<WebElement> refillDrugOrderbuttons;
+
     @FindBy(how = How.CSS, using = ".tab:nth-of-type(1) .table-mimic #ordered-drug-orders")
     public List<WebElement> stopRecentDrugOrder;
 
@@ -138,7 +143,13 @@ public class TreatmentPage extends BahmniPage{
         addOrderSet.click();
     }
 
+    public void refillDrugOrder(DrugOrder order,int index){
+        this.refillDrugOrderbuttons.get(index).click();
+        waitForElementOnPage(By.cssSelector("button[ng-click=\"edit(newTreatment, $index)\"]"));
+        driver.findElements(By.cssSelector("button[ng-click=\"edit(newTreatment, $index)\"]")).get(index).click();
+        createDrugOrder(order);
 
+    }
     public void stopDrugOrder(String drugName) {
 
         for (WebElement drug:stopRecentDrugOrder) {
