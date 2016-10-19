@@ -1,16 +1,16 @@
-<#setting date_format="yyyy-MM-dd">
+<#setting datetime_format="yyyy-MM-dd'T'HH:mm:ssZ">
 <#setting locale="en_US">
 
 {
 
    "patient":"${patient.uuid}",
    "program":"7841b9d6-1e5a-4f71-ba83-6c074d015657",
-   "dateEnrolled":"${program.dateOfRegistration?datetime("dd/MM/yyyy")?date}",
+   "dateEnrolled":"${program.dateOfRegistration?datetime("dd/MM/yyyy")?datetime}",
    "attributes":[{
                 "attributeType": {
                 "uuid": "ecd4abf2-bdbd-11e5-87d4-005056822ee5"
                 },
-                "value": "${program.treatmentDate?datetime("dd/MM/yyyy")?date}"
+                "value": "${program.treatmentDate?datetime("dd/MM/yyyy")?datetime}"
                 }, {
                 "attributeType": {
                 "uuid": "51b8be10-cb1a-11e5-87d4-005056822ee5"

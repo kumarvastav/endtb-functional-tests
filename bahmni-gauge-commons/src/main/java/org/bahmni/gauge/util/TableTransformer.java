@@ -14,26 +14,6 @@ public class TableTransformer<T> {
     }
 
     public T transformTableToEntity(Table table){
-//        List<TableRow> rows = table.getTableRows();
-//        List<String> columnNames = table.getColumnNames();
-//
-//        if(rows.size() == 0)
-//            throw new IllegalArgumentException("The table either contains 0 rows or multiple rows!!");
-//
-//        Map<String, String> rowMap = new HashMap<>();
-//
-//        for(String column : columnNames){
-//            rowMap.put(column, rows.get(0).getCell(column));
-//        }
-//
-//        try {
-//            T obj = tClass.newInstance();
-//            BeanUtils.populate(obj,rowMap);
-//
-//            return obj;
-//        } catch (Exception e) {
-//            throw new IllegalArgumentException("Unable to instantiate the object of the provided class");
-//        }
         return this.transformTableToEntityList(table).get(0);
     }
 

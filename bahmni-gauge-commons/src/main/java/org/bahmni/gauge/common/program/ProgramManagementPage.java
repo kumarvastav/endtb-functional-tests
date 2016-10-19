@@ -144,7 +144,10 @@ public class ProgramManagementPage extends BahmniPage {
             Date actualDate= null;
             try {
                 actualDate = (new SimpleDateFormat("dd MMM yy")).parse(actualStartDate.getText());
-                Date expectedDate=(new SimpleDateFormat("dd/MM/yyyy")).parse(treatment.getDateOfRegistration());
+                actualDate.setTime(0);
+                Date expectedDate=(new SimpleDateFormat("dd/MM/yyyy HH:mm:ssZ")).parse(treatment.getDateOfRegistration()+(new SimpleDateFormat(" HH:mm:ssZ").format(new Date())));
+                expectedDate.setTime(0);
+                Assert.assertEquals("Date dont match",actualDate,expectedDate);
                 if(actualDate.equals(expectedDate))
                     return true;
                 else
@@ -164,7 +167,10 @@ public class ProgramManagementPage extends BahmniPage {
             Date actualDate= null;
             try {
                 actualDate = (new SimpleDateFormat("dd MMM yy")).parse(actualTreatmentDate.getText());
-                Date expectedDate=(new SimpleDateFormat("dd/MM/yyyy")).parse(treatment.getTreatmentDate());
+                actualDate.setTime(0);
+                Date expectedDate=(new SimpleDateFormat("dd/MM/yyyy")).parse(treatment.getTreatmentDate()+(new SimpleDateFormat(" HH:mm:ssZ").format(new Date())));
+                expectedDate.setTime(0);
+                Assert.assertEquals("Date dont match",actualDate,expectedDate);
                 if(actualDate.equals(expectedDate))
                     return true;
                 else
@@ -203,17 +209,6 @@ public class ProgramManagementPage extends BahmniPage {
     @Deprecated
     public Program transformTableToProgram(Table table) {
         return new TableTransformer<Program>(Program.class).transformTableToEntity(table);
-//        List<TableRow> rows = table.getTableRows();
-//        List<String> columnNames = table.getColumnNames();
-//
-//        if (rows.size() != 1) {
-//            throw new TestSpecException("Only one patient should be provided in the table");
-//        }
-//
-//        String programName = rows.get(0).getCell(columnNames.get(0));
-//        String dateOfRegistration = rows.get(0).getCell(columnNames.get(1));
-//        Program program=new Program(programName, dateOfRegistration);
-//        return (Program) transform(rows.get(0), program, columnNames);
 
     }
 
