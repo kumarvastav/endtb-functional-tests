@@ -50,6 +50,9 @@ public class RegistrationFirstPage extends BahmniPage {
 	@FindBy(how = How.CSS, using = "div[option-click=\"visitControl.startVisit\"] li.primaryOption  button")
 	public WebElement enterVisitDetails;
 
+	@FindBy(how = How.CSS, using = "button[ng-click=\"setSubmitSource('enterVisitDetails')\"]")
+	public WebElement enterVisitDetailButton;
+
 	@FindBy(how = How.CSS, using = "#address1")
 	public WebElement addressLine;
 
@@ -146,7 +149,8 @@ public class RegistrationFirstPage extends BahmniPage {
 	}
 
 	protected void doActions(Patient patient) {
-		village.sendKeys(patient.getVillage());
+		if(patient.getVillage()!=null)
+			village.sendKeys(patient.getVillage());
 	}
 
 	public void navigateToSearchPage() {
@@ -202,7 +206,6 @@ public class RegistrationFirstPage extends BahmniPage {
 	public void enterVisitDetailsPage() {
 		enterVisitDetails.click();
 	}
-
     public void createPatientUsingApi(Table table) throws Exception {
 //		List<TableRow> rows = table.getTableRows();
 //		List<String> columnNames = table.getColumnNames();

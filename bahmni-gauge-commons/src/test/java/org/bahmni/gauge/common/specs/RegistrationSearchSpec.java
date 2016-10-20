@@ -9,7 +9,7 @@ import org.bahmni.gauge.common.registration.RegistrationSearch;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.openqa.selenium.WebDriver;
 
-public class RegistrationSearchSpec {
+public class RegistrationSearchSpec extends BahmniPage{
 
 	@BeforeClassSteps
 	public void waitForAppReady(){
@@ -65,5 +65,16 @@ public class RegistrationSearchSpec {
 	public void validateSearchResults() {
         RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
 			registrationSearch.verifySearchResults();
+	}
+
+	@Step("Verify search result contains <searchText> in column <column>")
+	public void validateSearchResults(String searchText, String column) {
+		RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
+		registrationSearch.verifySearchResults(searchText,column);
+	}
+	@Step("Verify previous patient is listed in search result")
+	public void validatePreviousPatientSearchResults() {
+		RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
+		registrationSearch.verifySearchResults(getPatientFromSpecStore());
 	}
 }

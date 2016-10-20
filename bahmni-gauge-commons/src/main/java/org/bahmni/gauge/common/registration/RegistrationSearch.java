@@ -1,6 +1,11 @@
 package org.bahmni.gauge.common.registration;
 
+import com.thoughtworks.gauge.Table;
+import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.data.BahmniTable;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -95,8 +100,22 @@ public class RegistrationSearch extends BahmniPage{
 		waitForElementOnPage(gridSearchResults);
 		gridSearchResults.findElements(By.tagName("a")).get(0).click();
 	}
-	
-	public void verifySearchResults() {
+	public void verifySearchResults(){
 		//TODO: add verifying search results
+	}
+	public void verifySearchResults(Patient patient){
+		BahmniTable dataOnUI=extractTableDataFrom(By.className("table"));
+		for(TableRow row : dataOnUI.getTableRows()){
+			if(row.getCell("ID").equals(patient.getIdentifier()))
+			{
+				Assert.assertEquals("Name dont match",patient.getFirstName()+" " + patient.getLastName(),row.getCell("Name"));
+				Assert.assertEquals("Gender dont match",patient.getGender().equals("Male")?"M":patient.getGender().equals("Female")?"F":"O",row.getCell("Gender"));
+				Assert.assertEquals("Age dont match",patient.getAge(),row.getCell("Age"));
+			}
+		}
+	}
+	public void verifySearchResults(String text, String column) {
+		BahmniTable dataOnUI=extractTableDataFrom(By.className("table"));
+		Assert.assertTrue("Column values dont match",dataOnUI.doesColumnOfEachRowContainsValue(text,column));
 	}
 }

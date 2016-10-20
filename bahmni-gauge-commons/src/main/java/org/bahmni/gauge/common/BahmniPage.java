@@ -1,5 +1,6 @@
 package org.bahmni.gauge.common;
 
+import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
@@ -12,6 +13,7 @@ import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.data.BahmniTable;
 import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.util.TableTransformer;
 import org.junit.Assert;
@@ -20,6 +22,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -267,5 +270,31 @@ public class BahmniPage {
     }
     public WebElement findButtonByText(String text) {
         return findElement(By.xpath("//button[contains(text(),'" + text + "')]"));
+    }
+
+    public BahmniTable extractTableDataFrom(By locator){
+        List<WebElement> columnHeaders=findElement(locator).findElements(By.cssSelector("th"));
+        ArrayList<String> columns=new ArrayList<>();
+
+        for (WebElement ele:columnHeaders
+             ) {
+            columns.add(ele.getText());
+        }
+        BahmniTable table=new BahmniTable(columns);
+        List<WebElement> rows=findElement(locator).findElements(By.cssSelector("tr"));
+
+        for (WebElement row:rows
+             ) {
+                ArrayList<String> cells=new ArrayList<>();
+
+                for (WebElement cell:row.findElements(By.cssSelector("td"))
+                        ) {
+                    cells.add(cell.getText());
+                }
+            if(cells.size()>0)
+                table.addRow(cells);
+
+        }
+        return table;
     }
 }

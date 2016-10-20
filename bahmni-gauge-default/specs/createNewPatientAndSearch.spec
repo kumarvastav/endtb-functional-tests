@@ -85,3 +85,41 @@ Tags: regression, sanity
 * Click on clinical app
 * Select existing patient from patient listing page under tab "Active"
 * Verify "2" Active visits for patient
+* Navigate to dashboard
+* Logout the user
+
+Create a new patient, fetch and update the patient details
+------------------------------
+* On the login page
+* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_ANOTHER_LOCATION"
+* Click on registration app
+* Click on create new patient link
+* Create the following patient
+
+    |prefix|firstName|lastName|gender|dateOfBirth|age|district|village|
+    |GAN|Dev|Karia|Male|20/01/2011|50|Bilaspur|Kahnapur|
+
+* Click on search patient link
+* Search previously created patient with name
+* Verify previous patient is listed in search result
+* Navigate to dashboard
+* Logout the user
+
+Closing visit for an admitted patient displays error message
+------------------------------
+* On the login page
+* Login to the application
+* Create the following patient using api
+     |prefix|firstName|lastName|gender|dateOfBirth|district|
+     |EMR|Hanah|Jones|F|20/01/2011|Bilaspur|
+* Click on inpatient app
+* Select existing patient from patient listing page under tab "All"
+* Select "Admit Patient" from Patient Movement and click "Admit" button
+* Navigate to dashboard
+* Click on registration app
+* Search previously created patient with exact identifier
+* Enter Visit Details for Admitted Patient
+* Try close visit
+* Verify Error popup with message "Admitted patient's visit cannot be closed. Discharge the patient and try again" is displayed
+* Navigate to dashboard
+* Logout the user

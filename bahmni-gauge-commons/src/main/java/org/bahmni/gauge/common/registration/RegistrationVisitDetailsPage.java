@@ -44,7 +44,9 @@ public class RegistrationVisitDetailsPage extends BahmniPage{
 		waitForAlertPopup(driver);
 		acceptAlert(driver);
 	}
-
+	public void tryCloseVisit(){
+		closeVisit.click();
+	}
 	public void openLastVisit() {
 		openLastVisit.click();
 	}

@@ -8,6 +8,7 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.registration.RegistrationVisitDetailsPage;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static org.bahmni.gauge.common.specs.BaseSpec.setDateTime;
@@ -30,6 +31,12 @@ public class RegistrationVisitPageSpec {
         registrationVisitPage.closeVisit(driver);
     }
 
+    @Step("Try close visit")
+    public void tryCloseVisit() {
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        registrationVisitPage.tryCloseVisit();
+    }
+
     @Step("Navigate to latest visit page")
     public void navigateToVisit() {
         RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
@@ -44,6 +51,12 @@ public class RegistrationVisitPageSpec {
             drugOrder = setDateTime(drugOrder);
             Assert.assertTrue("String "+drugOrder+" does not exist. Actual String :"+displayControlText,displayControlText.contains(drugOrder));
         }
+    }
+    @Step("Verify Error popup with message <message> is displayed")
+    public void verifyErrorOnPageWithMessage(String message){
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        registrationVisitPage.waitForElementOnPage(By.cssSelector(".error-message-container"));
+        Assert.assertEquals("Error popup message dont match",message,registrationVisitPage.findElement(By.cssSelector("#view-content .msg")).getText());
     }
 
 }
