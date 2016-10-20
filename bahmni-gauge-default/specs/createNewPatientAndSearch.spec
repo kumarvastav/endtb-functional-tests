@@ -97,7 +97,7 @@ Create a new patient, fetch and update the patient details
 * Create the following patient
 
     |prefix|firstName|lastName|gender|dateOfBirth|age|district|village|
-    |GAN|Dev|Karia|Male|20/01/2011|50|Bilaspur|Kahnapur|
+    |GAN|DevKumar|Karia|Male|20/01/2011|50|Bilaspur|Kahnapur|
 
 * Click on search patient link
 * Search previously created patient with name
