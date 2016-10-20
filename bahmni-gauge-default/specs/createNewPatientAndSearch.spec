@@ -90,6 +90,9 @@ Tags: regression, sanity
 
 Create a new patient, fetch and update the patient details
 ------------------------------
+
+Tags: regression, sanity
+
 * On the login page
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_ANOTHER_LOCATION"
 * Click on registration app
@@ -107,6 +110,8 @@ Create a new patient, fetch and update the patient details
 
 Closing visit for an admitted patient displays error message
 ------------------------------
+Tags: regression, sanity
+
 * On the login page
 * Login to the application
 * Create the following patient using api
