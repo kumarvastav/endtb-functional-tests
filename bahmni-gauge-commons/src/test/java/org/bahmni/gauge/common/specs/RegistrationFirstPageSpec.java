@@ -13,6 +13,7 @@ import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.common.registration.domain.Visit;
 import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 public class RegistrationFirstPageSpec {
@@ -112,5 +113,14 @@ public class RegistrationFirstPageSpec {
 		visit.setLocation("c1f25be5-3f10-11e4-adec-0800271c1b75");
 		visit.setType("c22a5000-3f10-11e4-adec-0800271c1b75");
 		BahmniRestClient.get().create(visit);
+	}
+
+	@Step("Verify <buttonText> button is <displayOption>")
+	public void verifyButtonDisplayed(String buttonText, String displayOption){
+		if (displayOption.toLowerCase().equals("displayed"))
+			Assert.assertTrue(buttonText+" button is not displayed",registrationFirstPage.findButtonByText(buttonText).isDisplayed());
+		else
+			Assert.assertTrue(buttonText+" button is displayed",registrationFirstPage.findButtonByText(buttonText).isDisplayed());
+
 	}
 }

@@ -44,6 +44,7 @@ public class RegistrationSearchSpec extends BahmniPage{
 	public void searchPreviousCreatedPatientWithIdentifier() {
         RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
 		Patient recentlyCreatedPatient = registrationSearch.getPatientFromSpecStore();
+		waitForAppReady();
 		registrationSearch.searchByExactIdentifier(recentlyCreatedPatient.getPrefix(), recentlyCreatedPatient.getIdNumber());
 
 	}

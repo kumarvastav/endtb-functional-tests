@@ -73,4 +73,22 @@ public class InpatientSpec extends BaseSpec{
         InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
         Assert.assertFalse("inpatient icon exists", dashboardPage.isAdmitted());
     }
+
+    @Step("Verify only <option> option is displayed in Patient Movement")
+    public void verifyOptions(String option){
+        DispositionPage disposition = PageFactory.get(DispositionPage.class);
+        disposition.verifyOptionCount(1);
+        disposition.verifyOptions(option);
+    }
+
+    @Step("Click on <buttonText> button")
+    public void clickButton(String buttonText){
+        DispositionPage disposition = PageFactory.get(DispositionPage.class);
+        if(disposition.findButtonByText(buttonText).isDisplayed())
+            disposition.findButtonByText(buttonText).click();
+        waitForAppReady();
+    }
+
+
+
 }

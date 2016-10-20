@@ -204,7 +204,9 @@ public class RegistrationFirstPage extends BahmniPage {
 	}
 
 	public void enterVisitDetailsPage() {
-		enterVisitDetails.click();
+//		enterVisitDetails.click();
+		driver.findElement(By.cssSelector(".right.confirm")).click();
+
 	}
     public void createPatientUsingApi(Table table) throws Exception {
 //		List<TableRow> rows = table.getTableRows();
