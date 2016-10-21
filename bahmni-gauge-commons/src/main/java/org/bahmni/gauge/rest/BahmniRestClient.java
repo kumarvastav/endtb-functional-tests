@@ -35,7 +35,7 @@ public class BahmniRestClient {
 
 	private static BahmniRestClient bahmniRestClient;
 
-	private static final String ORDERSET_CREATE_URL = "/openmrs/ws/rest/v1/bahmniorderset";
+	private static final String ORDERSET_URL = "/openmrs/ws/rest/v1/bahmniorderset/";
 
 	private static final String PATIENT_PROFILE_URL = "/openmrs/ws/rest/v1/bahmnicore/patientprofile";
 
@@ -163,7 +163,16 @@ public class BahmniRestClient {
 			throw new BahmniAPIException(e);
 		}
 	}
-
+	public void retireOrderSet(String uuid) {
+		try {
+			Unirest.delete(url + ORDERSET_URL + uuid)
+					.basicAuth(username, password)
+					.header("content-type", "application/json")
+					.asString();
+		} catch (Exception e) {
+			throw new BahmniAPIException(e);
+		}
+	}
 	public void enrollToProgram(PatientProgram patientProgram) {
 		try {
 			Template freemarkerTemplate = freemarkerConfiguration.getTemplate("program_enrollment.ftl");
@@ -407,7 +416,7 @@ public class BahmniRestClient {
 			freemarkerTemplate.process(orderSetData, stringWriter);
 			String requestJson = stringWriter.toString();
 
-			HttpResponse<JsonNode> response = Unirest.post(url + ORDERSET_CREATE_URL)
+			HttpResponse<JsonNode> response = Unirest.post(url + ORDERSET_URL)
 					.basicAuth(username, password)
 					.header("content-type", "application/json")
 					.body(requestJson)
@@ -417,8 +426,7 @@ public class BahmniRestClient {
 					response.getBody().getObject() != null &&
 					(response.getBody().getObject()).get("uuid") != null) {
 				JSONObject orderSetRes = response.getBody().getObject();
-//				orderSet.setUuid((String) patientRes.get("uuid"));
-//				orderSet.setIdentifier(getIdentifier(patientRes));
+				orderSet.setUuid(orderSetRes.get("uuid").toString());
 			} else {
 				System.err.println("Response from the server for patient creation:");
 				System.err.println(response.getBody().toString());
