@@ -110,6 +110,15 @@ public class RegistrationFirstPageSpec {
 		registrationFirstPage.verifyPatientDetails(registrationFirstPage.getPatientFromSpecStore());
 	}
 
+	@Step("Open <typeUuid> visit at <locationUuid> for previous patient using api")
+	public void openVisitThroughApi(String visitTypeUuid, String locationUuid){
+		Visit visit=new Visit();
+		visit.setPatient(StoreHelper.getEntityInSpectStore(Patient.class));
+		visit.setLocation(locationUuid);
+		visit.setType(visitTypeUuid);
+		BahmniRestClient.get().create(visit);
+	}
+
 	@Step("Verify <buttonText> button is <displayOption>")
 	public void verifyButtonDisplayed(String buttonText, String displayOption){
 		if (displayOption.toLowerCase().equals("displayed"))

@@ -6,9 +6,17 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class InpatientHeader extends BahmniPage{
-    @FindBy(how = How.XPATH, using = "//a[@id='ipdDashboard' or @title='Back to IPD dashboard' or @id='adtHomeBackLink']")
+    @FindBy(how = How.XPATH, using = "//a[@id='ipdDashboard' or @title='Back to IPD dashboard']")
     WebElement ipdDashboardLink;
+
+    @FindBy(id = "adtHomeBackLink")
+    WebElement ipdSearchPageLink;
+
     public void gotoIpdDashboard() {
         ipdDashboardLink.click();
+    }
+
+    public void gotoIpdSearchPage() {
+        ipdSearchPageLink.click();
     }
 }

@@ -11,32 +11,25 @@ import java.util.List;
 
 public class BedAssignmentPage extends BahmniPage{
 
-    private final String noEmptyBed = "No Empty bed.";
-
     @FindBy(how = How.TAG_NAME, using = "ward")
     List<WebElement> wards;
 
-    @FindBy(how = How.CSS, using = ".bed-info .assign")
-    WebElement assignButton;
-
-    public void assignAnEmptyBed() throws Exception {
+    public Boolean assignAnEmptyBed() {
         waitForSpinner();
         for (WebElement ward : wards) {
             ward.click();
             waitForSpinner();
             List<WebElement> beds = ward.findElements(By.cssSelector(".bed-assignment .available"));
             if(!CollectionUtils.isEmpty(beds)){
-                assignBed(beds.get(0));
-                return ;
+                return assignBed(ward,beds.get(0));
             }
         }
-        throw new Exception(noEmptyBed);
+        return Boolean.FALSE;
     }
 
-    private void assignBed(WebElement bed) {
+    private Boolean assignBed(WebElement ward, WebElement bed) {
         bed.click();
-        if(assignButton.isDisplayed()){
-            assignButton.click();
-        }
+        findChild(ward,By.cssSelector(".bed-info .assign")).click();
+        return Boolean.TRUE;
     }
 }

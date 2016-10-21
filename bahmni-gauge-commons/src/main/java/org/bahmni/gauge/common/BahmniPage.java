@@ -259,7 +259,8 @@ public class BahmniPage {
         try{
             return driver.findElement(by);
         } catch (NoSuchElementException e) {
-            System.out.println(e.getMessage());
+            System.err.println("No Element found for :"+by);
+            System.err.println(e.getMessage());
             return null;
         }
     }
@@ -270,7 +271,8 @@ public class BahmniPage {
         try{
             return parent.findElement(child);
         } catch (NoSuchElementException e) {
-            System.out.println(e.getMessage());
+            System.err.println("No Element found for :"+child);
+            System.err.println(e.getMessage());
             return null;
         }
     }

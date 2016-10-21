@@ -39,7 +39,7 @@ Discharge an admitted patient and verifications
 * Select existing patient from patient listing page under tab "All"
 * Select "Admit Patient" from Patient Movement and click "Admit" button
 * Click on "Continue with current Visit" button
-* Navigate to Inpatient Dashboard
+* Navigate to inpatient search page
 * Select existing patient from patient listing page under tab "Admitted"
 * Select "Discharge Patient" from Patient Movement and click "Discharge" button
 * Select existing patient from patient listing page under tab "All"

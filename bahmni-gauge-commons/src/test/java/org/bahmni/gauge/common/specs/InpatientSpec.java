@@ -16,6 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class InpatientSpec extends BaseSpec{
+    private final String BED_ASSIGN_FAILURE = "Bed assignment failed.";
     private final WebDriver driver;
 
     public InpatientSpec() {
@@ -39,17 +40,21 @@ public class InpatientSpec extends BaseSpec{
     @Step("Assign an empty bed")
     public void assignBed(){
         BedAssignmentPage bedAssignmentPage = PageFactory.get(BedAssignmentPage.class);
-        try {
-            bedAssignmentPage.assignAnEmptyBed();
-        } catch (Exception e){
-            Assert.assertNull(e.getMessage(),e);
-        }
+        Boolean assignmentStatus = bedAssignmentPage.assignAnEmptyBed();
+        Assert.assertTrue(BED_ASSIGN_FAILURE,assignmentStatus);
     }
 
     @Step("Navigate to Inpatient Dashboard")
     public void gotoInpatientDashboard(){
         InpatientHeader inpatientHeader = PageFactory.get(InpatientHeader.class);
         inpatientHeader.gotoIpdDashboard();
+        waitForAppReady();
+    }
+
+    @Step("Navigate to inpatient search page")
+    public void gotoInpatientSearchPage(){
+        InpatientHeader inpatientHeader = PageFactory.get(InpatientHeader.class);
+        inpatientHeader.gotoIpdSearchPage();
         waitForAppReady();
     }
 
