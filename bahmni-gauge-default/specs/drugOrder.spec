@@ -191,7 +191,7 @@ Tags: regression, sanity
 Order Set - Edit
 ----------------
 Tags: regression, sanity
-* Create orderset "Orderset ######.##", description "Test Orderset", operator "ALL" with following members using api
+* Create orderset "Orderset ######", description "Test Orderset", operator "ALL" with following members using api
         |orderType|conceptName|drugName|dose|doseUnit|frequency|instruction|duration|durationUnit|route|additionalInstructions|
         |Drug Order|Paracetamol|Paracetamol 60ml|3|Tablet(s)|Twice a day|After meals|1|Day(s)|Oral|Dont skip this medicine|
         |Drug Order|Aspirin|Aspirin 75mg|2|Tablet(s)|Twice a day|After meals|3|Day(s)|Oral|Dont skip this medicine|
