@@ -68,7 +68,7 @@ public class RegistrationVisitDetailsPage extends BahmniPage{
 
 	@Step("Open visit for previous patient using api <table>")
 	public void openVisitThroughApi(Table table){
-		Visit visit=new TableTransformer<>(Visit.class).transformTableToEntity(table);
+		Visit visit=TableTransformer.asEntity(table,Visit.class);
 		visit.setPatient(StoreHelper.getEntityInSpectStore(Patient.class));
 		switch (visit.getLocation().toLowerCase())
 		{
