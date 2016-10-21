@@ -19,6 +19,7 @@ import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.clinical.domain.Specimen;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.common.registration.domain.Visit;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -53,6 +54,8 @@ public class BahmniRestClient {
 	private static final String GET_CONCEPT_UUID_URL = "/openmrs/ws/rest/v1/concept?q=%s&v=custom:(uuid,display)";
 
 	private static final String GET_CONCEPT_ANSWER_URL = "/openmrs/ws/rest/v1/concept?q=%s&v=custom:(uuid,name:(uuid,name),answers:(uuid,display))";
+
+	private static final String ADMIT_INPATIENT_CREATE_URL = "/openmrs/ws/rest/v1/bahmnicore/bahmniencounter";
 
 	private Configuration freemarkerConfiguration;
 
@@ -425,4 +428,29 @@ public class BahmniRestClient {
 			throw new BahmniAPIException(e);
 		}
     }
+
+
+	public void admitPatient(Visit visit, String templateName) {
+		try {
+			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(templateName);
+			Map<String, Object> visitData = new HashMap<>();
+			visitData.put("visitFTL", visit);
+
+			StringWriter stringWriter = new StringWriter();
+			freemarkerTemplate.process(visitData, stringWriter);
+			String requestJson = stringWriter.toString();
+
+			HttpResponse<JsonNode> response = Unirest.post(url + ADMIT_INPATIENT_CREATE_URL)
+					.basicAuth(username, password)
+					.header("content-type", "application/json")
+					.body(requestJson)
+					.asJson();
+			if (response.getStatus() != 200 && response.getStatus() != 201)
+				throw new BahmniAPIException("Admit patient creation through API Failed!!");
+		} catch (Exception e) {
+			throw new BahmniAPIException(e);
+		}
+		}
+
+
 }

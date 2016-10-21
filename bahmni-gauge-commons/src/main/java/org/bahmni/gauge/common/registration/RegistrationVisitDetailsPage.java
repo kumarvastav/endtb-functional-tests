@@ -1,6 +1,13 @@
 package org.bahmni.gauge.common.registration;
 
+import com.thoughtworks.gauge.Step;
+import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.common.registration.domain.Visit;
+import org.bahmni.gauge.data.StoreHelper;
+import org.bahmni.gauge.rest.BahmniRestClient;
+import org.bahmni.gauge.util.TableTransformer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -57,5 +64,32 @@ public class RegistrationVisitDetailsPage extends BahmniPage{
 			waitForSpinner();
 			return displayControl.getText().replace("\n", "");
 
+	}
+
+	@Step("Open visit for previous patient using api <table>")
+	public void openVisitThroughApi(Table table){
+		Visit visit=new TableTransformer<>(Visit.class).transformTableToEntity(table);
+		visit.setPatient(StoreHelper.getEntityInSpectStore(Patient.class));
+		switch (visit.getLocation().toLowerCase())
+		{
+			case "opd-1":
+				visit.setLocation("c58e12ed-3f12-11e4-adec-0800271c1b75");
+				break;
+			default:
+				visit.setLocation("c58e12ed-3f12-11e4-adec-0800271c1b75");
+				break;
+		}
+
+		switch (visit.getType().toLowerCase())
+		{
+			case "opd":
+				visit.setType("c22a5000-3f10-11e4-adec-0800271c1b75");
+				break;
+			default:
+				visit.setType("c22a5000-3f10-11e4-adec-0800271c1b75");
+				break;
+		}
+		BahmniRestClient.get().create(visit);
+		storeVisitInSpecStore(visit);
 	}
 }

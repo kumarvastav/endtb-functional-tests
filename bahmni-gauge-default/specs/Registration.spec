@@ -5,7 +5,7 @@ Created by nityadas on 20/10/2016
 This is an executable specification file which follows markdown syntax.
 Every heading in this file denotes a scenario. Every bulleted point denotes a step.
      
-Close Visit for admitted patient
+Discharge an admitted patient and verifications
 ----------------
 * Create a new patient through API
 * On the login page
@@ -22,6 +22,9 @@ Close Visit for admitted patient
 * Select existing patient from patient listing page under tab "Admitted"
 * Select "Discharge Patient" from Patient Movement and click "Discharge" button
 * Select existing patient from patient listing page under tab "All"
-
+* Ensure inpatient icon does not exist on Patient Profile display control 
+* Verify only "Undo Discharge" option is displayed in Patient Movement 
+* Navigate to dashboard
+* Logout the user
 
 

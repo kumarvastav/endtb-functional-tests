@@ -13,6 +13,7 @@ import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.common.registration.domain.Visit;
 import org.bahmni.gauge.data.BahmniTable;
 import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.util.TableTransformer;
@@ -202,6 +203,14 @@ public class BahmniPage {
         return StoreHelper.getEntityInSpectStore(PatientProgram.class);
     }
 
+    public void storeVisitInSpecStore(Visit visit) {
+
+        StoreHelper.storeEntityInSpectStore(Visit.class,visit);
+    }
+
+    public Visit getVisitFromSpecStore() {
+        return StoreHelper.getEntityInSpectStore(Visit.class);
+    }
     public void closeApp(WebDriver driver) {
         driver.quit();
     }

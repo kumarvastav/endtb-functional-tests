@@ -10,6 +10,7 @@ import org.bahmni.gauge.common.clinical.DispositionPage;
 import org.bahmni.gauge.common.inpatient.BedAssignmentPage;
 import org.bahmni.gauge.common.inpatient.InpatientDashboard;
 import org.bahmni.gauge.common.inpatient.InpatientHeader;
+import org.bahmni.gauge.rest.BahmniRestClient;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -89,6 +90,10 @@ public class InpatientSpec extends BaseSpec{
         waitForAppReady();
     }
 
-
+    @Step("Admit the patient through api")
+    public void admitPatient(){
+        DispositionPage disposition = PageFactory.get(DispositionPage.class);
+        BahmniRestClient.get().admitPatient(disposition.getVisitFromSpecStore(),"admit_patient.ftl");
+    }
 
 }

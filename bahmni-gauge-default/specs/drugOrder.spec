@@ -238,6 +238,8 @@ Drug order - Edit
 Tags: regression, sanity
 * Create a new patient through API
 * Open visit for previous patient using api
+    |location|type|
+    |OPD-1|OPD|
 * On the login page
 * Login to the application
 * Navigate to dashboard
@@ -346,6 +348,8 @@ Tags: regression, sanity
 
  * Create a new patient through API
  * Open visit for previous patient using api
+     |location|type|
+     |OPD-1|OPD|
  * On the login page
  * Login to the application
  * Navigate to dashboard

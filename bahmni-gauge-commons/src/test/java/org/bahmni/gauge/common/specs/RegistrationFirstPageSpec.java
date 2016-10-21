@@ -105,14 +105,7 @@ public class RegistrationFirstPageSpec {
 		new BahmniPage().validateSystemException(driver);
 	}
 
-	@Step("Open visit for previous patient using api")
-	public void openVisitThroughApi(){
-		Visit visit=new Visit();
-		visit.setPatient(StoreHelper.getEntityInSpectStore(Patient.class));
-		visit.setLocation("c1f25be5-3f10-11e4-adec-0800271c1b75");
-		visit.setType("c22a5000-3f10-11e4-adec-0800271c1b75");
-		BahmniRestClient.get().create(visit);
-	}
+
 
 	@Step("Verify <buttonText> button is <displayOption>")
 	public void verifyButtonDisplayed(String buttonText, String displayOption){
