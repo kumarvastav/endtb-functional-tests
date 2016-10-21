@@ -105,7 +105,10 @@ public class RegistrationFirstPageSpec {
 		new BahmniPage().validateSystemException(driver);
 	}
 
-
+	@Step("Verify patient details")
+	public void verifyPatientDetails(){
+		registrationFirstPage.verifyPatientDetails(registrationFirstPage.getPatientFromSpecStore());
+	}
 
 	@Step("Verify <buttonText> button is <displayOption>")
 	public void verifyButtonDisplayed(String buttonText, String displayOption){

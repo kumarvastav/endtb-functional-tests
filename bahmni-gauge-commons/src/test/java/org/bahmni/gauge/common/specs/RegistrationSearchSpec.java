@@ -7,6 +7,7 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.registration.RegistrationSearch;
 import org.bahmni.gauge.common.registration.domain.Patient;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class RegistrationSearchSpec extends BahmniPage{
@@ -77,5 +78,10 @@ public class RegistrationSearchSpec extends BahmniPage{
 	public void validatePreviousPatientSearchResults() {
 		RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
 		registrationSearch.verifySearchResults(getPatientFromSpecStore());
+	}
+	@Step("Click on previous patient link from search results")
+	public void clickOnPreviousPatientLink(){
+		RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
+		registrationSearch.findElement(By.xpath(".//a[contains(text(),\""+getPatientFromSpecStore().getIdentifier()+"\")]")).click();
 	}
 }

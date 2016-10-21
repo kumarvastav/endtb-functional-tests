@@ -7,7 +7,9 @@ import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.TableTransformer;
+import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -271,5 +273,29 @@ public class RegistrationFirstPage extends BahmniPage {
 		webElements.get(1).sendKeys("10");
 		webElements.get(2).sendKeys("100");
 		driver.findElement(By.cssSelector(".confirm")).click();
+	}
+
+	public void verifyPatientDetails(Patient patient) {
+		try{
+		if(enterID_checkbox.isDisplayed() & patient.getIdNumber()!= null) {
+			Assert.assertEquals("Identifier dont match",patient.getIdentifier(),txtRegistrationNumber.getAttribute("value"));
+			//+new Random().nextInt()
+		}} catch (NoSuchElementException ex){
+
+		}
+
+		Assert.assertEquals("First Name dont match",patient.getFirstName(),txtPatientName.getAttribute("value"));
+		Assert.assertEquals("Last Name dont match",patient.getLastName(),familyName.getAttribute("value"));
+
+		Assert.assertEquals("Gender dont match",patient.getGender(),new Select(gender).getFirstSelectedOption().getText());
+		Assert.assertEquals("Age dont match",patient.getAge(),ageYears.getAttribute("value"));
+
+		verifyActions(patient);
+	}
+
+	private void verifyActions(Patient patient) {
+		if(patient.getVillage()!=null)
+			Assert.assertEquals("Village dont match",patient.getVillage(),village.getAttribute("value"));
+
 	}
 }
