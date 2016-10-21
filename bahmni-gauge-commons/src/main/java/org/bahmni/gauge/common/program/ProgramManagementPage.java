@@ -208,8 +208,7 @@ public class ProgramManagementPage extends BahmniPage {
     }
     @Deprecated
     public Program transformTableToProgram(Table table) {
-        return new TableTransformer<Program>(Program.class).transformTableToEntity(table);
-
+        return TableTransformer.asEntity(table,Program.class);
     }
 
 

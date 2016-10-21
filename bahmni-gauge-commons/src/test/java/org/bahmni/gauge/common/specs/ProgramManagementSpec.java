@@ -15,7 +15,6 @@ import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.TableTransformer;
 import org.junit.Assert;
-import org.junit.experimental.theories.Theories;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -80,8 +79,7 @@ public class ProgramManagementSpec extends BahmniPage {
 
 	@Step("Enroll patient to the program <table>")
 	public void enrollPatientToTheProgram(Table table) throws Exception {
-		Program program = new TableTransformer<Program>(Program.class).transformTableToEntity(table); //
-		//transformTableToProgram(table);
+		Program program = TableTransformer.asEntity(table,Program.class);
 		Patient patient = PageFactory.getRegistrationFirstPage().getPatientFromSpecStore();
 
 		PatientProgram patientProgram = new PatientProgram();

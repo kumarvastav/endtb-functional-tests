@@ -6,21 +6,16 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import java.util.*;
 
-public class TableTransformer<T> {
-    private Class<T> tClass;
+public class TableTransformer {
 
-    public TableTransformer(Class<T> tClass){
-        this.tClass = tClass;
+    public static <Model> Model asEntity(Table table, Class<Model> type){
+        return asEntityList(table, type).get(0);
     }
 
-    public T transformTableToEntity(Table table){
-        return this.transformTableToEntityList(table).get(0);
-    }
-
-    public List<T> transformTableToEntityList(Table table){
+    public static <Model> List<Model> asEntityList(Table table, Class<Model> type) {
         List<TableRow> rows = table.getTableRows();
         List<String> columnNames = table.getColumnNames();
-        List<T> entities=new ArrayList<T>();
+        List<Model> entities=new ArrayList<>();
         if(rows.size() == 0)
             throw new IllegalArgumentException("The table either contains 0 rows or multiple rows!!");
         for(TableRow row:rows) {
@@ -31,7 +26,7 @@ public class TableTransformer<T> {
             }
 
             try {
-                T obj = tClass.newInstance();
+                Model obj = type.newInstance();
                 BeanUtils.populate(obj, rowMap);
 
                 entities.add(obj);
@@ -55,7 +50,7 @@ public class TableTransformer<T> {
         return fieldValue;
     }
 
-    public void updateEntityProperty(T entity,String column,String value){
+    public static void updateEntityProperty(Object entity,String column,String value){
 
         try {
             BeanUtils.setProperty(entity,column,fieldTransform(value));

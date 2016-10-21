@@ -1,7 +1,6 @@
 package org.bahmni.gauge.common.registration;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.TestSpecException;
@@ -216,7 +215,7 @@ public class RegistrationFirstPage extends BahmniPage {
 //			throw new TestSpecException("Only one patient should be provided in the table");
 //		}
 
-		Patient patient = new TableTransformer<Patient>(Patient.class).transformTableToEntity(table);
+		Patient patient = TableTransformer.asEntity(table,Patient.class);
 		//transformTableRowToPatient(rows.get(0), columnNames);
         BahmniRestClient.get().createPatient(patient,"patient_create.ftl");
 		patient.setIdNumber(patient.getIdentifier().substring(3));

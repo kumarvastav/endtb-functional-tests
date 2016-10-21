@@ -1,12 +1,10 @@
 package org.bahmni.gauge.common.specs;
 
-import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
-import org.bahmni.gauge.common.admin.OrderSetDashboardPage;
 import org.bahmni.gauge.common.admin.OrderSetPage;
 import org.bahmni.gauge.common.admin.domain.OrderSet;
 import org.bahmni.gauge.common.admin.domain.OrderSetMember;
@@ -14,11 +12,7 @@ import org.bahmni.gauge.util.TableTransformer;
 import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
-import java.util.Random;
 
-/**
- * Created by atmaramn on 05/10/2016.
- */
 public class OrderSetPageSpec extends BahmniPage {
     OrderSetPage orderSetPage;
     private final WebDriver driver;
@@ -73,10 +67,7 @@ public class OrderSetPageSpec extends BahmniPage {
 
         table.addRow(row);
 
-        TableTransformer<OrderSet> osTT=new TableTransformer<>(OrderSet.class);
-        OrderSet orderSet=osTT.transformTableToEntity(table);
-        return orderSet;
-
+        return TableTransformer.asEntity(table,OrderSet.class);
     }
     @Step("Create orderset <namePrefix>, description <description>, operator <operator> with following members using api <table>")
     public void createOrderSetUsingApi(String namePrefix, String description, String operator, Table orderSetMembers){
@@ -97,11 +88,10 @@ public class OrderSetPageSpec extends BahmniPage {
     public void editOrderSet(String namePrefix, String description, String operator, Table orderSetMembers){
         orderSetPage= PageFactory.get(OrderSetPage.class);
         OrderSet orderSet=getOrderSetInSpecStore();
-        TableTransformer<OrderSet> tableTransformer=new TableTransformer<>(OrderSet.class);
 
-        tableTransformer.updateEntityProperty(orderSet,"name",namePrefix);
-        tableTransformer.updateEntityProperty(orderSet,"description",description);
-        tableTransformer.updateEntityProperty(orderSet,"operator",operator);
+        TableTransformer.updateEntityProperty(orderSet,"name",namePrefix);
+        TableTransformer.updateEntityProperty(orderSet,"description",description);
+        TableTransformer.updateEntityProperty(orderSet,"operator",operator);
 
         orderSet.getOrderSetMembers().clear();
 

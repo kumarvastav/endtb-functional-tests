@@ -18,7 +18,7 @@ public class EndTBBacteriologySpec {
     public void createBacteriologySmearResult(Table table){
         LoginPage page = PageFactory.get(LoginPage.class);
 
-        EndTBSpecimen specimen = new TableTransformer<>(EndTBSpecimen.class).transformTableToEntity(table);
+        EndTBSpecimen specimen = TableTransformer.asEntity(table,EndTBSpecimen.class);
         specimen.setTypeOfVisitUuid(getConceptAnswerUuidForConceptName("Bacteriology, Type of Visit", specimen.getTypeOfVisit()));
         specimen.setLaboratoryNameUuid(getConceptAnswerUuidForConceptName("Bacteriology, Laboratory Name", specimen.getLaboratoryName()));
         specimen.setSmearResultUuid(getConceptAnswerUuidForConceptName("Bacteriology, Smear result", specimen.getSmearResult()));
