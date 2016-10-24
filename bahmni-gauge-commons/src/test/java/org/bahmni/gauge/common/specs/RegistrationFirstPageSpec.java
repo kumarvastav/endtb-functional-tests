@@ -109,7 +109,10 @@ public class RegistrationFirstPageSpec {
 	public void verifyPatientDetails(){
 		registrationFirstPage.verifyPatientDetails(registrationFirstPage.getPatientFromSpecStore());
 	}
-
+	@Step("Edit previous patient details as follow <table>")
+	public void editPatientDetails(Table table) throws Exception {
+		registrationFirstPage.createPatients(table);
+	}
 	@Step("Open <typeUuid> visit at <locationUuid> for previous patient using api")
 	public void openVisitThroughApi(String visitTypeUuid, String locationUuid){
 		Visit visit=new Visit();

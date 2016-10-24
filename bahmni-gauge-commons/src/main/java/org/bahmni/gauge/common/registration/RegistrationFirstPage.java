@@ -100,16 +100,26 @@ public class RegistrationFirstPage extends BahmniPage {
 
 	public void registerPatient(Patient patient) throws InterruptedException {
 		waitForSpinner();
-		if(enterID_checkbox.isDisplayed() & patient.getIdNumber()!= null) {
-			enterID_checkbox.click();
-			txtRegistrationNumber.sendKeys(patient.getIdNumber());
-			//+new Random().nextInt()
-		}
+		try{
+			if(enterID_checkbox.isDisplayed() & patient.getIdNumber()!= null) {
+				enterID_checkbox.click();
+				txtRegistrationNumber.sendKeys(patient.getIdNumber());
+				//+new Random().nextInt()
+			}
+		} catch (NoSuchElementException ex){
 
+		}
+		txtPatientName.clear();
 		txtPatientName.sendKeys(patient.getFirstName());
+
+		familyName.clear();
 		familyName.sendKeys(patient.getLastName());
+
 		new Select(gender).selectByVisibleText(patient.getGender());
+
+		ageYears.clear();
 		ageYears.sendKeys(patient.getAge());
+
 		doActions(patient);
 		clickSave();
 
@@ -150,8 +160,11 @@ public class RegistrationFirstPage extends BahmniPage {
 	}
 
 	protected void doActions(Patient patient) {
-		if(patient.getVillage()!=null)
+		if(patient.getVillage()!=null) {
+
+			village.clear();
 			village.sendKeys(patient.getVillage());
+		}
 	}
 
 	public void navigateToSearchPage() {

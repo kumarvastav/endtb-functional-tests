@@ -4,7 +4,7 @@ Created by nityadas on 20/10/2016
 
 This is an executable specification file which follows markdown syntax.
 Every heading in this file denotes a scenario. Every bulleted point denotes a step.
-Create a new patient, fetch and update the patient details
+Create a new patient, fetch & validate patient details
 ------------------------------
 
 Tags: regression, sanity
@@ -18,6 +18,32 @@ Tags: regression, sanity
     |prefix|firstName|lastName|gender|dateOfBirth|age|district|village|
     |GAN|DevKumar|Karia|Male|20/01/2011|50|Bilaspur|Kahnapur|
 
+* Click on search patient link
+* Search previously created patient with name
+* Verify previous patient is listed in search result
+* Click on previous patient link from search results
+* Verify patient details
+* Navigate to dashboard
+* Logout the user
+
+Update patient, Search by name, fetch & validate patient details
+------------------------------
+
+Tags: regression, sanity
+
+* Create the following patient using api
+    |prefix|firstName|lastName|gender|dateOfBirth|district|village|
+    |GAN|Hanah|Jones|F|20/01/2011|Bilaspur|Khanapur|
+
+* On the login page
+* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_ANOTHER_LOCATION"
+* Click on registration app
+* Search previously created patient with exact identifier
+* Edit previous patient details as follow
+    |prefix|firstName|lastName|gender|dateOfBirth|age|district|village|
+    |GAN|DevKumar|Karia|Male|20/01/2011|50|Dispur|kamalganj|
+* Navigate to dashboard
+* Click on registration app
 * Click on search patient link
 * Search previously created patient with name
 * Verify previous patient is listed in search result
