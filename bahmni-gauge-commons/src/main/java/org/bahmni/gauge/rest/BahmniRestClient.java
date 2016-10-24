@@ -49,7 +49,7 @@ public class BahmniRestClient {
 
 	private static final String GET_DRUG_LIST_URL = "/openmrs/ws/rest/v1/drug";
 
-	private static final String GET_DRUG_UNDER_CONCEPT_URL="/openmrs/ws/rest/v1/drug?conceptUuid=%s&q=%s&s=ordered&v=custom:(uuid,name,dosageForm:(uuid,display))";
+	private static final String GET_DRUG_UNDER_CONCEPT_URL = "/openmrs/ws/rest/v1/drug?conceptUuid=%s&q=%s&s=ordered&v=custom:(uuid,name,dosageForm:(uuid,display))";
 
 	private static final String GET_CONCEPT_UUID_URL = "/openmrs/ws/rest/v1/concept?q=%s&v=custom:(uuid,display)";
 
@@ -73,16 +73,16 @@ public class BahmniRestClient {
 	private void setupUnirest() {
 		try {
 			SSLContext sslcontext = SSLContexts.custom()
-					.loadTrustMaterial(null, new TrustStrategy() {
-						public boolean isTrusted(X509Certificate[] certificate, String authType) {
-							return true;
-						}
-					})
-					.build();
+				.loadTrustMaterial(null, new TrustStrategy() {
+					public boolean isTrusted(X509Certificate[] certificate, String authType) {
+						return true;
+					}
+				})
+				.build();
 			SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext);
 			CloseableHttpClient httpclient = HttpClients.custom()
-					.setSSLSocketFactory(sslsf)
-					.build();
+				.setSSLSocketFactory(sslsf)
+				.build();
 			Unirest.setHttpClient(httpclient);
 
 		} catch (Exception e) {
@@ -112,7 +112,7 @@ public class BahmniRestClient {
 		}
 	}
 
-	public void createPatient(Patient patient,String templateName) {
+	public void createPatient(Patient patient, String templateName) {
 		try {
 			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(templateName);
 			Map<String, Object> patientData = new HashMap<>();
@@ -123,10 +123,10 @@ public class BahmniRestClient {
 			String requestJson = stringWriter.toString();
 
 			HttpResponse<JsonNode> response = Unirest.post(url + PATIENT_PROFILE_URL)
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.body(requestJson)
-					.asJson();
+				.basicAuth(username, password)
+				.header("content-type", "application/json")
+				.body(requestJson)
+				.asJson();
 
 			Object patientUuid = JSONs.get(response.getBody(), "patient", "uuid");
 			if (null == patientUuid) {
@@ -134,42 +134,46 @@ public class BahmniRestClient {
 				System.err.println(response.getBody().toString());
 				throw new BahmniAPIException("Patient creation failed!!");
 			}
-			JSONArray identifiers = (JSONArray) JSONs.get(response.getBody(), "patient","identifiers");
+			JSONArray identifiers = (JSONArray) JSONs.get(response.getBody(), "patient", "identifiers");
 			patient.setUuid(patientUuid.toString());
 			patient.setIdentifier(getPreferred(identifiers));
 		} catch (Exception e) {
 			throw new BahmniAPIException(e);
 		}
 	}
+
 	private String getPreferred(JSONArray identifiers) {
 		for (Object identifier : identifiers) {
-            JSONObject jsonObject = (JSONObject) identifier;
-            if(jsonObject.get("preferred").equals(true)){
-                return (String) jsonObject.get("identifier");
-            }
-        }
+			JSONObject jsonObject = (JSONObject) identifier;
+			if (jsonObject.get("preferred").equals(true)) {
+				return (String) jsonObject.get("identifier");
+			}
+		}
 		return null;
 	}
+
 	public void retirePatient(String uuid) {
 		try {
 			Unirest.delete(url + PATIENT_URL + uuid)
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.asString();
+				.basicAuth(username, password)
+				.header("content-type", "application/json")
+				.asString();
 		} catch (Exception e) {
 			throw new BahmniAPIException(e);
 		}
 	}
+
 	public void retireOrderSet(String uuid) {
 		try {
 			Unirest.delete(url + ORDERSET_URL + uuid)
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.asString();
+				.basicAuth(username, password)
+				.header("content-type", "application/json")
+				.asString();
 		} catch (Exception e) {
 			throw new BahmniAPIException(e);
 		}
 	}
+
 	public void enrollToProgram(PatientProgram patientProgram) {
 		try {
 			Template freemarkerTemplate = freemarkerConfiguration.getTemplate("program_enrollment.ftl");
@@ -182,10 +186,10 @@ public class BahmniRestClient {
 			String requestJson = stringWriter.toString();
 
 			HttpResponse<JsonNode> response = Unirest.post(url + PROGRAM_ENROLLMENT_URL)
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.body(requestJson)
-					.asJson();
+				.basicAuth(username, password)
+				.header("content-type", "application/json")
+				.body(requestJson)
+				.asJson();
 
 			Object programUuid = JSONs.get(response.getBody(), "program", "uuid");
 			if (null == programUuid) {
@@ -208,10 +212,10 @@ public class BahmniRestClient {
 			String requestJson = stringWriter.toString();
 
 			HttpResponse<JsonNode> response = Unirest.post(url + EMRAPI_URL)
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.body(requestJson)
-					.asJson();
+				.basicAuth(username, password)
+				.header("content-type", "application/json")
+				.body(requestJson)
+				.asJson();
 
 			if (response.getStatus() != 200) {
 				throw new BahmniAPIException("Invalid response for [" + formTemplate + "]");
@@ -235,10 +239,10 @@ public class BahmniRestClient {
 			String requestJson = stringWriter.toString();
 
 			HttpResponse<JsonNode> response = Unirest.post(url + EMRAPI_URL)
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.body(requestJson)
-					.asJson();
+				.basicAuth(username, password)
+				.header("content-type", "application/json")
+				.body(requestJson)
+				.asJson();
 
 			if (response.getStatus() != 200)
 				throw new BahmniAPIException("Drug Order Creation Failed!!");
@@ -250,9 +254,9 @@ public class BahmniRestClient {
 	public String getUuidOfDrug(String drugName) {
 		try {
 			HttpResponse<JsonNode> request = Unirest.get(url + GET_DRUG_LIST_URL)
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.asJson();
+				.basicAuth(username, password)
+				.header("content-type", "application/json")
+				.asJson();
 
 			int size = request.getBody().getArray().getJSONObject(0).getJSONArray("results").length();
 
@@ -271,9 +275,9 @@ public class BahmniRestClient {
 	public String getUuidOfOrderType(String orderType) {
 		try {
 			HttpResponse<JsonNode> request = Unirest.get(url + GET_ORDERTYPE_LIST_URL)
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.asJson();
+				.basicAuth(username, password)
+				.header("content-type", "application/json")
+				.asJson();
 
 			int size = request.getBody().getArray().getJSONObject(0).getJSONArray("results").length();
 
@@ -289,12 +293,12 @@ public class BahmniRestClient {
 		return null;
 	}
 
-	public String getUuidOfDrugWithConcept(String drugName,String conceptUuid){
+	public String getUuidOfDrugWithConcept(String drugName, String conceptUuid) {
 		try {
-			HttpResponse<JsonNode> request = Unirest.get(url + String.format(GET_DRUG_UNDER_CONCEPT_URL,URLEncoder.encode(conceptUuid,"UTF-8"),URLEncoder.encode(drugName,"UTF-8")))
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.asJson();
+			HttpResponse<JsonNode> request = Unirest.get(url + String.format(GET_DRUG_UNDER_CONCEPT_URL, URLEncoder.encode(conceptUuid, "UTF-8"), URLEncoder.encode(drugName, "UTF-8")))
+				.basicAuth(username, password)
+				.header("content-type", "application/json")
+				.asJson();
 
 			int size = request.getBody().getArray().getJSONObject(0).getJSONArray("results").length();
 
@@ -309,12 +313,13 @@ public class BahmniRestClient {
 		}
 		return null;
 	}
-	public String getUuidOfConceptName(String conceptName){
+
+	public String getUuidOfConceptName(String conceptName) {
 		try {
-			HttpResponse<JsonNode> request = Unirest.get(url + String.format(GET_CONCEPT_UUID_URL,URLEncoder.encode(conceptName,"UTF-8")))
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.asJson();
+			HttpResponse<JsonNode> request = Unirest.get(url + String.format(GET_CONCEPT_UUID_URL, URLEncoder.encode(conceptName, "UTF-8")))
+				.basicAuth(username, password)
+				.header("content-type", "application/json")
+				.asJson();
 
 			int size = request.getBody().getArray().getJSONObject(0).getJSONArray("results").length();
 
@@ -330,18 +335,18 @@ public class BahmniRestClient {
 		return null;
 	}
 
-	public Map<String,String> getConceptAnswersForConceptName(String conceptName){
-		Map<String,String> conceptAnswerDetailsMap = new HashMap<>();
+	public Map<String, String> getConceptAnswersForConceptName(String conceptName) {
+		Map<String, String> conceptAnswerDetailsMap = new HashMap<>();
 
 		try {
-			String conceptUrl = url + String.format(GET_CONCEPT_ANSWER_URL,URLEncoder.encode(conceptName,"UTF-8"));
+			String conceptUrl = url + String.format(GET_CONCEPT_ANSWER_URL, URLEncoder.encode(conceptName, "UTF-8"));
 
 			HttpResponse<JsonNode> response = Unirest.get(conceptUrl)
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.asJson();
+				.basicAuth(username, password)
+				.header("content-type", "application/json")
+				.asJson();
 
-			JSONArray answers = (JSONArray)JSONs.get(response.getBody(), "results", 0, "answers");
+			JSONArray answers = (JSONArray) JSONs.get(response.getBody(), "results", 0, "answers");
 			if (null != answers) {
 				for (Object answer_ : answers) {
 					JSONObject answer = (JSONObject) answer_;
@@ -354,9 +359,9 @@ public class BahmniRestClient {
 		return conceptAnswerDetailsMap;
 	}
 
-	public  <T extends Entity> T create (T entity){
+	public <T extends Entity> T create(T entity) {
 		try {
-			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(entity.getMRSName()+"_create.ftl");
+			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(entity.getMRSName() + "_create.ftl");
 			Map<String, Object> objectData = new HashMap<>();
 
 			objectData.put("object", entity);
@@ -366,11 +371,11 @@ public class BahmniRestClient {
 
 			String requestJson = stringWriter.toString();
 
-			HttpResponse<JsonNode> response = Unirest.post(url + "/openmrs/ws/rest/v1/"+entity.getMRSName())
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.body(requestJson)
-					.asJson();
+			HttpResponse<JsonNode> response = Unirest.post(url + "/openmrs/ws/rest/v1/" + entity.getMRSName())
+				.basicAuth(username, password)
+				.header("content-type", "application/json")
+				.body(requestJson)
+				.asJson();
 
 			if (response.getStatus() != 200 && response.getStatus() != 201)
 				throw new BahmniAPIException(entity.getClass() + " Creation Failed!!");
@@ -379,21 +384,22 @@ public class BahmniRestClient {
 		}
 		return entity;
 	}
-	public void createBacteriologySpecimen(String formTemplate,Specimen specimen, Patient patient, PatientProgram patientProgram){
-		Map<String,Object> attributes = new HashMap<>();
+
+	public void createBacteriologySpecimen(String formTemplate, Specimen specimen, Patient patient, PatientProgram patientProgram) {
+		Map<String, Object> attributes = new HashMap<>();
 		attributes.put("patient", patient);
 		attributes.put("patientProgram", patientProgram);
 		attributes.put("specimen", specimen);
 
-		createForm(formTemplate,attributes);
+		createForm(formTemplate, attributes);
 	}
 
 
-    public void createOrderSet(OrderSet orderSet, String templateName) {
+	public void createOrderSet(OrderSet orderSet, String templateName) {
 		try {
-			for(OrderSetMember member:orderSet.getOrderSetMembers()){
-				String conceptUuid=getUuidOfConceptName(member.getConceptName());
-				member.setDrugUuid(getUuidOfDrugWithConcept(member.getDrugName(),conceptUuid));
+			for (OrderSetMember member : orderSet.getOrderSetMembers()) {
+				String conceptUuid = getUuidOfConceptName(member.getConceptName());
+				member.setDrugUuid(getUuidOfDrugWithConcept(member.getDrugName(), conceptUuid));
 				member.setConceptUuid(conceptUuid);
 				member.setOrderTypeUuid(getUuidOfOrderType(member.getOrderType()));
 
@@ -407,10 +413,10 @@ public class BahmniRestClient {
 			String requestJson = stringWriter.toString();
 
 			HttpResponse<JsonNode> response = Unirest.post(url + ORDERSET_URL)
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.body(requestJson)
-					.asJson();
+				.basicAuth(username, password)
+				.header("content-type", "application/json")
+				.body(requestJson)
+				.asJson();
 
 			Object uuid = JSONs.get(response.getBody(), "uuid");
 			if (null == uuid) {
@@ -422,7 +428,7 @@ public class BahmniRestClient {
 		} catch (Exception e) {
 			throw new BahmniAPIException(e);
 		}
-    }
+	}
 
 
 	public void admitPatient(Visit visit, String templateName) {
@@ -436,16 +442,16 @@ public class BahmniRestClient {
 			String requestJson = stringWriter.toString();
 
 			HttpResponse<JsonNode> response = Unirest.post(url + ADMIT_INPATIENT_CREATE_URL)
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.body(requestJson)
-					.asJson();
+				.basicAuth(username, password)
+				.header("content-type", "application/json")
+				.body(requestJson)
+				.asJson();
 			if (response.getStatus() != 200 && response.getStatus() != 201)
 				throw new BahmniAPIException("Admit patient creation through API Failed!!");
 		} catch (Exception e) {
 			throw new BahmniAPIException(e);
 		}
-		}
+	}
 
 
 }
