@@ -10,7 +10,7 @@ public class JSONs {
         if (null == root) {
             return null;
         }
-        return get(root.getArray(),0, pathArgs);
+        return getFromObject(root.getArray().get(0), pathArgs);
     }
     public static Object get(JSONArray node, Object... pathArgs) {
         return getFromObject(node,pathArgs);
@@ -19,7 +19,7 @@ public class JSONs {
         return getFromObject(node,pathArgs);
     }
 
-    private static Object getFromObject(Object object, Object... pathArgs) {
+    private static Object getFromObject(Object object, Object[] pathArgs) {
         for (Object pathArg : pathArgs) {
             if(null == object){
                 return null;
@@ -29,7 +29,7 @@ public class JSONs {
         return object;
     }
     private static Object getFromObject(Object object, Object field) {
-        if (null == object) {
+        if (null == object || null == field) {
             return null;
         }
         if (object instanceof JSONArray && field instanceof Integer) {
@@ -38,7 +38,7 @@ public class JSONs {
         if (object instanceof JSONObject && field instanceof String) {
             return getSafelyFromJsonObject((JSONObject) object, (String) field);
         }
-        throw new ClassCastException("Pair :{" + object + "," + field + "} cannot be cast to {JSONArray,Integer} or {JSONObject,String}");
+        throw new ClassCastException("Pair :{" + object.getClass() + "," + field.getClass() + "} cannot be cast to {JSONArray,Integer} or {JSONObject,String}");
     }
     private static Object getSafelyFromJsonArray(JSONArray array, Integer index) {
         try {

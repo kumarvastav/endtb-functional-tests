@@ -1,11 +1,18 @@
 package org.bahmni.gauge.common.specs;
 
+import com.thoughtworks.gauge.AfterSpec;
+import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.admin.domain.OrderSet;
+import org.bahmni.gauge.common.registration.RegistrationFirstPage;
+import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.rest.BahmniRestClient;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class BaseSpec {
+public class BaseSpec {
     static String stringDoesNotExist(String content) {
         return "String `" + content + "` does not exist";
     }
@@ -26,5 +33,19 @@ class BaseSpec {
         }
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
         return content.replaceAll(pattern, formatter.format(new Date()));
+    }
+
+    @AfterSpec
+    public void teardown(){
+        Patient patient = new RegistrationFirstPage().getPatientFromSpecStore();
+        if (patient != null) {
+            String uuid = patient.getUuid();
+            BahmniRestClient.get().retirePatient(uuid);
+        }
+        OrderSet orderSet=new BahmniPage().getOrderSetInSpecStore();
+        if(orderSet!=null)
+        {
+            BahmniRestClient.get().retireOrderSet(orderSet.getUuid());
+        }
     }
 }
