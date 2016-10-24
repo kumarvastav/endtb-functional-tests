@@ -142,7 +142,7 @@ Tags: regression, sanity
     |TB Program|21/09/2016|Stage 1|23/09/2016|Initial Treatment Phase|
 * Open visit for previous patient using api
     |location|type|
-    |OPD-1|OPD|
+    |Registration Desk|OPD|
 * On the login page
 * Login to the application
 * Navigate to dashboard

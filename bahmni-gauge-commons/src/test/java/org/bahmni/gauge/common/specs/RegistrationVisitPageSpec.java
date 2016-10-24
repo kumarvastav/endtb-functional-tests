@@ -74,6 +74,9 @@ public class RegistrationVisitPageSpec {
             case "opd-1":
                 visit.setLocation("c58e12ed-3f12-11e4-adec-0800271c1b75");
                 break;
+            case "registration desk":
+                visit.setLocation("c1f25be5-3f10-11e4-adec-0800271c1b75");
+                break;
             default:
                 visit.setLocation("c58e12ed-3f12-11e4-adec-0800271c1b75");
                 break;
