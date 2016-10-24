@@ -1,6 +1,5 @@
 package org.bahmni.gauge.common;
 
-import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
@@ -50,11 +49,11 @@ public class BahmniPage {
     }
 
     public void storePatientInSpecStore(Patient value) {
-        StoreHelper.storeEntityInSpectStore(Patient.class,value);
+        StoreHelper.store(Patient.class,value);
     }
 
     public Patient getPatientFromSpecStore() {
-        return StoreHelper.getEntityInSpectStore(Patient.class);
+        return StoreHelper.getLatest(Patient.class);
     }
 
     public List<DrugOrder> getDrugOrderFromSpecStore() {
@@ -63,13 +62,13 @@ public class BahmniPage {
     }
 
     public void storeProgramInSpecStore(Program program) {
-        StoreHelper.storeEntityInSpectStore(Program.class,program);
+        StoreHelper.store(Program.class,program);
     }
 
     public void storeBaselineFormInSpecStore(ObservationForm baselineForm) {
 //        DataStore specStore = DataStoreFactory.getSpecDataStore();
 //        specStore.put(BASELINE_KEY, baselineForm);
-        StoreHelper.storeEntityInSpectStore(ObservationForm.class,baselineForm);
+        StoreHelper.store(ObservationForm.class,baselineForm);
     }
 
     public void storeDrugOrderInSpecStore(List<DrugOrder> drugOrder) {
@@ -93,7 +92,7 @@ public class BahmniPage {
 
 
     public Program getProgramFromSpecStore() {
-        return StoreHelper.getEntityInSpectStore(Program.class);
+        return StoreHelper.getLatest(Program.class);
     }
 
     public void acceptAlert(WebDriver driver) {
@@ -175,41 +174,41 @@ public class BahmniPage {
     }
 
     public void storeObservationFormInSpecStore(ObservationForm observation) {
-        StoreHelper.storeEntityInSpectStore(ObservationForm.class,observation);
+        StoreHelper.store(ObservationForm.class,observation);
     }
 
     public ObservationForm getObservationFormInSpecStore() {
-        return StoreHelper.getEntityInSpectStore(ObservationForm.class);
+        return StoreHelper.getLatest(ObservationForm.class);
     }
 
     public void storeOrderSetInSpecStore(OrderSet orderSet) {
 
-        StoreHelper.storeEntityInSpectStore(OrderSet.class,orderSet);
+        StoreHelper.store(OrderSet.class,orderSet);
     }
 
     public OrderSet getOrderSetInSpecStore() {
-        return StoreHelper.getEntityInSpectStore(OrderSet.class);
+        return StoreHelper.getLatest(OrderSet.class);
     }
 
     public void storePatientProgramInSpecStore(PatientProgram patientProgram) {
 //        DataStore specStore = DataStoreFactory.getSpecDataStore();
 //        specStore.put(PATIENT_PROGRAM_KEY, patientProgram);
-        StoreHelper.storeEntityInSpectStore(PatientProgram.class,patientProgram);
+        StoreHelper.store(PatientProgram.class,patientProgram);
     }
 
     public PatientProgram getPatientProgramFromSpecStore() {
 //        DataStore specStore = DataStoreFactory.getSpecDataStore();
 //        return (PatientProgram) specStore.get(PATIENT_PROGRAM_KEY);
-        return StoreHelper.getEntityInSpectStore(PatientProgram.class);
+        return StoreHelper.getLatest(PatientProgram.class);
     }
 
     public void storeVisitInSpecStore(Visit visit) {
 
-        StoreHelper.storeEntityInSpectStore(Visit.class,visit);
+        StoreHelper.store(Visit.class,visit);
     }
 
     public Visit getVisitFromSpecStore() {
-        return StoreHelper.getEntityInSpectStore(Visit.class);
+        return StoreHelper.getLatest(Visit.class);
     }
     public void closeApp(WebDriver driver) {
         driver.quit();

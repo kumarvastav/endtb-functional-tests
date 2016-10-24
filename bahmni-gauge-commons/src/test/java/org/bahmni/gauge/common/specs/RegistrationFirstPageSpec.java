@@ -116,7 +116,7 @@ public class RegistrationFirstPageSpec {
 	@Step("Open <typeUuid> visit at <locationUuid> for previous patient using api")
 	public void openVisitThroughApi(String visitTypeUuid, String locationUuid){
 		Visit visit=new Visit();
-		visit.setPatient(StoreHelper.getEntityInSpectStore(Patient.class));
+		visit.setPatient(StoreHelper.getLatest(Patient.class));
 		visit.setLocation(locationUuid);
 		visit.setType(visitTypeUuid);
 		BahmniRestClient.get().create(visit);

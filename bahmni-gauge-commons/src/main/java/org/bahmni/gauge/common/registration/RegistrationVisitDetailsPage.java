@@ -1,13 +1,6 @@
 package org.bahmni.gauge.common.registration;
 
-import com.thoughtworks.gauge.Step;
-import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
-import org.bahmni.gauge.common.registration.domain.Patient;
-import org.bahmni.gauge.common.registration.domain.Visit;
-import org.bahmni.gauge.data.StoreHelper;
-import org.bahmni.gauge.rest.BahmniRestClient;
-import org.bahmni.gauge.util.TableTransformer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

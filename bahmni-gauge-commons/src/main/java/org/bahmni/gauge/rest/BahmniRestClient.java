@@ -3,9 +3,11 @@ package org.bahmni.gauge.rest;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.TrustStrategy;
@@ -24,6 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.net.ssl.SSLContext;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URLEncoder;
 import java.security.cert.X509Certificate;
@@ -56,6 +59,8 @@ public class BahmniRestClient {
 	private static final String GET_CONCEPT_ANSWER_URL = "/openmrs/ws/rest/v1/concept?q=%s&v=custom:(uuid,name:(uuid,name),answers:(uuid,display))";
 
 	private static final String ADMIT_INPATIENT_CREATE_URL = "/openmrs/ws/rest/v1/bahmnicore/bahmniencounter";
+
+	private static final String DISCHARGE_PATIENT_URL = "/openmrs/ws/rest/v1/bahmnicore/discharge";
 
 	private Configuration freemarkerConfiguration;
 
@@ -453,5 +458,53 @@ public class BahmniRestClient {
 		}
 	}
 
+	public static void dischargePatient(Patient patient) {
+		BahmniRestClient bahmniRestClient = get();
+		String requestBody = bahmniRestClient.serialize(patient, "discharge_patient.ftl");
+		post(DISCHARGE_PATIENT_URL, requestBody);
+	}
+
+	public String serialize(Object object, String templateName) {
+		Map<String, Object> requestObject = new HashMap<>();
+		requestObject.put("self", object);
+		StringWriter stringWriter = new StringWriter();
+		try {
+			Template template = freemarkerConfiguration.getTemplate(templateName);
+			template.process(requestObject, stringWriter);
+		} catch (TemplateException | IOException e) {
+			e.printStackTrace();
+		}
+		return stringWriter.toString();
+	}
+
+	private static String baseUrl() {
+		return System.getenv("BAHMNI_GAUGE_APP_URL");
+	}
+
+	private static String username() {
+		return System.getenv("BAHMNI_GAUGE_APP_USER");
+	}
+
+	private static String password() {
+		return System.getenv("BAHMNI_GAUGE_APP_PASSWORD");
+	}
+
+	public static JsonNode post(String restAPIUrl, String body) {
+		HttpResponse<JsonNode> response = null;
+		try {
+			String url = baseUrl() + restAPIUrl;
+			response = Unirest.post(url)
+				.basicAuth(username(), password())
+				.header("content-type", "application/json")
+				.body(body)
+				.asJson();
+			if (response.getStatus() != 200 && response.getStatus() != 201) {
+				throw new BahmniAPIException("Post request failed!! Url: " + url + " Content:" + body.substring(0, 100));
+			}
+		} catch (UnirestException e) {
+			throw new BahmniAPIException(e);
+		}
+		return response.getBody();
+	}
 
 }

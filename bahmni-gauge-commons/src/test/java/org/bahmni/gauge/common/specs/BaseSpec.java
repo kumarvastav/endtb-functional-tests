@@ -3,12 +3,13 @@ package org.bahmni.gauge.common.specs;
 import com.thoughtworks.gauge.AfterSpec;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.admin.domain.OrderSet;
-import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,15 +37,17 @@ public class BaseSpec {
     }
 
     @AfterSpec
-    public void teardown(){
-        Patient patient = new RegistrationFirstPage().getPatientFromSpecStore();
-        if (patient != null) {
-            String uuid = patient.getUuid();
-            BahmniRestClient.get().retirePatient(uuid);
+    public void teardown() {
+        List<Patient> patients = StoreHelper.getAll(Patient.class);
+        for (Patient patient : patients) {
+            if (patient != null) {
+                String uuid = patient.getUuid();
+                BahmniRestClient.dischargePatient(patient);
+                BahmniRestClient.get().retirePatient(uuid);
+            }
         }
-        OrderSet orderSet=new BahmniPage().getOrderSetInSpecStore();
-        if(orderSet!=null)
-        {
+        OrderSet orderSet = new BahmniPage().getOrderSetInSpecStore();
+        if (orderSet != null) {
             BahmniRestClient.get().retireOrderSet(orderSet.getUuid());
         }
     }

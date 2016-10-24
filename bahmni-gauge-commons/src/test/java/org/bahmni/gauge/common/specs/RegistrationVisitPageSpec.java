@@ -68,7 +68,7 @@ public class RegistrationVisitPageSpec {
     public void openVisitThroughApi(Table table){
         RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         Visit visit= TableTransformer.asEntity(table,Visit.class);
-        visit.setPatient(StoreHelper.getEntityInSpectStore(Patient.class));
+        visit.setPatient(StoreHelper.getLatest(Patient.class));
         switch (visit.getLocation().toLowerCase())
         {
             case "opd-1":
