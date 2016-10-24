@@ -11,6 +11,8 @@ import java.util.List;
 
 public class BedAssignmentPage extends BahmniPage{
 
+    private final By assignButton = By.cssSelector(".bed-info a[ng-click=\"assignBed(selectedBed)\"]:not(.ng-hide)");
+
     @FindBy(how = How.TAG_NAME, using = "ward")
     List<WebElement> wards;
 
@@ -29,7 +31,7 @@ public class BedAssignmentPage extends BahmniPage{
 
     private Boolean assignBed(WebElement ward, WebElement bed) {
         bed.click();
-        findChild(ward,By.cssSelector(".bed-info .assign")).click();
+        findChild(ward, assignButton).click();
         return Boolean.TRUE;
     }
 }
