@@ -263,8 +263,13 @@ public class BahmniPage {
             return null;
         }
     }
-    public static Boolean hasElement(WebDriver driver, By child){
-        return null != findElement(driver, child);
+    public static boolean hasElement(WebDriver driver, By child){
+        waitForSpinner(driver);
+        try{
+            return null != driver.findElement(child);
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
     public static WebElement findChild(WebElement parent, By child) {
         try{
@@ -275,8 +280,12 @@ public class BahmniPage {
             return null;
         }
     }
-    public static Boolean hasChild(WebElement parent, By child){
-        return null != findChild(parent, child);
+    public static boolean hasChild(WebElement parent, By child){
+        try{
+            return null != parent.findElement(child);
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
     public WebElement findButtonByText(String text) {
         return findElement(By.xpath("//button[contains(text(),'" + text + "')]"));
