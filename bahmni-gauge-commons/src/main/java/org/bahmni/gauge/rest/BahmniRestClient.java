@@ -128,23 +128,20 @@ public class BahmniRestClient {
 					.body(requestJson)
 					.asJson();
 
-			if (response.getBody() != null && response.getBody().getObject() != null &&
-					response.getBody().getObject().get("patient") != null &&
-					((JSONObject) response.getBody().getObject().get("patient")).get("uuid") != null) {
-				JSONObject patientRes = (JSONObject) (response.getBody().getObject().get("patient"));
-				patient.setUuid((String) patientRes.get("uuid"));
-				patient.setIdentifier(getIdentifier(patientRes));
-			} else {
+			Object patientUuid = JSONs.get(response.getBody(), "patient", "uuid");
+			if (null == patientUuid) {
 				System.err.println("Response from the server for patient creation:");
 				System.err.println(response.getBody().toString());
 				throw new BahmniAPIException("Patient creation failed!!");
 			}
+			JSONArray identifiers = (JSONArray) JSONs.get(response.getBody(), "patient","identifiers");
+			patient.setUuid(patientUuid.toString());
+			patient.setIdentifier(getPreferred(identifiers));
 		} catch (Exception e) {
 			throw new BahmniAPIException(e);
 		}
 	}
-	private String getIdentifier(JSONObject patientRes) {
-		JSONArray identifiers = (JSONArray)patientRes.get("identifiers");
+	private String getPreferred(JSONArray identifiers) {
 		for (Object identifier : identifiers) {
             JSONObject jsonObject = (JSONObject) identifier;
             if(jsonObject.get("preferred").equals(true)){
@@ -190,15 +187,13 @@ public class BahmniRestClient {
 					.body(requestJson)
 					.asJson();
 
-			if (response.getBody() != null && response.getBody().getObject() != null &&
-					response.getBody().getObject().get("program") != null &&
-					((JSONObject) response.getBody().getObject().get("program")).get("uuid") != null) {
-				patientProgram.setPatientProgramUuid((String) response.getBody().getObject().get("uuid"));
-			} else {
+			Object programUuid = JSONs.get(response.getBody(), "program", "uuid");
+			if (null == programUuid) {
 				System.err.println("Response from the server for program enrollment:");
 				System.err.println(response.getBody().toString());
 				throw new BahmniAPIException("Program enrollment failed!!");
 			}
+			patientProgram.setPatientProgramUuid((String) JSONs.get(response.getBody(), "uuid"));
 		} catch (Exception e) {
 			throw new BahmniAPIException(e);
 		}
@@ -346,17 +341,12 @@ public class BahmniRestClient {
 					.header("content-type", "application/json")
 					.asJson();
 
-			if (response.getBody() != null && response.getBody().getObject() != null &&
-					response.getBody().getObject().get("results") != null &&
-					((JSONArray) response.getBody().getObject().get("results")).get(0) != null) {
-
-				JSONObject result =(JSONObject) ((JSONArray) response.getBody().getObject().get("results")).get(0);
-				JSONArray answers = (JSONArray)result.get("answers");
-
-				for(int i=0; i< answers.length(); i++){
-					conceptAnswerDetailsMap.put(((JSONObject)answers.get(i)).get("display").toString(), ((JSONObject)answers.get(i)).get("uuid").toString());
+			JSONArray answers = (JSONArray)JSONs.get(response.getBody(), "results", 0, "answers");
+			if (null != answers) {
+				for (Object answer_ : answers) {
+					JSONObject answer = (JSONObject) answer_;
+					conceptAnswerDetailsMap.put(answer.get("display").toString(), answer.get("uuid").toString());
 				}
-
 			}
 		} catch (Exception e) {
 			throw new BahmniAPIException(e);
@@ -422,16 +412,13 @@ public class BahmniRestClient {
 					.body(requestJson)
 					.asJson();
 
-			if (response.getBody() != null && response.getBody().getObject() != null &&
-					response.getBody().getObject() != null &&
-					(response.getBody().getObject()).get("uuid") != null) {
-				JSONObject orderSetRes = response.getBody().getObject();
-				orderSet.setUuid(orderSetRes.get("uuid").toString());
-			} else {
+			Object uuid = JSONs.get(response.getBody(), "uuid");
+			if (null == uuid) {
 				System.err.println("Response from the server for patient creation:");
 				System.err.println(response.getBody().toString());
 				throw new BahmniAPIException("Patient creation failed!!");
 			}
+			orderSet.setUuid(uuid.toString());
 		} catch (Exception e) {
 			throw new BahmniAPIException(e);
 		}
