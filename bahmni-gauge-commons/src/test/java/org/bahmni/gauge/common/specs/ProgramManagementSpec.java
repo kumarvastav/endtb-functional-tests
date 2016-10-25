@@ -21,7 +21,7 @@ import java.util.List;
 
 public class ProgramManagementSpec extends BahmniPage {
 
-	private ProgramManagementPage programManagementPage = null;
+	protected ProgramManagementPage programManagementPage = null;
 
 	@BeforeClassSteps
 	public void waitForAppReady(){

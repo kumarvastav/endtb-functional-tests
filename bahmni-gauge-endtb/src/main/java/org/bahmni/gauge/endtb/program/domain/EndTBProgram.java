@@ -7,6 +7,10 @@ public class EndTBProgram extends Program {
 	private String registrationNumber;
 	private String registrationFacility;
 
+	public EndTBProgram() {
+		super();
+	}
+
 	public EndTBProgram(String name, String dateOfRegistration, String registrationNumber, String registrationFacility) {
 		super(name, dateOfRegistration);
 		this.registrationNumber = registrationNumber;
@@ -15,6 +19,14 @@ public class EndTBProgram extends Program {
 
 	public String getRegistrationNumber() {
 		return registrationNumber;
+	}
+
+	public void setRegistrationNumber(String registrationNumber) {
+		this.registrationNumber = registrationNumber;
+	}
+
+	public void setRegistrationFacility(String registrationFacility) {
+		this.registrationFacility = registrationFacility;
 	}
 
 	public String getRegistrationFacility() {
