@@ -14,7 +14,7 @@
 				"attributeType": {
 					"uuid": "d3c72af1-1f7f-4710-a672-a3251fad2bf2"
 				},
-				"value": "${patient.nationalIdentificationNumber}"
+				"value": "111111"
 			}, {
 				"attributeType": {
 					"uuid": "f84d7c88-13eb-462c-b057-05d5aca098e8"
