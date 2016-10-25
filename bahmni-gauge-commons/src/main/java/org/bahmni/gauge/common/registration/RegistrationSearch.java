@@ -34,6 +34,9 @@ public class RegistrationSearch extends BahmniPage{
 	
 	@FindBy(how= How.CSS, using = "#name")
     public WebElement txtName;
+
+	@FindBy(how= How.CSS, using = "#addressFieldValue")
+	public WebElement txtGramPanchayat;
 	
 	@FindBy(how= How.CSS, using = "#identifierPrefix")
     public List<WebElement> txtIdentifier;
@@ -118,4 +121,9 @@ public class RegistrationSearch extends BahmniPage{
 		BahmniTable dataOnUI=extractTableDataFrom(By.className("table"));
 		Assert.assertTrue("Column values dont match",dataOnUI.doesColumnOfEachRowContainsValue(text,column));
 	}
+
+    public void searchByGramPanchayat(String gramPanchayat) {
+		txtGramPanchayat.sendKeys(gramPanchayat);
+		btnRegSearch.click();
+    }
 }

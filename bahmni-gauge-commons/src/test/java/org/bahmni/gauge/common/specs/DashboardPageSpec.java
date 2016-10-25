@@ -93,6 +93,12 @@ public class DashboardPageSpec {
 	public void navigateToDashboardLink() {
 		driver.findElement(By.id("dashboard-link")).click();
 	}
+	@Step("Navigate to adt dashboard")
+	public void navigateToAdtDashboardLink() {
+		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+		dashboardPage.adtButton.click();
+	}
+
 
 	@Step("Navigate to consultation")
 	public void goToConsultation(){
@@ -113,6 +119,8 @@ public class DashboardPageSpec {
 		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		dashboardPage.selectDisplayControl(name);
 	}
+
+
 
 	@Step("Verify data on Obs display control")
 	public void verifyObsDisplayControl(){

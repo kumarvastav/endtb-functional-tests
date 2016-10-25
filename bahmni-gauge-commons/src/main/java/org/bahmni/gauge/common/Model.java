@@ -3,9 +3,9 @@ package org.bahmni.gauge.common;
 /**
  * Created by atmaramn on 17/10/2016.
  */
-public class Entity {
+public class Model {
     public String getMRSName(){
-        EntityMetaData e=  this.getClass().getAnnotation(EntityMetaData.class);
+        ModelMetaData e=  this.getClass().getAnnotation(ModelMetaData.class);
         return e.mrs_name();
     }
 }

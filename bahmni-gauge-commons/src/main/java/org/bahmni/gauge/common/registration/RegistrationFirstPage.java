@@ -8,6 +8,7 @@ import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.TableTransformer;
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -57,6 +58,9 @@ public class RegistrationFirstPage extends BahmniPage {
 	@FindBy(how = How.CSS, using = "#address1")
 	public WebElement addressLine;
 
+	@FindBy(how = How.CSS, using = "#address2")
+	public WebElement gramPanchayat;
+
 	//release-0.85
 	@FindBy(how= How.ID, using = "patientIdentifierValue")
 	public WebElement patientIdentifierValue;
@@ -93,6 +97,8 @@ public class RegistrationFirstPage extends BahmniPage {
 	@FindBy(how= How.CSS, using = ".ngdialog-content #modal-refill-button")
 	public WebElement sequenceConfirm;
 
+	@FindBy(how = How.CSS, using = ".capture-photo-btn button")
+	public WebElement capturePhotoButton;
 
 	public void clickSave() {
 		save.click();
@@ -164,6 +170,18 @@ public class RegistrationFirstPage extends BahmniPage {
 
 			village.clear();
 			village.sendKeys(patient.getVillage());
+		}
+		if (patient.getPhoto()!=null && patient.getPhoto().toLowerCase().equals("true")){
+			capturePhotoButton.click();
+
+			waitForElementOnPage(By.id("click")).click();
+
+			waitForElementOnPage(By.cssSelector(".confirmImage.confirm")).click();
+		}
+		if(patient.getGramPanchayat()!=null) {
+
+			gramPanchayat.clear();
+			gramPanchayat.sendKeys(patient.getGramPanchayat());
 		}
 	}
 

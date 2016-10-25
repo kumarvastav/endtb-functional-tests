@@ -6,6 +6,8 @@ import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.clinical.DashboardPage;
+import org.bahmni.gauge.common.clinical.VisitPage;
 import org.bahmni.gauge.common.registration.RegistrationVisitDetailsPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.common.registration.domain.Visit;
@@ -57,6 +59,11 @@ public class RegistrationVisitPageSpec {
             Assert.assertTrue("String "+drugOrder+" does not exist. Actual String :"+displayControlText,displayControlText.contains(drugOrder));
         }
     }
+    @Step("Verify details on visit page <Disposition> display control")
+    public void selectDisplayControl(String name) {
+        VisitPage visitPage = PageFactory.get(VisitPage.class);
+        visitPage.selectDisplayControl(name);
+    }
     @Step("Verify Error popup with message <message> is displayed")
     public void verifyErrorOnPageWithMessage(String message){
         RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
@@ -86,6 +93,9 @@ public class RegistrationVisitPageSpec {
         {
             case "opd":
                 visit.setType("c22a5000-3f10-11e4-adec-0800271c1b75");
+                break;
+            case "ipd":
+                visit.setType("c228eab1-3f10-11e4-adec-0800271c1b75");
                 break;
             default:
                 visit.setType("c22a5000-3f10-11e4-adec-0800271c1b75");

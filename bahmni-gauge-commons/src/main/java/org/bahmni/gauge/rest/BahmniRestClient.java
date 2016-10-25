@@ -14,7 +14,7 @@ import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContexts;
-import org.bahmni.gauge.common.Entity;
+import org.bahmni.gauge.common.Model;
 import org.bahmni.gauge.common.admin.domain.OrderSet;
 import org.bahmni.gauge.common.admin.domain.OrderSetMember;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
@@ -52,7 +52,7 @@ public class BahmniRestClient {
 
 	private static final String GET_DRUG_LIST_URL = "/openmrs/ws/rest/v1/drug";
 
-	private static final String GET_DRUG_UNDER_CONCEPT_URL = "/openmrs/ws/rest/v1/drug?conceptUuid=%s&q=%s&s=ordered&v=custom:(uuid,name,dosageForm:(uuid,display))";
+	private static final String GET_DRUG_UNDER_CONCEPT_URL="/openmrs/ws/rest/v1/drug?conceptUuid=%s&q=%s&s=ordered&v=custom:(uuid,name,dosageForm:(uuid,display))";
 
 	private static final String GET_CONCEPT_UUID_URL = "/openmrs/ws/rest/v1/concept?q=%s&v=custom:(uuid,display)";
 
@@ -117,7 +117,7 @@ public class BahmniRestClient {
 		}
 	}
 
-	public void createPatient(Patient patient, String templateName) {
+	public void createPatient(Patient patient,String templateName) {
 		try {
 			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(templateName);
 			Map<String, Object> patientData = new HashMap<>();
@@ -128,12 +128,13 @@ public class BahmniRestClient {
 			String requestJson = stringWriter.toString();
 
 			HttpResponse<JsonNode> response = Unirest.post(url + PATIENT_PROFILE_URL)
-				.basicAuth(username, password)
-				.header("content-type", "application/json")
-				.body(requestJson)
-				.asJson();
-
-			Object patientUuid = JSONs.get(response.getBody(), "patient", "uuid");
+					.basicAuth(username, password)
+					.header("content-type", "application/json")
+					.body(requestJson)
+					.asJson();
+			Object patientUuid=null;
+			if(response.getBody().getObject()!=null)
+				patientUuid = JSONs.get(response.getBody().getObject(), "patient", "uuid");
 			if (null == patientUuid) {
 				System.err.println("Response from the server for patient creation:");
 				System.err.println(response.getBody().toString());
@@ -364,7 +365,7 @@ public class BahmniRestClient {
 		return conceptAnswerDetailsMap;
 	}
 
-	public <T extends Entity> T create(T entity) {
+	public  <T extends Model> T create (T entity){
 		try {
 			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(entity.getMRSName() + "_create.ftl");
 			Map<String, Object> objectData = new HashMap<>();

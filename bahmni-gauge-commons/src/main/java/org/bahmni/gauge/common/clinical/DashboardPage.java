@@ -1,10 +1,13 @@
 package org.bahmni.gauge.common.clinical;
 
 import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.clinical.displaycontrol.DispositionDisplayControl;
 import org.bahmni.gauge.common.clinical.displaycontrol.ObsDisplayControl;
 import org.bahmni.gauge.common.clinical.displaycontrol.ProgramsDisplayControl;
+import org.bahmni.gauge.common.clinical.domain.Disposition;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.program.domain.Program;
+import org.bahmni.gauge.data.StoreHelper;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.junit.Assert;
@@ -27,6 +30,9 @@ public class DashboardPage extends BahmniPage {
 
 	@FindBy(how = How.CSS, using = ".btn--success")
 	public WebElement clinical;
+
+	@FindBy(how = How.CSS, using = "a[title=\"Go to IPD Dashboard\"]")
+	public WebElement adtButton;
 
 	@FindBy(how = How.CSS, using = ".dashboard-section")
 	public List<WebElement> displayControls;
@@ -133,6 +139,9 @@ public class DashboardPage extends BahmniPage {
 	public void selectDisplayControl(String name) {
 		if (name.toLowerCase().contains("program"))
 			new ProgramsDisplayControl(findElementById("Programs")).validateActiveProgram(this.getProgramFromSpecStore());
+		else if(name.toLowerCase().contains("disposition")){
+			new DispositionDisplayControl(findElementById("Disposition")).validate(StoreHelper.getEntityInSpectStore(Disposition.class));
+		}
 
 	}
 

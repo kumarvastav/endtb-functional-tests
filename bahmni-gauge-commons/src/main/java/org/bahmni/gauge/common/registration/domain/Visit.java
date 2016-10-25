@@ -1,13 +1,13 @@
 package org.bahmni.gauge.common.registration.domain;
 
-import org.bahmni.gauge.common.EntityMetaData;
-import org.bahmni.gauge.common.Entity;
+import org.bahmni.gauge.common.ModelMetaData;
+import org.bahmni.gauge.common.Model;
 
 /**
  * Created by atmaramn on 17/10/2016.
  */
-@EntityMetaData(mrs_name = "visit")
-public class Visit extends Entity{
+@ModelMetaData(mrs_name = "visit")
+public class Visit extends Model {
     Patient patient;
     String location;
     String type;

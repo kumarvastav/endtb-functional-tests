@@ -57,6 +57,13 @@ public class RegistrationSearchSpec extends BahmniPage{
 		registrationSearch.searchByName(recentlyCreatedPatient.getFirstName());
 	}
 
+	@Step("Search previously created patient with gram panchayat")
+	public void searchPreviouslyCreatedPatientWithGramPancjayat(){
+		RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
+		Patient recentlyCreatedPatient = registrationSearch.getPatientFromSpecStore();
+		registrationSearch.searchByGramPanchayat(recentlyCreatedPatient.getGramPanchayat());
+	}
+
 	@Step("Select the patient from the search results")
 	public void ensureThatTheSearchResultsAreShown(){
         RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);

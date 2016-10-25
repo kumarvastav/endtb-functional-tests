@@ -1,6 +1,10 @@
 package org.bahmni.gauge.common.registration.domain;
 
-public class Patient {
+import org.bahmni.gauge.common.Model;
+import org.bahmni.gauge.common.ModelMetaData;
+
+@ModelMetaData(mrs_name = "patient")
+public class Patient extends Model {
 
     private String uuid;
     private String prefix;
@@ -14,6 +18,24 @@ public class Patient {
     private String district;
     private String village;
     private String country;
+    private String photo;
+    private String gramPanchayat;
+
+    public String getGramPanchayat() {
+        return gramPanchayat;
+    }
+
+    public void setGramPanchayat(String gramPanchayat) {
+        this.gramPanchayat = gramPanchayat;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
 
     public String getUuid() {
         return uuid;

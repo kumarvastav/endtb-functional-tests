@@ -12,6 +12,7 @@ import org.bahmni.gauge.common.inpatient.InpatientDashboard;
 import org.bahmni.gauge.common.inpatient.InpatientHeader;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -33,6 +34,16 @@ public class InpatientSpec extends BaseSpec{
         DispositionPage disposition = PageFactory.get(DispositionPage.class);
         disposition.captureDataForDisposition(movement);
         InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
+        WebElement actionElement = dashboardPage.findButtonByText(action);
+        actionElement.click();
+    }
+
+    @Step("Select <movement> from Patient Movement and click <Action> button with notes <Notes>")
+    public void movePatientWithNotes(String movement,String action,String notes){
+        DispositionPage disposition = PageFactory.get(DispositionPage.class);
+        disposition.captureDataForDisposition(movement);
+        InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
+        dashboardPage.findElement(By.cssSelector("[ng-model=\"observation.value\"]")).sendKeys(notes);
         WebElement actionElement = dashboardPage.findButtonByText(action);
         actionElement.click();
     }

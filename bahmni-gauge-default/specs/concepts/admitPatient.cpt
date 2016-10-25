@@ -5,5 +5,5 @@ This is a concept file with following syntax for each concept.
 * Create a new patient through API
 * Open visit for previous patient using api
     |location|type|
-    |OPD-1|OPD|
+    |Registration Desk|OPD|
 * Admit the patient through api

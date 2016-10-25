@@ -8,11 +8,14 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.RegistrationSearch;
+import org.bahmni.gauge.common.registration.RegistrationVisitDetailsPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.common.registration.domain.Visit;
 import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
+import org.bahmni.gauge.util.TableTransformer;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class RegistrationFirstPageSpec {
@@ -40,7 +43,24 @@ public class RegistrationFirstPageSpec {
 	public void createPatients(Table table) throws Exception {
 		registrationFirstPage.createPatients(table);
 	}
+	@Step("Try creating patient with same identifier <table>")
+	public void createPatientWithSameID(Table table) {
+		Patient patient=TableTransformer.asEntity(table,Patient.class);
+		Patient patientFromSpecStore=registrationFirstPage.getPatientFromSpecStore();
+		patient.setIdNumber(patientFromSpecStore.getIdNumber());
 
+		try {
+			registrationFirstPage.registerPatient(patient);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Step("Verify Identifier Error popup with message <message> is displayed")
+	public void verifyErrorOnPageWithMessage(String message){
+		registrationFirstPage.waitForElementOnPage(By.cssSelector(".error-message-container"));
+		Assert.assertEquals("Error popup message dont match",String.format(message,registrationFirstPage.getPatientFromSpecStore().getIdentifier()),registrationFirstPage.findElement(By.cssSelector("#view-content .msg")).getText());
+	}
 	@Step("Create patient with manual id <table>")
 	public void createPatientWithId(Table table) throws Exception {
 		registrationFirstPage.createPatientWithId(table);
