@@ -22,6 +22,8 @@ Running functional tests
     * `export BAHMNI_GAUGE_PIH_PASSWORD=<bahmni pih_password>`
     * `export BAHMNI_GAUGE_MSF_PASSWORD=<bahmni msf_password>`
     * `export BAHMNI_GAUGE_IRD_PASSWORD=<bahmni ird_password>`
+    * export BAHMNI_GAUGE_APP_LOCATION=<bahmni login location>
+    * export BAHMNI_GAUGE_APP_ANOTHER_LOCATION=<bahmni another login location for multiple visits check>
 
 * Running functional tests
     * Run `mvn clean install` at the root project level.
