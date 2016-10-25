@@ -472,7 +472,7 @@ public class BahmniRestClient {
 			Template template = freemarkerConfiguration.getTemplate(templateName);
 			template.process(requestObject, stringWriter);
 		} catch (TemplateException | IOException e) {
-			e.printStackTrace();
+			throw new BahmniAPIException(e);
 		}
 		return stringWriter.toString();
 	}
