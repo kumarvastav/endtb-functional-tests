@@ -15,12 +15,12 @@ Tags: regression
 * Click on create new patient link
 * Enter Patient Details
 | firstName | lastName | givenNameArabic | familyNameArabic | gender | age | governorate | country | phoneNumber1 | spokenLanguages | nationality1 |
-| Saman     | Sayed    | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     |
-* Enter Clinical Details
+| Gaman     | Sayed    | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     |
+* Start "First Stage Validation" visit and navigate to Programs page
 * Register the patient to following program
 | programName            | dateOfRegistration |
-| Reconstructive surgery | 01/01/2016         |
-* Navigate to "Reconstructive surgery" program dashboard
+| Reconstructive Surgery | 01/01/2016         |
+* Navigate to "Reconstructive Surgery" program dashboard
 * Navigate to consultation
 * Go to "Observations" tab
 * Select template "Medical History" from observation page and fill details

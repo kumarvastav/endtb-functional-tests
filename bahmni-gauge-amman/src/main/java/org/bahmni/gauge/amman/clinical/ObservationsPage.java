@@ -5,6 +5,7 @@ import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -76,6 +77,12 @@ public class ObservationsPage extends org.bahmni.gauge.common.clinical.Observati
     }
 
     private boolean hasTag(WebElement answer, String input) {
-        return hasChild(answer,By.tagName(input));
+        boolean val = true;
+        try{
+            answer.findElement(By.tagName(input));
+        } catch (NoSuchElementException e){
+            val =  false;
+        }
+        return  val;
     }
 }

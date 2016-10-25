@@ -14,12 +14,12 @@ Tags: performance
 * Click on create new patient link
 * Enter Patient Details
 | firstName | lastName | givenNameArabic | familyNameArabic | gender | age | governorate | country | phoneNumber1 | spokenLanguages | nationality1 |
-| Maman     | Sayed    | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     |
-* Enter Clinical Details
+| Naman     | Sayed    | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     |
+* Start "Follow-Up Validation" visit and navigate to Programs page
 * Register the patient to following program
 | name                   | dateOfRegistration |
-| Reconstructive surgery | 01/01/2016         |
-* Navigate to "Reconstructive surgery" program dashboard
+| Reconstructive Surgery | 01/01/2016         |
+* Navigate to "Reconstructive Surgery" program dashboard
 * Navigate to consultation
 * Go to "Observations" tab
 * Select template "Medical History" from observation page and fill details
@@ -39,8 +39,8 @@ Tags: performance
 * On the login page
 * Login with username "BAHMNI_GAUGE_VC_MEMBER_USER" and password "BAHMNI_GAUGE_VC_MEMBER_PASSWORD" with location "BAHMNI_GAUGE_VC_MEMBER_LOCATION"
 * Click on programs app
-* Select patient "Maman Sayed" in tab "Programs"
-* Navigate to "Reconstructive surgery" program dashboard
+* Select patient "Naman Sayed" in tab "Programs"
+* Navigate to "Reconstructive Surgery" program dashboard
 * Navigate to consultation
 * Go to "Observations" tab
 * Select template "First Stage Validation" from observation page and fill details
@@ -51,8 +51,8 @@ Tags: performance
 * On the login page
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
 * Click on programs app
-* Select patient "Maman Sayed" in tab "Programs"
-* Navigate to "Reconstructive surgery" program dashboard
+* Select patient "Naman Sayed" in tab "Programs"
+* Navigate to "Reconstructive Surgery" program dashboard
 * Navigate to consultation
 * Go to "Observations" tab
 * Select template "Follow-up Validation" from observation page and fill details
@@ -75,8 +75,8 @@ Tags: performance
 * Enter Clinical Details
 * Register the patient to following program
 | name                   | dateOfRegistration |
-| Reconstructive surgery | 01/01/2016         |
-* Navigate to "Reconstructive surgery" program dashboard
+| Reconstructive Surgery | 01/01/2016         |
+* Navigate to "Reconstructive Surgery" program dashboard
 * Navigate to consultation
 * Go to "Observations" tab
 * Select template "Medical History" from observation page and fill details
@@ -97,7 +97,7 @@ Tags: performance
 * Login with username "BAHMNI_GAUGE_VC_MEMBER_USER" and password "BAHMNI_GAUGE_VC_MEMBER_PASSWORD" with location "BAHMNI_GAUGE_VC_MEMBER_LOCATION"
 * Click on programs app
 * Select patient "Naman Jayed" in tab "Programs"
-* Navigate to "Reconstructive surgery" program dashboard
+* Navigate to "Reconstructive Surgery" program dashboard
 * Navigate to consultation
 * Go to "Observations" tab
 * Select template "First Stage Validation" from observation page and fill details
