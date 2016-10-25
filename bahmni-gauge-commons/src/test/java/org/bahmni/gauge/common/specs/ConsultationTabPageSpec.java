@@ -18,7 +18,7 @@ public class ConsultationTabPageSpec extends BahmniPage{
 
     @Step("Verify Disposition details on consultation tab")
     public void verifyDisposition(){
-        Disposition disposition= StoreHelper.getEntityInSpectStore(Disposition.class);
+        Disposition disposition= StoreHelper.getLatest(Disposition.class);
         ConsultationTabPage consultationTabPage= PageFactory.get(ConsultationTabPage.class);
 
         consultationTabPage.verifyDisposition(disposition);

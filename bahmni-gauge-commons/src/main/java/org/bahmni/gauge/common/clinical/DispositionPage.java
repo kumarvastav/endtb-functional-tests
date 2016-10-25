@@ -51,6 +51,6 @@ public class DispositionPage extends BahmniPage {
         disposition.setType(dispositionType);
         disposition.setNotes(notes);
         disposition.setDate(StringUtil.setDateTime("<NOW[dd MMM yy h:mm a]>"));
-        StoreHelper.storeEntityInSpectStore(Disposition.class,disposition);
+        StoreHelper.store(Disposition.class,disposition);
     }
 }

@@ -140,7 +140,7 @@ public class DashboardPage extends BahmniPage {
 		if (name.toLowerCase().contains("program"))
 			new ProgramsDisplayControl(findElementById("Programs")).validateActiveProgram(this.getProgramFromSpecStore());
 		else if(name.toLowerCase().contains("disposition")){
-			new DispositionDisplayControl(findElementById("Disposition")).validate(StoreHelper.getEntityInSpectStore(Disposition.class));
+			new DispositionDisplayControl(findElementById("Disposition")).validate(StoreHelper.getLatest(Disposition.class));
 		}
 
 	}

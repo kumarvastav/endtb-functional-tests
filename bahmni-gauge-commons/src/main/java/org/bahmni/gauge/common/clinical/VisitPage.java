@@ -13,7 +13,7 @@ import org.openqa.selenium.By;
 public class VisitPage extends BahmniPage {
     public void selectDisplayControl(String name) {
         if(name.toLowerCase().contains("disposition")){
-            new DispositionDisplayControl(findElement(By.id("disposition"))).validate(StoreHelper.getEntityInSpectStore(Disposition.class));
+            new DispositionDisplayControl(findElement(By.id("disposition"))).validate(StoreHelper.getLatest(Disposition.class));
         }
 
     }
