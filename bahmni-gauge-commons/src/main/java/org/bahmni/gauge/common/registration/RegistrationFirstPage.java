@@ -297,13 +297,29 @@ public class RegistrationFirstPage extends BahmniPage {
 		visitTypeOptionsBtn.click();
 	}
 
-	public void enterVisitDetails() {
-		waitForSpinner();
+
+	public void enterVisitDetailsFromTable(Table table) {
+        waitForSpinner();
 		List<WebElement> webElements = driver.findElements(By.cssSelector(".field-value>div>div>input"));
-		webElements.get(0).sendKeys("10");
-		webElements.get(1).sendKeys("10");
-		webElements.get(2).sendKeys("100");
+		WebElement webElement = driver.findElement(By.cssSelector(".field-value>div>div>textarea"));
+		webElement.clear();
+		for (WebElement element:webElements)
+			element.clear();
+
+		webElements.get(0).sendKeys(table.getColumnValues("height").get(0));
+		webElements.get(1).sendKeys(table.getColumnValues("weight").get(0));
+		webElements.get(2).sendKeys(table.getColumnValues("fees").get(0));
+		if(table.getColumnNames().contains("comments"))
+			webElement.sendKeys(table.getColumnValues("comments").get(0));
+
 		driver.findElement(By.cssSelector(".confirm")).click();
+
+	}
+
+	public String getDisplayControlText(String displayControl) {
+		if(displayControl.toLowerCase().contains("bmi"))
+			return driver.findElement(By.cssSelector(".concept-set-container-view")).getText().trim().replace("\n", "");
+		return null;
 	}
 
 	public void verifyPatientDetails(Patient patient) {

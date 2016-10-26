@@ -110,9 +110,17 @@ public class RegistrationFirstPageSpec {
 		registrationFirstPage.enterVisitDetailButton.click();
 	}
 
-	@Step("Enter visit details")
-	public void enterVisitDetails() {
-		registrationFirstPage.enterVisitDetails();
+	@Step("Enter visit details from table <table>")
+	public void enterVisitDetailsTable(Table table) {
+		registrationFirstPage.enterVisitDetailsFromTable(table);
+	}
+
+	@Step("Verify the details on <displayControl> display control <table>")
+	public void verifyDisplayControl(String displayControl, Table table) {
+		waitForAppReady();
+		String displayControlText = registrationFirstPage.getDisplayControlText(displayControl);
+		for (String value : table.getColumnValues("details"))
+            Assert.assertTrue(value+" is not displayed",displayControlText.contains(value));
 	}
 
 	@Step("Create the following patient using api <table>")

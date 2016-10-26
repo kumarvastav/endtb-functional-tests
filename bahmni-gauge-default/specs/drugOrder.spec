@@ -15,7 +15,9 @@ Tags: regression, sanity
 * Click on registration app
 * Search previously created patient with exact identifier
 * Start a visit "OPD"
-* Enter visit details
+* Enter visit details from table
+    |height|weight|fees|
+    |10|5|100|
 * Navigate to dashboard
 * Click on clinical app
 * Select existing patient from patient listing page under tab "All"
@@ -51,7 +53,9 @@ Tags: regression, sanity
 * Click on registration app
 * Search previously created patient with exact identifier
 * Start a visit "OPD"
-* Enter visit details
+* Enter visit details from table
+    |height|weight|fees|
+    |10|5|100|
 * Navigate to dashboard
 * Click on clinical app
 * Select existing patient from patient listing page under tab "All"
