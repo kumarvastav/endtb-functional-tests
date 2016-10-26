@@ -42,7 +42,8 @@ public class BaseSpec {
         for (Patient patient : patients) {
             if (patient != null) {
                 String uuid = patient.getUuid();
-                BahmniRestClient.dischargePatient(patient);
+                //TODO Possible needs to fix this as adding discharge breaking other flows like registration
+//                BahmniRestClient.dischargePatient(patient);
                 BahmniRestClient.get().retirePatient(uuid);
             }
         }
