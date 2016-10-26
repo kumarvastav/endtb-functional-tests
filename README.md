@@ -30,3 +30,10 @@ Running functional tests
     * To run functional tests for a specific project, for example the endtb project
         * `cd bahmni-gauge-endtb`
         * `mvn gauge:execute`
+
+FAQ
+--------------------------
+* Xvfb gets stopped on reboot of the machine
+    * To make it running again, please run the below commands
+      * `Xvfb -ac :99 -screen 0 1280x1024x16 &`
+      * `export DISPLAY=:99`
