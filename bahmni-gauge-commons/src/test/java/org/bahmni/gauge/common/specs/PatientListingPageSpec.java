@@ -9,7 +9,7 @@ import org.bahmni.gauge.common.clinical.PatientListingPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.junit.Assert;
 
-public class PatientListingPageSpec extends BahmniPage {
+public class PatientListingPageSpec {
 //    PatientListingPage patientListing;
 //    PatientListingPageSpec(){
 //        //patientListing = PageFactory.get(PatientListingPage.class);
@@ -22,7 +22,7 @@ public class PatientListingPageSpec extends BahmniPage {
     @Step("Select existing patient from patient listing page under tab <tab>")
     public void selectPatientFromTab(String tab) {
         PatientListingPage patientListing = PageFactory.get(PatientListingPage.class);
-        Patient patient = getPatientFromSpecStore();
+        Patient patient = new BahmniPage().getPatientFromSpecStore();
         patientListing.searchSelectPatientFromTab(patient.getIdentifier(),tab);
         //patientListing.searchSelectPatientFromTab("BAH253047",tab);
     }
@@ -36,7 +36,7 @@ public class PatientListingPageSpec extends BahmniPage {
     @Step("Verify previous patient is not listed on patient listing page under tab <tab>")
     public void verifyPatientPresent(String tab){
         PatientListingPage patientListing = PageFactory.get(PatientListingPage.class);
-        Patient patient = getPatientFromSpecStore();
+        Patient patient = new BahmniPage().getPatientFromSpecStore();
         Assert.assertFalse(patientListing.isPatientListedOnTab(patient.getIdentifier(),tab));
 
     }

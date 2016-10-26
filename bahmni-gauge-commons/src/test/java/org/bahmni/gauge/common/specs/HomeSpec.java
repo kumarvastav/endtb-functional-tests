@@ -9,7 +9,7 @@ import org.bahmni.gauge.common.home.HomePage;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
-public class HomeSpec extends BahmniPage {
+public class HomeSpec {
 	private final WebDriver driver;
 	private HomePage homePage;
 

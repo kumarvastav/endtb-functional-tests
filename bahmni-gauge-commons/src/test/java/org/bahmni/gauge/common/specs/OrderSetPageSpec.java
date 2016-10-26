@@ -13,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
 
-public class OrderSetPageSpec extends BahmniPage {
+public class OrderSetPageSpec {
     OrderSetPage orderSetPage;
     private final WebDriver driver;
 
@@ -35,7 +35,7 @@ public class OrderSetPageSpec extends BahmniPage {
         {
             orderSetPage.enterMember(i,orderSetMember);
 
-            getOrderSetInSpecStore().getOrderSetMembers().add(orderSetMember);
+            new BahmniPage().getOrderSetInSpecStore().getOrderSetMembers().add(orderSetMember);
 
             i++;
 
@@ -45,14 +45,14 @@ public class OrderSetPageSpec extends BahmniPage {
     @Step("Save the orderset")
     public void saveOrderSet(){
         orderSetPage.clickSave();
-        waitForSpinner(this.driver);
+        BahmniPage.waitForSpinner(this.driver);
     }
 
     @Step("Click on back button on orderset page")
     public void back()
     {
         orderSetPage.back();
-        waitForSpinner(this.driver);
+        BahmniPage.waitForSpinner(this.driver);
     }
     public OrderSet createOrderSet(String namePrefix, String description, String operator){
         ArrayList<String> headers=new ArrayList<>();
@@ -87,7 +87,7 @@ public class OrderSetPageSpec extends BahmniPage {
     @Step("Edit previous orderset as <namePrefix>, description <description>, operator <operator> with following details <table>")
     public void editOrderSet(String namePrefix, String description, String operator, Table orderSetMembers){
         orderSetPage= PageFactory.get(OrderSetPage.class);
-        OrderSet orderSet=getOrderSetInSpecStore();
+        OrderSet orderSet=new BahmniPage().getOrderSetInSpecStore();
 
         TableTransformer.updateEntityProperty(orderSet,"name",namePrefix);
         TableTransformer.updateEntityProperty(orderSet,"description",description);
@@ -108,7 +108,7 @@ public class OrderSetPageSpec extends BahmniPage {
     @Step("Verify previous orderset")
     public void verifyOrderSet(){
         orderSetPage= PageFactory.get(OrderSetPage.class);
-        OrderSet orderSet=getOrderSetInSpecStore();
+        OrderSet orderSet=new BahmniPage().getOrderSetInSpecStore();
         orderSetPage.verifyOrderSet(orderSet);
 
     }

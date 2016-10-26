@@ -10,7 +10,7 @@ import org.bahmni.gauge.common.registration.domain.Patient;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class RegistrationSearchSpec extends BahmniPage{
+public class RegistrationSearchSpec {
 
 	@BeforeClassSteps
 	public void waitForAppReady(){
@@ -84,11 +84,11 @@ public class RegistrationSearchSpec extends BahmniPage{
 	@Step("Verify previous patient is listed in search result")
 	public void validatePreviousPatientSearchResults() {
 		RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
-		registrationSearch.verifySearchResults(getPatientFromSpecStore());
+		registrationSearch.verifySearchResults(new BahmniPage().getPatientFromSpecStore());
 	}
 	@Step("Click on previous patient link from search results")
 	public void clickOnPreviousPatientLink(){
 		RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
-		registrationSearch.findElement(By.xpath(".//a[contains(text(),\""+getPatientFromSpecStore().getIdentifier()+"\")]")).click();
+		registrationSearch.findElement(By.xpath(".//a[contains(text(),\""+new BahmniPage().getPatientFromSpecStore().getIdentifier()+"\")]")).click();
 	}
 }

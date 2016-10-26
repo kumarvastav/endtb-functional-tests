@@ -19,7 +19,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class ProgramManagementSpec extends BahmniPage {
+public class ProgramManagementSpec {
 
 	protected ProgramManagementPage programManagementPage = null;
 
@@ -72,7 +72,7 @@ public class ProgramManagementSpec extends BahmniPage {
 	@Step("End previously mentioned program")
 	public void endPreviousProgram(){
 		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
-		Program program=getProgramFromSpecStore();
+		Program program=new BahmniPage().getProgramFromSpecStore();
 		program.setTreatmentStatus("Cured");
 		programManagementPage.endProgram(program);
 	}
