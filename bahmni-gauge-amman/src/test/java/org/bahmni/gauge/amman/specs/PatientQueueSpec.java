@@ -4,7 +4,6 @@ import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-import jdk.nashorn.internal.AssertsEnabled;
 import org.bahmni.gauge.amman.clinical.PatientQueuePage;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
