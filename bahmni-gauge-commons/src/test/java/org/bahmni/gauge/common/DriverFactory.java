@@ -1,8 +1,14 @@
 package org.bahmni.gauge.common;
 
+import com.thoughtworks.gauge.AfterScenario;
 import com.thoughtworks.gauge.AfterSpec;
 import com.thoughtworks.gauge.BeforeSpec;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
+import org.apache.bcel.generic.BranchHandle;
+import org.bahmni.gauge.common.admin.domain.OrderSet;
+import org.bahmni.gauge.common.registration.RegistrationFirstPage;
+import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -38,6 +44,23 @@ public class DriverFactory {
 		if (driver != null) {
 			driver.close();
 			driver.quit();
+		}
+	}
+
+	@AfterScenario
+	public void tearDownScenario(){
+		Patient patient = new RegistrationFirstPage().getPatientFromSpecStore();
+		if (patient != null) {
+			String uuid = patient.getUuid();
+			if(patient.isAdmitted()) {
+				BahmniRestClient.get().dischargePatient(uuid);
+			}
+            BahmniRestClient.get().retirePatient(uuid);
+		}
+		OrderSet orderSet=new BahmniPage().getOrderSetInSpecStore();
+		if(orderSet!=null)
+		{
+			BahmniRestClient.get().retireOrderSet(orderSet.getUuid());
 		}
 	}
 }

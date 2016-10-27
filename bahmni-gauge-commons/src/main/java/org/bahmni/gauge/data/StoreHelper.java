@@ -1,8 +1,10 @@
 package org.bahmni.gauge.data;
 
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,13 +14,38 @@ public class StoreHelper {
         List<T> entities = (List<T>) DataStoreFactory.getSpecDataStore().get(tClass);
         if (null == entities) {
             entities = new LinkedList<>();
-            DataStoreFactory.getSpecDataStore().put(tClass, entities);
+            DataStoreFactory.getSpecDataStore().put(tClass.getSimpleName(), entities);
         }
         return entities.add(entity);
     }
 
     public static <T> T getLatest(Class<T> tClass) {
-        List<T> entities = (List<T>) DataStoreFactory.getSpecDataStore().get(tClass);
+        List<T> entities = (List<T>) DataStoreFactory.getSpecDataStore().get(tClass.getSimpleName());
+        if (CollectionUtils.isEmpty(entities)) {
+            return null;
+        }
+        return entities.get(entities.size() - 1);
+    }
+
+    public static <T> String getVariableInClass(String className, String var) {
+        List<T> entities = (List<T>) DataStoreFactory.getSpecDataStore().get(className);
+        if (CollectionUtils.isEmpty(entities)) {
+            return null;
+        }
+        try {
+            return BeanUtils.getProperty(entities.get(entities.size() - 1),var);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static <T> T getLatest(String tClassName) {
+        List<T> entities = (List<T>) DataStoreFactory.getSpecDataStore().get(tClassName);
         if (CollectionUtils.isEmpty(entities)) {
             return null;
         }
@@ -26,7 +53,7 @@ public class StoreHelper {
     }
 
     public static <T> List<T> getAll(Class<T> tClass) {
-        List<T> entities = (List<T>) DataStoreFactory.getSpecDataStore().get(tClass);
+        List<T> entities = (List<T>) DataStoreFactory.getSpecDataStore().get(tClass.getSimpleName());
         if (null == entities) {
             return Collections.EMPTY_LIST;
         }

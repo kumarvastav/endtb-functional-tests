@@ -31,7 +31,9 @@ public class BedAssignmentPage extends BahmniPage{
 
     private Boolean assignBed(WebElement ward, WebElement bed) {
         bed.click();
+        String bedNumber = findChild(bed,By.cssSelector("span:nth-child(1)")).getText();
         findChild(ward, assignButton).click();
+        getPatientFromSpecStore().setBedNumber(bedNumber);
         return Boolean.TRUE;
     }
 }

@@ -179,6 +179,28 @@ public class BahmniRestClient {
 			throw new BahmniAPIException(e);
 		}
 	}
+	public void dischargePatient(String uuid) {
+        try {
+            Template freemarkerTemplate = freemarkerConfiguration.getTemplate("discharge_patient.ftl");
+            Map<String, Object> programData = new HashMap<>();
+            programData.put("patientUUID", uuid);
+
+            StringWriter stringWriter = new StringWriter();
+            freemarkerTemplate.process(programData, stringWriter);
+            String requestJson = stringWriter.toString();
+
+            HttpResponse<JsonNode> response = Unirest.post(url + DISCHARGE_PATIENT_URL)
+                    .basicAuth(username, password)
+                    .header("content-type", "application/json")
+                    .body(requestJson)
+                    .asJson();
+            if (response.getStatus() != 200 && response.getStatus() != 201)
+                throw new BahmniAPIException("Admit patient creation through API Failed!!");
+        } catch (Exception e) {
+            throw new BahmniAPIException(e);
+        }
+
+	}
 
 	public void enrollToProgram(PatientProgram patientProgram) {
 		try {

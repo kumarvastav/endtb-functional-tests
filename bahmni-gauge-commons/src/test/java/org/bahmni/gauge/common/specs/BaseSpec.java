@@ -36,7 +36,11 @@ public class BaseSpec {
         return content.replaceAll(pattern, formatter.format(new Date()));
     }
 
-    @AfterSpec
+/*
+*Handled in DriverFactory
+* @deprecated use {@link #org.bahmni.gauge.common.DriverFactory.tearDown()} instead
+ */
+    @AfterSpec @Deprecated
     public void teardown() {
         PreTearDownHooks.executeAll();
         List<Patient> patients = StoreHelper.getAll(Patient.class);

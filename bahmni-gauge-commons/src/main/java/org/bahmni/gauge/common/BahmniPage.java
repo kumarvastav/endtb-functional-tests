@@ -291,6 +291,15 @@ public class BahmniPage {
         return findElement(By.xpath("//button[contains(text(),'" + text + "')]"));
     }
 
+    /*
+     * Generic method to find element by text
+     * elementType examples - button, a(if it's a link), *(if it can be anything)
+     * text - will contain the value in the element
+     */
+    public WebElement findElementByText(String elementType, String text) {
+        return findElement(By.xpath("//"+elementType+"[contains(text(),'" + text + "')]"));
+    }
+
     public BahmniTable extractTableDataFrom(By locator){
         List<WebElement> columnHeaders=findElement(locator).findElements(By.cssSelector("th"));
         ArrayList<String> columns=new ArrayList<>();

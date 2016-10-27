@@ -20,6 +20,16 @@ public class Patient extends Model {
     private String country;
     private String photo;
     private String gramPanchayat;
+    private boolean isAdmitted = false;
+    private String bedNumber;
+
+    public String getBedNumber() {
+        return bedNumber;
+    }
+
+    public void setBedNumber(String bedNumber) {
+        this.bedNumber = bedNumber;
+    }
 
     public String getGramPanchayat() {
         return gramPanchayat;
@@ -36,6 +46,16 @@ public class Patient extends Model {
     public String getPhoto() {
         return photo;
     }
+
+    public boolean isAdmitted() {
+        return isAdmitted;
+    }
+
+    public void setAdmitted(boolean admitted) {
+        isAdmitted = admitted;
+    }
+
+
 
     public String getUuid() {
         return uuid;

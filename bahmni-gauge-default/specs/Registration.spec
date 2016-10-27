@@ -231,18 +231,32 @@ Admit Patient with closed visit and verify display controls
 ----------------
 * Create a new patient through API
 * On the login page 
-* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_ANOTHER_LOCATION"
 * Login to the application
 * Click on inpatient app
 * Select existing patient from patient listing page under tab "All"
 * Select "Admit Patient" from Patient Movement and click "Admit" button
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
-    |Total Beds: 8 |
-    |Available Beds: 1|
+    |Total Beds: 9 |
+    |Available Beds: 7|
 * Assign an empty bed
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
-    |Total Beds: 8 |
-    |Available Beds: 0|
+    |Total Beds: 9 |
+    |Available Beds: 6|
+* Navigate to Inpatient Dashboard
+* Verify display control "admissionDetails" on inpatient dashboard, has the following details
+    |details|
+    |General Ward <Patient.bedNumber>|
+    |Admission Date<NOW[dd MMM yy]>|
+* Click on "Patient Visit Page" link
+* Verify display control "admissionDetails" on inpatient dashboard, has the following details
+    |details|
+    |General Ward <Patient.bedNumber>|
+    |Admission Date<NOW[dd MMM yy]>|
+* Navigate to dashboard link
+* Verify display control "Admission-Details" on dashboard, has the following details
+    |details|
+    |General Ward <Patient.bedNumber>|
+    |Admission Date<NOW[dd MMM yy]>|
 

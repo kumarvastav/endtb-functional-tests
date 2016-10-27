@@ -11,6 +11,7 @@ import org.bahmni.gauge.common.inpatient.BedAssignmentPage;
 import org.bahmni.gauge.common.inpatient.InpatientDashboard;
 import org.bahmni.gauge.common.inpatient.InpatientHeader;
 import org.bahmni.gauge.rest.BahmniRestClient;
+import org.bahmni.gauge.util.StringUtil;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -36,6 +37,8 @@ public class InpatientSpec extends BaseSpec{
         InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
         WebElement actionElement = dashboardPage.findButtonByText(action);
         actionElement.click();
+        if(movement.toLowerCase().contains("admit"))
+            dashboardPage.getPatientFromSpecStore().setAdmitted(true);
     }
 
     @Step("Select <movement> from Patient Movement and click <Action> button with notes <Notes>")
@@ -46,6 +49,8 @@ public class InpatientSpec extends BaseSpec{
         dashboardPage.findElement(By.cssSelector("[ng-model=\"observation.value\"]")).sendKeys(notes);
         WebElement actionElement = dashboardPage.findButtonByText(action);
         actionElement.click();
+        if(movement.toLowerCase().contains("admit"))
+            dashboardPage.getPatientFromSpecStore().setAdmitted(true);
     }
 
     @Step("Assign an empty bed")
@@ -80,7 +85,7 @@ public class InpatientSpec extends BaseSpec{
         InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
         String displayControlText = dashboardPage.getDisplayControlText(displayControlId);
         for (String drugOrder : table.getColumnValues("details")) {
-            drugOrder = setDateTime(drugOrder);
+            drugOrder = StringUtil.transformPatternToData(drugOrder);
             Assert.assertTrue(stringDoesNotExist(drugOrder),displayControlText.contains(drugOrder));
         }
     }
@@ -110,6 +115,12 @@ public class InpatientSpec extends BaseSpec{
     public void admitPatient(){
         DispositionPage disposition = PageFactory.get(DispositionPage.class);
         BahmniRestClient.get().admitPatient(disposition.getVisitFromSpecStore(),"admit_patient.ftl");
+    }
+
+    @Step("Click on <linkText> link")
+    public void clickLinkText(String linkText){
+        DispositionPage disposition = PageFactory.get(DispositionPage.class);
+        disposition.findElementByText("a",linkText).click();
     }
 
 }
