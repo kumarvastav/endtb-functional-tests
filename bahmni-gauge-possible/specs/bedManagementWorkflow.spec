@@ -42,6 +42,7 @@ Tags: regression, sanity, admitAndVerify
 * Click on clinical app
 * Select existing patient from patient listing page under tab "Active"
 * Ensure inpatient icon exists on Patient Profile display control
+* PreTearDownHook: Discharge patient during teardown
 
 Admit, Transfer and verify on adt dashboard and clinical dashboard
 --------------------------------------------------------
@@ -88,6 +89,7 @@ Tags: regression, sanity, admitTransferAndVerfiy
 * Click on clinical app
 * Select existing patient from patient listing page under tab "Active"
 * Ensure inpatient icon exists on Patient Profile display control
+* PreTearDownHook: Discharge patient during teardown
 
 Admit, Discharge and verify on adt dashboard and clinical dashboard
 -------------------------------------------------------------------
@@ -142,6 +144,7 @@ Tags: regression, sanity, admitDischargeAndVerfiy
     |-------|
     |Admission Date<NOW[dd MMM yy]>|
     |Discharge Date<NOW[dd MMM yy]>|
+* PreTearDownHook: Discharge patient during teardown
 
 
 ________________________________________________________________________________

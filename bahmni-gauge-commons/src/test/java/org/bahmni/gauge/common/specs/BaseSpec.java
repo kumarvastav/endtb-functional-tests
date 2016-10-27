@@ -38,12 +38,11 @@ public class BaseSpec {
 
     @AfterSpec
     public void teardown() {
+        PreTearDownHooks.executeAll();
         List<Patient> patients = StoreHelper.getAll(Patient.class);
         for (Patient patient : patients) {
             if (patient != null) {
                 String uuid = patient.getUuid();
-                //TODO Possible needs to fix this as adding discharge breaking other flows like registration
-//                BahmniRestClient.dischargePatient(patient);
                 BahmniRestClient.get().retirePatient(uuid);
             }
         }
