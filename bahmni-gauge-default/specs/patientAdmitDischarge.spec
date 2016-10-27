@@ -5,8 +5,29 @@ Created by atmaramn on 20/10/2016
 This is an executable specification file which follows markdown syntax.
 Every heading in this file denotes a scenario. Every bulleted point denotes a step.
      
+Closing visit for an admitted patient displays error message
+------------------------------
+Tags: regression, sanity
+
+* On the login page
+* Login to the application
+* Create the following patient using api
+     |prefix|firstName|lastName|gender|dateOfBirth|district|
+     |EMR|Hanah|Jones|F|20/01/2011|Bilaspur|
+* Click on inpatient app
+* Select existing patient from patient listing page under tab "All"
+* Select "Admit Patient" from Patient Movement and click "Admit" button
+* Navigate to dashboard
+* Click on registration app
+* Search previously created patient with exact identifier
+* Enter Visit Details for Admitted Patient
+* Try close visit
+* Verify Error popup with message "Admitted patient's visit cannot be closed. Discharge the patient and try again" is displayed
+* Navigate to dashboard
+* Logout the user
+
 Admit Patient through Disposition
---------------------------------------------------------
+---------------------------------
 
 Tags: regression, sanity
 
