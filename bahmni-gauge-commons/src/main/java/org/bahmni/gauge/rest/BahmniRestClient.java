@@ -391,6 +391,28 @@ public class BahmniRestClient {
 		return entity;
 	}
 
+	public <T extends Model> T getModelByName(T model) {
+		try {
+			HttpResponse<JsonNode> request = Unirest.get(url + "/openmrs/ws/rest/v1/" + model.getMRSName())
+					.basicAuth(username, password)
+					.header("content-type", "application/json")
+					.asJson();
+
+			int size = request.getBody().getArray().getJSONObject(0).getJSONArray("results").length();
+
+			for (int pos = 0; pos < size; pos++) {
+				if (request.getBody().getArray().getJSONObject(0).getJSONArray("results").getJSONObject(pos).get("display").equals(model.getDisplay())) {
+					model.setUuid(String.valueOf(request.getBody().getArray().getJSONObject(0).getJSONArray("results").getJSONObject(pos).get("uuid")));
+					return model;
+				}
+			}
+
+		} catch (Exception e) {
+			throw new BahmniAPIException(e);
+		}
+		return null;
+	}
+
 	public void createBacteriologySpecimen(String formTemplate, Specimen specimen, Patient patient, PatientProgram patientProgram) {
 		Map<String, Object> attributes = new HashMap<>();
 		attributes.put("patient", patient);
@@ -507,5 +529,4 @@ public class BahmniRestClient {
 		}
 		return response.getBody();
 	}
-
 }

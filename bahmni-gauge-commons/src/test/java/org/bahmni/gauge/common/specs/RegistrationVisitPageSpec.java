@@ -9,6 +9,7 @@ import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.VisitPage;
 import org.bahmni.gauge.common.registration.RegistrationVisitDetailsPage;
+import org.bahmni.gauge.common.registration.domain.Location;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.common.registration.domain.Visit;
 import org.bahmni.gauge.data.StoreHelper;
@@ -76,18 +77,21 @@ public class RegistrationVisitPageSpec {
         RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         Visit visit= TableTransformer.asEntity(table,Visit.class);
         visit.setPatient(StoreHelper.getLatest(Patient.class));
-        switch (visit.getLocation().toLowerCase())
-        {
-            case "opd-1":
-                visit.setLocation("c58e12ed-3f12-11e4-adec-0800271c1b75");
-                break;
-            case "registration desk":
-                visit.setLocation("c1f25be5-3f10-11e4-adec-0800271c1b75");
-                break;
-            default:
-                visit.setLocation("c58e12ed-3f12-11e4-adec-0800271c1b75");
-                break;
-        }
+        Location location=new Location();
+        location.setDisplay(visit.getLocation());
+        visit.setLocation(BahmniRestClient.get().getModelByName(location).getUuid());
+//        switch (visit.getLocation().toLowerCase())
+//        {
+//            case "opd-1":
+//                visit.setLocation("c1e42932-3f10-11e4-adec-0800271c1b75");
+//                break;
+//            case "registration desk":
+//                visit.setLocation("c1e42932-3f10-11e4-adec-0800271c1b75");
+//                break;
+//            default:
+//                visit.setLocation("c58e12ed-3f12-11e4-adec-0800271c1b75");
+//                break;
+//        }
 
         switch (visit.getType().toLowerCase())
         {

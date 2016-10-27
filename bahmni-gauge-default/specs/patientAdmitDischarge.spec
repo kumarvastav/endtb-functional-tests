@@ -61,6 +61,7 @@ Tags: regression, sanity
 * Select existing patient from patient listing page under tab "To Admit"
 * Select "Admit Patient" from Patient Movement and click "Admit" button with notes "Patient Admitted as requested"
 * Assign an empty bed
+* Navigate to Inpatient Dashboard
 * Verify display control "admissionDetails" on inpatient dashboard, has the following details
     |details|
     |Labour Ward|
