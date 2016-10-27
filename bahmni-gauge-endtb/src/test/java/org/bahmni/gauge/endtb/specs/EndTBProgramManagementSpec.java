@@ -17,10 +17,12 @@ import org.bahmni.gauge.util.TableTransformer;
 import java.util.Map;
 import java.util.Random;
 
-public class EndTBProgramManagementSpec extends ProgramManagementSpec{
+public class EndTBProgramManagementSpec extends ProgramManagementSpec {
 
 	@BeforeClassSteps
-	public void waitForAppReady(){ BahmniPage.waitForSpinner(DriverFactory.getDriver());}
+	public void waitForAppReady() {
+		BahmniPage.waitForSpinner(DriverFactory.getDriver());
+	}
 
 	@Step("Click on treatment enrollment")
 	public void clickOnTreatmentEnrollment() {
@@ -30,13 +32,13 @@ public class EndTBProgramManagementSpec extends ProgramManagementSpec{
 	}
 
 	@Step("Get Answers for <concept> concept")
-	public void getAnswersForConcept(String concept){
-		Map<String,String> results = BahmniRestClient.get().getConceptAnswersForConceptName(concept);
+	public void getAnswersForConcept(String concept) {
+		Map<String, String> results = BahmniRestClient.get().getConceptAnswersForConceptName(concept);
 	}
 
 	@Step("Enroll patient to the treatment <table>")
 	public void enrollPatientToTheTreatment(Table table) throws Exception {
-		EndTBProgram program = TableTransformer.asEntity(table,EndTBProgram.class);
+		EndTBProgram program = TableTransformer.asEntity(table, EndTBProgram.class);
 		program.setRegistrationNumber(String.valueOf(new Random().nextInt()));
 		Patient patient = PageFactory.getRegistrationFirstPage().getPatientFromSpecStore();
 
@@ -46,5 +48,14 @@ public class EndTBProgramManagementSpec extends ProgramManagementSpec{
 		BahmniRestClient.get().enrollToProgram(patientProgram);
 		programManagementPage.storeProgramInSpecStore(program);
 		programManagementPage.storePatientProgramInSpecStore(patientProgram);
+	}
+
+	@Step("Register the patient to following treatment <programDetails>")
+	public void enrollPatientToProgram(Table table) throws Exception {
+		EndTBProgram treatment = TableTransformer.asEntity(table, EndTBProgram.class);
+		treatment.setRegistrationNumber(String.valueOf(new Random().nextInt()));
+		programManagementPage.storeProgramInSpecStore(treatment);
+		programManagementPage.enrollPatientToProgram(treatment);
+
 	}
 }

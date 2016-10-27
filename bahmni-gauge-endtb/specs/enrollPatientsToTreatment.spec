@@ -14,9 +14,8 @@ Tags: regression, sanity
 * Click on search patient link
 * Search previously created patient with exact identifier
 * Click on treatment enrollment
-* Register the patient to following program
-    |TB Register|Date Of Registration|Registration Facility|
+* Register the patient to following treatment
+    |name|dateOfRegistration|registrationFacility|
     |Second-line TB treatment register|01/01/2015|Facility1, City1, Country1|
 * Ensure that the patient is registered to mentioned program
 * On the login page
-* Logout the user

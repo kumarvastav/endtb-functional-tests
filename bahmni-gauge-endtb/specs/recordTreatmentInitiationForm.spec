@@ -17,4 +17,3 @@ Tags: regression, smoke, sanity
 * Ensure "Treatment-Information" display control with title "Treatment Information" with "01 Jul 16" as Start Date
     |Current month of treatment|Treatment start date|
 * On the login page
-* Logout the user
