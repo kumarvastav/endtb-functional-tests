@@ -4,6 +4,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.mashape.unirest.request.body.RequestBodyEntity;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -127,20 +128,16 @@ public class BahmniRestClient {
 			freemarkerTemplate.process(patientData, stringWriter);
 			String requestJson = stringWriter.toString();
 
-			HttpResponse<JsonNode> response = Unirest.post(url + PATIENT_PROFILE_URL)
-					.basicAuth(username, password)
-					.header("content-type", "application/json")
-					.body(requestJson)
-					.asJson();
-			Object patientUuid=null;
-			if(response.getBody().getObject()!=null)
-				patientUuid = JSONs.get(response.getBody().getObject(), "patient", "uuid");
+            Object patientUuid=null;
+            JsonNode body = post(PATIENT_PROFILE_URL, requestJson);
+            if(body.getObject()!=null)
+				patientUuid = JSONs.get(body.getObject(), "patient", "uuid");
 			if (null == patientUuid) {
 				System.err.println("Response from the server for patient creation:");
-				System.err.println(response.getBody().toString());
+				System.err.println(body.toString());
 				throw new BahmniAPIException("Patient creation failed!!");
 			}
-			JSONArray identifiers = (JSONArray) JSONs.get(response.getBody(), "patient", "identifiers");
+			JSONArray identifiers = (JSONArray) JSONs.get(body, "patient", "identifiers");
 			patient.setUuid(patientUuid.toString());
 			patient.setIdentifier(getPreferred(identifiers));
 		} catch (Exception e) {
@@ -534,21 +531,23 @@ public class BahmniRestClient {
 		return System.getenv("BAHMNI_GAUGE_APP_PASSWORD");
 	}
 
-	public static JsonNode post(String restAPIUrl, String body) {
-		HttpResponse<JsonNode> response = null;
+    public static JsonNode post(String restAPIUrl, String body) {
+		HttpResponse<JsonNode> responseAsJson;
+		String responseAsString = null;
+		String url = baseUrl() + restAPIUrl;
+		RequestBodyEntity requestBodyEntity = Unirest.post(url)
+			.basicAuth(username(), password())
+			.header("content-type", "application/json")
+			.body(body);
 		try {
-			String url = baseUrl() + restAPIUrl;
-			response = Unirest.post(url)
-				.basicAuth(username(), password())
-				.header("content-type", "application/json")
-				.body(body)
-				.asJson();
-			if (response.getStatus() != 200 && response.getStatus() != 201) {
+			responseAsString = requestBodyEntity.asString().getBody();
+			responseAsJson = requestBodyEntity.asJson();
+			if (responseAsJson.getStatus() != 200 && responseAsJson.getStatus() != 201) {
 				throw new BahmniAPIException("Post request failed!! Url: " + url + " Content:" + body.substring(0, 100));
 			}
 		} catch (UnirestException e) {
-			throw new BahmniAPIException(e);
+			throw new BahmniAPIException(responseAsString.substring(0, 10000));
 		}
-		return response.getBody();
+		return responseAsJson.getBody();
 	}
 }

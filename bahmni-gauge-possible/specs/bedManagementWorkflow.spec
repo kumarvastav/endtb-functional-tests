@@ -33,7 +33,7 @@ Tags: regression, sanity, admitAndVerify
     |details|
     |-------|
     |Admission Date<NOW[dd MMM yy]>|
-* Verify display control "disposition" on inpatient dashboard, has the following details
+* Verify display control "dispositionSection" on inpatient dashboard, has the following details
     |details|
     |-------|
     |Admit Patient<NOW[dd MMM yy]>|
@@ -67,7 +67,7 @@ Tags: regression, sanity, admitTransferAndVerfiy
     |details|
     |-------|
     |Admission Date<NOW[dd MMM yy]>|
-* Verify display control "disposition" on inpatient dashboard, has the following details
+* Verify display control "dispositionSection" on inpatient dashboard, has the following details
     |details|
     |-------|
     |Admit Patient<NOW[dd MMM yy]>|
@@ -80,7 +80,7 @@ Tags: regression, sanity, admitTransferAndVerfiy
     |details|
     |-------|
     |Admission Date<NOW[dd MMM yy]>|
-* Verify display control "disposition" on inpatient dashboard, has the following details
+* Verify display control "dispositionSection" on inpatient dashboard, has the following details
     |details|
     |-------|
     |Admit Patient<NOW[dd MMM yy]>|
@@ -114,7 +114,7 @@ Tags: regression, sanity, admitDischargeAndVerfiy
     |details|
     |-------|
     |Admission Date<NOW[dd MMM yy]>|
-* Verify display control "disposition" on inpatient dashboard, has the following details
+* Verify display control "dispositionSection" on inpatient dashboard, has the following details
     |details|
     |-------|
     |Admit Patient<NOW[dd MMM yy]>|
@@ -128,7 +128,7 @@ Tags: regression, sanity, admitDischargeAndVerfiy
     |Admission Date<NOW[dd MMM yy]>|
     |Discharge Date<NOW[dd MMM yy]>|
 
-* Verify display control "disposition" on inpatient dashboard, has the following details
+* Verify display control "dispositionSection" on inpatient dashboard, has the following details
     |details|
     |-------|
     |Admit Patient<NOW[dd MMM yy]>|
