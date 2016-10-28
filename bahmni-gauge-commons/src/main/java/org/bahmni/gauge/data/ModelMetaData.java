@@ -1,4 +1,4 @@
-package org.bahmni.gauge.common;
+package org.bahmni.gauge.data;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

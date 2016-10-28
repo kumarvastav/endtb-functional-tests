@@ -28,14 +28,8 @@ import java.util.List;
 
 public class BahmniPage {
 
-//    private static final Object ORDERSET_KEY = "order_set";
     protected static String BASE_URL = System.getenv("BAHMNI_GAUGE_APP_URL");
 
-//    public static final String PATIENT_KEY = "patient";
-//    public static final String PROGRAM_KEY = "program";
-//    public static final String PATIENT_PROGRAM_KEY = "patient_program";
-//    public static final String BASELINE_KEY = "baselineForm";
-//    public static final String OBSERVATION_KEY = "observation";
     public static final String DRUG_ORDER_KEY = "drug_order";
     protected WebDriver driver;
 

@@ -1,24 +1,29 @@
 package org.bahmni.gauge.common.admin.domain;
 
+import org.bahmni.gauge.data.Model;
+import org.bahmni.gauge.data.ModelMetaData;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by atmaramn on 05/10/2016.
  */
-public class OrderSet {
+
+@ModelMetaData(mrs_name = "bahmniorderset")
+public class OrderSet extends Model {
     private String name;
     private String description;
     private String operator;
-    private String uuid;
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+//    private String uuid;
+//
+//    public String getUuid() {
+//        return uuid;
+//    }
+//
+//    public void setUuid(String uuid) {
+//        this.uuid = uuid;
+//    }
 
     private List<OrderSetMember> orderSetMembers=new ArrayList<>();
 

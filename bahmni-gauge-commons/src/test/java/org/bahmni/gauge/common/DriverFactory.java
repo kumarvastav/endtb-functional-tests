@@ -54,16 +54,16 @@ public class DriverFactory {
 			String uuid = patient.getUuid();
 			if(patient.isAdmitted()) {
 				if(BahmniRestClient.get().dischargePatient(uuid))
-					BahmniRestClient.get().retirePatient(uuid);
+					BahmniRestClient.get().retirePatient(patient);
 			}
 			else
-				BahmniRestClient.get().retirePatient(uuid);
+				BahmniRestClient.get().retirePatient(patient);
 
 		}
 		OrderSet orderSet=new BahmniPage().getOrderSetInSpecStore();
 		if(orderSet!=null)
 		{
-			BahmniRestClient.get().retireOrderSet(orderSet.getUuid());
+			BahmniRestClient.get().retireOrderSet(orderSet);
 		}
 	}
 }

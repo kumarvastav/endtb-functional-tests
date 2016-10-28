@@ -1,7 +1,7 @@
 package org.bahmni.gauge.common.registration.domain;
 
-import org.bahmni.gauge.common.ModelMetaData;
-import org.bahmni.gauge.common.Model;
+import org.bahmni.gauge.data.ModelMetaData;
+import org.bahmni.gauge.data.Model;
 
 /**
  * Created by atmaramn on 17/10/2016.

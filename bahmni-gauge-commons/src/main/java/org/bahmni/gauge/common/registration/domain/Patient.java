@@ -1,7 +1,7 @@
 package org.bahmni.gauge.common.registration.domain;
 
-import org.bahmni.gauge.common.Model;
-import org.bahmni.gauge.common.ModelMetaData;
+import org.bahmni.gauge.data.Model;
+import org.bahmni.gauge.data.ModelMetaData;
 
 @ModelMetaData(mrs_name = "patient")
 public class Patient extends Model {

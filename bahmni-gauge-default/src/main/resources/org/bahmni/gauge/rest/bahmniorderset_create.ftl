@@ -1,9 +1,9 @@
 {
-  "name": "${orderSet.name}",
-  "description": "${orderSet.description}",
-  "operator": "${orderSet.operator}",
+  "name": "${object.name}",
+  "description": "${object.description}",
+  "operator": "${object.operator}",
   "orderSetMembers": [
-    <#list orderSet.orderSetMembers as member>
+    <#list object.orderSetMembers as member>
     {
       "orderType": {
         "uuid": "${member.orderTypeUuid}"

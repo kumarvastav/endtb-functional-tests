@@ -180,7 +180,8 @@ public class OrderSetPage extends BahmniPage {
     }
 
     public void createOrderSetUsingApi(OrderSet orderSet) {
-        BahmniRestClient.get().createOrderSet(orderSet,"orderset_create.ftl");
+        //BahmniRestClient.get().createOrderSet(orderSet,"orderset_create.ftl");
+        BahmniRestClient.get().createOrderSet(orderSet);
         storeOrderSetInSpecStore(orderSet);
     }
 

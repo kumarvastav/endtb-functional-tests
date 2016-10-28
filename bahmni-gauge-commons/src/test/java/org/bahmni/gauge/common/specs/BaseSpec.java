@@ -47,12 +47,12 @@ public class BaseSpec {
         for (Patient patient : patients) {
             if (patient != null) {
                 String uuid = patient.getUuid();
-                BahmniRestClient.get().retirePatient(uuid);
+                BahmniRestClient.get().retirePatient(patient);
             }
         }
         OrderSet orderSet = new BahmniPage().getOrderSetInSpecStore();
         if (orderSet != null) {
-            BahmniRestClient.get().retireOrderSet(orderSet.getUuid());
+            BahmniRestClient.get().retireOrderSet(orderSet);
         }
     }
 }
