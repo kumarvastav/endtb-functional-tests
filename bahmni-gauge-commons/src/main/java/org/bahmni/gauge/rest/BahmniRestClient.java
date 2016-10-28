@@ -179,7 +179,7 @@ public class BahmniRestClient {
 			throw new BahmniAPIException(e);
 		}
 	}
-	public void dischargePatient(String uuid) {
+	public boolean dischargePatient(String uuid) {
         try {
             Template freemarkerTemplate = freemarkerConfiguration.getTemplate("discharge_patient.ftl");
             Map<String, Object> programData = new HashMap<>();
@@ -195,11 +195,11 @@ public class BahmniRestClient {
                     .body(requestJson)
                     .asJson();
             if (response.getStatus() != 200 && response.getStatus() != 201)
-                throw new BahmniAPIException("Admit patient creation through API Failed!!");
+                throw new BahmniAPIException("Discharge patient through API Failed!!");
         } catch (Exception e) {
             throw new BahmniAPIException(e);
         }
-
+		return true;
 	}
 
 	public void enrollToProgram(PatientProgram patientProgram) {

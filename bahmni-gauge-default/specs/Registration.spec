@@ -238,12 +238,12 @@ Admit Patient with closed visit and verify display controls
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
     |Total Beds: 9 |
-    |Available Beds: 7|
+    |Available Beds: 6|
 * Assign an empty bed
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
     |Total Beds: 9 |
-    |Available Beds: 6|
+    |Available Beds: 5|
 * Navigate to Inpatient Dashboard
 * Verify display control "admissionDetails" on inpatient dashboard, has the following details
     |details|
@@ -254,9 +254,13 @@ Admit Patient with closed visit and verify display controls
     |details|
     |General Ward <Patient.bedNumber>|
     |Admission Date<NOW[dd MMM yy]>|
-* Navigate to dashboard link
+* Navigate to dashboard
+* Click on clinical app
+* Select existing patient from patient listing page under tab "All"
 * Verify display control "Admission-Details" on dashboard, has the following details
     |details|
     |General Ward <Patient.bedNumber>|
     |Admission Date<NOW[dd MMM yy]>|
-
+* Verify display control "Visits" on dashboard, has the following details
+    |details|
+    |IPD |

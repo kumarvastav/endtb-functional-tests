@@ -120,7 +120,8 @@ public class InpatientSpec extends BaseSpec{
     @Step("Click on <linkText> link")
     public void clickLinkText(String linkText){
         DispositionPage disposition = PageFactory.get(DispositionPage.class);
-        disposition.findElementByText("a",linkText).click();
+        if(disposition.findElementByText("a",linkText).isDisplayed())
+            disposition.findElementByText("a",linkText).click();
     }
 
 }

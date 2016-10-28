@@ -53,9 +53,12 @@ public class DriverFactory {
 		if (patient != null) {
 			String uuid = patient.getUuid();
 			if(patient.isAdmitted()) {
-				BahmniRestClient.get().dischargePatient(uuid);
+				if(BahmniRestClient.get().dischargePatient(uuid))
+					BahmniRestClient.get().retirePatient(uuid);
 			}
-            BahmniRestClient.get().retirePatient(uuid);
+			else
+				BahmniRestClient.get().retirePatient(uuid);
+
 		}
 		OrderSet orderSet=new BahmniPage().getOrderSetInSpecStore();
 		if(orderSet!=null)
