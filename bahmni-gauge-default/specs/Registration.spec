@@ -43,7 +43,7 @@ Tags: regression, sanity
 * Navigate to dashboard
 * Logout the user
 
-Create a new patient with Auto generated id and photo, fetch & validate patient details
+Create a new patient with Auto generated id, fetch & validate patient details
 ------------------------------
 
 Tags: regression, sanity
@@ -54,8 +54,8 @@ Tags: regression, sanity
 * Click on create new patient link
 * Create the following patient
 
-    |prefix|firstName|lastName|gender|dateOfBirth|age|district|village|photo|
-    |GAN|DevKumar|Karia|Male|20/01/2011|50|Bilaspur|Kahnapur|true|
+    |prefix|firstName|lastName|gender|dateOfBirth|age|district|village|
+    |GAN|DevKumar|Karia|Male|20/01/2011|50|Bilaspur|Kahnapur|
 
 * Click on search patient link
 * Search previously created patient with name

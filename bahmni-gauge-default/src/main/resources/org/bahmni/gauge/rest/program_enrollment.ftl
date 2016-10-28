@@ -4,21 +4,21 @@
 {
 
    "patient":"${patient.uuid}",
-   "program":"7841b9d6-1e5a-4f71-ba83-6c074d015657",
+   "program":"03705411-8da4-448a-90a5-bacad8f110e2",
    "dateEnrolled":"${program.dateOfRegistration?datetime("dd/MM/yyyy")?datetime}",
-   "attributes":[{
-                "attributeType": {
-                "uuid": "ecd4abf2-bdbd-11e5-87d4-005056822ee5"
-                },
-                "value": "${program.treatmentDate?datetime("dd/MM/yyyy")?datetime}"
-                }, {
-                "attributeType": {
-                "uuid": "51b8be10-cb1a-11e5-87d4-005056822ee5"
-                },
-                "value": "cbf4892e-f700-4dd8-b880-f60ef913cdb5"
-                }],
-                "states": [{
-                "state": "dc189ad7-49ae-4fd8-99da-9e89d543ddd1",
-                "startDate": "2016-09-23T00:00:00+0530"
-                }]
+    "attributes": [{
+    "attributeType": {
+    "uuid": "46a47692-9aaa-11e6-ab0e-005056822ee5"
+    },
+    "value": "${program.treatmentDate?datetime("dd/MM/yyyy")?datetime}"
+    }, {
+    "attributeType": {
+    "uuid": "46b9a027-9aaa-11e6-ab0e-005056822ee5"
+    },
+    "value": "4e08808d-cc73-45f7-9a5d-3d04e12eb64b"
+    }],
+    "states": [{
+    "state": "c45365b0-27a0-4baa-912b-1aec34e9bb97",
+    "startDate": "2016-09-21T00:00:00+0530"
+    }]
 }
