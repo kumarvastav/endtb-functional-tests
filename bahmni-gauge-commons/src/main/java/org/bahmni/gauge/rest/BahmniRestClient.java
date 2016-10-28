@@ -193,7 +193,7 @@ public class BahmniRestClient {
             freemarkerTemplate.process(programData, stringWriter);
             String requestJson = stringWriter.toString();
 
-            HttpResponse<JsonNode> response = Unirest.post(url + DISCHARGE_PATIENT_URL)
+            HttpResponse<JsonNode> response = Unirest.post(mrs_url + DISCHARGE_PATIENT_URL)
                     .basicAuth(username, password)
                     .header("content-type", "application/json")
                     .body(requestJson)
@@ -217,7 +217,7 @@ public class BahmniRestClient {
 			freemarkerTemplate.process(programData, stringWriter);
 			String requestJson = stringWriter.toString();
 
-			HttpResponse<JsonNode> response = Unirest.post(url + PROGRAM_ENROLLMENT_URL)
+			HttpResponse<JsonNode> response = Unirest.post(mrs_url + PROGRAM_ENROLLMENT_URL)
 				.basicAuth(username, password)
 				.header("content-type", "application/json")
 				.body(requestJson)
@@ -243,7 +243,7 @@ public class BahmniRestClient {
 			freemarkerTemplate.process(attributes, stringWriter);
 			String requestJson = stringWriter.toString();
 
-			HttpResponse<JsonNode> response = Unirest.post(url + EMRAPI_URL)
+			HttpResponse<JsonNode> response = Unirest.post(mrs_url + EMRAPI_URL)
 				.basicAuth(username, password)
 				.header("content-type", "application/json")
 				.body(requestJson)
@@ -270,7 +270,7 @@ public class BahmniRestClient {
 
 			String requestJson = stringWriter.toString();
 
-			HttpResponse<JsonNode> response = Unirest.post(url + EMRAPI_URL)
+			HttpResponse<JsonNode> response = Unirest.post(mrs_url + EMRAPI_URL)
 				.basicAuth(username, password)
 				.header("content-type", "application/json")
 				.body(requestJson)
