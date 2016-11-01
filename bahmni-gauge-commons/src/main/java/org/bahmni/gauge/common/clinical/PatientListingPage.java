@@ -59,12 +59,18 @@ public class PatientListingPage extends BahmniPage {
   
     public void searchSelectPatientFromTab(String patientID, String tab) {
 		clickTab(tab);
-    	enterPatientIDOrName(patientID);
-		if("All".equals(tab)){
-			search_btn.click();
+		if("Ward List".equals(tab)){
+			findElement(By.xpath("//a[contains(text(),\""+patientID+"\")]")).click();
+			//a[contains(text(),"GAN2032")]
+		} else {
+			enterPatientIDOrName(patientID);
+			if("All".equals(tab)){
+				search_btn.click();
+			}
+			waitForSpinner();
+			selectPatient(patientID);
 		}
-		waitForSpinner();
-    	selectPatient(patientID);
+
     }
 
 	public boolean isPatientListedOnTab(String patientID, String tab) {

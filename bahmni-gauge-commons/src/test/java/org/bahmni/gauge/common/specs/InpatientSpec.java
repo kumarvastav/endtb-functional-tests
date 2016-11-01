@@ -37,7 +37,7 @@ public class InpatientSpec extends BaseSpec{
         InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
         WebElement actionElement = dashboardPage.findButtonByText(action);
         actionElement.click();
-        if(movement.toLowerCase().contains("admit"))
+        if(movement.toLowerCase().contains("admit") || movement.toLowerCase().contains("undo discharge"))
             dashboardPage.getPatientFromSpecStore().setAdmitted(true);
     }
 
@@ -49,8 +49,9 @@ public class InpatientSpec extends BaseSpec{
         dashboardPage.findElement(By.cssSelector("[ng-model=\"observation.value\"]")).sendKeys(notes);
         WebElement actionElement = dashboardPage.findButtonByText(action);
         actionElement.click();
-        if(movement.toLowerCase().contains("admit"))
+        if(movement.toLowerCase().contains("admit") || movement.toLowerCase().contains("undo discharge"))
             dashboardPage.getPatientFromSpecStore().setAdmitted(true);
+
     }
 
     @Step("Assign an empty bed")

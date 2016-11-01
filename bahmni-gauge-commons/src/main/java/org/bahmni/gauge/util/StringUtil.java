@@ -18,7 +18,7 @@ public class StringUtil {
 
 
     /*
-    * Use generic method - transformPatternToData(String content)
+    * @depricated Use generic method - transformPatternToData(String content)
     * */
     @Deprecated
     public static String setDateTime(String content) {
@@ -48,7 +48,7 @@ public class StringUtil {
     */
     public static String transformPatternToData(String content) {
 
-
+        //Replace formatted date template with actual date
         String pattern1 = "<NOW\\[(.*)\\]>";
         Matcher matcher = Pattern.compile(".*" + pattern1 + ".*").matcher(content);
         String dateFormat = "dd-MM-yy";
@@ -58,6 +58,7 @@ public class StringUtil {
             content = content.replaceAll(pattern1, formatter.format(new Date()));
         }
 
+        //Replace Variables with data
         String pattern2 = "<(.+\\..+)>";
         matcher = Pattern.compile(".*" + pattern2 + ".*").matcher(content);
         String match = null;

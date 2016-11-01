@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+@Deprecated
 public class BaseSpec {
     static String stringDoesNotExist(String content) {
         return "String `" + content + "` does not exist";
