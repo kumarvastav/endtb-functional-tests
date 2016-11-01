@@ -65,5 +65,17 @@ Tags: regression, sanity
 * Verify display control "admissionDetails" on inpatient dashboard, has the following details
     |details|
     |General Ward <Patient.bedNumber>|
-    |Admission Date <NOW[dd MMM yy]>|
+    |Admission Date<NOW[dd MMM yy]>|
     |Patient Admitted as requested|
+* Navigate to dashboard
+* Click on clinical app
+* Select existing patient from patient listing page under tab "All"
+* Verify display control "Admission-Details" on dashboard, has the following details
+    |details|
+    |General Ward <Patient.bedNumber>|
+    |Admission Date<NOW[dd MMM yy]>|
+    |Patient Admitted as requested|
+
+Debug
+------
+* Create and admit a patient through API

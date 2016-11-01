@@ -60,11 +60,11 @@ public class BahmniRestClient {
 
 	private static final String GET_CONCEPT_UUID_URL = "/concept?q=%s&v=custom:(uuid,display)";
 
-	private static final String GET_CONCEPT_ANSWER_URL = "/openmrs/ws/rest/v1/concept?q=%s&v=custom:(uuid,name:(uuid,name),answers:(uuid,display))";
+	private static final String GET_CONCEPT_ANSWER_URL = "/concept?q=%s&v=custom:(uuid,name:(uuid,name),answers:(uuid,display))";
 
-	private static final String ADMIT_INPATIENT_CREATE_URL = "/openmrs/ws/rest/v1/bahmnicore/bahmniencounter";
+	private static final String ADMIT_INPATIENT_CREATE_URL = "/bahmnicore/bahmniencounter";
 
-	private static final String DISCHARGE_PATIENT_URL = "/openmrs/ws/rest/v1/bahmnicore/discharge";
+	private static final String DISCHARGE_PATIENT_URL = "/bahmnicore/discharge";
 
 	private Configuration freemarkerConfiguration;
 
