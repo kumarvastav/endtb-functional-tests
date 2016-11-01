@@ -81,6 +81,7 @@ public class OrderSetPageSpec {
         }
 
         orderSetPage.createOrderSetUsingApi(orderSet);
+        orderSetPage.storeOrderSetInSpecStore(orderSet);
 
     }
 

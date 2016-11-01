@@ -115,6 +115,7 @@ public class InpatientSpec extends BaseSpec{
     public void admitPatient(){
         DispositionPage disposition = PageFactory.get(DispositionPage.class);
         BahmniRestClient.get().admitPatient(disposition.getVisitFromSpecStore(),"admit_patient.ftl");
+        disposition.getPatientFromSpecStore().setAdmitted(true);
     }
 
     @Step("Click on <linkText> link")

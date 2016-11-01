@@ -64,7 +64,6 @@ Tags: regression, sanity
 * Navigate to Inpatient Dashboard
 * Verify display control "admissionDetails" on inpatient dashboard, has the following details
     |details|
-    |Labour Ward|
-    |Admission Date|
-    |<NOW[dd MMM yy]>|
+    |General Ward <Patient.bedNumber>|
+    |Admission Date <NOW[dd MMM yy]>|
     |Patient Admitted as requested|
