@@ -13,6 +13,7 @@ import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
+import org.bahmni.gauge.util.StringUtil;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -95,7 +96,7 @@ public class ObservationSpec extends BaseSpec{
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
         String displayControlText = dashboardPage.getDisplayControlText(displayControlId);
         for (String drugOrder : table.getColumnValues("details")) {
-            drugOrder = setDateTime(drugOrder);
+            drugOrder = StringUtil.transformPatternToData(drugOrder);
             Assert.assertTrue(stringDoesNotExist(drugOrder),displayControlText.contains(drugOrder));
         }
     }
