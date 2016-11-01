@@ -588,7 +588,7 @@ public class BahmniRestClient {
 			.header("content-type", "application/json")
 			.body(body);
 		try {
-			responseAsString = requestBodyEntity.asString().getBody();
+			responseAsString = requestBodyEntity.getBody().toString();
 			responseAsJson = requestBodyEntity.asJson();
 			if (responseAsJson.getStatus() != 200 && responseAsJson.getStatus() != 201) {
 				throw new BahmniAPIException("Post request failed!! Url: " + url + " Content:" + body.substring(0, 100));
