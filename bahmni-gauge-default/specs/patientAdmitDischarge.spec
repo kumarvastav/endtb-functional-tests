@@ -30,6 +30,7 @@ Tags: regression, sanity
 Admit patient through API, discharge and close visit 
 ------------------------------------------
 Tags: regression, sanity
+
 * Create and admit a patient through API
 * On the login page 
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_ANOTHER_LOCATION" 
@@ -53,6 +54,8 @@ Tags: regression, sanity
 
 Admit Patient with closed visit and verify display controls
 ----------------
+Tags: regression, sanity
+
 * Create a new patient through API
 * On the login page 
 * Login to the application
@@ -179,6 +182,8 @@ Tags: regression, sanity
 
 Discharge and Undo Discharge Patient through Disposition
 -----------------------------
+Tags: regression, sanity
+
 * Create a new patient through API
 * Open visit for previous patient using api
     |location|type|
@@ -280,55 +285,5 @@ Discharge and Undo Discharge Patient through Disposition
   |General Ward <Patient.bedNumber>|
   |Admission Date<NOW[dd MMM yy]>|
   |Patient Admitted as requested|
-
-
-Verify Patient Admit, Transfer, Discharge, Undo Discharge via In Patient Module
---------------------------------------------
-* Create a new patient through API
-* Open visit for previous patient using api
-    |location|type|
-    |Registration Desk|OPD|
-* On the login page
-* Login to the application
-* Click on inpatient app
-* Select existing patient from patient listing page under tab "All"
-* Select "Admit Patient" from Patient Movement and click "Admit" button
-* Verify display control "view-content" on inpatient dashboard, has the following details
-    |details|
-    |Total Beds: 9 |
-    |Available Beds: 2|
-* Assign an empty bed
-* Verify display control "view-content" on inpatient dashboard, has the following details
-    |details|
-    |Total Beds: 9 |
-    |Available Beds: 1|
-* Navigate to Inpatient Dashboard
-* Verify display control "admissionDetails" on inpatient dashboard, has the following details
-    |details|
-    |General Ward <Patient.bedNumber>|
-    |Admission Date<NOW[dd MMM yy]>|
-* Click on "Patient Visit Page" link
-* Verify display control "admissionDetails" on inpatient dashboard, has the following details
-    |details|
-    |General Ward <Patient.bedNumber>|
-    |Admission Date<NOW[dd MMM yy]>|
-* Navigate to dashboard
-* Click on clinical app
-* Select existing patient from patient listing page under tab "All"
-* Verify display control "Admission-Details" on dashboard, has the following details
-    |details|
-    |General Ward <Patient.bedNumber>|
-    |Admission Date<NOW[dd MMM yy]>|
-* Verify display control "Visits" on dashboard, has the following details
-    |details|
-    |OPD |
-* Navigate to dashboard
-* Click on inpatient app
-* Select existing patient from patient listing page under tab "Ward List"
-
-
-Debug
-------
-* Create and admit a patient through API
 
 
