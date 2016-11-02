@@ -10,6 +10,10 @@ Scenario 1 - Search with order set name and add order set with date in Medicatio
 Tags: regression, sanity
 
 * Enroll patient to program through API
+* Create orderset "Hypertension", description "Drug Orderset", operator "ALL" with following members using api
+        |orderType|conceptName|drugName|dose|doseUnit|frequency|instruction|duration|durationUnit|route|additionalInstructions|
+        |Drug Order|Atenolol|Atenolol 25mg|1|Tablet(s)|Twice a day|Before meals|2|Day(s)|Oral||
+        |Drug Order|Ibuprofen & Paracetamol|Ibuprofen & Paracetamol 225mg/5ml|0.2|mg|Twice a day||3|Day(s)|Nasal|Dont skip this medicine|
 * On the login page
 * Login to the application
 * Click on registration app
@@ -28,17 +32,17 @@ Tags: regression, sanity
 *Verify display control "Recent" on medications tab, has the following details
     |details|
     |Atenolol 25mg (Tablet) 1 Tablet(s), Twice a day, Before meals, Oral - 2 Day(s)(4 Tablet(s))|
-    |Amlodipine & Atenolol 5mg + 50mg (Tablet) 3 Capsule(s), Once a day, After meals, Oral - 2 Day(s)(6 Capsule(s))|
+    |Ibuprofen & Paracetamol 225mg/5ml (Suspension) 0.2 mg, Twice a day, Nasal - 3 Day(s)(2 mg)|
 * Navigate to patient dashboard
 * Verify display control "Treatments" on dashboard, has the following details
     |details|
     |Atenolol 25mg (Tablet) 1 Tablet(s), Twice a day, Before meals, Oral - 2 Day(s)|
-    |Amlodipine & Atenolol 5mg + 50mg (Tablet) 3 Capsule(s), Once a day, After meals, Oral - 2 Day(s)|
+    |Ibuprofen & Paracetamol 225mg/5ml (Suspension) 0.2 mg, Twice a day, Nasal - 3 Day(s)|
 *Navigate to latest visit page
 *Verify display control "treatment" on visit page, has the following details
      |details|
      |Atenolol 25mg (Tablet) 1 Tablet(s), Twice a day, Before meals, Oral - 2 Day(s)|
-     |Amlodipine & Atenolol 5mg + 50mg (Tablet) 3 Capsule(s), Once a day, After meals, Oral - 2 Day(s)|
+     |Ibuprofen & Paracetamol 225mg/5ml (Suspension) 0.2 mg, Twice a day, Nasal - 3 Day(s)|
 * Navigate to dashboard
 * Logout the user
 
