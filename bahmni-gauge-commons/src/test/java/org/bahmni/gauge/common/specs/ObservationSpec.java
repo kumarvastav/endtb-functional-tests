@@ -97,7 +97,7 @@ public class ObservationSpec extends BaseSpec{
         String displayControlText = dashboardPage.getDisplayControlText(displayControlId);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
-            Assert.assertTrue(stringDoesNotExist(drugOrder),displayControlText.contains(drugOrder));
+            Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText),displayControlText.contains(drugOrder));
         }
     }
     @Step("click  <displayControlId> on dashboard, and verify displayed dialog has the following details <table>")
@@ -107,7 +107,7 @@ public class ObservationSpec extends BaseSpec{
         String displayControlText = dashboardPage.getDialogText(By.cssSelector(".ngdialog-content"));
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
-            Assert.assertTrue(stringDoesNotExist(drugOrder),displayControlText.contains(drugOrder));
+            Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText),displayControlText.contains(drugOrder));
         }
         dashboardPage.closeDialog();
     }

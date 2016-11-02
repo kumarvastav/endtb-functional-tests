@@ -57,7 +57,7 @@ public class RegistrationVisitPageSpec {
         String displayControlText = registrationVisitPage.getDisplayControlText(displayControl);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
-            Assert.assertTrue("String "+drugOrder+" does not exist. Actual String :"+displayControlText,displayControlText.contains(drugOrder));
+            Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText),displayControlText.contains(drugOrder));
         }
     }
     @Step("Verify details on visit page <Disposition> display control")

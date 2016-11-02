@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
  * Modified by nityadas on 27/10/2016
  */
 public class StringUtil {
-    public static String stringDoesNotExist(String content) {
-        return "String `" + content + "` does not exist";
+    public static String stringDoesNotExist(String expected, String actual) {
+        return "Expected and Actual text don't match.\nExpected Text : "+expected+"\nActual Text : "+actual;
     }
 
 

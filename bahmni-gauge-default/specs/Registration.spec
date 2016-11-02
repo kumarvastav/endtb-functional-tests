@@ -201,5 +201,3 @@ Tags: regression, sanity
     |WEIGHT5|
     |BMI500|
     |BMI STATUSVery Severely Obese|
-
-*Create and admit a patient through API

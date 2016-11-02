@@ -87,7 +87,7 @@ public class InpatientSpec extends BaseSpec{
         String displayControlText = dashboardPage.getDisplayControlText(displayControlId);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
-            Assert.assertTrue(stringDoesNotExist(drugOrder),displayControlText.contains(drugOrder));
+            Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText),displayControlText.contains(drugOrder));
         }
     }
 
