@@ -46,7 +46,7 @@ public class ObservationSpec extends BaseSpec{
     public void enterTemplateValues(String template, Table table) throws InterruptedException {
         ObservationForm observationForm = null;
         if(template.toLowerCase().contains("obstetrics"))
-            observationForm = new ObservationForm(driver.findElement(By.cssSelector("#concept-set-4")));
+            observationForm = new ObservationForm(driver.findElement(By.cssSelector("#concept-set-3")));
         observationForm.fillUp(table);
         waitForAppReady();
     }

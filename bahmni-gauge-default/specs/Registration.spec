@@ -159,30 +159,6 @@ Tags: regression, sanity
 * Logout the user
 
 
- Admit patient through API, discharge and close visit 
-------------------------------------------
-Tags: regression, sanity
-* Create and admit a patient through API
-* On the login page 
-* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_ANOTHER_LOCATION" 
-* Click on inpatient app 
-* Select existing patient from patient listing page under tab "Admitted" 
-* Select "Discharge Patient" from Patient Movement and click "Discharge" button 
-* Navigate to dashboard  
-* Click on registration app 
-* Search previously created patient with exact identifier
-* Enter Visit Details for Admitted Patient
-* Close visit 
-* Search previously created patient with exact identifier  
-* Verify "Start OPD visit" button is "displayed"
-* Navigate to dashboard
-* Click on inpatient app
-* Select existing patient from patient listing page under tab "All"
-* Verify only "Admit Patient" option is displayed in Patient Movement 
-* Navigate to dashboard 
-* Logout the user
-
-
 Verify BMI display control verification
 -------------------------
 Tags: regression, sanity
@@ -201,12 +177,12 @@ Tags: regression, sanity
     |WEIGHT5|
     |BMI20|
     |BMI STATUSNormal|
-* Enter visit details from table
-    |height|weight|fees|comments|
-    |10.11|10.55|100|bmi observations seems normal|
-* Verify the details on "bmi" display control
-    |details|
-    |HEIGHT10.11WEIGHT10.55BMI1032.17BMI STATUSVery Severely Obese|
+//* Enter visit details from table
+//    |height|weight|fees|comments|
+//    |10.11|10.55|100|bmi observations seems normal|
+//* Verify the details on "bmi" display control
+//    |details|
+//    |HEIGHT10.11WEIGHT10.55BMI1032.17BMI STATUSVery Severely Obese|
 * Enter visit details from table
     |height|weight|fees|
     |50|1|100|
@@ -226,41 +202,4 @@ Tags: regression, sanity
     |BMI500|
     |BMI STATUSVery Severely Obese|
 
-
-Admit Patient with closed visit and verify display controls
-----------------
-* Create a new patient through API
-* On the login page 
-* Login to the application
-* Click on inpatient app
-* Select existing patient from patient listing page under tab "All"
-* Select "Admit Patient" from Patient Movement and click "Admit" button
-* Verify display control "view-content" on inpatient dashboard, has the following details
-    |details|
-    |Total Beds: 9 |
-    |Available Beds: 6|
-* Assign an empty bed
-* Verify display control "view-content" on inpatient dashboard, has the following details
-    |details|
-    |Total Beds: 9 |
-    |Available Beds: 5|
-* Navigate to Inpatient Dashboard
-* Verify display control "admissionDetails" on inpatient dashboard, has the following details
-    |details|
-    |General Ward <Patient.bedNumber>|
-    |Admission Date<NOW[dd MMM yy]>|
-* Click on "Patient Visit Page" link
-* Verify display control "admissionDetails" on inpatient dashboard, has the following details
-    |details|
-    |General Ward <Patient.bedNumber>|
-    |Admission Date<NOW[dd MMM yy]>|
-* Navigate to dashboard
-* Click on clinical app
-* Select existing patient from patient listing page under tab "All"
-* Verify display control "Admission-Details" on dashboard, has the following details
-    |details|
-    |General Ward <Patient.bedNumber>|
-    |Admission Date<NOW[dd MMM yy]>|
-* Verify display control "Visits" on dashboard, has the following details
-    |details|
-    |IPD |
+*Create and admit a patient through API
