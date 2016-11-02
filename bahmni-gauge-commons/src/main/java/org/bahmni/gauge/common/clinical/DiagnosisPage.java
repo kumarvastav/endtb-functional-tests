@@ -55,9 +55,9 @@ public class DiagnosisPage extends BahmniPage {
         for (Diagnosis diagnosis:diagnoses){
             WebElement row=driver.findElements(By.cssSelector(".diagnosis-row")).get(index++);
             String text=row.getText();
-            Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getDiagnosis()),text.contains(diagnosis.getDiagnosis()));
-            Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getOrder().toUpperCase()),text.contains(diagnosis.getOrder().toUpperCase()));
-            Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getCertainty().toUpperCase()),text.contains(diagnosis.getCertainty().toUpperCase()));
+            Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getDiagnosis(),text),text.contains(diagnosis.getDiagnosis()));
+            Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getOrder().toUpperCase(),text),text.contains(diagnosis.getOrder().toUpperCase()));
+            Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getCertainty().toUpperCase(),text),text.contains(diagnosis.getCertainty().toUpperCase()));
         }
     }
 }
