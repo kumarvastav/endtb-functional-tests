@@ -77,7 +77,7 @@ Tags: regression, sanity, Debug
 * Login to the application
 * Click on programs app
 * Select existing patient from patient listing page under tab "All"
-* End previously mentioned program
+* End previously mentioned program by setting outcome to "Treatment Outcome, Cured"
 * Ensure that the mentioned program is stopped
 * Navigate to dashboard
 * Logout the user

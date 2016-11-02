@@ -11,7 +11,7 @@ import java.util.List;
 
 public class StoreHelper {
     public static <T> boolean store(Class<T> tClass, T entity) {
-        List<T> entities = (List<T>) DataStoreFactory.getSpecDataStore().get(tClass);
+        List<T> entities = (List<T>) DataStoreFactory.getSpecDataStore().get(tClass.getSimpleName());
         if (null == entities) {
             entities = new LinkedList<>();
             DataStoreFactory.getSpecDataStore().put(tClass.getSimpleName(), entities);

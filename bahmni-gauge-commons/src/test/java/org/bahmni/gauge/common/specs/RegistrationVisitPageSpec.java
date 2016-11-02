@@ -60,6 +60,16 @@ public class RegistrationVisitPageSpec {
             Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText),displayControlText.contains(drugOrder));
         }
     }
+
+    @Step("Verify display control with Caption <displayControlCaption> on visit page, has the following details <table>")
+    public void verifyDisplayControlOnVisitPageWithCaption(String displayControlCaption, Table table) {
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        String displayControlText = registrationVisitPage.getDisplayControlTextWithCaption(displayControlCaption);
+        for (String drugOrder : table.getColumnValues("details")) {
+            drugOrder = StringUtil.transformPatternToData(drugOrder);
+            Assert.assertTrue("String "+drugOrder+" does not exist. Actual String :"+displayControlText,displayControlText.contains(drugOrder));
+        }
+    }
     @Step("Verify details on visit page <Disposition> display control")
     public void selectDisplayControl(String name) {
         VisitPage visitPage = PageFactory.get(VisitPage.class);

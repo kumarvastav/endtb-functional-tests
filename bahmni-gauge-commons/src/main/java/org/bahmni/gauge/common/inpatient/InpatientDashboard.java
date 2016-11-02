@@ -11,6 +11,12 @@ public class InpatientDashboard extends BahmniPage {
         return displayControl.getText().replace("\n", "");
     }
 
+    public String getDisplayControlTextWitCaption(String Caption) {
+        WebElement displayControl = findElement(By.xpath(".//h2[contains(text(),\""+Caption+"\")]/ancestor::section[contains(@class,\"dashboard-section\")][1]"));
+        waitForSpinner();
+        return displayControl.getText().replace("\n", "");
+    }
+
     public boolean isAdmitted() {
         waitForSpinner();
         WebElement patientProfileDisplayControl = findElement(By.tagName("patient-profile"));

@@ -58,4 +58,10 @@ public class RegistrationVisitDetailsPage extends BahmniPage{
 			return displayControl.getText().replace("\n", "");
 
 	}
+	public String getDisplayControlTextWithCaption(String displayControlCaption ){
+		WebElement displayControl = findElement(By.xpath(".//h2[contains(text(),\""+displayControlCaption+"\")]/ancestor::*[contains(@class,\"block\")][1]"));
+		waitForSpinner();
+		return displayControl.getText().replace("\n", "");
+
+	}
 }

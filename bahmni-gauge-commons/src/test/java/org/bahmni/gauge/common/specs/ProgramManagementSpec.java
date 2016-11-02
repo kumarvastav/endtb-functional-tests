@@ -73,7 +73,15 @@ public class ProgramManagementSpec {
 	public void endPreviousProgram(){
 		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
 		Program program=new BahmniPage().getProgramFromSpecStore();
-		program.setTreatmentStatus("Cured");
+		program.setTreatmentStatus("Treatment Outcome, Cured");
+		programManagementPage.endProgram(program);
+	}
+
+	@Step("End previously mentioned program by setting outcome to <outcome>")
+	public void endPreviousProgramWithOutcome(String outcome){
+		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
+		Program program=new BahmniPage().getProgramFromSpecStore();
+		program.setTreatmentStatus(outcome);
 		programManagementPage.endProgram(program);
 	}
 

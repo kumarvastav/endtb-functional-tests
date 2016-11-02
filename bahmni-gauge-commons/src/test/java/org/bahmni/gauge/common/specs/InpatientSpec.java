@@ -91,6 +91,16 @@ public class InpatientSpec extends BaseSpec{
         }
     }
 
+    @Step("Verify display control with Caption <displayControlCaption> on inpatient dashboard, has the following details <table>")
+    public void verifyDisplayControlContentWithCaption(String displayControlCaption, Table table) {
+        InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
+        String displayControlText = dashboardPage.getDisplayControlTextWitCaption(displayControlCaption);
+        for (String drugOrder : table.getColumnValues("details")) {
+            drugOrder = StringUtil.transformPatternToData(drugOrder);
+            Assert.assertTrue(stringDoesNotExist(drugOrder),displayControlText.contains(drugOrder));
+        }
+    }
+
     @Step("Ensure inpatient icon does not exist on Patient Profile display control")
     public void ensureNotAdmitted(){
         InpatientDashboard dashboardPage = PageFactory.get(InpatientDashboard.class);
