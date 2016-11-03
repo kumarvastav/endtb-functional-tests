@@ -156,6 +156,7 @@ Patient In Expected arrival queue
 * On the login page
 * Login with username "BAHMNI_GAUGE_DATA_ADMIN_USER" and password "BAHMNI_GAUGE_DATA_ADMIN_PASSWORD" with location "BAHMNI_GAUGE_DATA_ADMIN_LOCATION"
 * Click on programs app
+* Search and select patient "Al Oadasd Hassan" from "Programs" queue
 * Navigate to "Reconstructive Surgery" program dashboard
 * Navigate to consultation
 * Go to "Observations" tab

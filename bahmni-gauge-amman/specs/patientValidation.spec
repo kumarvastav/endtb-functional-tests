@@ -18,7 +18,7 @@ Tags: regression
 | Gaman     | Sayed    | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     |
 * Start "First Stage Validation" visit and navigate to Programs page
 * Register the patient to following program
-| programName            | dateOfRegistration | programStatus |
+| name            | dateOfRegistration | programStatus |
 | Reconstructive Surgery | 01/01/2016         | Identification|
 * Navigate to "Reconstructive Surgery" program dashboard
 * Navigate to consultation
