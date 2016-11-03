@@ -36,14 +36,22 @@ public class PatientQueueSpec {
         patientQueuePage.enterPatientIDOrName(patientName);
     }
 
-    @Step("Verify patient details in queue <table>")
-    public void verifyPatientDetailsinQueue(Table table){
+    @Step("Verify patient details of <patientName> in queue <table>")
+    public void verifyPatientDetailsinQueue(String patientName, Table table){
         PatientQueuePage patientQueuePage = PageFactory.get(PatientQueuePage.class);
         List<String> columnNames = table.getColumnNames();
-        TableRow row = table.getTableRows().get(0);
+        TableRow requiredRow = null;
+        for (TableRow row: table.getTableRows()){
+            if (row.getCell("Name").contains(patientName)){
+                requiredRow = row;
+                break;
+            }
+        }
+
+
         for (String columnName: columnNames){
             String actualData = patientQueuePage.getColumnData(columnName);
-            Assert.assertEquals(row.getCell(columnName),actualData);
+            Assert.assertEquals(requiredRow.getCell(columnName),actualData);
         }
     }
 }

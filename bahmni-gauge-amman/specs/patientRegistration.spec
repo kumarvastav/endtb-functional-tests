@@ -40,7 +40,7 @@ Create Patient And Verify Legal Rep Same As Caretaker
 | Amitab    | Bachan   | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     | True                        |
 * Enter Caretaker Details
 | caretakerNameEnglish | caretakerNameArabic | caretakerGender | caretakerDob | caretakerNationality | legalRepalsoCaretaker |
-| Shruthi Hassan       | سن                  | Female          |r 28-01-1986   | Iraqi                | Yes                   |
+| Shruthi Hassan       | سن                  | Female          | 28-01-1986   | Iraqi                | Yes                   |
 * Verify Legal Rep Values
 * Save Patient
 
