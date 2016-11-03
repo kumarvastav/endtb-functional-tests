@@ -33,7 +33,7 @@ Tags: regression, sanity
 
 * Create and admit a patient through API
 * On the login page 
-* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_ANOTHER_LOCATION" 
+* Login to the application
 * Click on inpatient app 
 * Select existing patient from patient listing page under tab "Admitted" 
 * Select "Discharge Patient" from Patient Movement and click "Discharge" button 
@@ -286,4 +286,25 @@ Tags: regression, sanity
   |Admission Date<NOW[dd MMM yy]>|
   |Patient Admitted as requested|
 
-
+Discharge an admitted patient and verifications
+----------------
+Tags: regression, sanity
+* Create a new patient through API
+* On the login page
+* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_ANOTHER_LOCATION"
+* Click on registration app
+* Search previously created patient with exact identifier
+* Start a visit "OPD"
+* Navigate to dashboard
+* Click on inpatient app
+* Select existing patient from patient listing page under tab "All"
+* Select "Admit Patient" from Patient Movement and click "Admit" button
+* Click on "Continue with current Visit" button
+* Navigate to inpatient search page
+* Select existing patient from patient listing page under tab "Admitted"
+* Select "Discharge Patient" from Patient Movement and click "Discharge" button
+* Select existing patient from patient listing page under tab "All"
+* Ensure inpatient icon does not exist on Patient Profile display control 
+* Verify only "Undo Discharge" option is displayed in Patient Movement 
+* Navigate to dashboard
+* Logout the user

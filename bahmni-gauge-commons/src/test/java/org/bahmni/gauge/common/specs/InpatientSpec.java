@@ -39,6 +39,9 @@ public class InpatientSpec extends BaseSpec{
         actionElement.click();
         if(movement.toLowerCase().contains("admit") || movement.toLowerCase().contains("undo discharge"))
             dashboardPage.getPatientFromSpecStore().setAdmitted(true);
+        else if(movement.toLowerCase().contains("discharge")){
+            dashboardPage.getPatientFromSpecStore().setAdmitted(false);
+        }
     }
 
     @Step("Select <movement> from Patient Movement and click <Action> button with notes <Notes>")
@@ -51,7 +54,9 @@ public class InpatientSpec extends BaseSpec{
         actionElement.click();
         if(movement.toLowerCase().contains("admit") || movement.toLowerCase().contains("undo discharge"))
             dashboardPage.getPatientFromSpecStore().setAdmitted(true);
-
+        else if(movement.toLowerCase().contains("discharge")){
+            dashboardPage.getPatientFromSpecStore().setAdmitted(false);
+        }
     }
 
     @Step("Assign an empty bed")
