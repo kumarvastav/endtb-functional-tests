@@ -308,3 +308,152 @@ Tags: regression, sanity
 * Verify only "Undo Discharge" option is displayed in Patient Movement 
 * Navigate to dashboard
 * Logout the user
+
+Verify Patient Admit, Transfer via In Patient Module
+--------------------------------------------
+Tags: regression, sanity
+
+* Create a new patient through API
+* Open visit for previous patient using api
+    |location|type|
+    |Registration Desk|OPD|
+* On the login page
+* Login to the application
+* Click on inpatient app
+* Select existing patient from patient listing page under tab "All"
+* Select "Admit Patient" from Patient Movement and click "Admit" button
+* Click on "Yes" button
+* Verify display control "view-content" on inpatient dashboard, has the following details
+    |details|
+    |Total Beds: 9 |
+    |Available Beds: 2|
+* Assign an empty bed
+* Verify display control "view-content" on inpatient dashboard, has the following details
+    |details|
+    |Total Beds: 9 |
+    |Available Beds: 1|
+* Navigate to Inpatient Dashboard
+* Verify display control "admissionDetails" on inpatient dashboard, has the following details
+    |details|
+    |General Ward <Patient.bedNumber>|
+    |Admission Date<NOW[dd MMM yy]>|
+* Navigate to dashboard
+* Click on clinical app
+* Select existing patient from patient listing page under tab "All"
+* Verify display control "Admission-Details" on dashboard, has the following details
+    |details|
+    |General Ward <Patient.bedNumber>|
+    |Admission Date<NOW[dd MMM yy]>|
+* Open the current visit
+* Verify display control "admissionDetails" on visit page, has the following details
+    |details|
+    |General Ward <Patient.bedNumber>|
+    |Admission Date<NOW[dd MMM yy]>|
+* Navigate to dashboard
+* Click on inpatient app
+* Select existing patient from patient listing page under tab "Ward List"
+* Verify display control "view-content" on inpatient dashboard, has the following details
+    |details|
+    |Available Beds: 1|
+* Select "Transfer Patient" from Patient Movement and click "Save" button with notes "Patient Transferred as requested"
+* Verify display control "view-content" on inpatient dashboard, has the following details
+    |details|
+    |Available Beds: 1|
+* Assign an empty bed
+* Navigate to Inpatient Dashboard
+* Verify display control "admissionDetails" on inpatient dashboard, has the following details
+    |details|
+    |General Ward <Patient.bedNumber>|
+    |Admission Date<NOW[dd MMM yy]>|
+* Navigate to dashboard
+* Click on clinical app
+* Select existing patient from patient listing page under tab "All"
+* Verify display control "Admission-Details" on dashboard, has the following details
+    |details|
+    |General Ward <Patient.bedNumber>|
+    |Admission Date<NOW[dd MMM yy]>|
+* Verify display control "Visits" on dashboard, has the following details
+    |details|
+    |IPD |
+* Open the current visit
+* Verify display control "admissionDetails" on visit page, has the following details
+    |details|
+    |General Ward <Patient.bedNumber>|
+    |Admission Date<NOW[dd MMM yy]>|
+
+
+[ADT] Verify Patient Discharge, Undo Discharge via In Patient Module
+---------------------------------------------------------------
+Tags: regression, sanity
+
+* Create a new patient through API
+* On the login page
+* Login to the application
+* Click on inpatient app
+* Select existing patient from patient listing page under tab "All"
+* Select "Admit Patient" from Patient Movement and click "Admit" button with notes "Patient Admitted as requested"
+* Assign an empty bed
+* Navigate to dashboard
+* Click on inpatient app
+* Verify display control "view-content" on inpatient dashboard, has the following details
+    |details|
+    |Available Beds: 1|
+* Select existing patient from patient listing page under tab "Admitted"
+* Select "Discharge Patient" from Patient Movement and click "Discharge" button with notes "Patient Discharged as requested"
+* Navigate to dashboard
+* Click on inpatient app
+* Verify display control "view-content" on inpatient dashboard, has the following details
+    |details|
+    |Total Beds: 9 |
+    |Available Beds: 2|
+* Select existing patient from patient listing page under tab "All"
+* Verify display control "admissionDetails" on inpatient dashboard, has the following details
+    |details|
+    |Discharge Date<NOW[dd MMM yy]>|
+    |Patient Discharged as requested|
+* Navigate to dashboard
+* Click on clinical app
+* Select existing patient from patient listing page under tab "All"
+* Verify display control "Admission-Details" on dashboard, has the following details
+    |details|
+    |Discharge Date<NOW[dd MMM yy]>|
+    |Patient Discharged as requested|
+* Open the current visit
+* Verify display control "admissionDetails" on visit page, has the following details
+    |details|
+    |Discharge Date<NOW[dd MMM yy]>|
+    |Patient Discharged as requested|
+* Navigate to dashboard
+* Click on inpatient app
+* Select existing patient from patient listing page under tab "All"
+* Select "Undo Discharge" from Patient Movement and click "Undo Discharge" button
+* Verify display control "view-content" on inpatient dashboard, has the following details
+    |details|
+    |Total Beds: 9 |
+    |Available Beds: 2|
+* Assign an empty bed
+* Verify display control "view-content" on inpatient dashboard, has the following details
+    |details|
+    |Total Beds: 9 |
+    |Available Beds: 1|
+* Navigate to Inpatient Dashboard
+* Verify display control "admissionDetails" on inpatient dashboard, has the following details
+  |details|
+  |General Ward <Patient.bedNumber>|
+  |Admission Date<NOW[dd MMM yy]>|
+  |Patient Admitted as requested|
+* Navigate to dashboard
+* Click on clinical app
+* Select existing patient from patient listing page under tab "All"
+* Verify display control "Admission-Details" on dashboard, has the following details
+  |details|
+  |General Ward <Patient.bedNumber>|
+  |Admission Date<NOW[dd MMM yy]>|
+  |Patient Admitted as requested|
+* Open the current visit
+* Verify display control "admissionDetails" on visit page, has the following details
+  |details|
+  |General Ward <Patient.bedNumber>|
+  |Admission Date<NOW[dd MMM yy]>|
+  |Patient Admitted as requested|
+
