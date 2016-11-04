@@ -528,7 +528,7 @@ public class BahmniRestClient {
 				member.setOrderTypeUuid(getUuidOfOrderType(member.getOrderType()));
 
 			}
-		create(orderSet);
+			orderSet.setUuid( JSONs.get(create(orderSet), "uuid").toString());
 //			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(templateName);
 //			Map<String, Object> orderSetData = new HashMap<>();
 //			orderSetData.put("orderSet", orderSet);

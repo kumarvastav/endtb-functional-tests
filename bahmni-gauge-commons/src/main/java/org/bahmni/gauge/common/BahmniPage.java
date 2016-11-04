@@ -310,4 +310,11 @@ public class BahmniPage {
         }
         return table;
     }
+    public void scrollToTop(){
+        JavascriptExecutor js = ((JavascriptExecutor) driver);
+
+        //scrolling
+        js.executeScript("window.scrollTo(0,0)");
+
+    }
 }

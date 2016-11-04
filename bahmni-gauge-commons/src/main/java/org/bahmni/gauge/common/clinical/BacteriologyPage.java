@@ -1,12 +1,15 @@
 package org.bahmni.gauge.common.clinical;
 
+import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.clinical.domain.Specimen;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 import java.util.List;
 
-public class BacteriologyPage {
+public class BacteriologyPage extends BahmniPage{
 	
 	@FindBy(how= How.CSS, using = "#sample-date")
     public WebElement sample_date;
@@ -71,4 +74,51 @@ public class BacteriologyPage {
     	return null;
     }
 
+	public void addSamples(List<Specimen> specimens) {
+		int index=0;
+		for(Specimen specimen:specimens){
+			if(index!=0){
+				scrollToTop();
+				driver.findElements(By.cssSelector(".add-more-concept-set")).get(0).click();
+			}
+			WebElement form=driver.findElements(By.cssSelector(".form")).get(index);
+
+			form.findElement(By.cssSelector("#sample-date")).sendKeys(specimen.getDateOfSampleCollection());
+
+			waitForSpinner();
+
+			form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getTypeOfSample()+"\"]")).click();
+
+			form.findElement(By.cssSelector("#sample-id")).sendKeys(specimen.getIdentifier());
+
+			form.findElement(By.cssSelector("[ng-model=\"observation.value\"]")).sendKeys(specimen.getNote());
+
+			//expand All sections
+
+			form.findElement(By.cssSelector(".fa-caret-right")).click();
+
+			for(WebElement element:form.findElements(By.cssSelector(".fa-caret-right"))){
+				element.click();
+			}
+
+			form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getSmearResult()+"\"]")).click();
+
+			form.findElements(By.cssSelector("[ng-model=\"observation.value\"]")).get(1).sendKeys(specimen.getLabIdNumber());
+
+			form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getOtherSymptom()+"\"]")).click();
+
+			form.findElement(By.cssSelector("[ng-model=\"selectedDate\"]")).sendKeys(specimen.getaFBDate());
+
+			form.findElement(By.cssSelector("[ng-model=\"selectedTime\"]")).sendKeys(specimen.getaFBTime());
+
+			form.findElements(By.cssSelector("[ng-model=\"observation.value\"]")).get(2).sendKeys(specimen.getXpertTestDate());
+
+			form.findElements(By.cssSelector("[ng-model=\"observation.value\"]")).get(3).sendKeys(specimen.getXpertTestId());
+
+			form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getXpertResult()+"\"]")).click();
+
+			index++;
+		}
+
+	}
 }
