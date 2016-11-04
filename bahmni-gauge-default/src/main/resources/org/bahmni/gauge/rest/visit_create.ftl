@@ -1,4 +1,4 @@
 {
-    "patient":"${object.patient.uuid}",
-    "visitType":"${object.type}",
-    "location":"${object.location}"}
+    "patient":"${object.uuid}",
+    "visitType":"${object.visitTypeUuid}",
+    "location":"${object.locationUuid}"}

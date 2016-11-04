@@ -130,7 +130,7 @@ public class InpatientSpec extends BaseSpec{
     @Step("Admit the patient through api")
     public void admitPatient(){
         DispositionPage disposition = PageFactory.get(DispositionPage.class);
-        BahmniRestClient.get().admitPatient(disposition.getVisitFromSpecStore(),"admit_patient.ftl");
+        BahmniRestClient.get().admitPatient(disposition.getPatientFromSpecStore(),"admit_patient.ftl");
         disposition.getPatientFromSpecStore().setAdmitted(true);
     }
 

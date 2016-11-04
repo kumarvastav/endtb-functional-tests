@@ -8,9 +8,7 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.RegistrationSearch;
-import org.bahmni.gauge.common.registration.RegistrationVisitDetailsPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
-import org.bahmni.gauge.common.registration.domain.Visit;
 import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.TableTransformer;
@@ -141,13 +139,15 @@ public class RegistrationFirstPageSpec {
 	public void editPatientDetails(Table table) throws Exception {
 		registrationFirstPage.createPatients(table);
 	}
-	@Step("Open <typeUuid> visit at <locationUuid> for previous patient using api")
-	public void openVisitThroughApi(String visitTypeUuid, String locationUuid){
-		Visit visit=new Visit();
-		visit.setPatient(StoreHelper.getLatest(Patient.class));
-		visit.setLocation(locationUuid);
-		visit.setType(visitTypeUuid);
-		BahmniRestClient.get().create(visit);
+	@Step("Open <type> visit at <location> for previous patient using api")
+	public void openVisitThroughApi(String visitType, String location){
+//		Visit visit=new Visit();
+//		visit.setPatient(StoreHelper.getLatest(Patient.class));
+//		visit.setLocation(locationUuid);
+//		visit.setType(visitTypeUuid);
+		StoreHelper.getLatest(Patient.class).setLocation(location);
+		StoreHelper.getLatest(Patient.class).setLocation(visitType);
+		BahmniRestClient.get().create(StoreHelper.getLatest(Patient.class),"visit");
 	}
 
 	@Step("Verify <buttonText> button is <displayOption>")

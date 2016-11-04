@@ -22,7 +22,6 @@ import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.clinical.domain.Specimen;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
-import org.bahmni.gauge.common.registration.domain.Visit;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -348,6 +347,10 @@ public class BahmniRestClient {
 		return null;
 	}
 
+	public String getUuidwithDisplayOnPartialUrl(String display,String partialUrl){
+		return getUuidwithDisplayOnUrl(display,mrs_url + "//"+partialUrl);
+	}
+
 	public String getUuidOfDrugWithConcept(String drugName, String conceptUuid) {
 		try {
 			HttpResponse<JsonNode> request = Unirest.get(mrs_url + String.format(GET_DRUG_UNDER_CONCEPT_URL, URLEncoder.encode(conceptUuid, "UTF-8"), URLEncoder.encode(drugName, "UTF-8")))
@@ -420,8 +423,35 @@ public class BahmniRestClient {
 	}
 
 	public  <T extends Model> JSONObject create (T entity){
+		return create(entity,entity.getMRSName());
+//		try {
+//			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(entity.getTemplateName() + "_create.ftl");
+//			Map<String, Object> objectData = new HashMap<>();
+//
+//			objectData.put("object", entity);
+//
+//			StringWriter stringWriter = new StringWriter();
+//			freemarkerTemplate.process(objectData, stringWriter);
+//
+//			String requestJson = stringWriter.toString();
+//
+//			HttpResponse<JsonNode> response = Unirest.post(mrs_url +"/"+ entity.getMRSName())
+//				.basicAuth(username, password)
+//				.header("content-type", "application/json")
+//				.body(requestJson)
+//				.asJson();
+//
+//			if (response.getStatus() != 200 && response.getStatus() != 201)
+//				throw new BahmniAPIException(entity.getClass() + " Creation Failed!!");
+//			return response.getBody().getObject();
+//		} catch (Exception e) {
+//			throw new BahmniAPIException(e);
+//		}
+	}
+
+	public  <T extends Model> JSONObject create (T entity,String partialUrl){
 		try {
-			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(entity.getTemplateName() + "_create.ftl");
+			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(partialUrl.replace('/','_') + "_create.ftl");
 			Map<String, Object> objectData = new HashMap<>();
 
 			objectData.put("object", entity);
@@ -431,11 +461,11 @@ public class BahmniRestClient {
 
 			String requestJson = stringWriter.toString();
 
-			HttpResponse<JsonNode> response = Unirest.post(mrs_url +"/"+ entity.getMRSName())
-				.basicAuth(username, password)
-				.header("content-type", "application/json")
-				.body(requestJson)
-				.asJson();
+			HttpResponse<JsonNode> response = Unirest.post(mrs_url +"//"+ partialUrl)
+					.basicAuth(username, password)
+					.header("content-type", "application/json")
+					.body(requestJson)
+					.asJson();
 
 			if (response.getStatus() != 200 && response.getStatus() != 201)
 				throw new BahmniAPIException(entity.getClass() + " Creation Failed!!");
@@ -526,11 +556,11 @@ public class BahmniRestClient {
 	}
 
 
-	public void admitPatient(Visit visit, String templateName) {
+	public void admitPatient(Patient patient, String templateName) {
 		try {
 			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(templateName);
 			Map<String, Object> visitData = new HashMap<>();
-			visitData.put("visitFTL", visit);
+			visitData.put("patient", patient);
 
 			StringWriter stringWriter = new StringWriter();
 			freemarkerTemplate.process(visitData, stringWriter);
@@ -598,4 +628,6 @@ public class BahmniRestClient {
 		}
 		return responseAsJson.getBody();
 	}
+
+
 }

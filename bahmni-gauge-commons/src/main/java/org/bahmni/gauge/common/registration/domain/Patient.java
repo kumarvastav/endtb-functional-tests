@@ -2,6 +2,7 @@ package org.bahmni.gauge.common.registration.domain;
 
 import org.bahmni.gauge.data.Model;
 import org.bahmni.gauge.data.ModelMetaData;
+import org.bahmni.gauge.rest.BahmniRestClient;
 
 @ModelMetaData(mrs_name = "patient")
 public class Patient extends Model {
@@ -22,6 +23,41 @@ public class Patient extends Model {
     private String gramPanchayat;
     private boolean isAdmitted = false;
     private String bedNumber;
+    String location;
+    String locationUuid;
+    String visitType;
+    String visitTypeUuid;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getLocationUuid() {
+        if(location!=null && locationUuid==null){
+            locationUuid=BahmniRestClient.get().getUuidwithDisplayOnPartialUrl(this.location,"location");
+        }
+        return locationUuid;
+    }
+
+    public String getVisitType() {
+        return visitType;
+    }
+
+    public void setVisitType(String visitType) {
+        this.visitType = visitType;
+    }
+
+    public String getVisitTypeUuid() {
+        if(visitType!=null && visitTypeUuid==null){
+            visitTypeUuid=BahmniRestClient.get().getUuidwithDisplayOnPartialUrl(this.visitType,"visittype");
+        }
+        return visitTypeUuid;
+    }
+
 
     public String getBedNumber() {
         return bedNumber;
