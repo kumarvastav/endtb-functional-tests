@@ -23,10 +23,16 @@ public class AmmanProgramSpec {
     @Step("Register the patient to following program <programDetails>")
     public void enrollPatientToProgram(Table programDetails) {
         AmmanProgramPage ammanProgramPage = PageFactory.get(AmmanProgramPage.class);
-        Program treatment = TableTransformer.asEntity(programDetails,Program.class);
+        Program treatment = TableTransformer.asEntity(programDetails, Program.class);
         ammanProgramPage.enrollToProgram(treatment);
         waitForAppReady();
     }
 
 
+    @Step("Edit <Reconstructive Surgery> Program with following details <table>")
+    public void editProgram(String programName, Table updatedProgramTable) {
+        Program updatedProgram=TableTransformer.asEntity(updatedProgramTable, Program.class);
+        AmmanProgramPage ammanProgramPage = PageFactory.get(AmmanProgramPage.class);
+        ammanProgramPage.editProgram(programName,updatedProgram);
+    }
 }

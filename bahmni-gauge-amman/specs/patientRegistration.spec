@@ -11,8 +11,8 @@ Create Patient Under Age 18 and Fill Legal Rep
 | firstName | lastName | givenNameArabic | familyNameArabic | gender | age | governorate | country | phoneNumber1 | spokenLanguages | nationality1 |
 | Al adasd  | Hassan   | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     |
 * Enter Legal Rep Details
-    |legalRepFullNameEnglish|legalRepFullNameArabic|legalRepRelationWithPatient|legalRepGender|legalRepDob|legalRepNationality|
-    |Al Bangalore|حسن |Brother|Male|
+| legalRepFullNameEnglish | legalRepFullNameArabic | legalRepRelationWithPatient | legalRepGender | legalRepDob  | legalRepNationality |
+| Al Bangalore            | حسن                    | Brother                     | Male           | r 10-10-1980 | Egyptian            |
 * Save Patient
 
 Create Patient And Fill Caretaker
@@ -40,7 +40,7 @@ Create Patient And Verify Legal Rep Same As Caretaker
 | Amitab    | Bachan   | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     | True                        |
 * Enter Caretaker Details
 | caretakerNameEnglish | caretakerNameArabic | caretakerGender | caretakerDob | caretakerNationality | legalRepalsoCaretaker |
-| Shruthi Hassan       | سن                  | Female          | 28-01-1986   | Iraqi                | Yes                   |
+| Shruthi Hassan       | سن                  | Female          | r 01-01-1986 | Iraqi                | Yes                   |
 * Verify Legal Rep Values
 * Save Patient
 
@@ -53,8 +53,8 @@ Create Patient and Fill ID Documents
 * Click on create new patient link
 * Enter Patient Details
 | firstName | lastName | givenNameArabic | familyNameArabic | gender | age | governorate | country | phoneNumber1 | spokenLanguages | nationality1 | statusofOfficialIDdocuments |
-| Amitb    | Bachan   | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     | Received                    |
+| Amitb     | Bachan   | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     | Received                    |
 * Enter ID Document Details
 | id1DocumentType | id1DocNumber | id1FullNameEnglish |
-| Passport        | 1828DE0S     | Amitb Bachan      |
+| Passport        | 1828DE0S     | Amitb Bachan       |
 * Save Patient
