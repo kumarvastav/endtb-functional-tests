@@ -1,10 +1,9 @@
 Program Enrollemnt, Editing of Program Attributes and End the Program
 =====================================================================
-Tags: regression, sanity, enrollPatientToProgram
+Tags: enrollPatientToProgram
 
 Create Patient and Enrol to a Program
 -------------------------------------
-
 Tags: regression, sanity
 
 * On the login page
@@ -22,6 +21,8 @@ Tags: regression, sanity
 
 Delete a Program
 -----------------------------
+Tags: regression, sanity
+
 * Navigate to dashboard
 * Click on programs app
 * Select existing patient from patient listing page under tab "All"

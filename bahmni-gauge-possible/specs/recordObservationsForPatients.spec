@@ -1,6 +1,6 @@
 Recording Observations
 ======================
-
+Tags: recordObservationsForPatients
 
 Record Observations for patient
 -------------------------------

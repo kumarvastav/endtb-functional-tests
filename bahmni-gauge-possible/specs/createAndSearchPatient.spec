@@ -1,9 +1,6 @@
 Create Possible Patient Scenarios
 =================================
-Created by dharmens on 8/9/16
-
-This is an executable specification file which follows markdown syntax.
-Every heading in this file denotes a scenario. Every bulleted point denotes a step.
+Tags: createAndSearchPatient
 
 Create Patient with manual ID, Verify
 -------------------------------------

@@ -1,6 +1,6 @@
 Create And View Drug Orders
 ===========================
-Tags: regression, sanity, createAndViewDrugOrders
+Tags: createAndViewDrugOrders
 
 Create Patient And Add Drug Orders
 ----------------------------------
