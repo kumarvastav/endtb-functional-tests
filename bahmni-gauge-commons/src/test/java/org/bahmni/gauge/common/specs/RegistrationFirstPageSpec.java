@@ -146,7 +146,7 @@ public class RegistrationFirstPageSpec {
 //		visit.setLocation(locationUuid);
 //		visit.setType(visitTypeUuid);
 		StoreHelper.getLatest(Patient.class).setLocation(location);
-		StoreHelper.getLatest(Patient.class).setLocation(visitType);
+		StoreHelper.getLatest(Patient.class).setVisitType(visitType);
 		BahmniRestClient.get().create(StoreHelper.getLatest(Patient.class),"visit");
 	}
 

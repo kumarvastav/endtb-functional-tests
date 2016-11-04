@@ -8,7 +8,7 @@ Tags: bedManagementWorkflow
     |prefix|firstName|gender|dateOfBirth|age|ward|municipality|district|country|caste|
     |BAH|inpatient|Female|20/01/2011|50|Address1-187204|Darna|Achham|Nepal|2 - Janajati|
 
-* Open General visit at location3 throught api
+* Open "General" visit at "Location-3" for previous patient using api
 
 Admit and verify on adt dashboard and clinical dashboard
 --------------------------------------------------------
@@ -148,5 +148,6 @@ Tags: regression, sanity, admitDischargeAndVerfiy
 
 
 ________________________________________________________________________________
+
 * Navigate to dashboard
 * Logout the user
