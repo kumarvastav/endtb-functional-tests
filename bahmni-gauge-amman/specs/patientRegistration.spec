@@ -12,7 +12,7 @@ Create Patient Under Age 18 and Fill Legal Rep
 | Al adasd  | Hassan   | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     |
 * Enter Legal Rep Details
 | legalRepFullNameEnglish | legalRepFullNameArabic | legalRepRelationWithPatient | legalRepGender | legalRepDob  | legalRepNationality |
-| Al Bangalore            | حسن                    | Brother                     | Male           | r 10-10-1980 | Egyptian            |
+| Al Bangalore            | حسن                    | Brother                     | Male           |  10-10-1980 | Egyptian            |
 * Save Patient
 
 Create Patient And Fill Caretaker
@@ -40,7 +40,7 @@ Create Patient And Verify Legal Rep Same As Caretaker
 | Amitab    | Bachan   | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     | True                        |
 * Enter Caretaker Details
 | caretakerNameEnglish | caretakerNameArabic | caretakerGender | caretakerDob | caretakerNationality | legalRepalsoCaretaker |
-| Shruthi Hassan       | سن                  | Female          | r 01-01-1986 | Iraqi                | Yes                   |
+| Shruthi Hassan       | سن                  | Female          |  01-01-1986 | Iraqi                | Yes                   |
 * Verify Legal Rep Values
 * Save Patient
 
