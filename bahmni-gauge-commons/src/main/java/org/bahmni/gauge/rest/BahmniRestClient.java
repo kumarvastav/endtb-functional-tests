@@ -347,6 +347,27 @@ public class BahmniRestClient {
 		return null;
 	}
 
+	public String getUuidwithConceptNameOnUrl(String conceptName,String finalUrl){
+		try {
+			HttpResponse<JsonNode> request = Unirest.get(finalUrl)
+					.basicAuth(username, password)
+					.header("content-type", "application/json")
+					.asJson();
+
+			int size = request.getBody().getArray().getJSONObject(0).length();
+
+			for (int pos = 0; pos < size; pos++) {
+				if (request.getBody().getArray().getJSONObject(0).get("conceptName").equals(conceptName)) {
+					return String.valueOf(request.getBody().getArray().getJSONObject(0).get("conceptUuid"));
+				}
+			}
+
+		} catch (Exception e) {
+			throw new BahmniAPIException(e);
+		}
+		return null;
+	}
+
 	public String getUuidwithDisplayOnPartialUrl(String display,String partialUrl){
 		return getUuidwithDisplayOnUrl(display,mrs_url + "//"+partialUrl);
 	}
@@ -370,6 +391,14 @@ public class BahmniRestClient {
 			throw new BahmniAPIException(e);
 		}
 		return null;
+	}
+
+	public String getUuidOfDiagnosis(String conceptName) {
+		try {
+			return getUuidwithConceptNameOnUrl(conceptName, url + String.format("/openmrs/ws/rest/emrapi/concept?limit=20&term=%s", URLEncoder.encode(conceptName, "UTF-8")));
+		} catch (UnsupportedEncodingException e) {
+			throw new BahmniAPIException(e);
+		}
 	}
 
 	public String getUuidOfConceptName(String conceptName) {
@@ -461,7 +490,7 @@ public class BahmniRestClient {
 
 			String requestJson = stringWriter.toString();
 
-			HttpResponse<JsonNode> response = Unirest.post(mrs_url +"//"+ partialUrl)
+			HttpResponse<JsonNode> response = Unirest.post(mrs_url +"/"+ partialUrl)
 					.basicAuth(username, password)
 					.header("content-type", "application/json")
 					.body(requestJson)

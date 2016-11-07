@@ -1,16 +1,38 @@
 package org.bahmni.gauge.common.clinical.domain;
 
 import org.bahmni.gauge.data.Model;
+import org.bahmni.gauge.rest.BahmniRestClient;
 
 /**
  * Created by atmaramn on 02/11/2016.
  */
-public class Diagnosis extends Model {
+public class Diagnosis {
     private String diagnosis;
     private String order;
     private String certainty;
     private String status;
     private String type;
+    private String encounterDate;
+    private String uuid;
+
+    public String getUuid() {
+        if(diagnosis!=null && uuid==null){
+            uuid= BahmniRestClient.get().getUuidOfDiagnosis(this.diagnosis);
+        }
+        return uuid;
+    }
+    public void setUuid(String diagnosisUuid) {
+        this.uuid = diagnosisUuid;
+    }
+
+    public String getEncounterDate() {
+
+        return encounterDate;
+    }
+
+    public void setEncounterDate(String encounterDate) {
+        this.encounterDate = encounterDate;
+    }
 
     public String getDiagnosis() {
         return diagnosis;

@@ -1,12 +1,18 @@
 package org.bahmni.gauge.common.clinical;
 
+import com.thoughtworks.gauge.Step;
+import com.thoughtworks.gauge.Table;
 import junit.framework.Assert;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.Diagnosis;
+import org.bahmni.gauge.data.ModelMetaData;
 import org.bahmni.gauge.data.StoreHelper;
+import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.StringUtil;
+import org.bahmni.gauge.util.TableTransformer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
@@ -45,7 +51,9 @@ public class DiagnosisPage extends BahmniPage {
             if(diagnosis.getStatus().toLowerCase().equals("inactive")){
                 row.findElement(bStatus).click();
             }
-            StoreHelper.store(Diagnosis.class,diagnosis);
+//            StoreHelper.store(Diagnosis.class,diagnosis);
+            getPatientFromSpecStore().setDiagnoses(diagnoses);
+
             index++;
         }
     }
@@ -58,6 +66,51 @@ public class DiagnosisPage extends BahmniPage {
             Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getDiagnosis(),text),text.contains(diagnosis.getDiagnosis()));
             Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getOrder().toUpperCase(),text),text.contains(diagnosis.getOrder().toUpperCase()));
             Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getCertainty().toUpperCase(),text),text.contains(diagnosis.getCertainty().toUpperCase()));
+            if(diagnosis.getStatus().equalsIgnoreCase("Inactive"))
+                Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getStatus(),text),text.contains(diagnosis.getStatus()));
         }
+    }
+
+    public void editDiagnoses(List<Diagnosis> diagnoses) {
+        List<WebElement> rows=driver.findElements(By.cssSelector(".diagnosis-row"));
+
+        for (Diagnosis diagnosis:diagnoses) {
+            for (WebElement row:rows) {
+
+            if(row.getText().contains(diagnosis.getDiagnosis())){
+                    row.findElement(By.cssSelector(".toggle.fr")).click();
+
+                    if(diagnosis.getOrder().toLowerCase().equals("primary")){
+                        if(!row.findElements(bOrder).get(0).getAttribute("class").contains("active"))
+                            row.findElements(bOrder).get(0).click();
+                    }else {
+                        if(!row.findElements(bOrder).get(1).getAttribute("class").contains("active"))
+                            row.findElements(bOrder).get(1).click();
+                    }
+                    if(diagnosis.getCertainty().toLowerCase().equals("confirmed")){
+                        if(!row.findElements(bCertainty).get(0).getAttribute("class").contains("active"))
+                            row.findElements(bCertainty).get(0).click();
+                    }else {
+                        if(!row.findElements(bCertainty).get(1).getAttribute("class").contains("active"))
+                            row.findElements(bCertainty).get(1).click();
+                    }
+                    if(diagnosis.getStatus().toLowerCase().equals("inactive")){
+                        if(!row.findElement(bStatus).getAttribute("class").contains("active"))
+                            row.findElement(bStatus).click();
+                    }
+                }
+
+            }
+        }
+
+        for (Diagnosis updateDiagnosis:diagnoses) {
+            int index = 0;
+            for (Diagnosis diagnosis:getPatientFromSpecStore().getDiagnoses()) {
+                if(updateDiagnosis.getDiagnosis().equals(diagnosis.getDiagnosis()))
+                    getPatientFromSpecStore().getDiagnoses().set(index,updateDiagnosis);
+                index++;
+            }
+        }
+
     }
 }

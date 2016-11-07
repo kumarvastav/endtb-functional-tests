@@ -1,8 +1,13 @@
 package org.bahmni.gauge.common.registration.domain;
 
+import org.bahmni.gauge.common.admin.domain.OrderSetMember;
+import org.bahmni.gauge.common.clinical.domain.Diagnosis;
 import org.bahmni.gauge.data.Model;
 import org.bahmni.gauge.data.ModelMetaData;
 import org.bahmni.gauge.rest.BahmniRestClient;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @ModelMetaData(mrs_name = "patient")
 public class Patient extends Model {
@@ -23,10 +28,11 @@ public class Patient extends Model {
     private String gramPanchayat;
     private boolean isAdmitted = false;
     private String bedNumber;
-    String location;
-    String locationUuid;
-    String visitType;
-    String visitTypeUuid;
+    private String location;
+    private String locationUuid;
+    private String visitType;
+    private String visitTypeUuid;
+    private List<Diagnosis> diagnoses=new ArrayList<>();
 
     public String getLocation() {
         return location;
@@ -58,6 +64,13 @@ public class Patient extends Model {
         return visitTypeUuid;
     }
 
+    public List<Diagnosis> getDiagnoses() {
+        return diagnoses;
+    }
+
+    public void setDiagnoses(List<Diagnosis> diagnoses) {
+        this.diagnoses = diagnoses;
+    }
 
     public String getBedNumber() {
         return bedNumber;

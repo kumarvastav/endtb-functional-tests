@@ -9,6 +9,7 @@ import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.DiagnosisPage;
 import org.bahmni.gauge.common.clinical.domain.Diagnosis;
 import org.bahmni.gauge.data.StoreHelper;
+import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.TableTransformer;
 
 import java.util.List;
@@ -28,14 +29,30 @@ public class DiagnosisPageSpec extends BahmniPage {
 
         diagnosisPage.enterDiagnoses(diagnoses);
 
-
     }
     @Step("Verify diagnoses on current display control on diagnosis page")
     public void verifyDiagnosesOnCurrentDiagnosis(){
-        List<Diagnosis> diagnoses=StoreHelper.getAll(Diagnosis.class);
+//        List<Diagnosis> diagnoses=StoreHelper.getAll(Diagnosis.class);
         DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
 
-        diagnosisPage.verifyCurrentDisplayControl(diagnoses);
+//        diagnosisPage.verifyCurrentDisplayControl(diagnoses);
+        diagnosisPage.verifyCurrentDisplayControl(getPatientFromSpecStore().getDiagnoses());
+    }
+
+    @Step("Edit the following diagnosis <table>")
+    public void editDiagnosis(Table table){
+        List<Diagnosis> diagnoses=TableTransformer.asEntityList(table, Diagnosis.class);
+        DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
+
+        diagnosisPage.editDiagnoses(diagnoses);
+
+    }
+
+    @Step("Add diagnosis through API <table>")
+    public void addDiagnosis(Table table){
+        List<Diagnosis> diagnoses = TableTransformer.asEntityList(table,Diagnosis.class);
+        getPatientFromSpecStore().setDiagnoses(diagnoses);
+        BahmniRestClient.get().create(getPatientFromSpecStore(),"bahmnicore/bahmniencounter");
     }
 
 }
