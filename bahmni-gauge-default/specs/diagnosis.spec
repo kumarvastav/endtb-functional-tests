@@ -1,5 +1,5 @@
 Diagnosis
-=====================
+===========
 Created by atmaramn on 01/11/2016
 
 This is an executable specification file which follows markdown syntax.
@@ -49,6 +49,9 @@ Tags: regression, sanity
 
 [Diagnosis] Edit and delete coded diagnosis for existing patient and verify the display controls
 -------------------------------------------------
+
+Tags: regression, sanity
+
 //* Create a new patient and add diagnosis through API
 * Create a new patient and open visit through API
 * Add diagnosis through API
