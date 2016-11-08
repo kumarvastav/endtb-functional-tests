@@ -51,7 +51,6 @@ public class DiagnosisPage extends BahmniPage {
             if(diagnosis.getStatus().toLowerCase().equals("inactive")){
                 row.findElement(bStatus).click();
             }
-//            StoreHelper.store(Diagnosis.class,diagnosis);
             getPatientFromSpecStore().setDiagnoses(diagnoses);
 
             index++;

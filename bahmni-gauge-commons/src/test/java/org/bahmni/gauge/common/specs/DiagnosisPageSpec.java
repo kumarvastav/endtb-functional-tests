@@ -32,10 +32,8 @@ public class DiagnosisPageSpec extends BahmniPage {
     }
     @Step("Verify diagnoses on current display control on diagnosis page")
     public void verifyDiagnosesOnCurrentDiagnosis(){
-//        List<Diagnosis> diagnoses=StoreHelper.getAll(Diagnosis.class);
         DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
 
-//        diagnosisPage.verifyCurrentDisplayControl(diagnoses);
         diagnosisPage.verifyCurrentDisplayControl(getPatientFromSpecStore().getDiagnoses());
     }
 
@@ -49,7 +47,7 @@ public class DiagnosisPageSpec extends BahmniPage {
     }
 
     @Step("Add diagnosis through API <table>")
-    public void addDiagnosis(Table table){
+    public void addDiagnosisAPI(Table table){
         List<Diagnosis> diagnoses = TableTransformer.asEntityList(table,Diagnosis.class);
         getPatientFromSpecStore().setDiagnoses(diagnoses);
         BahmniRestClient.get().create(getPatientFromSpecStore(),"bahmnicore/bahmniencounter");
