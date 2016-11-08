@@ -1,8 +1,13 @@
 package org.bahmni.gauge.common.clinical;
 
+import junit.framework.Assert;
 import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.clinical.domain.Diagnosis;
 import org.bahmni.gauge.common.clinical.domain.Specimen;
+import org.bahmni.gauge.util.StringUtil;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -77,48 +82,117 @@ public class BacteriologyPage extends BahmniPage{
 	public void addSamples(List<Specimen> specimens) {
 		int index=0;
 		for(Specimen specimen:specimens){
-			if(index!=0){
-				scrollToTop();
-				driver.findElements(By.cssSelector(".add-more-concept-set")).get(0).click();
-			}
-			WebElement form=driver.findElements(By.cssSelector(".form")).get(index);
-
-			form.findElement(By.cssSelector("#sample-date")).sendKeys(specimen.getDateOfSampleCollection());
-
-			waitForSpinner();
-
-			form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getTypeOfSample()+"\"]")).click();
-
-			form.findElement(By.cssSelector("#sample-id")).sendKeys(specimen.getIdentifier());
-
-			form.findElement(By.cssSelector("[ng-model=\"observation.value\"]")).sendKeys(specimen.getNote());
-
-			//expand All sections
-
-			form.findElement(By.cssSelector(".fa-caret-right")).click();
-
-			for(WebElement element:form.findElements(By.cssSelector(".fa-caret-right"))){
-				element.click();
-			}
-
-			form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getSmearResult()+"\"]")).click();
-
-			form.findElements(By.cssSelector("[ng-model=\"observation.value\"]")).get(1).sendKeys(specimen.getLabIdNumber());
-
-			form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getOtherSymptom()+"\"]")).click();
-
-			form.findElement(By.cssSelector("[ng-model=\"selectedDate\"]")).sendKeys(specimen.getaFBDate());
-
-			form.findElement(By.cssSelector("[ng-model=\"selectedTime\"]")).sendKeys(specimen.getaFBTime());
-
-			form.findElements(By.cssSelector("[ng-model=\"observation.value\"]")).get(2).sendKeys(specimen.getXpertTestDate());
-
-			form.findElements(By.cssSelector("[ng-model=\"observation.value\"]")).get(3).sendKeys(specimen.getXpertTestId());
-
-			form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getXpertResult()+"\"]")).click();
-
-			index++;
+//			if(index!=0){
+//				scrollToTop();
+//				driver.findElements(By.cssSelector(".add-more-concept-set")).get(0).click();
+//			}
+//			WebElement form=driver.findElements(By.cssSelector(".form")).get(index);
+//
+//			form.findElement(By.cssSelector("#sample-date")).sendKeys(specimen.getDateOfSampleCollection());
+//
+//			waitForSpinner();
+//
+//			form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getTypeOfSample()+"\"]")).click();
+//
+//			form.findElement(By.cssSelector("#sample-id")).sendKeys(specimen.getIdentifier());
+//
+//			form.findElement(By.cssSelector("[ng-model=\"observation.value\"]")).sendKeys(specimen.getNote());
+//
+//			//expand All sections
+//
+//			form.findElement(By.cssSelector(".fa-caret-right")).click();
+//
+//			for(WebElement element:form.findElements(By.cssSelector(".fa-caret-right"))){
+//				element.click();
+//			}
+//
+//			form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getSmearResult()+"\"]")).click();
+//
+//			form.findElements(By.cssSelector("[ng-model=\"observation.value\"]")).get(1).sendKeys(specimen.getLabIdNumber());
+//
+//			form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getOtherSymptom()+"\"]")).click();
+//
+//			form.findElement(By.cssSelector("[ng-model=\"selectedDate\"]")).sendKeys(specimen.getaFBDate());
+//
+//			form.findElement(By.cssSelector("[ng-model=\"selectedTime\"]")).sendKeys(specimen.getaFBTime());
+//
+//			form.findElements(By.cssSelector("[ng-model=\"observation.value\"]")).get(2).sendKeys(specimen.getXpertTestDate());
+//
+//			form.findElements(By.cssSelector("[ng-model=\"observation.value\"]")).get(3).sendKeys(specimen.getXpertTestId());
+//
+//			form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getXpertResult()+"\"]")).click();
+//
+//			index++;
+			enterDetails(index++,specimen);
 		}
+
+	}
+	public void enterDetails(int index,Specimen specimen){
+
+		if(index!=0){
+			scrollToTop();
+			driver.findElements(By.cssSelector(".add-more-concept-set")).get(0).click();
+		}
+		WebElement form=driver.findElements(By.cssSelector(".form")).get(index);
+
+		form.findElement(By.cssSelector("#sample-date")).sendKeys(specimen.getDateOfSampleCollection());
+
+		waitForSpinner();
+
+		form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getTypeOfSample()+"\"]")).click();
+
+		WebElement sampleId=form.findElement(By.cssSelector("#sample-id"));
+		sampleId.clear();
+		sampleId.sendKeys(specimen.getIdentifier());
+
+		WebElement note=form.findElement(By.cssSelector("[ng-model=\"observation.value\"]"));
+		note.clear();
+		note.sendKeys(specimen.getNote());
+
+		//expand All sections
+		try{
+		form.findElement(By.cssSelector(".fa-caret-right")).click();
+
+		for(WebElement element:form.findElements(By.cssSelector(".fa-caret-right"))){
+			element.click();
+		}} catch (NoSuchElementException ex){
+
+		}
+
+		form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getSmearResult()+"\"]")).click();
+
+		WebElement labId=form.findElements(By.cssSelector("[ng-model=\"observation.value\"]")).get(1);
+		labId.clear();
+		labId.sendKeys(specimen.getLabIdNumber());
+
+		form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getOtherSymptom()+"\"]")).click();
+
+		form.findElement(By.cssSelector("[ng-model=\"selectedDate\"]")).sendKeys(specimen.getaFBDate());
+
+		form.findElement(By.cssSelector("[ng-model=\"selectedTime\"]")).sendKeys(specimen.getaFBTime());
+
+		form.findElements(By.cssSelector("[ng-model=\"observation.value\"]")).get(2).sendKeys(specimen.getXpertTestDate());
+
+		WebElement xpertTestId=form.findElements(By.cssSelector("[ng-model=\"observation.value\"]")).get(3);
+		xpertTestId.clear();
+		xpertTestId.sendKeys(specimen.getXpertTestId());
+
+		form.findElement(By.cssSelector(".grid-row-element[title=\""+specimen.getXpertResult()+"\"]")).click();
+
+
+	}
+	public void editSample(int rowNumber, Specimen specimen) {
+		driver.findElements(By.cssSelector(".fa-pencil")).get(rowNumber-1).click();
+
+		enterDetails(1,specimen);
+
+	}
+
+	public void deleteSample(int rowNumber) {
+		driver.findElements(By.cssSelector(".bacteriology-container i.fa-remove")).get(rowNumber-1).click();
+
+		Alert alert=driver.switchTo().alert();
+		alert.accept();
 
 	}
 }

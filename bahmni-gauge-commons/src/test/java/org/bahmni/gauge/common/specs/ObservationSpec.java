@@ -100,6 +100,22 @@ public class ObservationSpec extends BaseSpec{
             Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText),displayControlText.contains(drugOrder));
         }
     }
+
+    @Step("Verify display control with Caption <controlCaption> on dashboard, has the following details <table>")
+    public void verifyDisplayControlContentWithCaption(String controlCaption,Table table) {
+        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+        String displayControlText = dashboardPage.getDisplayControlTextWithCaption(controlCaption);
+        for (String drugOrder : table.getColumnValues("details")) {
+            drugOrder = StringUtil.transformPatternToData(drugOrder);
+            Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText),displayControlText.contains(drugOrder));
+        }
+    }
+
+    @Step("Expand all sections from display control with Caption <controlText>")
+    public void expandControl(String controlText){
+        DashboardPage dashboardPage=PageFactory.get(DashboardPage.class);
+        dashboardPage.expandControlWithCaption(controlText);
+    }
     @Step("click  <displayControlId> on dashboard, and verify displayed dialog has the following details <table>")
     public void verifyDialogContent(String displayControlId,Table table) {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
@@ -111,7 +127,6 @@ public class ObservationSpec extends BaseSpec{
         }
         dashboardPage.closeDialog();
     }
-
 
     @Step("Verify the <template> concept set is <displayType>")
     public void verifyObservationFormContent(String template, String displayType) {

@@ -24,7 +24,26 @@ public class BacteriologyPageSpec extends BahmniPage{
         List<Specimen> specimens=TableTransformer.asEntityList(table, Specimen.class);
         BacteriologyPage bacteriologyPage= PageFactory.get(BacteriologyPage.class);
         bacteriologyPage.addSamples(specimens);
+        getPatientFromSpecStore().setSpecimens(specimens);
 
     }
 
+    @Step("Edit Sample with row number <rowNumber> as following <table>")
+    public void editRow(int rowNumber,Table table){
+        Specimen specimen=TableTransformer.asEntity(table, Specimen.class);
+        BacteriologyPage bacteriologyPage= PageFactory.get(BacteriologyPage.class);
+        bacteriologyPage.editSample(rowNumber,specimen);
+        getPatientFromSpecStore().getSpecimens().set(rowNumber-1,specimen);
+
+
+    }
+
+    @Step("Delete Sample with row number <rowNumber>")
+    public void deleteRow(int rowNumber){
+        BacteriologyPage bacteriologyPage= PageFactory.get(BacteriologyPage.class);
+        bacteriologyPage.deleteSample(rowNumber);
+        getPatientFromSpecStore().getSpecimens().remove(rowNumber-1);
+
+
+    }
 }

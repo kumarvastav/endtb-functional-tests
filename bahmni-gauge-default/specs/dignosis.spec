@@ -7,6 +7,9 @@ Every heading in this file denotes a scenario. Every bulleted point denotes a st
      
 Add coded and non coded dignosis for existing patient
 --------------------------------------------
+
+Tags: regression, sanity
+
 * Create a new patient through API
 * Open visit for previous patient using api
     |location|type|

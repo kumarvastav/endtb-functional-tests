@@ -170,4 +170,17 @@ public class DashboardPage extends BahmniPage {
 	public void closeDialog() {
 		findElement(By.cssSelector(".ngdialog-close")).click();
 	}
+
+	public void expandControlWithCaption(String controlCaption) {
+		WebElement displayControl = findElement(By.xpath(".//h2[contains(text(),\""+controlCaption+"\")]/ancestor::*[1]"));
+		for(WebElement expand:displayControl.findElements(By.cssSelector(".fa-caret-right"))){
+			expand.click();
+		}
+	}
+
+	public String getDisplayControlTextWithCaption(String controlCaption) {
+		WebElement displayControl = findElement(By.xpath(".//h2[contains(text(),\""+controlCaption+"\")]/ancestor::*[1]"));
+		waitForSpinner();
+		return displayControl.getText().replace("\n", "");
+	}
 }
