@@ -2,6 +2,7 @@ package org.bahmni.gauge.common.registration.domain;
 
 import org.bahmni.gauge.common.admin.domain.OrderSetMember;
 import org.bahmni.gauge.common.clinical.domain.Diagnosis;
+import org.bahmni.gauge.common.clinical.domain.Order;
 import org.bahmni.gauge.common.clinical.domain.Specimen;
 import org.bahmni.gauge.data.Model;
 import org.bahmni.gauge.data.ModelMetaData;
@@ -35,6 +36,15 @@ public class Patient extends Model {
     private String visitTypeUuid;
     private List<Diagnosis> diagnoses=new ArrayList<>();
     private List<Specimen> specimens=new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 
     public List<Specimen> getSpecimens() {
         return specimens;

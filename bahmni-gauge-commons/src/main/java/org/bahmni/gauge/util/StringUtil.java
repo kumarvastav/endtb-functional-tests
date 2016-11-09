@@ -18,21 +18,6 @@ public class StringUtil {
 
 
     /*
-    * @depricated Use generic method - transformPatternToData(String content)
-    * */
-    @Deprecated
-    public static String setDateTime(String content) {
-        String pattern = "<NOW\\[(.*)\\]>";
-        Matcher matcher = Pattern.compile(".*" + pattern + ".*").matcher(content);
-        String dateFormat = "dd-MM-yy";
-        while (matcher.find()) {
-            dateFormat = matcher.group(1);
-        }
-        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
-        return content.replaceAll(pattern, formatter.format(new Date()));
-    }
-
-    /*
     * Generic method to match any pattern and replace/get corresponding data
     *
     *   Pattern 1:
