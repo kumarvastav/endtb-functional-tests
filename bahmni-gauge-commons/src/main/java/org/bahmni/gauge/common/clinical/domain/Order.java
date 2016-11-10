@@ -11,13 +11,13 @@ import org.bahmni.gauge.rest.BahmniRestClient;
 public class Order extends Model{
 
     private String type;
-    private String orderType;
-    private String orderName;
+    private String category;
+    private String name;
 
     @Override
     public String getUuid() {
-        if(orderName!=null && uuid==null){
-//            uuid= BahmniRestClient.get().getUuidwithDisplayOnOrdersUrl(this.orderName);
+        if(name !=null && uuid==null){
+            uuid= BahmniRestClient.get().getUuidwithDisplayOnOrdersUrl(this.name);
         }
         return uuid;
     }
@@ -30,19 +30,19 @@ public class Order extends Model{
         this.type = type;
     }
 
-    public String getOrderType() {
-        return orderType;
+    public String getCategory() {
+        return category;
     }
 
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public String getOrderName() {
-        return orderName;
+    public String getName() {
+        return name;
     }
 
-    public void setOrderName(String orderName) {
-        this.orderName = orderName;
+    public void setName(String name) {
+        this.name = name;
     }
 }

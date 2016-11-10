@@ -7,6 +7,7 @@ Every heading in this file denotes a scenario. Every bulleted point denotes a st
      
 Add Radiology Order
 ----------------
+Tags: regression, sanity
 * Create a new patient and open visit through API
 * On the login page
 * Login to the application
@@ -45,3 +46,50 @@ Add Radiology Order
     |Chest oblique - Bilateral (X-ray)|
 * Navigate to dashboard
 * Logout the user
+
+
+Delete Radiology Orders
+----------------
+Tags: regression, sanity
+* Create a new patient and open visit through API
+* Add the following orders through API
+    |type|category|name|
+    |Radiology|chest|chest apical lordotic |
+    |Radiology|chest|chest, 1 view (x-ray) |
+    |Radiology|chest|chest, 2 views (x-ray)|
+
+* On the login page
+* Login to the application
+* Click on clinical app
+* Select existing patient from patient listing page under tab "Active"
+
+* Navigate to consultation
+* Go to "Orders" tab
+* Expand "Radiology" section on orders page
+* Verify order details on orders page
+* Delete the following orders
+    |type|category|name|
+    |Radiology|chest|chest apical lordotic |
+    |Radiology|chest|chest, 1 view (x-ray) |
+* Undo deletion of the following orders
+    |type|category|name|
+    |Radiology|chest|chest apical lordotic |
+* Save the consultation
+* Expand "Radiology" section on orders page
+* Verify order details on orders page
+* Navigate to patient dashboard
+
+* Verify display control with Caption "Radiology Orders" on dashboard, has the following details
+    |details|
+    |CHEST apical lordotic|
+    |Chest, 2 views (X-ray)|
+* Open the current visit
+* Verify display control with Caption "Pacs Orders Visit Page" on visit page, has the following details
+    |details|
+    |CHEST apical lordotic|
+    |Chest, 2 views (X-ray)|
+* Open "Orders" tab on visit page
+* Verify display control with Caption "Radiology Orders" on visit page, has the following details
+    |details|
+    |CHEST apical lordotic|
+    |Chest, 2 views (X-ray)|

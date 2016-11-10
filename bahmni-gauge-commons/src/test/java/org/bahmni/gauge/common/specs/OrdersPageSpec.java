@@ -1,38 +1,78 @@
 package org.bahmni.gauge.common.specs;
 
+import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
+import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.OrdersPage;
 import org.bahmni.gauge.common.clinical.domain.Order;
+import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.TableTransformer;
+import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
-/**
- * Created by atmaramn on 09/11/2016.
- */
+
 public class OrdersPageSpec extends BahmniPage {
+    private final WebDriver driver;
+    OrdersPage ordersPage;
+
+    public OrdersPageSpec() {
+        driver = DriverFactory.getDriver();
+        ordersPage = PageFactory.get(OrdersPage.class);
+    }
+
+    @BeforeClassSteps
+    public void waitForAppReady() {
+        BahmniPage.waitForSpinner(DriverFactory.getDriver());
+    }
+
+    @Step("Expand <order> section on orders page")
+    public void expandOrder(String order){
+        ordersPage.clickOrder(order);
+    }
+
     @Step("Select following orders <table>")
     public void selectOrders(Table table){
-        OrdersPage ordersPage= PageFactory.get(OrdersPage.class);
         List<Order> orders=TableTransformer.asEntityList(table,Order.class);
         ordersPage.selectorders(orders);
     }
 
     @Step("Unselect following orders <table>")
     public void unselectOrders(Table table){
-        OrdersPage ordersPage= PageFactory.get(OrdersPage.class);
         List<Order> orders=TableTransformer.asEntityList(table,Order.class);
         ordersPage.selectorders(orders);
+    }
+
+    @Step("Add the following orders through API <table>")
+    public void addOrdersAPI(Table table){
+        List<Order> orders = TableTransformer.asEntityList(table,Order.class);
+        getPatientFromSpecStore().setOrders(orders);
+        BahmniRestClient.get().createOrders(getPatientFromSpecStore());
+    }
+
+    @Step("Delete the following orders <table>")
+    public void deleteOrders(Table table){
+
+        List<Order> orders = TableTransformer.asEntityList(table,Order.class);
+        ordersPage.deleteOrders(orders);
+
+    }
+
+    @Step("Undo deletion of the following orders <table>")
+    public void undoOrderDeletion(Table table){
+
+        List<Order> orders = TableTransformer.asEntityList(table,Order.class);
+        ordersPage.undoDelete(orders);
+
     }
 
 
     @Step("Enter notes to following <orderType> orders <table>")
     public void selectOrders(String orderType, Table table){
-        OrdersPage ordersPage= PageFactory.get(OrdersPage.class);
         List<Order> orders=TableTransformer.asEntityList(table,Order.class);
         for(TableRow row:table.getTableRows()){
             ordersPage.enterNotes(row.getCell("order"),row.getCell("note"));
@@ -42,7 +82,6 @@ public class OrdersPageSpec extends BahmniPage {
 
     @Step("Verify order details on orders page")
     public void verifyOrders(){
-        OrdersPage ordersPage= PageFactory.get(OrdersPage.class);
         List<Order> orders=getPatientFromSpecStore().getOrders();
         ordersPage.verifyOrders(orders);
 
@@ -50,7 +89,6 @@ public class OrdersPageSpec extends BahmniPage {
 
     @Step("Verify notes are not editable for <orderType> orders")
     public void verifyNotesNotEditable(String orderType){
-        OrdersPage ordersPage= PageFactory.get(OrdersPage.class);
         ordersPage.verifyNotesNonEditable(orderType);
 
     }

@@ -2,6 +2,8 @@ package org.bahmni.gauge.common.clinical;
 
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.Order;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -11,12 +13,63 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-/**
- * Created by atmaramn on 09/11/2016.
- */
+
 public class OrdersPage extends BahmniPage {
     @FindBy(how = How.CSS,using = ".order-title:not(.mylegend)")
     public List<WebElement> orderSections;
+
+    By orderTitles = By.cssSelector("h2.order-title");
+    By removeSelector = By.cssSelector(".fa.fa-remove");
+    By undoSelector = By.cssSelector(".fa.fa-undo");
+    By selectedItemsSelector = By.cssSelector(".selected-items li");
+
+
+    public void deleteOrders(List<Order> orders) {
+
+        for (Order deletedOrder:orders) {
+            List<WebElement> selectedOrders  = driver.findElements(selectedItemsSelector);
+
+            for (WebElement selectedOrder:selectedOrders) {
+                if (selectedOrder.getText().equalsIgnoreCase(deletedOrder.getName())) {
+                    selectedOrder.findElement(removeSelector).click();
+
+                        int index = 0;
+                        for (Order order:getPatientFromSpecStore().getOrders()) {
+                            if(deletedOrder.getName().equals(order.getName())) {
+                                getPatientFromSpecStore().getOrders().remove(index);
+                                break;
+                            }
+                            index++;
+                        }
+                }
+            }
+        }
+    }
+
+    public void undoDelete(List<Order> orders) {
+
+        for (Order updatedOrder:orders) {
+
+            List<WebElement> deletedOrders = driver.findElements(selectedItemsSelector);
+
+            for (WebElement deletedOrder : deletedOrders) {
+                if (deletedOrder.getText().equalsIgnoreCase(updatedOrder.getName())) {
+                    deletedOrder.findElement(undoSelector).click();
+                    getPatientFromSpecStore().getOrders().add(updatedOrder);
+                }
+            }
+        }
+    }
+
+    public void clickOrder(String orderName){
+
+        List<WebElement> orderTypeElements=driver.findElements(orderTitles);
+        for(WebElement orderType:orderTypeElements){
+            if(orderType.getText().equalsIgnoreCase(orderName)){
+                orderType.click();
+            }
+        }
+    }
 
     public void selectorders(List<Order> orders) {
         for(Order order:orders){
@@ -30,9 +83,9 @@ public class OrdersPage extends BahmniPage {
 
                     }
                     scrollToTop();
-                    driver.findElement(By.xpath(".//a[@ng-click=\"showLeftCategoryTests(sample)\" and contains(text(),\""+order.getOrderType()+"\")]")).click();
+                    driver.findElement(By.xpath(".//a[@ng-click=\"showLeftCategoryTests(sample)\" and contains(text(),\""+order.getCategory()+"\")]")).click();
                     for(WebElement element:driver.findElements(By.cssSelector(".grid-row-element.button.orderBtn"))){
-                        if (element.getText().toLowerCase().contains(order.getOrderName().toLowerCase())){
+                        if (element.getText().toLowerCase().contains(order.getName().toLowerCase())){
                             element.click();
                         }
                     }
@@ -66,12 +119,12 @@ public class OrdersPage extends BahmniPage {
                     scrollToTop();
                     boolean found=false;
                     for(WebElement element:driver.findElements(By.cssSelector(".selected-orders .grid-row-element"))){
-                        if(element.getText().toLowerCase().contains(order.getOrderName().toLowerCase())){
+                        if(element.getText().toLowerCase().contains(order.getName().toLowerCase())){
                             found=true;
                             break;
                         }
                     }
-                    Assert.assertTrue("Order "+order.getOrderName()+ " Not found",found);
+                    Assert.assertTrue("Order "+order.getCategory()+ " Not found",found);
                 }
             }
         }
