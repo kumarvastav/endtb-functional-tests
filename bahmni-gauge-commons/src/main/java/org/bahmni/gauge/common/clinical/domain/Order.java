@@ -17,7 +17,7 @@ public class Order extends Model{
     @Override
     public String getUuid() {
         if(orderName!=null && uuid==null){
-            uuid= BahmniRestClient.get().getUuidwithDisplayOnOrdersUrl(this.orderName);
+//            uuid= BahmniRestClient.get().getUuidwithDisplayOnOrdersUrl(this.orderName);
         }
         return uuid;
     }

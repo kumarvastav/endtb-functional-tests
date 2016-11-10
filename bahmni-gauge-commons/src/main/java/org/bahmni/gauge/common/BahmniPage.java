@@ -317,4 +317,11 @@ public class BahmniPage {
         js.executeScript("window.scrollTo(0,0)");
 
     }
+    public void scrollToBottom(){
+        JavascriptExecutor js = ((JavascriptExecutor) driver);
+
+        //scrolling
+        js.executeScript("scrollBy(0,2500)");
+
+    }
 }

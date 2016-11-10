@@ -64,4 +64,9 @@ public class RegistrationVisitDetailsPage extends BahmniPage{
 		return displayControl.getText().replace("\n", "");
 
 	}
+
+	public void openTab(String tabCaption) {
+		findElement(By.cssSelector("#addTabButton")).click();
+		findElement(By.xpath(".//a[contains(text(),\""+tabCaption+"\")]")).click();
+	}
 }

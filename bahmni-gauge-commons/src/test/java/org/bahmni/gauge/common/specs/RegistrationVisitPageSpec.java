@@ -84,4 +84,10 @@ public class RegistrationVisitPageSpec {
         BahmniRestClient.get().create(registrationVisitPage.getPatientFromSpecStore(),"visit");
     }
 
+    @Step("Open <tabCaption> tab on visit page")
+    public void openTab(String tabCaption){
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        registrationVisitPage.openTab(tabCaption);
+    }
+
 }

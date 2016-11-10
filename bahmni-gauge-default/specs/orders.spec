@@ -14,16 +14,16 @@ Add Radiology Order
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
 * Go to "Orders" tab
-* Select following "Radiology" orders under section "chest"
-    |orders|
-    |chest, 1 view (x-ray)|
-    |chest oblique - bilateral (x-ray)|
-    |chest lateral|
-* Unselect following "Radiology" orders under section "chest"
-    |orders|
-    |chest lateral|
+* Select following orders
+    |type|orderType|orderName|
+    |Radiology|chest|chest, 1 view (x-ray)|
+    |Radiology|chest|chest oblique - bilateral (x-ray)|
+    |Radiology|chest|chest lateral|
+* Unselect following orders
+    |type|orderType|orderName|
+    |Radiology|chest|chest lateral|
 * Enter notes to following "Radiology" orders
-    |order|notes|
+    |order|note|
     |chest, 1 view (x-ray)|Notes 1|
 * Save the consultation
 * Verify order details on orders page
@@ -31,16 +31,17 @@ Add Radiology Order
 * Navigate to patient dashboard
 * Verify display control with Caption "Radiology Orders" on dashboard, has the following details
     |details|
-    |Chest, 1 view (x-ray)|
-    |Chest oblique - bilateral (x-ray)|
+    |Chest, 1 view (X-ray)|
+    |Chest oblique - Bilateral (X-ray)|
 * Open the current visit
-* Verify display control with Caption "Observations" on visit page, has the following details
+* Verify display control with Caption "Pacs Orders Visit Page" on visit page, has the following details
     |details|
-    |Chest, 1 view (x-ray)|
-    |Chest oblique - bilateral (x-ray)|
-* Verify display control with Caption "Observations" on "Orders" tab on visit page, has the following details
+    |Chest, 1 view (X-ray)|
+    |Chest oblique - Bilateral (X-ray)|
+* Open "Orders" tab on visit page
+* Verify display control with Caption "Radiology Orders" on visit page, has the following details
     |details|
-    |Chest, 1 view (x-ray)|
-    |Chest oblique - bilateral (x-ray)|
+    |Chest, 1 view (X-ray)|
+    |Chest oblique - Bilateral (X-ray)|
 * Navigate to dashboard
 * Logout the user
