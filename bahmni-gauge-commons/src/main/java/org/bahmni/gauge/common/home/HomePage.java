@@ -36,6 +36,9 @@ public class HomePage extends BahmniPage {
 	@FindBy(how = How.PARTIAL_LINK_TEXT, using = "Clinical")
 	public WebElement clinical;
 
+	@FindBy(how = How.CSS, using = "#bahmni\\.orders")
+	public WebElement orders;
+
     public void clickRegistrationApp(){
     	registration.click();
     }
@@ -65,4 +68,8 @@ public class HomePage extends BahmniPage {
 		inpatient.click();
 	}
 
+	public void clickOrdersApp() {
+		orders.click();
+		
+	}
 }

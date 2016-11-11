@@ -13,6 +13,15 @@ public class Order extends Model{
     private String type;
     private String category;
     private String name;
+    private String note;
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
 
     @Override
     public String getUuid() {

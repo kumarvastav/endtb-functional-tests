@@ -53,6 +53,11 @@ public class HomeSpec {
 		homePage.clickAdminApp();
 	}
 
+	@Step("Click on orders app")
+	public void goToOrdersPage(){
+		homePage = PageFactory.getHomePage();
+		homePage.clickOrdersApp();
+	}
 	@Step("Logout the user")
 	public void logout(){
 		//new BahmniPage().waitForElementOnPage(driver, ".i.icon-bahmni-org.bahmi.gauge.possible.registration");

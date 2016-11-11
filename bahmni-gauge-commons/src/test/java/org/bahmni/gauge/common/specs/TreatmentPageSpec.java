@@ -25,16 +25,14 @@ import static org.bahmni.gauge.common.specs.BaseSpec.stringDoesNotExist;
 
 public class TreatmentPageSpec {
 
-    private WebDriver driver;
     private TreatmentPage treatmentPage;
 
     public TreatmentPageSpec(){
-        driver = DriverFactory.getDriver();
-        treatmentPage = PageFactory.get(TreatmentPage.class);
+        treatmentPage = PageFactory.getTreatmentPage();
     }
 
     @BeforeClassSteps
-    public void waitForAppReady(){ BahmniPage.waitForSpinner(driver);}
+    public void waitForAppReady(){ treatmentPage.waitForSpinner();}
 
 
 

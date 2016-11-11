@@ -35,12 +35,19 @@ public class OrdersPageSpec {
     public void selectOrders(Table table){
         List<Order> orders=TableTransformer.asEntityList(table,Order.class);
         ordersPage.selectorders(orders);
+        ordersPage.getPatientFromSpecStore().setOrders(orders);
     }
 
     @Step("Unselect following orders <table>")
     public void unselectOrders(Table table){
         List<Order> orders=TableTransformer.asEntityList(table,Order.class);
         ordersPage.selectorders(orders);
+        for(Order order:ordersPage.getPatientFromSpecStore().getOrders()){
+            for(Order tableOrder:orders){
+                if(order.getName().equals(tableOrder.getName()))
+                    ordersPage.getPatientFromSpecStore().getOrders().remove(order);
+            }
+        }
     }
 
     @Step("Add the following orders through API <table>")

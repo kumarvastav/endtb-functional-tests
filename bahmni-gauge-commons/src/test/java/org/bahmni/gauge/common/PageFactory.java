@@ -1,7 +1,9 @@
 package org.bahmni.gauge.common;
 
 import org.bahmni.gauge.common.clinical.DashboardPage;
+import org.bahmni.gauge.common.clinical.TreatmentPage;
 import org.bahmni.gauge.common.home.HomePage;
+import org.bahmni.gauge.common.orders.OrdersFulfillmentPage;
 import org.bahmni.gauge.common.program.ProgramManagementPage;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.RegistrationVisitDetailsPage;
@@ -19,7 +21,8 @@ public class PageFactory {
 	private static final String PROGRAMS_PAGE = "programs";
 	private static final String PROGRAM_DASHBOARD_PAGE = "program.dashboard";
 	private static Properties props = new Properties();
-
+	private static final String ORDERS_FULFILLMENT_PAGE="orders.fulfillment";
+	private static final String TREATMENT_PAGE="clinical.treatment";
 	static{
 		InputStream is = ClassLoader.getSystemResourceAsStream("page.properties");
 		try {
@@ -71,5 +74,13 @@ public class PageFactory {
 		T bahmniPage = org.openqa.selenium.support.PageFactory.initElements(driver, page);
 		bahmniPage.setDriver(driver);
 		return bahmniPage;
+	}
+
+	public static OrdersFulfillmentPage getOrdersFulfillmentPage() {
+		return (OrdersFulfillmentPage) get(ORDERS_FULFILLMENT_PAGE);
+	}
+
+	public static TreatmentPage getTreatmentPage() {
+		return (TreatmentPage) get(TREATMENT_PAGE);
 	}
 }
