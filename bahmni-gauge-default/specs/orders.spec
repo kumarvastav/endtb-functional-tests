@@ -103,25 +103,19 @@ Fulfill Radiology orders
 Tags: regression, sanity
 
 * Create a new patient and open visit through API
+* Add the following orders through API
+    |type|category|name|
+    |Radiology|chest|chest apical lordotic|
+    |Radiology|chest|chest, 1 view (x-ray)|
+    |Radiology|chest|chest, 2 views (x-ray)|
 * On the login page
 * Login to the application
-* Click on clinical app
-* Select existing patient from patient listing page under tab "Active"
-* Navigate to consultation
-* Go to "Orders" tab
-* Select following orders
-    |type|orderType|orderName|
-    |Radiology|chest|chest, 1 view (x-ray)|
-    |Radiology|chest|chest oblique - bilateral (x-ray)|
-    |Radiology|chest|chest lateral|
-* Save the consultation
-* Navigate to dashboard
 * Click on orders app
 * Search previously created patient with exact identifier on orders search page
 * Verify orders on orders fulfilment page
 * Fulfill all radiology order details as follow
     |name|note|
-    |chest, 1 view (x-ray)|Note 1|
-    |chest oblique - bilateral (x-ray)|Note 2|
-    |chest lateral|Note 3|
+    |chest apical lordotic|Note 1|
+    |chest, 1 view (x-ray)|Note 2|
+    |chest, 2 views (x-ray)|Note 3|
 //* Verify order details on orders fulfilment page
