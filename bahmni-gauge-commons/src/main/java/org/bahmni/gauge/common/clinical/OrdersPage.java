@@ -2,6 +2,7 @@ package org.bahmni.gauge.common.clinical;
 
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.Order;
+import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.junit.Assert;
@@ -157,5 +158,10 @@ public class OrdersPage extends BahmniPage {
             }
         }
 
+    }
+
+    public void addOrdersAPI(List<Order> orders) {
+        getPatientFromSpecStore().setOrders(orders);
+        BahmniRestClient.get().createOrders(getPatientFromSpecStore());
     }
 }

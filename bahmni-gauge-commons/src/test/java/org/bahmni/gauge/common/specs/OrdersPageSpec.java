@@ -16,7 +16,7 @@ import org.openqa.selenium.WebDriver;
 import java.util.List;
 
 
-public class OrdersPageSpec extends BahmniPage {
+public class OrdersPageSpec {
     private final WebDriver driver;
     OrdersPage ordersPage;
 
@@ -25,10 +25,6 @@ public class OrdersPageSpec extends BahmniPage {
         ordersPage = PageFactory.get(OrdersPage.class);
     }
 
-    @BeforeClassSteps
-    public void waitForAppReady() {
-        BahmniPage.waitForSpinner(DriverFactory.getDriver());
-    }
 
     @Step("Expand <order> section on orders page")
     public void expandOrder(String order){
@@ -49,10 +45,12 @@ public class OrdersPageSpec extends BahmniPage {
 
     @Step("Add the following orders through API <table>")
     public void addOrdersAPI(Table table){
+
         List<Order> orders = TableTransformer.asEntityList(table,Order.class);
-        getPatientFromSpecStore().setOrders(orders);
-        BahmniRestClient.get().createOrders(getPatientFromSpecStore());
+        ordersPage.addOrdersAPI(orders);
+
     }
+
 
     @Step("Delete the following orders <table>")
     public void deleteOrders(Table table){
@@ -82,7 +80,7 @@ public class OrdersPageSpec extends BahmniPage {
 
     @Step("Verify order details on orders page")
     public void verifyOrders(){
-        List<Order> orders=getPatientFromSpecStore().getOrders();
+        List<Order> orders=ordersPage.getPatientFromSpecStore().getOrders();
         ordersPage.verifyOrders(orders);
 
     }
