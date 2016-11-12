@@ -24,21 +24,20 @@ import static org.junit.Assert.assertNotNull;
 
 public class DashboardPageSpec {
 
-	protected final WebDriver driver;
+	DashboardPage dashboardPage;
 
 	public DashboardPageSpec() {
-		this.driver = DriverFactory.getDriver();
+		dashboardPage=PageFactory.get(DashboardPage.class);
 	}
 
 	@BeforeClassSteps
 	public void waitForAppReady() {
-		BahmniPage.waitForSpinner(driver);
+		dashboardPage.waitForSpinner();
 	}
 
 	@Step("Ensure that <id> Obs display control with title <title> has correct data <table>")
 	public void validateContentInDisplayControl(String id, String title, Table table) {
-		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-		DashboardPage.waitForSpinner(driver);
+		dashboardPage.waitForSpinner();
 
 		WebElement displayControl = dashboardPage.findElementById(id);
 		assertNotNull("The display control with id [" + id + "] not found", displayControl);
@@ -57,8 +56,7 @@ public class DashboardPageSpec {
 
 	@Step("Ensure that <id> Obs display control has the message <message>")
 	public void validateNoContentInDisplayControl(String id, String message) {
-        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-		BahmniPage.waitForSpinner(driver);
+		dashboardPage.waitForSpinner();
 
 		WebElement displayControl = dashboardPage.findElementById(id);
 		assertNotNull("The display control with id [" + id + "] not found", displayControl);
@@ -70,28 +68,26 @@ public class DashboardPageSpec {
 
 	@Step("On the dashboard page")
 	public void navigateToDashboardPage() {
-        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		PatientProgram patientProgram = dashboardPage.getPatientProgramFromSpecStore();
 		String url = String.format(DashboardPage.URL,patientProgram.getPatient().getUuid(),patientProgram.getPatientProgramUuid());
-		driver.get(url);
+		dashboardPage.get(url);
 	}
 
 	@Step("Click on <name> dashboard")
 	public void clickOnDashboard(String name) {
-        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-		BahmniPage.waitForSpinner(driver);
+		dashboardPage.waitForSpinner();
 		dashboardPage.selectDashboard(name);
 		waitForAppReady();
 	}
 
 	@Step("Navigate to dashboard")
 	public void navigateToHomePage() {
-		driver.get(HomePage.URL);
+		dashboardPage.get(HomePage.URL);
 	}
 
 	@Step("Navigate to dashboard link")
 	public void navigateToDashboardLink() {
-		driver.findElement(By.id("dashboard-link")).click();
+		dashboardPage.findElement(By.id("dashboard-link")).click();
 	}
 	@Step("Navigate to adt dashboard")
 	public void navigateToAdtDashboardLink() {
@@ -102,7 +98,6 @@ public class DashboardPageSpec {
 
 	@Step("Navigate to consultation")
 	public void goToConsultation(){
-        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		waitForAppReady();
 		dashboardPage.clickEnterData();
 		waitForAppReady();
@@ -112,19 +107,15 @@ public class DashboardPageSpec {
 	public void verifyProgramUpdatedOnDashboard(){
 		Program program=PageFactory.getProgramManagementPage().getProgramFromSpecStore();
 		PageFactory.getProgramDashboardPage().validateProgramsDisplayControl(program);
-
 	}
+
 	@Step("Verify details on dashboard <Programs> display control")
 	public void selectDisplayControl(String name) {
-		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		dashboardPage.selectDisplayControl(name);
 	}
 
-
-
 	@Step("Verify data on Obs display control")
 	public void verifyObsDisplayControl(){
-		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		dashboardPage.validateVitalsObservationDisplayControl();
 	}
 
@@ -135,24 +126,21 @@ public class DashboardPageSpec {
 
 	@Step("Verify Vitals display control is empty")
 	public void verifyDisplayControlEmpty(){
-		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		dashboardPage.verifyNoVitals();
 	}
 	@Step("Open the current visit")
 	public void openCurrentVisit(){
-		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		dashboardPage.openCurrentVisit();
 	}
 	@Step("Verify Consultation button is not present")
 	public void verifyConsultationNotPresent(){
-		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		waitForAppReady();
 		Assert.assertFalse("Consultation button is present",dashboardPage.isEnterDataPresent());
 		waitForAppReady();
 	}
+
 	@Step("Verify <visits> Active visits for patient")
 	public void verifyVisitsCount(int visits){
-		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
 		waitForAppReady();
 		Assert.assertEquals("Total Number of visits don't match",visits,dashboardPage.getVisitsCount());
 	}

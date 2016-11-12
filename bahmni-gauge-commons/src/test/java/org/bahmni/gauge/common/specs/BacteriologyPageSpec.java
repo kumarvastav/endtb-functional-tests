@@ -15,16 +15,24 @@ import java.util.List;
 /**
  * Created by atmaramn on 04/11/2016.
  */
-public class BacteriologyPageSpec extends BahmniPage{
+public class BacteriologyPageSpec{
+
+    BacteriologyPage bacteriologyPage;
+
+    public BacteriologyPageSpec(){
+        bacteriologyPage= PageFactory.getBacteriologyPage();
+
+    }
+
     @BeforeClassSteps
     public void waitForAppReady(){ BahmniPage.waitForSpinner(DriverFactory.getDriver());}
+
 
     @Step("Add following bacteriology samples <table>")
     public void addBacteriologySample(Table table){
         List<Specimen> specimens=TableTransformer.asEntityList(table, Specimen.class);
-        BacteriologyPage bacteriologyPage= PageFactory.get(BacteriologyPage.class);
         bacteriologyPage.addSamples(specimens);
-        getPatientFromSpecStore().setSpecimens(specimens);
+        bacteriologyPage.getPatientFromSpecStore().setSpecimens(specimens);
 
     }
 
@@ -33,7 +41,7 @@ public class BacteriologyPageSpec extends BahmniPage{
         Specimen specimen=TableTransformer.asEntity(table, Specimen.class);
         BacteriologyPage bacteriologyPage= PageFactory.get(BacteriologyPage.class);
         bacteriologyPage.editSample(rowNumber,specimen);
-        getPatientFromSpecStore().getSpecimens().set(rowNumber-1,specimen);
+        bacteriologyPage.getPatientFromSpecStore().getSpecimens().set(rowNumber-1,specimen);
 
 
     }
@@ -42,7 +50,7 @@ public class BacteriologyPageSpec extends BahmniPage{
     public void deleteRow(int rowNumber){
         BacteriologyPage bacteriologyPage= PageFactory.get(BacteriologyPage.class);
         bacteriologyPage.deleteSample(rowNumber);
-        getPatientFromSpecStore().getSpecimens().remove(rowNumber-1);
+        bacteriologyPage.getPatientFromSpecStore().getSpecimens().remove(rowNumber-1);
 
 
     }

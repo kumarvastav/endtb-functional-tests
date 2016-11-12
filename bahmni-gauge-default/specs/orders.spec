@@ -95,7 +95,12 @@ Tags: regression, sanity
     |details|
     |CHEST apical lordotic|
     |Chest, 2 views (X-ray)|
-
+* Navigate to dashboard
+* Click on orders app
+* Search previously created patient with exact identifier on orders search page
+* Verify orders on orders fulfilment page
+* Navigate to dashboard
+* Logout the user
 
 Fulfill Radiology orders
 -----------------------

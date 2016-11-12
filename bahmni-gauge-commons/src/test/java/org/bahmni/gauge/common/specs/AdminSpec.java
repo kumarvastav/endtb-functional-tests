@@ -12,22 +12,20 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by atmaramn on 05/10/2016.
  */
-public class AdminSpec extends BahmniPage {
-    private final WebDriver driver;
+public class AdminSpec  {
     private AdminPage adminPage;
 
     public AdminSpec(){
-        this.driver = DriverFactory.getDriver();
+        adminPage = PageFactory.getAdminPage();
     }
 
     @BeforeClassSteps
     public void waitForAppReady(){
-        BahmniPage.waitForSpinner(driver);
+        adminPage.waitForSpinner();
     }
 
     @Step("Click on order set app")
     public void goToOrderSetPage(){
-        adminPage = PageFactory.get(AdminPage.class);
         adminPage.clickOrderSet();
         waitForAppReady();
     }

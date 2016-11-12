@@ -7,28 +7,31 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.ConsultationPage;
 
-public class ConsultationPageSpec extends BahmniPage {
+public class ConsultationPageSpec {
 
+    ConsultationPage consultationPage;
+
+    public ConsultationPageSpec(){
+        consultationPage = PageFactory.getConsultationPage();
+
+    }
     @BeforeClassSteps
     public void waitForAppReady(){ BahmniPage.waitForSpinner(DriverFactory.getDriver());}
 
     @Step("Save the consultation")
     public void saveConsultation(){
-        ConsultationPage consultationPage = PageFactory.get(ConsultationPage.class);
         consultationPage.saveConsultation();
         waitForAppReady();
     }
 
     @Step("Navigate to patient dashboard")
     public void clickOnDashboard(){
-        ConsultationPage consultationPage = PageFactory.get(ConsultationPage.class);
         consultationPage.clickPatientProfile();
         waitForAppReady();
     }
 
     @Step("Go to <tab> tab")
     public void goToTab(String tab){
-        ConsultationPage consultationPage = PageFactory.get(ConsultationPage.class);
         consultationPage.clickOnTab(tab);
         waitForAppReady();
     }

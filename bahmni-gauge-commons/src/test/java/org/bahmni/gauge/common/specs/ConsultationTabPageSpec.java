@@ -12,17 +12,21 @@ import org.bahmni.gauge.data.StoreHelper;
 /**
  * Created by atmaramn on 25/10/2016.
  */
-public class ConsultationTabPageSpec extends BahmniPage{
+public class ConsultationTabPageSpec{
+
+    ConsultationTabPage consultationTabPage;
+
+    public ConsultationTabPageSpec(){
+       consultationTabPage= PageFactory.getConsultationTabPage();
+    }
+
     @BeforeClassSteps
     public void waitForAppReady(){ BahmniPage.waitForSpinner(DriverFactory.getDriver());}
 
     @Step("Verify Disposition details on consultation tab")
     public void verifyDisposition(){
         Disposition disposition= StoreHelper.getLatest(Disposition.class);
-        ConsultationTabPage consultationTabPage= PageFactory.get(ConsultationTabPage.class);
-
         consultationTabPage.verifyDisposition(disposition);
-
     }
 
 }

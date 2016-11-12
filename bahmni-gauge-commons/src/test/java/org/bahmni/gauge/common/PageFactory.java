@@ -1,5 +1,9 @@
 package org.bahmni.gauge.common;
 
+import org.bahmni.gauge.common.admin.AdminPage;
+import org.bahmni.gauge.common.clinical.BacteriologyPage;
+import org.bahmni.gauge.common.clinical.ConsultationPage;
+import org.bahmni.gauge.common.clinical.ConsultationTabPage;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.TreatmentPage;
 import org.bahmni.gauge.common.home.HomePage;
@@ -20,12 +24,17 @@ public class PageFactory {
 	private static final String REGISTRATION_VISIT_PAGE = "registration.visitPage";
 	private static final String PROGRAMS_PAGE = "programs";
 	private static final String PROGRAM_DASHBOARD_PAGE = "program.dashboard";
+	private static final String ADMIN_PAGE = "admin";
+	private static final String BACTERIOLOGY_PAGE = "clinical.bacteriology";
+	private static final String CONSULTATION_PAGE = "clinical.consultation";
+	private static final String CONSULTATION_TAB_PAGE = "clinical.consultationtab";
 	private static Properties props = new Properties();
 	private static final String ORDERS_FULFILLMENT_PAGE="orders.fulfillment";
 	private static final String TREATMENT_PAGE="clinical.treatment";
 	static{
 		InputStream is = ClassLoader.getSystemResourceAsStream("page.properties");
 		try {
+
 			props.load(is);
 		}
 		catch (IOException e) {
@@ -45,6 +54,22 @@ public class PageFactory {
 		catch (ClassNotFoundException e) {
 			throw new TestSpecException("The class defined in page.properites file ["+props.get(key)+"] not available");
 		}
+	}
+
+	public static AdminPage getAdminPage() {
+		return (AdminPage) get(ADMIN_PAGE);
+	}
+
+	public static BacteriologyPage getBacteriologyPage() {
+		return (BacteriologyPage) get(BACTERIOLOGY_PAGE);
+	}
+
+	public static ConsultationPage getConsultationPage() {
+		return (ConsultationPage) get(CONSULTATION_PAGE);
+	}
+
+	public static ConsultationTabPage getConsultationTabPage() {
+		return (ConsultationTabPage) get(CONSULTATION_TAB_PAGE);
 	}
 
 	public static HomePage getHomePage(){

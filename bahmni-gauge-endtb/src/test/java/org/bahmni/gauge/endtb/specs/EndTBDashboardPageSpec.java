@@ -23,7 +23,7 @@ public class EndTBDashboardPageSpec extends DashboardPageSpec {
 	public void validateContentInDisplayControl(String id, String title, String treatmentStartDate, Table table)
 			throws ParseException {
 		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-		BahmniPage.waitForSpinner(driver);
+		dashboardPage.waitForSpinner();
 
 		WebElement displayControl = dashboardPage.findElementById(id);
 		assertNotNull("The display control with id [" + id + "] not found", displayControl);

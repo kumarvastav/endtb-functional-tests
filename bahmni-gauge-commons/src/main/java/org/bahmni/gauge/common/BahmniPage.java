@@ -41,6 +41,10 @@ public class BahmniPage {
         return null;
     }
 
+    public void get(String url){
+        driver.get(url);
+    }
+
     public void storePatientInSpecStore(Patient value) {
         StoreHelper.store(Patient.class,value);
     }
