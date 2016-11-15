@@ -31,6 +31,10 @@ public class DashboardPage extends BahmniPage {
 	@FindBy(how = How.CSS, using = "a[title=\"Go to IPD Dashboard\"]")
 	public WebElement adtButton;
 
+    @FindBy(how = How.ID, using = "addDashboardButton")
+    public WebElement addDashboardButton;
+
+
 	@FindBy(how = How.CSS, using = ".dashboard-section")
 	public List<WebElement> displayControls;
 
@@ -44,8 +48,7 @@ public class DashboardPage extends BahmniPage {
 	public WebElement bacteriology_results;
 
 	public void selectDashboard(String name) {
-		for (WebElement dashboard : tabItems) {
-			WebElement dashboardLink = dashboard.findElement(By.tagName("a"));
+		for (WebElement dashboardLink : driver.findElements(By.cssSelector(".tab-item a"))) {
 			if (dashboardLink != null && dashboardLink.getText().trim().equals(name)) {
 				dashboardLink.click();
 			}
@@ -146,6 +149,11 @@ public class DashboardPage extends BahmniPage {
 		Assert.assertTrue("Vitals Display control has vitals data",!hasElement(By.cssSelector(".obs-date")));
 		Assert.assertTrue("Vitals Display control has vitals data",hasElement(By.xpath("//p[text()='No Vitals for this patient']")));
 	}
+
+	public void verifyNoValuesDisplayControl(String displayControl, String value) {
+			Assert.assertTrue("Display control has data",hasElement(By.xpath("//*[@id='"+displayControl+"'][contains(.,'"+value+"') or text()='"+value+"']")));
+	}
+
 	public void openCurrentVisit() {
 		By currentVisit = By.xpath("//i[@id='currentVisitIcon']/parent::a[@class='visit']");
 		waitForElementOnPage(currentVisit).click();
