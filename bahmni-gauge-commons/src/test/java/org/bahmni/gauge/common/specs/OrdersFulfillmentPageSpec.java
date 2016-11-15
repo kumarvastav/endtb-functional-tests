@@ -41,4 +41,9 @@ public class OrdersFulfillmentPageSpec {
         }
         ordersFulfillmentPage.fulfill(ordersFulfillmentPage.getPatientFromSpecStore().getOrders());
     }
+
+    @Step("Verify order details on orders fulfilment page")
+    public void verfiyOrderDetails(){
+        ordersFulfillmentPage.verifyOrdersDetails(ordersFulfillmentPage.getPatientFromSpecStore().getOrders());
+    }
 }

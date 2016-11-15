@@ -46,6 +46,13 @@ public class DiagnosisPageSpec extends BahmniPage {
 
     }
 
+    @Step("Delete the following diagnoses <table>")
+    public void deleteDiagnoses(Table table){
+        List<Diagnosis> diagnoses=TableTransformer.asEntityList(table, Diagnosis.class);
+        DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
+
+        diagnosisPage.deleteDiagnoses(diagnoses);
+    }
     @Step("Add diagnosis through API <table>")
     public void addDiagnosisAPI(Table table){
         List<Diagnosis> diagnoses = TableTransformer.asEntityList(table,Diagnosis.class);

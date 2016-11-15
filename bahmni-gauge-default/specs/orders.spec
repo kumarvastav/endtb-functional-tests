@@ -123,4 +123,21 @@ Tags: regression, sanity
     |chest apical lordotic|Note 1|
     |chest, 1 view (x-ray)|Note 2|
     |chest, 2 views (x-ray)|Note 3|
-//* Verify order details on orders fulfilment page
+* Verify order details on orders fulfilment page
+* Navigate to dashboard
+* Click on clinical app
+* Select existing patient from patient listing page under tab "Active"
+* Expand all sections from display control with Caption "Radiology Orders"
+* Verify display control with Caption "Radiology Orders" on dashboard, has the following details
+    |details|
+    |Note 1|
+    |Note 2|
+    |Note 3|
+* Open the current visit
+* Open "Orders" tab on visit page
+* Expand all sections from display control with Caption "Radiology Orders"
+* Verify display control with Caption "Radiology Orders" on visit page, has the following details
+    |details|
+    |Note 1|
+    |Note 2|
+    |Note 3|

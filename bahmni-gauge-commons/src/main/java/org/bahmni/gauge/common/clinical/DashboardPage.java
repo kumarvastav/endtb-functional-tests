@@ -11,10 +11,7 @@ import org.bahmni.gauge.data.StoreHelper;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
@@ -174,7 +171,11 @@ public class DashboardPage extends BahmniPage {
 	public void expandControlWithCaption(String controlCaption) {
 		WebElement displayControl = findElement(By.xpath(".//h2[contains(text(),\""+controlCaption+"\")]/ancestor::*[1]"));
 		for(WebElement expand:displayControl.findElements(By.cssSelector(".fa-caret-right"))){
-			expand.click();
+			try {
+				expand.click();
+			} catch (ElementNotVisibleException ex){
+
+			}
 		}
 	}
 

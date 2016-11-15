@@ -50,4 +50,18 @@ public class OrdersFulfillmentPage extends BahmniPage {
         }
         save.click();
     }
+
+    public void verifyOrdersDetails(List<Order> orders) {
+        for(Order order:orders){
+            try{
+                WebElement element=findElement(By.xpath(String.format(sSectionXpath,order.getName())));
+                element.findElement(By.cssSelector(".fa-caret-right")).click();
+                waitForSpinner();
+                Assert.assertTrue("Note " + order.getNote() + " not found",element.getText().contains(order.getNote()));
+
+            } catch (NoSuchElementException ex){
+                Assert.fail("Order "+order.getName()+" Not found");
+            }
+        }
+    }
 }

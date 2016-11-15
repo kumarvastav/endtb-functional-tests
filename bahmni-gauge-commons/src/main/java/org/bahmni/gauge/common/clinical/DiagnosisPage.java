@@ -1,18 +1,11 @@
 package org.bahmni.gauge.common.clinical;
 
-import com.thoughtworks.gauge.Step;
-import com.thoughtworks.gauge.Table;
-import junit.framework.Assert;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.Diagnosis;
-import org.bahmni.gauge.data.ModelMetaData;
-import org.bahmni.gauge.data.StoreHelper;
-import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.StringUtil;
-import org.bahmni.gauge.util.TableTransformer;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
@@ -59,15 +52,24 @@ public class DiagnosisPage extends BahmniPage {
 
     public void verifyCurrentDisplayControl(List<Diagnosis> diagnoses) {
         int index=0;
-        for (Diagnosis diagnosis:diagnoses){
-            WebElement row=driver.findElements(By.cssSelector(".diagnosis-row")).get(index++);
-            String text=row.getText();
-            Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getDiagnosis(),text),text.contains(diagnosis.getDiagnosis()));
-            Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getOrder().toUpperCase(),text),text.contains(diagnosis.getOrder().toUpperCase()));
-            Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getCertainty().toUpperCase(),text),text.contains(diagnosis.getCertainty().toUpperCase()));
-            if(diagnosis.getStatus().equalsIgnoreCase("Inactive"))
-                Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getStatus(),text),text.contains(diagnosis.getStatus()));
+        for (Diagnosis diagnosis:diagnoses) {
+            List<WebElement> rows = driver.findElements(By.cssSelector(".diagnosis-row"));
+            boolean bFound = false;
+            for (WebElement row : rows) {
+                String text = row.getText();
+                if (text.contains(diagnosis.getDiagnosis())) {
+                    Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getOrder().toUpperCase(), text), text.contains(diagnosis.getOrder().toUpperCase()));
+                    Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getCertainty().toUpperCase(), text), text.contains(diagnosis.getCertainty().toUpperCase()));
+                    if (diagnosis.getStatus().equalsIgnoreCase("Inactive"))
+                        Assert.assertTrue(StringUtil.stringDoesNotExist(diagnosis.getStatus(), text), text.contains(diagnosis.getStatus()));
+
+                    bFound = true;
+                }
+
+            }
+            Assert.assertTrue("Diagnosis "+diagnosis.getDiagnosis()+" Not found",bFound);
         }
+
     }
 
     public void editDiagnoses(List<Diagnosis> diagnoses) {
@@ -111,5 +113,22 @@ public class DiagnosisPage extends BahmniPage {
             }
         }
 
+    }
+
+    public void deleteDiagnoses(List<Diagnosis> diagnoses) {
+        for(Diagnosis diagnosis:diagnoses){
+            WebElement row=findElement(By.xpath(".//*[@ng-if=\"diagnosis.freeTextAnswer\" and contains(text(),\""+diagnosis.getDiagnosis()+"\")]/ancestor::div[contains(@class,\"diagnosis-row\")]"));
+            row.findElement(By.cssSelector(".remove-diagnosis")).click();
+            acceptAlert(driver);
+        }
+        waitForSpinner();
+        for (Diagnosis deleteDiagnosis:diagnoses) {
+            for (Diagnosis diagnosis:getPatientFromSpecStore().getDiagnoses()) {
+                if(deleteDiagnosis.getDiagnosis().equals(diagnosis.getDiagnosis())) {
+                    getPatientFromSpecStore().getDiagnoses().remove(diagnosis);
+                    break;
+                }
+            }
+        }
     }
 }
