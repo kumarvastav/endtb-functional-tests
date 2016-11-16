@@ -15,12 +15,25 @@ Tags: regression, sanity
 * Click on clinical app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
-* Fill "History and Examination" template with following observation details
-    |Chief Complaint|for|Chief Complaint Notes|History Notes|Examination Notes|Smoking History|
-    |Headache: :Accept|0|pain|repeat|repeat|No|
-* Fill "Vitals" template with following observation details
-    |Pulse|Systolic|Diastolic|Posture|Temperature|RR|SPO2|
-    |71|111|77|Sitting|99|17|99|
+//* Fill "History and Examination" template with following observation details
+//    |Chief Complaint|for|Chief Complaint Notes|History Notes|Examination Notes|Smoking History|
+//    |Headache: :Accept|0|pain|repeat|repeat|No|
+//* Fill "Vitals" template with following observation details
+//    |Pulse|Systolic|Diastolic|Posture|Temperature|RR|SPO2|
+//    |71|111|77|Sitting|99|17|99|
+* Select the template "Gynaecology" from on the observation page
+* Fill "Gynaecology" template with following observation details
+    |P/S (Per Speculum) - Cervix|
+    |Normal:VIA +ve|
+* Select the template "Gynaecology" from on the observation page
+* Fill "Gynaecology" template with following observation details
+    |P/S (Per Speculum) - Cervix|
+    |Normal:VIA +ve|
+* Select the template "Gynaecology" from on the observation page
+* Fill "Gynaecology" template with following observation details
+    |P/S (Per Speculum) - Cervix|
+    |Normal:VIA +ve|
+* Save the consultation
 
 
 

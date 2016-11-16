@@ -47,14 +47,16 @@ public class ObservationForm {
                     if (value.contains(":")) {
                         // This fills the form label with has combination of element type
                         String values[] = value.split(":");
+                        List<FormElement> elements = getAllFieldType(fieldset);
                         int fieldCount = 0;
-                        for (FormElement element : getAllFieldType(fieldset)) {
-                            if (values[fieldCount].equals(" ")) { // Skips if the empty value is provided
+                        for (String val : values) {
+                            if (val.equals(" ")) { // Skips if the empty value is provided
                                 fieldCount++;
                                 continue;
                             }
-                            element.fillUp(fieldset, values[fieldCount]);
-                            fieldCount++;
+                            elements.get(fieldCount).fillUp(fieldset, val);
+                            if (values.length == elements.size())
+                                fieldCount++;
                         }
                     } else {
                         getFieldType(fieldset).fillUp(fieldset, value);
