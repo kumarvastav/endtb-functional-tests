@@ -36,6 +36,7 @@ public class OrdersFulfillmentPageSpec {
             for(Order order:orders){
                 if(row.getCell("name").equals(order.getName())){
                     order.setNote(row.getCell("note"));
+                    order.setImage(row.getCell("image"));
                 }
             }
         }

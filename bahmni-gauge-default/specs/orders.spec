@@ -119,10 +119,10 @@ Tags: regression, sanity
 * Search previously created patient with exact identifier on orders search page
 * Verify orders on orders fulfilment page
 * Fulfill all radiology order details as follow
-    |name|note|
-    |chest apical lordotic|Note 1|
-    |chest, 1 view (x-ray)|Note 2|
-    |chest, 2 views (x-ray)|Note 3|
+    |name|note|image|
+    |chest apical lordotic|Note 1|xray.jpeg|
+    |chest, 1 view (x-ray)|Note 2|xray.jpeg|
+    |chest, 2 views (x-ray)|Note 3|xray.jpeg|
 * Verify order details on orders fulfilment page
 * Navigate to dashboard
 * Click on clinical app
