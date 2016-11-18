@@ -57,7 +57,11 @@ public class ObservationForm {
                             elements.get(fieldCount).fillUp(fieldset, val);
                             if (values.length == elements.size())
                                 fieldCount++;
+                            else {
+                                break;
+                            }
                         }
+
                     } else {
                         getFieldType(fieldset).fillUp(fieldset, value);
                         data.put(header, value);
@@ -90,7 +94,7 @@ public class ObservationForm {
     }
 
     private static boolean hasField(WebElement fieldset, String fieldName) {
-        return (fieldset.findElement(By.tagName("label")).getText().trim().equals(fieldName.trim()) || fieldset.findElement(By.tagName("label")).getText().contains(fieldName));
+        return fieldset.findElement(By.tagName("label")).getText().contains(fieldName);
     }
 
 }

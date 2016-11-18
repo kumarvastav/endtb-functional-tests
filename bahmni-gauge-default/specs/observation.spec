@@ -47,7 +47,7 @@ Tags: regression, sanity
     |71/min|111mm Hg|77mm Hg|Sitting|99F|17/min|99%|
 * Verify display control "Gynaecology" on dashboard, has the following details
     |P/S (Per Speculum) - Cervix|
-    |Normal, VIA +ve|
+    |Normal|
 * Verify display control "Obstetrics" on dashboard, has the following details
     |Fundal Height (Weeks)|P/A Presenting Part|FHS|LMP|Amount of Liquor|
     |2|Transverse|Present|11/11/2016|90ml|
