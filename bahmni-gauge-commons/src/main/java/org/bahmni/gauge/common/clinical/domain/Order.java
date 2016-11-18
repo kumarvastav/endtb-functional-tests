@@ -14,6 +14,7 @@ public class Order extends Model{
     private String category;
     private String name;
     private String note;
+    private String image;
 
     public String getNote() {
         return note;
@@ -53,5 +54,13 @@ public class Order extends Model{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
     }
 }

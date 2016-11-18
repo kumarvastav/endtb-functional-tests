@@ -58,6 +58,8 @@ Tags: regression, sanity
     |type|diagnosis|order|certainty|status|
     |coded|Anemia, pernicious|Primary|CONFIRMED|Active|
     |coded|Pyloric stenosis|SECONDARY|Presumed|Inactive|
+    |noncoded|High Blood Pressure|Primary|Confirmed|Active|
+
 * On the login page
 * Login to the application
 * Click on clinical app
@@ -68,6 +70,10 @@ Tags: regression, sanity
 * Edit the following diagnosis
     |type|diagnosis|order|certainty|status|
     |coded|Anemia, pernicious|PRIMARY|CONFIRMED|Inactive|
+* Save the consultation
+* Delete the following diagnoses
+    |diagnosis|
+    |High Blood Pressure|
 * Save the consultation
 * Verify diagnoses on current display control on diagnosis page
 * Navigate to patient dashboard

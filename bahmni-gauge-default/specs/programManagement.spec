@@ -166,3 +166,77 @@ Tags: regression, sanity
 * Verify Vitals display control is empty
 * Navigate to dashboard
 * Logout the user
+
+
+
+[EOC] Verify Patient Summary based on Program Filter
+---------------------------
+
+Tags: regression, sanity
+
+* Enroll patient to program through API
+* Open visit for previous patient using api
+    |location|type|
+    |Registration Desk|OPD|
+* On the login page
+* Login to the application
+* Navigate to dashboard
+* Click on clinical app
+* Select existing patient from patient listing page under tab "All"
+* Navigate to consultation
+* Go to "Medications" tab
+* Create drug order
+    |drugName|dose|doseUnit|frequency|route|additionalInstructions|duration|durationUnit|
+    |Paracetamol|2|Tablet(s)|Twice a day|Intravenous|After meals|2| Month(s)|
+    |Isoniazid (H)|4|mg|Immediately|Oral|Take if Needed|2| Day(s)|
+* Save the consultation
+* Go to "Observations" tab
+* Fill "Vitals" template with following observation details
+    |Pulse|Systolic|Diastolic|Posture|Temperature|RR|SPO2|
+    |72/min|123mm Hg|82mm Hg|Sitting|98.6F|18/min|99%|
+* Go to "Bacteriology" tab
+* Add following bacteriology samples
+    |dateOfSampleCollection|typeOfSample|identifier|note|smearResult|labIdNumber|otherSymptom|aFBDate|aFBTime|xpertTestDate|xpertTestId|xpertResult|
+    |01-11-2016|Blood|12345|Sample collected Note 1|Negative|4321|Yes|02-11-2016|12:12|03-11-2016|34567|ACD - Active Case Detection|
+    |04-11-2016|Blood|67890|Sample collected Note 2|Negative|9876|No|05-11-2016|12:12|06-11-2016|76543|ACD - Active Case Detection|
+* Save the consultation
+* Navigate to patient dashboard
+
+* Verify display control "Treatments" on dashboard, has the following details
+    |details|
+    |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)<NOW[dd MMM yy]>|
+    |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)<NOW[dd MMM yy]>|
+* Verify data on Obs display control
+* Expand all sections from display control with Caption "Bacteriology Results"
+* Verify display control "Bacteriology-Results" on dashboard, has the following details
+    |details|
+    |Blood : 12345|
+    |Smear resultNegative|
+    |Smear test lab ID number4321|
+    |Diagnosed with other SymptomYes|
+    |Date of AFB smear02 Nov 16|
+    |Date of Xpert test done03 Nov 16|
+    |Xpert test ID number34567|
+    |Xpert MTB resultACD - Active Case Detection|
+    |Blood : 67890|
+    |Smear resultNegative|
+    |Smear test lab ID number9876|
+    |Diagnosed with other SymptomNo|
+    |Date of AFB smear05 Nov 16|
+    |Date of Xpert test done06 Nov 16|
+    |Xpert test ID number76543|
+    |Xpert MTB resultACD - Active Case Detection|
+* Navigate to dashboard
+* Click on programs app
+* Select existing patient from patient listing page under tab "All"
+* Register the patient to following program
+    |name|dateOfRegistration|
+    |HIV Program|21/09/2016|
+* Navigate to "HIV Program" program dashboard
+* Navigate to adt dashboard link
+* Click on "Patient Summary" dashboard
+* Verify following value in display controls
+    |displayControl|values|
+    |Treatments|No Drugs to show for this patient|
+    |Bacteriology-Results|No data captured|
+    |History-and-Examinations|No History and Examinations for this patient|

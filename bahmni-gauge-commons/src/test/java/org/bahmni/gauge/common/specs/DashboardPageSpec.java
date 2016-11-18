@@ -3,8 +3,6 @@ package org.bahmni.gauge.common.specs;
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
-import org.bahmni.gauge.common.BahmniPage;
-import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.displaycontrol.ObsDisplayControl;
@@ -13,7 +11,6 @@ import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -89,9 +86,14 @@ public class DashboardPageSpec {
 	public void navigateToDashboardLink() {
 		dashboardPage.findElement(By.id("dashboard-link")).click();
 	}
-	@Step("Navigate to adt dashboard")
+
+	@Step("Navigate to adt dashboard link")
 	public void navigateToAdtDashboardLink() {
-		DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+		dashboardPage.addDashboardButton.click();
+	}
+
+	@Step("Navigate to adt dashboard")
+	public void navigateToAdtDashboard() {
 		dashboardPage.adtButton.click();
 	}
 
@@ -125,9 +127,17 @@ public class DashboardPageSpec {
 	}
 
 	@Step("Verify Vitals display control is empty")
-	public void verifyDisplayControlEmpty(){
+	public void verifyVitalDisplayControlEmpty(){
 		dashboardPage.verifyNoVitals();
 	}
+
+	@Step("Verify following value in display controls <table>")
+	public void verifyDisplayControlEmpty(Table table){
+		for (int i=0; i <table.getTableRows().size();i++) {
+			dashboardPage.verifyNoValuesDisplayControl(table.getColumnValues("displayControl").get(i),table.getColumnValues("values").get(i));
+		}
+	}
+
 	@Step("Open the current visit")
 	public void openCurrentVisit(){
 		dashboardPage.openCurrentVisit();

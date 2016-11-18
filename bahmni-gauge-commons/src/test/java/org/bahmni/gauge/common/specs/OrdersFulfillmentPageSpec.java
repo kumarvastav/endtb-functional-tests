@@ -36,9 +36,15 @@ public class OrdersFulfillmentPageSpec {
             for(Order order:orders){
                 if(row.getCell("name").equals(order.getName())){
                     order.setNote(row.getCell("note"));
+                    order.setImage(row.getCell("image"));
                 }
             }
         }
         ordersFulfillmentPage.fulfill(ordersFulfillmentPage.getPatientFromSpecStore().getOrders());
+    }
+
+    @Step("Verify order details on orders fulfilment page")
+    public void verfiyOrderDetails(){
+        ordersFulfillmentPage.verifyOrdersDetails(ordersFulfillmentPage.getPatientFromSpecStore().getOrders());
     }
 }
