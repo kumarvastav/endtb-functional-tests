@@ -46,8 +46,29 @@ public class OrdersFulfillmentPage extends BahmniPage {
 
             }
             root.findElement(By.cssSelector("[ng-model=\"observation.value\"]")).sendKeys(order.getNote());
+            root.findElement(By.cssSelector(".fa-plus")).click();
+            try{
+                String sPath=new java.io.File( "." ).getCanonicalPath() + "/src/main/resources/upload/" +order.getImage();
+                uploadFile(sPath);
+            } catch (Exception ex){
+
+            }
 
         }
         save.click();
+    }
+
+    public void verifyOrdersDetails(List<Order> orders) {
+        for(Order order:orders){
+            try{
+                WebElement element=findElement(By.xpath(String.format(sSectionXpath,order.getName())));
+                element.findElement(By.cssSelector(".fa-caret-right")).click();
+                waitForSpinner();
+                Assert.assertTrue("Note " + order.getNote() + " not found",element.getText().contains(order.getNote()));
+
+            } catch (NoSuchElementException ex){
+                Assert.fail("Order "+order.getName()+" Not found");
+            }
+        }
     }
 }
