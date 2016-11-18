@@ -25,6 +25,7 @@ import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -333,8 +334,9 @@ public class BahmniPage {
 
     }
 
-    protected void uploadFile(String s) throws AWTException {
-        File file = new File(s);
+    protected void uploadFile(String s) throws AWTException, IOException {
+        String sPath=new java.io.File( "." ).getCanonicalPath() + "/src/main/resources/upload/" +s;
+        File file = new File(sPath);
         StringSelection stringSelection=new StringSelection(file.getAbsolutePath());
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 
