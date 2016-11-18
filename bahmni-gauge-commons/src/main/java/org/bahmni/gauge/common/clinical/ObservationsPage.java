@@ -43,8 +43,9 @@ public class ObservationsPage extends BahmniPage {
         clickTemplateButton();
         List<WebElement> allForms = templatePanel.findElements(By.tagName("button"));
 
-        for (int i = 0; i <= allForms.size(); i++) {
-            if (allForms.get(i).getText().contains(templateName)) {
+        for (int i = 0; i < allForms.size(); i++) {
+            String text = allForms.get(i).getText().replace(" ","_"); //For debugging
+            if (text.contains(templateName)) {
                 allForms.get(i).click();
                 break;
             }

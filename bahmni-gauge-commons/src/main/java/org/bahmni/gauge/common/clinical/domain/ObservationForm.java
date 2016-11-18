@@ -90,7 +90,7 @@ public class ObservationForm {
     }
 
     private static boolean hasField(WebElement fieldset, String fieldName) {
-        return fieldset.findElement(By.tagName("label")).getText().contains(fieldName);
+        return (fieldset.findElement(By.tagName("label")).getText().trim().equals(fieldName.trim()) || fieldset.findElement(By.tagName("label")).getText().contains(fieldName));
     }
 
 }
