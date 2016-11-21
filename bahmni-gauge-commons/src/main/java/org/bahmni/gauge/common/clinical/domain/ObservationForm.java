@@ -2,14 +2,15 @@ package org.bahmni.gauge.common.clinical.domain;
 
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
+
 import org.bahmni.gauge.common.FormElement;
 import org.bahmni.gauge.common.TestSpecException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.bahmni.gauge.common.BahmniPage.hasChild;
@@ -45,8 +46,10 @@ public class ObservationForm {
             for (WebElement fieldset : observationNodes) {
                 if (hasField(fieldset, header)) {
                     if (value.contains(":")) {
-                        // This fills the form label with has combination of element type
+                        // This fills the form label which has combination of element type
+                        // Issue: fills data for label which has similar partial text
                         String values[] = value.split(":");
+
                         List<FormElement> elements = getAllFieldType(fieldset);
                         int fieldCount = 0;
                         for (String val : values) {
@@ -57,6 +60,7 @@ public class ObservationForm {
                             elements.get(fieldCount).fillUp(fieldset, val);
                             if (values.length == elements.size())
                                 fieldCount++;
+                                // This case failed in case of gynecology template, with has two sections of buttons
                             else {
                                 break;
                             }

@@ -9,7 +9,7 @@ Consultation - Enter and verify data entered on Observation templates
 ----------------
 Tags: regression, sanity
 
-* Create a new patient and add diagnosis through API
+* Create patient and open visit with details through API
 * On the login page
 * Login to the application
 * Click on clinical app

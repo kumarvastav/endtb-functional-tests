@@ -151,7 +151,9 @@ public class BahmniRestClient {
 		}
 	}
 
-	private String getPreferred(JSONArray identifiers) {
+
+
+		private String getPreferred(JSONArray identifiers) {
 		for (Object identifier : identifiers) {
 			JSONObject jsonObject = (JSONObject) identifier;
 			if (jsonObject.get("preferred").equals(true)) {
@@ -644,7 +646,7 @@ public class BahmniRestClient {
 	}
 
 
-	public void admitPatient(Patient patient, String templateName) {
+	public void postBahmniEncounter(Patient patient, String templateName) {
 		try {
 			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(templateName);
 			Map<String, Object> visitData = new HashMap<>();
