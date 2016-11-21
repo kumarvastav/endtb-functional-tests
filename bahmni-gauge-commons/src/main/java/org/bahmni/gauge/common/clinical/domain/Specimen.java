@@ -16,6 +16,7 @@ public class Specimen {
     private String xpertTestDate;
     private String xpertTestId;
     private String xpertResult;
+    private String cultureResults;
 
     public String getNote() {
         return note;
@@ -112,4 +113,14 @@ public class Specimen {
     public void setTypeOfSample(String typeOfSample) {
         this.typeOfSample = typeOfSample;
     }
+
+    public String getCultureResults() {
+        return cultureResults;
+    }
+
+    public void setCultureResults(String cultureResults) {
+        this.cultureResults = cultureResults;
+    }
+
+
 }
