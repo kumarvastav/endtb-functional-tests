@@ -76,6 +76,16 @@ public class endTBBacteriologyPage extends BacteriologyPage{
             }
             form.findElement(By.cssSelector(".grid-row-element[title=\"" + specimen.getCultureResults()  + "\"]")).click();
         }
+        if(specimen.getMICInterpretation() != null){
+            try{
+                form.findElement(By.cssSelector(".fa-caret-right")).click();
+                findElement(By.xpath(".//strong[contains(text(),\""+"Non standard DST with MIC"+"\")]"))..click();
+            }
+            catch(NoSuchElementException e){
+            }
+            form.findElements(By.cssSelector(".grid-row-element[title=\"" + specimen.getMICInterpretation()  + "\"]")).get(25).click();
+            form.findElements(By.cssSelector(".grid-row-element[title=\"" + specimen.getMICInterpretation()  + "\"]")).getClass();
+        }
     }
 
     public void verifyBacteriologySamples(String displayControlText, Table table) {

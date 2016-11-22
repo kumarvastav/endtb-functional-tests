@@ -13,6 +13,7 @@ import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.TableTransformer;
 import org.bahmni.gauge.endtb.clinical.endTBBacteriologyPage;
 import org.openqa.selenium.By;
+import  org.bahmni.gauge.common.PageFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ public class EndTBBacteriologySpec {
 
 
     endTBBacteriologyPage bacteriologyPage;
+    PageFactory pageFactory;
 
 
     public EndTBBacteriologySpec(){
@@ -30,7 +32,7 @@ public class EndTBBacteriologySpec {
 
     @Step("Create a bacteriology specimen smear result <table>")
     public void createBacteriologySmearResult(Table table){
-        LoginPage page = org.bahmni.gauge.common.PageFactory.get(LoginPage.class);
+        LoginPage page = pageFactory.get(LoginPage.class);
 
         EndTBSpecimen specimen = TableTransformer.asEntity(table,EndTBSpecimen.class);
         specimen.setTypeOfVisitUuid(getConceptAnswerUuidForConceptName("Bacteriology, Type of Visit", specimen.getTypeOfVisit()));
