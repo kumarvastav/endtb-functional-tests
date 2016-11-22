@@ -108,10 +108,7 @@ public class HomeSpec {
             default:
                 Gauge.writeMessage(app + " not implemented");
                 break;
-
-
         }
-        homePage.clickOrdersApp();
     }
 
     @Step("Click on radiology upload app")

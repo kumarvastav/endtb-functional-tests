@@ -9,10 +9,10 @@ Consultation - Enter and verify data entered on Observation templates
 ----------------
 Tags: regression, sanity
 
-* Create patient and open visit with details through API
-* On the login page
-* Login to the application
-* Click on clinical app
+* Create patient and open visit with details through API with details
+   |height|weight|registrationFee|
+   |172|67|200|
+* Login to app and navigate to "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
 * Fill "History and Examination" template with following observation details
@@ -54,3 +54,30 @@ Tags: regression, sanity
 * Verify display control "Second Vitals" on dashboard, has the following details
     |Pulse|Systolic|Diastolic|Posture|Temperature|RR|SPO2|
     |71/min|111mm Hg|77mm Hg|Sitting|99F|17/min|99%|
+* Navigate to latest visit page
+* Verify display control with Caption "Vitals Flowsheet" on visit page, has the following details
+    |HEIGHT|WEIGHT|
+    |172|67|
+* Verify display control with Caption "Observations" on visit page, has the following details
+    |details|
+    ||71, 111, 77, Sitting, 99, 17, 99|
+* Open "Discharge Summary" tab on visit page
+* Verify display control with Caption "Clinical Notes" on visit page, with labels and details
+    |details|
+    |Hospital CourseDummy data|
+    |History and Examination NotesDummy histroy|
+    |Date of Operation10 Oct 16|
+    |Operative ProcedureDummy procedure|
+    |Follow up Date15 Oct 16|
+    |Lab Investigation Notesdummy note|
+    |Radiology NotesRadiology Notes|
+    |Other NotesOther Notes|
+    |Additional Advice on DischargeAdditional Advice on Discharge|
+    |Plan for follow upPlan for follow up|
+* Verify display control with Caption "Advice on Discharge" on visit page, has the following details
+    |details|
+    |Additional Advice on DischargeAdditional Advice on Discharge|
+    |Follow up Date15 Oct 16|
+    |Plan for follow upPlan for follow up|
+* Navigate to consultation
+
