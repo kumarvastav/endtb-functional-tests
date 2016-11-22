@@ -30,14 +30,14 @@ public class LoginSpec {
 	@Step("Login with username <username> and password <password>")
 	public void login(String username, String password){
         LoginPage loginPage = PageFactory.get(LoginPage.class);
-		loginPage.waitForElementOnPage(driver,"#username");
+		loginPage.waitForElementOnPage("#username");
 		loginPage.login(System.getenv(username), System.getenv(password));
     }
 
 	@Step("Login with username <username> and password <password> with location <location>")
 	public void login(String username, String password, String location){
         LoginPage loginPage = PageFactory.get(LoginPage.class);
-		loginPage.waitForElementOnPage(driver,"#username");
+		loginPage.waitForElementOnPage("#username");
 		loginPage.login(System.getenv(username), System.getenv(password), System.getenv(location));
 	}
 

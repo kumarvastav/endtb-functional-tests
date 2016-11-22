@@ -58,6 +58,12 @@ public class HomeSpec {
 		homePage = PageFactory.getHomePage();
 		homePage.clickOrdersApp();
 	}
+	@Step("Click on radiology upload app")
+	public void goToRadiologyUploadPage(){
+		homePage = PageFactory.getHomePage();
+		homePage.clickRadiologyUploadApp();
+	}
+
 	@Step("Logout the user")
 	public void logout(){
 		//new BahmniPage().waitForElementOnPage(driver, ".i.icon-bahmni-org.bahmi.gauge.possible.registration");

@@ -39,6 +39,9 @@ public class HomePage extends BahmniPage {
 	@FindBy(how = How.CSS, using = "#bahmni\\.orders")
 	public WebElement orders;
 
+	@FindBy(how = How.CSS, using = "#bahmni\\.radiology\\.document\\.upload")
+	public WebElement radiologyUpload;
+
     public void clickRegistrationApp(){
     	registration.click();
     }
@@ -71,5 +74,9 @@ public class HomePage extends BahmniPage {
 	public void clickOrdersApp() {
 		orders.click();
 		
+	}
+
+	public void clickRadiologyUploadApp() {
+		radiologyUpload.click();
 	}
 }
