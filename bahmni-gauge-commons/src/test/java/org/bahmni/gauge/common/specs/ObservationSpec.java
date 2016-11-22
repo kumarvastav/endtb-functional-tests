@@ -94,7 +94,7 @@ public class ObservationSpec extends BaseSpec{
     @Step("Verify display control <displayControlId> on dashboard, has the following details <table>")
     public void verifyDisplayControlContent(String displayControlId,Table table) {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-        String displayControlText = dashboardPage.getDisplayControlText(displayControlId);
+        String displayControlText = dashboardPage.getDisplayControlText(displayControlId.replace(" ","-"));
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
             Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText),displayControlText.contains(drugOrder));

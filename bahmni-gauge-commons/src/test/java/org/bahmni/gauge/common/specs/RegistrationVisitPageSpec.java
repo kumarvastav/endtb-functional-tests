@@ -3,6 +3,7 @@ package org.bahmni.gauge.common.specs;
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
+
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
@@ -51,7 +52,7 @@ public class RegistrationVisitPageSpec {
         String displayControlText = registrationVisitPage.getDisplayControlText(displayControl);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
-            Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText),displayControlText.contains(drugOrder));
+            Assert.assertTrue(StringUtil.stringDoesNotExist(drugOrder, displayControlText), displayControlText.contains(drugOrder));
         }
     }
 
@@ -61,31 +62,45 @@ public class RegistrationVisitPageSpec {
         String displayControlText = registrationVisitPage.getDisplayControlTextWithCaption(displayControlCaption);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
-            Assert.assertTrue("String "+drugOrder+" does not exist. Actual String :"+displayControlText,displayControlText.contains(drugOrder));
+            Assert.assertTrue("String " + drugOrder + " does not exist. Actual String :" + displayControlText, displayControlText.contains(drugOrder));
         }
     }
+
     @Step("Verify details on visit page <Disposition> display control")
     public void selectDisplayControl(String name) {
         VisitPage visitPage = PageFactory.get(VisitPage.class);
         visitPage.selectDisplayControl(name);
     }
+
     @Step("Verify Error popup with message <message> is displayed")
-    public void verifyErrorOnPageWithMessage(String message){
+    public void verifyErrorOnPageWithMessage(String message) {
         RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         registrationVisitPage.waitForElementOnPage(By.cssSelector(".error-message-container"));
-        Assert.assertEquals("Error popup message dont match",message,registrationVisitPage.findElement(By.cssSelector("#view-content .msg")).getText());
+        Assert.assertEquals("Error popup message dont match", message, registrationVisitPage.findElement(By.cssSelector("#view-content .msg")).getText());
     }
 
     @Step("Open visit for previous patient using api <table>")
-    public void openVisitThroughApi(Table table){
+    public void openVisitThroughApi(Table table) {
         RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         registrationVisitPage.getPatientFromSpecStore().setLocation(table.getColumnValues("location").get(0));
         registrationVisitPage.getPatientFromSpecStore().setVisitType(table.getColumnValues("type").get(0));
-        BahmniRestClient.get().create(registrationVisitPage.getPatientFromSpecStore(),"visit");
+        BahmniRestClient.get().create(registrationVisitPage.getPatientFromSpecStore(), "visit");
     }
 
+
+    @Step("Enter visit details through API <table>")
+    public void enterVisitDetailsThroughAPI(Table table) {
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
+        registrationVisitPage.getPatientFromSpecStore().setHeight(table.getColumnValues("height").get(0));
+        registrationVisitPage.getPatientFromSpecStore().setWeight(table.getColumnValues("weight").get(0));
+        registrationVisitPage.getPatientFromSpecStore().setRegistrationFee(table.getColumnValues("registrationFee").get(0));
+        BahmniRestClient.get().postBahmniEncounter(registrationVisitPage.getPatientFromSpecStore(), "visit_details_create.ftl");
+
+    }
+
+
     @Step("Open <tabCaption> tab on visit page")
-    public void openTab(String tabCaption){
+    public void openTab(String tabCaption) {
         RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         registrationVisitPage.openTab(tabCaption);
     }
