@@ -67,24 +67,49 @@ public class HomeSpec {
         switch (app.toLowerCase()) {
             case "registration":
                 homePage.clickRegistrationApp();
+                break;
+
             case "programs":
                 homePage.clickProgramsApp();
+                break;
+
             case "clinical":
                 homePage.clickClinicalApp();
+                break;
+
             case "inpatient":
                 homePage.clickInpatientApp();
+                break;
+
             case "radiology upload":
                 homePage.clickRadiologyUploadApp();
+                break;
+
             case "patient documents":
                 Gauge.writeMessage(app + " not implemented");
+                break;
+
             case "admin":
                 homePage.clickAdminApp();
+                break;
+
             case "reports":
                 Gauge.writeMessage(app + " not implemented");
+                break;
+
             case "orders":
                 homePage.clickOrdersApp();
+                break;
+
             case "implementor interface":
                 Gauge.writeMessage(app + " not implemented");
+                break;
+
+            default:
+                Gauge.writeMessage(app + " not implemented");
+                break;
+
+
         }
         homePage.clickOrdersApp();
     }
