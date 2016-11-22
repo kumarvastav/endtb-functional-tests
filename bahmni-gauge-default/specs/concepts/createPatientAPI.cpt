@@ -22,5 +22,5 @@
 
 * Create a new patient and open visit through API
 * Enter visit details through API
-   |height|weight|reg_fee|
+   |height|weight|registrationFee|
    |172|67|200|

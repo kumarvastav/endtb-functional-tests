@@ -119,11 +119,11 @@
           },
           "uniqueId": "observation_4",
           "erroneousValue": false,
-          "value": ${patient.reg_fee},
-          "autocompleteValue": ${patient.reg_fee},
+          "value": ${patient.registrationFee},
+          "autocompleteValue": ${patient.registrationFee},
           "showComment": false,
           "__prevValue": 20,
-          "_value": ${patient.reg_fee},
+          "_value": ${patient.registrationFee},
           "disabled": false,
           "voided": false
         }

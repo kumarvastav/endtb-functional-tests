@@ -35,7 +35,7 @@ public class Patient extends Model {
     private String visitTypeUuid;
     private String height;
     private String weight;
-    private String reg_fee;
+    private String registrationFee;
     private List<Diagnosis> diagnoses = new ArrayList<>();
     private List<Specimen> specimens = new ArrayList<>();
     private List<Order> orders = new ArrayList<>();
@@ -102,12 +102,12 @@ public class Patient extends Model {
         this.weight = weight;
     }
 
-    public String getReg_fee() {
-        return reg_fee;
+    public String getRegistrationFee() {
+        return registrationFee;
     }
 
-    public void setReg_fee(String reg_fee) {
-        this.reg_fee = reg_fee;
+    public void setRegistrationFee(String registrationFee) {
+        this.registrationFee = registrationFee;
     }
 
 

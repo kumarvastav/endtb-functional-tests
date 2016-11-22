@@ -93,7 +93,7 @@ public class RegistrationVisitPageSpec {
         RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         registrationVisitPage.getPatientFromSpecStore().setHeight(table.getColumnValues("height").get(0));
         registrationVisitPage.getPatientFromSpecStore().setWeight(table.getColumnValues("weight").get(0));
-        registrationVisitPage.getPatientFromSpecStore().setReg_fee(table.getColumnValues("reg_fee").get(0));
+        registrationVisitPage.getPatientFromSpecStore().setRegistrationFee(table.getColumnValues("registrationFee").get(0));
         BahmniRestClient.get().postBahmniEncounter(registrationVisitPage.getPatientFromSpecStore(), "visit_details_create.ftl");
 
     }
