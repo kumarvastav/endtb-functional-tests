@@ -79,7 +79,7 @@ public class endTBBacteriologyPage extends BacteriologyPage{
         if(specimen.getMICInterpretation() != null){
             try{
                 form.findElement(By.cssSelector(".fa-caret-right")).click();
-                findElement(By.xpath(".//strong[contains(text(),\""+"Non standard DST with MIC"+"\")]"))..click();
+                findElement(By.xpath(".//strong[contains(text(),\""+"Non standard DST with MIC"+"\")]")).click();
             }
             catch(NoSuchElementException e){
             }
