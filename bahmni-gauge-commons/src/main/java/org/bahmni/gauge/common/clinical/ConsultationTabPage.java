@@ -12,13 +12,13 @@ import org.openqa.selenium.support.How;
  * Created by atmaramn on 25/10/2016.
  */
 public class ConsultationTabPage extends BahmniPage {
-    @FindBy(how = How.CSS, using = ".disposition .disposition-state")
+    @FindBy(how = How.CSS, using = ".consultation-content .disposition-state")
     public WebElement dispositionDisplayControl;
 
     public void verifyDisposition(Disposition disposition) {
         Assert.assertEquals("Disposition data dont match", (disposition.getType() + " on " + disposition.getDate()).toLowerCase(), dispositionDisplayControl.getText().toLowerCase());
         findElement(By.cssSelector(".toggle.fr.has-notes")).click();
-        Assert.assertTrue("Disposition notes dont match", findElement(By.cssSelector(".disposition .notes")).getText().contains(disposition.getNotes()));
+        Assert.assertTrue("Disposition notes dont match", findElement(By.cssSelector(".consultation-content .disposition .notes")).getText().contains(disposition.getNotes()));
     }
 
     public String getDisplayControlTextWithCaption(String displayControlCaption) {
