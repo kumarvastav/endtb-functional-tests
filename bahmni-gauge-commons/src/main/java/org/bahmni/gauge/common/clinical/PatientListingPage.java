@@ -60,6 +60,12 @@ public class PatientListingPage extends BahmniPage {
     public void searchSelectPatientFromTab(String patientID, String tab) {
 		clickTab(tab);
 		if("Ward List".equals(tab)){
+			for(WebElement rightArrow:driver.findElements(By.cssSelector(".fa-caret-right"))){
+				if(rightArrow.isDisplayed()) {
+					rightArrow.click();
+					waitForSpinner();
+				}
+			}
 			findElement(By.xpath("//a[contains(text(),\""+patientID+"\")]")).click();
 			//a[contains(text(),"GAN2032")]
 		} else {

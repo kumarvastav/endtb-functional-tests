@@ -352,10 +352,10 @@ Tags: regression, sanity
     |Admission Date<NOW[dd MMM yy]>|
 * Navigate to dashboard
 * Click on inpatient app
-* Select existing patient from patient listing page under tab "Ward List"
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
     |Available Beds: 1|
+* Select existing patient from patient listing page under tab "Ward List"
 * Select "Transfer Patient" from Patient Movement and click "Save" button with notes "Patient Transferred as requested"
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
