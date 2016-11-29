@@ -15,8 +15,8 @@ Tags: regression, sanity
 * Go to "Bacteriology" tab
 * Add following bacteriology samples
     |dateOfSampleCollection|typeOfSample|identifier|note|smearResult|labIdNumber|otherSymptom|aFBDate|aFBTime|xpertTestDate|xpertTestId|xpertResult|
-    |01-11-2016|Blood|12345|Sample collected Note 1|Negative|4321|Yes|02-11-2016|12:12PM|03-11-2016|34567|ACD - Active Case Detection|
-    |04-11-2016|Blood|67890|Sample collected Note 2|Negative|9876|No|05-11-2016|12:12PM|06-11-2016|76543|ACD - Active Case Detection|
+    |11-01-2016|Blood|12345|Sample collected Note 1|Negative|4321|Yes|11-02-2016|12:12PM|11-03-2016|34567|ACD - Active Case Detection|
+    |11-04-2016|Blood|67890|Sample collected Note 2|Negative|9876|No|11-05-2016|12:12PM|11-06-2016|76543|ACD - Active Case Detection|
 * Save the consultation
 * Navigate to patient dashboard
 * Expand all sections from display control with Caption "Bacteriology Results"
