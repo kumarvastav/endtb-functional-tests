@@ -99,8 +99,8 @@ public class OrdersPage extends BahmniPage {
         for(WebElement element:driver.findElements(By.cssSelector(".selected-orders .grid-row-element"))){
             if(element.getText().toLowerCase().contains(order.toLowerCase())){
                 element.findElement(By.cssSelector(".fa-file-text-o")).click();
-                waitForElementOnPage(By.cssSelector("[ng-model=\"orderNoteText\"]"));
-                driver.findElement(By.cssSelector("[ng-model=\"orderNoteText\"]")).sendKeys(note);
+                waitForElementOnPage(By.cssSelector("[ng-model=\"$parent.orderNoteText\"]"));
+                driver.findElement(By.cssSelector("[ng-model=\"$parent.orderNoteText\"]")).sendKeys(note);
                 findButtonByText("OK").click();
             }
         }
@@ -144,8 +144,8 @@ public class OrdersPage extends BahmniPage {
                 for(WebElement element:driver.findElements(By.cssSelector(".selected-orders .grid-row-element"))){
                     scrollToBottom();
                     element.findElement(By.cssSelector(".fa-file-text-o")).click();
-                    waitForElementOnPage(By.cssSelector("[ng-model=\"orderNoteText\"]"));
-                    Assert.assertFalse("Notes are editable",driver.findElement(By.cssSelector("[ng-model=\"orderNoteText\"]")).isEnabled());
+                    waitForElementOnPage(By.cssSelector("[ng-model=\"$parent.orderNoteText\"]"));
+                    Assert.assertFalse("Notes are editable",driver.findElement(By.cssSelector("[ng-model=\"$parent.orderNoteText\"]")).isEnabled());
 
                     WebElement popup=driver.findElement(By.cssSelector(".ngdialog-content"));
 

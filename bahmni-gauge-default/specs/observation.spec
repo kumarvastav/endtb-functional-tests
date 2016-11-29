@@ -28,7 +28,7 @@ Tags: regression, sanity
 * Select the template "Discharge Summary" from on the observation page
 * Fill "Discharge Summary" template with following observation details
     |Hospital Course|History and Examination Notes|Date of Operation|Operative Procedure|Follow up Date|Lab Investigation Notes|Radiology Notes|Other Notes|Additional Advice on Discharge|Plan for follow up|
-    |Dummy data|Dummy histroy|10/10/2016|Dummy procedure|15/10/2016|dummy note|Radiology Notes|Other Notes|Additional Advice on Discharge|Plan for follow up|
+    |Dummy data|Dummy histroy|10/10/2016|Dummy procedure|10/15/2016|dummy note|Radiology Notes|Other Notes|Additional Advice on Discharge|Plan for follow up|
 * Select the template "Obstetrics" from on the observation page
 * Fill "Obstetrics" template with following observation details
     |Fundal Height (Weeks)|P/A Presenting Part|FHS|LMP|Amount of Liquor|
