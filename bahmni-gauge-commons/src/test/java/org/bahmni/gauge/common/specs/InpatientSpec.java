@@ -10,6 +10,7 @@ import org.bahmni.gauge.common.clinical.DispositionPage;
 import org.bahmni.gauge.common.inpatient.BedAssignmentPage;
 import org.bahmni.gauge.common.inpatient.InpatientDashboard;
 import org.bahmni.gauge.common.inpatient.InpatientHeader;
+import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.StringUtil;
 import org.junit.Assert;
@@ -56,6 +57,7 @@ public class InpatientSpec extends BaseSpec{
             dashboardPage.getPatientFromSpecStore().setAdmitted(true);
         else if(movement.toLowerCase().contains("discharge")){
             dashboardPage.getPatientFromSpecStore().setAdmitted(false);
+            StoreHelper.getAppGlobal().setBedCount(StoreHelper.getAppGlobal().getBedCount() - 1);
         }
     }
 
@@ -64,6 +66,7 @@ public class InpatientSpec extends BaseSpec{
         BedAssignmentPage bedAssignmentPage = PageFactory.get(BedAssignmentPage.class);
         Boolean assignmentStatus = bedAssignmentPage.assignAnEmptyBed();
         Assert.assertTrue(BED_ASSIGN_FAILURE,assignmentStatus);
+        StoreHelper.getAppGlobal().setBedCount(StoreHelper.getAppGlobal().getBedCount() - 1);
     }
 
     @Step("Navigate to Inpatient Dashboard")

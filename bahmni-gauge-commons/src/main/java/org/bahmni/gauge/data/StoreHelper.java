@@ -3,6 +3,7 @@ package org.bahmni.gauge.data;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
+import org.bahmni.gauge.common.AppGlobal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
@@ -58,5 +59,13 @@ public class StoreHelper {
             return Collections.EMPTY_LIST;
         }
         return entities;
+    }
+    public static AppGlobal getAppGlobal(){
+            AppGlobal appGlobal=getLatest(AppGlobal.class);
+            if (appGlobal==null) {
+                appGlobal = new AppGlobal();
+            }
+            store(AppGlobal.class,appGlobal);
+            return appGlobal;
     }
 }
