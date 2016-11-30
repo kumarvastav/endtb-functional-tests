@@ -12,7 +12,7 @@ import java.util.List;
 
 public class StoreHelper {
     public static <T> boolean store(Class<T> tClass, T entity) {
-        List<T> entities = (List<T>) DataStoreFactory.getSpecDataStore().get(tClass.getSimpleName());
+        List<T> entities = (List<T>) DataStoreFactory.getScenarioDataStore().get(tClass.getSimpleName());
         if (null == entities) {
             entities = new LinkedList<>();
             DataStoreFactory.getSpecDataStore().put(tClass.getSimpleName(), entities);
@@ -21,7 +21,7 @@ public class StoreHelper {
     }
 
     public static <T> T getLatest(Class<T> tClass) {
-        List<T> entities = (List<T>) DataStoreFactory.getSpecDataStore().get(tClass.getSimpleName());
+        List<T> entities = (List<T>) DataStoreFactory.getScenarioDataStore().get(tClass.getSimpleName());
         if (CollectionUtils.isEmpty(entities)) {
             return null;
         }
@@ -29,7 +29,7 @@ public class StoreHelper {
     }
 
     public static <T> String getVariableInClass(String className, String var) {
-        List<T> entities = (List<T>) DataStoreFactory.getSpecDataStore().get(className);
+        List<T> entities = (List<T>) DataStoreFactory.getScenarioDataStore().get(className);
         if (CollectionUtils.isEmpty(entities)) {
             return null;
         }
@@ -46,7 +46,7 @@ public class StoreHelper {
     }
 
     public static <T> T getLatest(String tClassName) {
-        List<T> entities = (List<T>) DataStoreFactory.getSpecDataStore().get(tClassName);
+        List<T> entities = (List<T>) DataStoreFactory.getScenarioDataStore().get(tClassName);
         if (CollectionUtils.isEmpty(entities)) {
             return null;
         }
@@ -54,7 +54,7 @@ public class StoreHelper {
     }
 
     public static <T> List<T> getAll(Class<T> tClass) {
-        List<T> entities = (List<T>) DataStoreFactory.getSpecDataStore().get(tClass.getSimpleName());
+        List<T> entities = (List<T>) DataStoreFactory.getScenarioDataStore().get(tClass.getSimpleName());
         if (null == entities) {
             return Collections.EMPTY_LIST;
         }
