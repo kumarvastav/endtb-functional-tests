@@ -15,7 +15,7 @@ public class StoreHelper {
         List<T> entities = (List<T>) DataStoreFactory.getScenarioDataStore().get(tClass.getSimpleName());
         if (null == entities) {
             entities = new LinkedList<>();
-            DataStoreFactory.getSpecDataStore().put(tClass.getSimpleName(), entities);
+            DataStoreFactory.getScenarioDataStore().put(tClass.getSimpleName(), entities);
         }
         return entities.add(entity);
     }
