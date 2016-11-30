@@ -8,9 +8,11 @@ import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
 import org.bahmni.gauge.util.TableTransformer;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.text.ParseException;
@@ -130,6 +132,7 @@ public class ProgramManagementPage extends BahmniPage {
 
     public boolean isPatientEnrolledToProgram(Program treatment) {
         waitForElementOnPage(cssSelector(".programName"));
+        waitForElement(driver, ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".dashboard-section-loader")));
         WebElement programName = activeProgramContainer.findElement(cssSelector(".programName"));
         if(isProgramAvailable(treatment, programName)){
             return isStartDateProper(treatment) && isTreatmentDateProper(treatment) && isPatientStageProper(treatment) && isProgramStateProper(treatment);
