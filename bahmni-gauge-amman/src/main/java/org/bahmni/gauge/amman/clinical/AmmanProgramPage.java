@@ -37,7 +37,7 @@ public class AmmanProgramPage extends ProgramManagementPage {
             (new Select(weProgram.findElement(cssSelector("select[id='Stage']")))).selectByVisibleText(updatedProgram.getPatientStatus());
         }
         if (updatedProgram.getProgramStatus() != null) {
-            (new Select(weProgram.findElement(cssSelector("select[ng-model='programEdited.selectedState']")))).selectByVisibleText(updatedProgram.getProgramStatus());
+            (new Select(weProgram.findElement(cssSelector("select[ng-model='patientProgram.selectedState']")))).selectByVisibleText(updatedProgram.getProgramStatus());
         }
 
         weProgram.findElement(cssSelector("input[value='Save']")).click();
