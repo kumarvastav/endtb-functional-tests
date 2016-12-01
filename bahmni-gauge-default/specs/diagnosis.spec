@@ -51,8 +51,6 @@ Tags: regression, sanity
 -------------------------------------------------
 
 Tags: regression, sanity
-
-//* Create a new patient and add diagnosis through API
 * Create a new patient and open visit through API
 * Add diagnosis through API
     |type|diagnosis|order|certainty|status|
