@@ -18,7 +18,7 @@ Tags: regression, sanity, test
 * Upload following images in visit "2"
     |image|name|
     |xray.jpeg|Knee - Right, 1 or 2 views (X-ray)|
-//    |xray.jpeg|Knee - Right, 1 or 2 views (X-ray)|
+//    |xray.jpeg|Knee - Left, 1 or 2 views (X-ray)|
 * Save radiology upload
 //* Create new visit on radiology upload page
 //    |type|startDate|endDate|
