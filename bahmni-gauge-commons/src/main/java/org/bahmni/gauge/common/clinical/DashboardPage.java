@@ -11,7 +11,10 @@ import org.bahmni.gauge.data.StoreHelper;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.junit.Assert;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
@@ -131,8 +134,10 @@ public class DashboardPage extends BahmniPage {
 
 	public void validateProgramsDisplayControl(Program program) {
 		for (WebElement dispControls : displayControls) {
-			if (dispControls.getText().contains("Programs"))
+			if (dispControls.getText().contains("Programs")) {
+				waitForSpinnerOnDisplayControl();
 				(new ProgramsDisplayControl(dispControls)).validateActiveProgram(program);
+			}
 		}
 	}
 
