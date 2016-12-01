@@ -89,6 +89,7 @@ public class BahmniPage {
     }
     public static void waitForSpinnerOnDisplayControl(WebDriver driver) {
         try {
+            waitForElement(driver, ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".dashboard-section-loader")));
             Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
