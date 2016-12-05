@@ -7,6 +7,8 @@ Every heading in this file denotes a scenario. Every bulleted point denotes a st
      
 Upload radiology documents
 --------------------------
+Tags: regression, sanity
+
 * Create a new patient and open visit through API
 * On the login page
 * Login to the application

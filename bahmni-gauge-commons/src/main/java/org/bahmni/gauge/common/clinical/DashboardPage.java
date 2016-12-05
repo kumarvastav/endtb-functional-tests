@@ -47,6 +47,10 @@ public class DashboardPage extends BahmniPage {
 	@FindBy(how = How.CSS, using = ".bacteriology-dashboard")
 	public WebElement bacteriology_results;
 
+	@FindBy(how = How.CSS, using = ".tab-selected")
+	public WebElement selectedTab;
+
+
 	public void selectDashboard(String name) {
 		for (WebElement dashboardLink : driver.findElements(By.cssSelector(".tab-item a"))) {
 			if (dashboardLink != null && dashboardLink.getText().trim().equals(name)) {
@@ -191,5 +195,15 @@ public class DashboardPage extends BahmniPage {
 		WebElement displayControl = findElement(By.xpath(".//h2[contains(text(),\""+controlCaption+"\")]/ancestor::*[1]"));
 		waitForSpinner();
 		return displayControl.getText().replace("\n", "");
+	}
+
+	public String getActiveTab() {
+		return selectedTab.getText();
+	}
+
+	public void openTab(String tabCaption) {
+		waitForSpinner();
+		findElement(By.cssSelector("#addDashboardButton")).click();
+		findElement(By.xpath(".//a[contains(text(),\""+tabCaption+"\")]")).click();
 	}
 }
