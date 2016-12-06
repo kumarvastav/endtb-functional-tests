@@ -19,6 +19,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -221,12 +222,20 @@ public class DashboardPage extends BahmniPage {
     }
 
 
-    public void verifyPatientDetails(Patient patient) {
+    public void verifyPatientDetails(Patient patient){
         Assert.assertTrue("Patient ID don't match", patientNameAndID.getText().contains(patient.getIdNumber()));
         Assert.assertTrue("First Name don't match", patientNameAndID.getText().contains(patient.getIdNumber()));
         Assert.assertTrue("Last Name don't match", patientNameAndID.getText().contains(patient.getIdNumber()));
 
         Assert.assertTrue("Gender don't match", patientGenderAndAge.getText().contains(patient.getGender()));
-//		Assert.assertTrue("Age don't match",patientGenderAndAge.getText().contains(patient.getAge()));
+        DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+        Date dob = null;
+        try {
+            dob = df.parse(patient.getAge());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        int age = new Date().getYear() - dob.getYear();
+        Assert.assertTrue("Age don't match", patientGenderAndAge.getText().contains((age + "")));
     }
 }

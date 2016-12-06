@@ -11,7 +11,7 @@ Tags: regression, sanity
 
 * Create the following patient using api
     |prefix|firstName|lastName|gender|age|district|village|
-    |GAN|Ram|Singh|M|12/12/1963|Bilaspur|Khanapur|
+    |GAN|Ram|Singh|M|1/12/1966|Bilaspur|Khanapur|
 * Open visit for previous patient using api
     |location|type|
     |Registration Desk|OPD|
@@ -32,7 +32,7 @@ Tags: regression, sanity
 * Verify "Discharge Summary" is open
 * Verify patient details on patient dashboard
 * Verify display control with Caption "Advice on Discharge" on visit page, has the following details
-    |advice|
+    |details|
     |No Advice on Discharge for this patient|
 * Navigate to dashboard
 * Click on "InPatient" app
