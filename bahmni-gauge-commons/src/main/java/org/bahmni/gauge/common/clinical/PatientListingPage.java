@@ -25,7 +25,10 @@ public class PatientListingPage extends BahmniPage {
 
 	@FindBy(how= How.CSS, using = "button[type='submit']")
 	public WebElement search_btn;
-    
+
+	@FindBy(how = How.XPATH, using = ".//span[contains(text(),\"General Ward\")]/following-sibling::*")
+	public WebElement availableBeds;
+
     public WebElement findTab(String Tab){
     	for(int i=0;i<=tab.size();i++)
     	{
@@ -93,4 +96,9 @@ public class PatientListingPage extends BahmniPage {
 			return false;
 		}
 	}
+
+    public int getAvailableBedCount() {
+
+		return Integer.parseInt(availableBeds.getText().substring(availableBeds.getText().indexOf("Available Beds: ") + 16, availableBeds.getText().indexOf(")")));
+    }
 }

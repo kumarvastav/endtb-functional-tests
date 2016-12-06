@@ -65,12 +65,12 @@ Tags: regression, sanity
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
     |Total Beds: 9 |
-    |Available Beds: 2|
+    |Available Beds: <AppGlobal.bedCount>|
 * Assign an empty bed
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
     |Total Beds: 9 |
-    |Available Beds: 1|
+    |Available Beds: <AppGlobal.bedCount>|
 * Navigate to Inpatient Dashboard
 * Verify display control "admissionDetails" on inpatient dashboard, has the following details
     |details|
@@ -223,7 +223,7 @@ Tags: regression, sanity
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
     |Total Beds: 9 |
-    |Available Beds: 2|
+    |Available Beds: <AppGlobal.bedCount>|
 * Select existing patient from patient listing page under tab "All"
 * Verify display control with Caption "Admission Details" on inpatient dashboard, has the following details
     |details|
@@ -264,7 +264,7 @@ Tags: regression, sanity
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
     |Total Beds: 9 |
-    |Available Beds: 1|
+    |Available Beds: <AppGlobal.bedCount>|
 * Assign an empty bed
 * Navigate to Inpatient Dashboard
 * Verify display control with Caption "Admission Details" on inpatient dashboard, has the following details
@@ -327,12 +327,12 @@ Tags: regression, sanity
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
     |Total Beds: 9 |
-    |Available Beds: 2|
+    |Available Beds: <AppGlobal.bedCount>|
 * Assign an empty bed
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
     |Total Beds: 9 |
-    |Available Beds: 1|
+    |Available Beds: <AppGlobal.bedCount>|
 * Navigate to Inpatient Dashboard
 * Verify display control with Caption "Admission Details" on inpatient dashboard, has the following details
     |details|
@@ -354,12 +354,12 @@ Tags: regression, sanity
 * Click on inpatient app
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
-    |Available Beds: 1|
+    |Available Beds: <AppGlobal.bedCount>|
 * Select existing patient from patient listing page under tab "Ward List"
 * Select "Transfer Patient" from Patient Movement and click "Save" button with notes "Patient Transferred as requested"
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
-    |Available Beds: 1|
+    |Available Beds: <AppGlobal.bedCount>|
 * Assign an empty bed
 * Navigate to Inpatient Dashboard
 * Verify display control with Caption "Admission Details" on inpatient dashboard, has the following details
@@ -398,7 +398,7 @@ Tags: regression, sanity
 * Click on inpatient app
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
-    |Available Beds: 1|
+    |Available Beds: <AppGlobal.bedCount>|
 * Select existing patient from patient listing page under tab "Admitted"
 * Select "Discharge Patient" from Patient Movement and click "Discharge" button with notes "Patient Discharged as requested"
 * Navigate to dashboard
@@ -406,7 +406,7 @@ Tags: regression, sanity
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
     |Total Beds: 9 |
-    |Available Beds: 2|
+    |Available Beds: <AppGlobal.bedCount>|
 * Select existing patient from patient listing page under tab "All"
 * Verify display control with Caption "Admission Details" on inpatient dashboard, has the following details
     |details|
@@ -431,12 +431,12 @@ Tags: regression, sanity
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
     |Total Beds: 9 |
-    |Available Beds: 2|
+    |Available Beds: <AppGlobal.bedCount>|
 * Assign an empty bed
 * Verify display control "view-content" on inpatient dashboard, has the following details
     |details|
     |Total Beds: 9 |
-    |Available Beds: 1|
+    |Available Beds: <AppGlobal.bedCount>|
 * Navigate to Inpatient Dashboard
 * Verify display control with Caption "Admission Details" on inpatient dashboard, has the following details
   |details|

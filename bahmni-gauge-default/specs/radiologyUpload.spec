@@ -7,7 +7,8 @@ Every heading in this file denotes a scenario. Every bulleted point denotes a st
      
 Upload radiology documents
 --------------------------
-Tags: regression, sanity
+
+Tags: test
 
 * Create a new patient and open visit through API
 * On the login page
@@ -17,7 +18,7 @@ Tags: regression, sanity
 * Upload following images in visit "2"
     |image|name|
     |xray.jpeg|Knee - Right, 1 or 2 views (X-ray)|
-    |xray.jpeg|Knee - Right, 1 or 2 views (X-ray)|
+//    |xray.jpeg|Knee - Right, 1 or 2 views (X-ray)|
 * Save radiology upload
 //* Create new visit on radiology upload page
 //    |type|startDate|endDate|

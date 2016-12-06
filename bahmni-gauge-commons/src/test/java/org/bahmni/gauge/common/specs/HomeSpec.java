@@ -7,7 +7,9 @@ import com.thoughtworks.gauge.Step;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
+import org.bahmni.gauge.common.clinical.PatientListingPage;
 import org.bahmni.gauge.common.home.HomePage;
+import org.bahmni.gauge.data.StoreHelper;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
@@ -47,6 +49,11 @@ public class HomeSpec {
     public void goToInpatientPage() {
         homePage = PageFactory.getHomePage();
         homePage.clickInpatientApp();
+        waitForAppReady();
+        PatientListingPage patientListingPage=PageFactory.get(PatientListingPage.class);
+        if(StoreHelper.getAppGlobal().getBedCount()==0) {
+            StoreHelper.getAppGlobal().setBedCount(patientListingPage.getAvailableBedCount());
+        }
     }
 
     @Step("Click on admin app")

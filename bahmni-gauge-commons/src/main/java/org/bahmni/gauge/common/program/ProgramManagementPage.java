@@ -267,7 +267,7 @@ public class ProgramManagementPage extends BahmniPage {
         }
         if(programData.getProgramStatus()!=null)
         {
-            (new Select(weProgram.findElement(cssSelector("select[ng-model='programEdited.selectedState']")))).selectByVisibleText(programData.getProgramStatus());
+            (new Select(weProgram.findElement(cssSelector("select[ng-model='patientProgram.selectedState']")))).selectByVisibleText(programData.getProgramStatus());
             targetProgram.setProgramStatus(programData.getProgramStatus());
         }
         weProgram.findElement(cssSelector("input[value='Save']")).click();

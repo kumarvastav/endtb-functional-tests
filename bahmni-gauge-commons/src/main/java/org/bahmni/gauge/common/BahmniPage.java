@@ -87,6 +87,18 @@ public class BahmniPage {
             e.printStackTrace();
         }
     }
+    public static void waitForSpinnerOnDisplayControl(WebDriver driver) {
+        try {
+            waitForElement(driver, ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".dashboard-section-loader")));
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void waitForSpinnerOnDisplayControl() {
+        waitForSpinnerOnDisplayControl(driver);
+    }
 
     public void waitForSpinner() {
         waitForSpinner(driver);
@@ -139,6 +151,7 @@ public class BahmniPage {
         ExpectedCondition<WebElement> expectedCondition = ExpectedConditions.visibilityOfElementLocated(locator);
         return waitForElement(this.driver, expectedCondition);
     }
+
 
     public WebElement waitForElementOnPage(String cssLocator) {
         ExpectedCondition<WebElement> expectedCondition = ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssLocator));

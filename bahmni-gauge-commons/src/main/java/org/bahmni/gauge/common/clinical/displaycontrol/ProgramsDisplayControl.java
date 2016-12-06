@@ -8,8 +8,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static org.openqa.selenium.By.cssSelector;
-
 /**
  * Created by atmaramn on 23/09/2016.
  */

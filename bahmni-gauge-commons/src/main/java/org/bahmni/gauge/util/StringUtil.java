@@ -44,15 +44,15 @@ public class StringUtil {
         }
 
         //Replace Variables with data
-        String pattern2 = "<(.+\\..+)>";
-        matcher = Pattern.compile(".*" + pattern2 + ".*").matcher(content);
+        String pattern2 = "<(.+?\\..+?)>";
+        matcher = Pattern.compile(pattern2).matcher(content);
         String match = null;
         while (matcher.find()) {
             match = matcher.group(1);
             String className = match.split("\\.")[0];
             String classVar = match.split("\\.")[1];
             String varData = StoreHelper.getVariableInClass(className,classVar);
-            content = content.replaceAll(pattern2, varData);
+            content = content.replaceFirst(pattern2, varData);
         }
 
         return content;

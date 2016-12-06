@@ -149,7 +149,7 @@ Patient In Continue Follow up validation queue
 * Click on programs app
 * Search patient "Al Padasd Hassan" from "To Continue Under Follow-Up " queue
 * Verify patient details of "Al Padasd Hassan" in queue
-| Date Of Presentation | Name             | Time For Next Medical Follow-up | Commments              |
+| Date Of Presentation | Name             | Time For Next Medical Follow-up | Comments               |
 | 10/10/2016           | Al Padasd Hassan | 1 month                         | Followup After 1 month |
 
 

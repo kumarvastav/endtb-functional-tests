@@ -153,12 +153,6 @@ Tags: regression, sanity
     |WEIGHT5|
     |BMI20|
     |BMI STATUSNormal|
-//* Enter visit details from table
-//    |height|weight|fees|comments|
-//    |10.11|10.55|100|bmi observations seems normal|
-//* Verify the details on "bmi" display control
-//    |details|
-//    |HEIGHT10.11WEIGHT10.55BMI1032.17BMI STATUSVery Severely Obese|
 * Enter visit details from table
     |height|weight|fees|
     |50|1|100|
