@@ -1,0 +1,7 @@
+Created by dharmens on 8/10/16
+# Create possible patient through API
+
+* Create the following patient using api
+        |prefix|firstName|gender|dateOfBirth|age|ward|municipality|district|country|caste|
+        |BAH|IndianaJones|Female|20/01/2011|50|Address1-187204|Darna|Achham|Nepal|2 - Janajati|
+        

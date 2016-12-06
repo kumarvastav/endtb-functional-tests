@@ -5,3 +5,11 @@ target
 .idea/
 .gradle/
 *.iml
+*/build/
+*.xmi
+logs/
+.gauge/
+reports/
+gauge_*/
+out/
+.DS_Store
