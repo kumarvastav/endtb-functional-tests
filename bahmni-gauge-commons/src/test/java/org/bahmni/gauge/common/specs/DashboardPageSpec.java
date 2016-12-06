@@ -167,4 +167,9 @@ public class DashboardPageSpec {
         waitForAppReady();
         Assert.assertEquals("Total Number of visits don't match", visits, dashboardPage.getVisitsCount());
     }
+
+    @Step("Verify patient details on patient dashboard")
+    public void verifyPatientDetails() {
+        dashboardPage.verifyPatientDetails(dashboardPage.getPatientFromSpecStore());
+    }
 }

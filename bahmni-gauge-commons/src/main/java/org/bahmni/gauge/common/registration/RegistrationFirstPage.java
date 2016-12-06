@@ -324,7 +324,7 @@ public class RegistrationFirstPage extends BahmniPage {
 
 	public void verifyPatientDetails(Patient patient) {
 		try{
-		if(enterID_checkbox.isDisplayed() & patient.getIdNumber()!= null) {
+		if(enterID_checkbox.isDisplayed() && patient.getIdNumber()!= null) {
 			Assert.assertEquals("Identifier dont match",patient.getIdentifier(),txtRegistrationNumber.getAttribute("value"));
 			//+new Random().nextInt()
 		}} catch (NoSuchElementException ex){
