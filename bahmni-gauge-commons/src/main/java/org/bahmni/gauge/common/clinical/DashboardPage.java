@@ -155,6 +155,7 @@ public class DashboardPage extends BahmniPage {
     }
 
     public void selectDisplayControl(String name) {
+        waitForSpinnerOnDisplayControl();
         if (name.toLowerCase().contains("program"))
             new ProgramsDisplayControl(findElementById("Programs")).validateActiveProgram(this.getProgramFromSpecStore());
         else if (name.toLowerCase().contains("disposition")) {
