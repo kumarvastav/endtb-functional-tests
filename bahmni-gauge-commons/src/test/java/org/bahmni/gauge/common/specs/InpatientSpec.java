@@ -137,6 +137,12 @@ public class InpatientSpec extends BaseSpec{
         disposition.getPatientFromSpecStore().setAdmitted(true);
     }
 
+    @Step("Discharge the patient through api")
+    public void dischargePatient(){
+        DispositionPage disposition = PageFactory.get(DispositionPage.class);
+        BahmniRestClient.get().dischargePatient(disposition.getPatientFromSpecStore().getUuid());
+    }
+
     @Step("Click on <linkText> link")
     public void clickLinkText(String linkText){
         DispositionPage disposition = PageFactory.get(DispositionPage.class);

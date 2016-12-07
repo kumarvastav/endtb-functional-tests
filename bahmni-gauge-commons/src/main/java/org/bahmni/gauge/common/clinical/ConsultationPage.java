@@ -8,33 +8,41 @@ import org.openqa.selenium.support.How;
 import java.util.List;
 
 public class ConsultationPage extends BahmniPage {
-	
-	@FindBy(how= How.CSS, using = ".btn--success")
+
+    @FindBy(how = How.CSS, using = ".btn--success")
     public WebElement clinical;
-	
-	@FindBy(how= How.CSS, using = ".consultation-tabs .tab-item a")
+
+    @FindBy(how = How.CSS, using = ".consultation-tabs .tab-item a")
     public List<WebElement> tabs;
-	
-	@FindBy(how= How.CSS, using = ".patient-info")
+
+    @FindBy(how = How.CSS, using = ".patient-info")
     public WebElement patient_profile;
-	
-	@FindBy(how= How.CSS, using = ".save-consultation")
+
+    @FindBy(how = How.CSS, using = ".save-consultation")
     public WebElement save;
 
-    public void saveConsultation(){
+    @FindBy(how = How.CSS, using = ".tab-selected")
+    public WebElement activeTab;
+
+    public void saveConsultation() {
         save.click();
     }
 
-    public void clickPatientProfile(){
+    public void clickPatientProfile() {
         patient_profile.click();
     }
 
     public void clickOnTab(String tab) {
-        for (WebElement eachTab: tabs){
-            if (eachTab.getText().contains(tab)){
+        for (WebElement eachTab : tabs) {
+            if (eachTab.getText().contains(tab)) {
                 eachTab.click();
                 return;
             }
         }
     }
+
+    public String getActiveTab() {
+        return activeTab.getText();
+    }
+
 }
