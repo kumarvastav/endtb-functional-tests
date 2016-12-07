@@ -10,6 +10,8 @@ import org.bahmni.gauge.common.clinical.DispositionPage;
 import org.bahmni.gauge.common.inpatient.BedAssignmentPage;
 import org.bahmni.gauge.common.inpatient.InpatientDashboard;
 import org.bahmni.gauge.common.inpatient.InpatientHeader;
+import org.bahmni.gauge.common.registration.RegistrationFirstPage;
+import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.StringUtil;
@@ -53,7 +55,7 @@ public class InpatientSpec extends BaseSpec{
         dashboardPage.findElement(By.cssSelector("[ng-model=\"observation.value\"]")).sendKeys(notes);
         WebElement actionElement = dashboardPage.findButtonByText(action);
         actionElement.click();
-        if(movement.toLowerCase().contains("admit") || movement.toLowerCase().contains("undo discharge"))
+        if(movement.toLowerCase().contains("admit") || movement.toLowerCase().contains("undo discharge") || movement.toLowerCase().contains("transfer"))
             dashboardPage.getPatientFromSpecStore().setAdmitted(true);
         else if(movement.toLowerCase().contains("discharge")){
             dashboardPage.getPatientFromSpecStore().setAdmitted(false);
@@ -138,9 +140,14 @@ public class InpatientSpec extends BaseSpec{
     }
 
     @Step("Discharge the patient through api")
-    public void dischargePatient(){
-        DispositionPage disposition = PageFactory.get(DispositionPage.class);
-        BahmniRestClient.get().dischargePatient(disposition.getPatientFromSpecStore().getUuid());
+    public void dischargePatient() {
+        Patient patient = new RegistrationFirstPage().getPatientFromSpecStore();
+        if (patient != null) {
+            String uuid = patient.getUuid();
+            if (patient.isAdmitted())
+                if(BahmniRestClient.get().dischargePatient(uuid));
+                    patient.setAdmitted(false);
+        }
     }
 
     @Step("Click on <linkText> link")
