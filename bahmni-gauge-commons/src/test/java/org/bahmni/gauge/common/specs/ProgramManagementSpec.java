@@ -104,9 +104,10 @@ public class ProgramManagementSpec {
 		waitForAppReady();
 	}
 
-	@Step("Unenroll patient from <program> program")
-	public void unenrollPatientFromTheProgram(String programName){
+	@Step("Delete existing program for the patient")
+	public void unenrollPatientFromTheProgram(){
 		ProgramManagementPage programManagementPage = PageFactory.getProgramManagementPage();
+		String programName = programManagementPage.getProgramName();
 		WebElement program = programManagementPage.findProgram(programName);
 		programManagementPage.deleteProgram(program);
 	}

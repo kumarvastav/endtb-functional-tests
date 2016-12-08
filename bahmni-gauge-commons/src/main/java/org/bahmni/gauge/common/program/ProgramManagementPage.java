@@ -293,4 +293,8 @@ public class ProgramManagementPage extends BahmniPage {
         }
         Assert.assertFalse("Edit link visible", hasChild(weProgram,cssSelector("[value=\"Edit\"]")));
     }
+
+    public String getProgramName() {
+        return getPatientProgramFromSpecStore().getProgram().getName();
+    }
 }

@@ -149,8 +149,10 @@ public class DashboardPage extends BahmniPage {
 
     public void validateProgramsDisplayControl(Program program) {
         for (WebElement dispControls : displayControls) {
-            if (dispControls.getText().contains("Programs"))
+            if (dispControls.getText().contains("Programs")) {
                 (new ProgramsDisplayControl(dispControls)).validateActiveProgram(program);
+                waitForSpinnerOnDisplayControl();
+            }
         }
     }
 
@@ -164,12 +166,8 @@ public class DashboardPage extends BahmniPage {
 
     }
 
-    public void verifyNoVitals() {
-        Assert.assertTrue("Vitals Display control has vitals data", !hasElement(By.cssSelector(".obs-date")));
-        Assert.assertTrue("Vitals Display control has vitals data", hasElement(By.xpath("//p[text()='No Vitals for this patient']")));
-    }
-
     public void verifyNoValuesDisplayControl(String displayControl, String value) {
+        waitForSpinnerOnDisplayControl();
         Assert.assertTrue("Display control has data", hasElement(By.xpath("//*[@id='" + displayControl + "'][contains(.,'" + value + "') or text()='" + value + "']")));
     }
 
