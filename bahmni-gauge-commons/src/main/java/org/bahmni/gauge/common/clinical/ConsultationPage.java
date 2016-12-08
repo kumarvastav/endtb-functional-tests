@@ -1,9 +1,11 @@
 package org.bahmni.gauge.common.clinical;
 
 import org.bahmni.gauge.common.BahmniPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -23,6 +25,9 @@ public class ConsultationPage extends BahmniPage {
 
     @FindBy(how = How.CSS, using = ".tab-selected")
     public WebElement activeTab;
+
+    @FindBy(how = How.CSS, using = ".retro-date-widget-header.fr")
+    public WebElement registrationDeskButton;
 
     public void saveConsultation() {
         save.click();
@@ -45,4 +50,18 @@ public class ConsultationPage extends BahmniPage {
         return activeTab.getText();
     }
 
+    /**
+     * Send empty char for the item you want to skip
+     */
+    public void openRegistrationDeskAndSet(String location, String onBehalf, String date) {
+        registrationDeskButton.click();
+        waitForElementOnPagewithTimeout(By.cssSelector(".retro-date-widget-panel"), 10);
+        if (!location.equals(""))
+            new Select(findElement(By.cssSelector("select[ng-model=\"selectedLocationUuid\"]"))).selectByVisibleText("OPD-1");
+        if (!onBehalf.equals(""))
+            findElement(By.xpath("//label [text()='Enter on behalf']/../input")).sendKeys(onBehalf);
+        if (!date.equals(""))
+            findElement(By.xpath("//label[text()='Enter data for']/../input")).sendKeys(date);
+        findElement(By.cssSelector(".retro-widget-button.ok_btn")).click();
+    }
 }
