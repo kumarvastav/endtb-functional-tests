@@ -50,8 +50,10 @@ public class DriverFactory {
 		if (patient != null) {
 			String uuid = patient.getUuid();
 			if(patient.isAdmitted()) {
-				if(BahmniRestClient.get().dischargePatient(uuid))
+				if(BahmniRestClient.get().dischargePatient(uuid)) {
+					patient.setBedNumber(null);
 					BahmniRestClient.get().retirePatient(patient);
+				}
 			}
 			else
 				BahmniRestClient.get().retirePatient(patient);
