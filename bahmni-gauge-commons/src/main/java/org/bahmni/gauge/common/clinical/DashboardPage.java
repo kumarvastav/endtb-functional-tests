@@ -137,7 +137,7 @@ public class DashboardPage extends BahmniPage {
 
     public String getDisplayControlText(String displayControlId) {
         WebElement displayControl = findElement(By.id(displayControlId));
-        waitForSpinner();
+        waitForSpinnerOnDisplayControl();
         return displayControl.getText().replace("\n", "");
     }
 

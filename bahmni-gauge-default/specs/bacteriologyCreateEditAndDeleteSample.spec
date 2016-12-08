@@ -44,7 +44,7 @@ Tags: regression, sanity
     |Collection Date01 Nov 16|
     |Sample SourceBlood|
     |Id12345|
-    |Consultation NoteSample collected Note 1|
+    |consultation noteSample collected Note 1|
     |Smear resultNegative|
     |Smear test lab ID number4321|
     |Diagnosed with other SymptomYes|
@@ -55,7 +55,7 @@ Tags: regression, sanity
     |Collection Date04 Nov 16|
     |Sample SourceBlood|
     |Id67890|
-    |Consultation NoteSample collected Note 2|
+    |consultation noteSample collected Note 2|
     |Smear resultNegative|
     |Smear test lab ID number9876|
     |Diagnosed with other SymptomNo|
@@ -113,7 +113,7 @@ Tags: regression, sanity
     |Collection Date01 Nov 16|
     |Sample SourceBlood|
     |Id12345|
-    |Consultation NoteSample collected Note 1|
+    |consultation noteSample collected Note 1|
     |Smear resultNegative|
     |Smear test lab ID number4321|
     |Diagnosed with other SymptomYes|
@@ -124,7 +124,7 @@ Tags: regression, sanity
     |Collection Date07 Nov 16|
     |Sample SourceUrine|
     |Id23456|
-    |Consultation NoteSample collected Note 3|
+    |consultation noteSample collected Note 3|
     |Smear resultNegative|
     |Smear test lab ID number5432|
     |Diagnosed with other SymptomYes|
