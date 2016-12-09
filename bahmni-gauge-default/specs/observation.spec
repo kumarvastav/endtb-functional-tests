@@ -124,3 +124,19 @@ Tags: regression, sanity
     |Follow up Date15 Oct 16|
     |Plan for follow upPlan for follow up|
 
+
+
+Ability to select and delete multiple values against a single field
+--------------------------------------------------------------------------------------
+
+ Tags: regression, sanity
+
+* Create a new patient through API
+* Login to app and navigate to "Clinical" app
+* Select existing patient from patient listing page under tab "Active"
+* Navigate to consultation
+* Select the template "Tuberculosis - Followup" from on the observation page
+* Fill Tuberculosis - Followup template with following observation details
+    |Adverse Effects|
+    |Numbness:Dizziness|
+

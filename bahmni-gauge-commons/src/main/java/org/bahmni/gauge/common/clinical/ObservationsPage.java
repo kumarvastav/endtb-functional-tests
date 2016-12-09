@@ -38,13 +38,16 @@ public class ObservationsPage extends BahmniPage {
     @FindBy(how = How.CSS, using = ".save-consultation")
     public WebElement save;
 
+    @FindBy(how = How.XPATH, using = "//span[text()='Adverse Effects']/../../div//input")
+    public WebElement adverseEffects;
+
 
     public void selectTemplate(String templateName) {
         clickTemplateButton();
         List<WebElement> allForms = templatePanel.findElements(By.tagName("button"));
 
         for (int i = 0; i < allForms.size(); i++) {
-            String text = allForms.get(i).getText().replace(" ","_"); //For debugging
+            String text = allForms.get(i).getText().replace(" ", "_"); //For debugging
             if (text.contains(templateName)) {
                 allForms.get(i).click();
                 break;
@@ -96,7 +99,6 @@ public class ObservationsPage extends BahmniPage {
                         answer.findElement(By.tagName("input")).sendKeys(rows.get(0).getCell(columnNames.get(i)));
                     }
                 }
-
             }
         }
     }
@@ -106,7 +108,6 @@ public class ObservationsPage extends BahmniPage {
     }
 
     public void enterObservations(String template, Table data) {
-
         ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
         observationForm.fillUp(data);
         save.click();
@@ -115,7 +116,15 @@ public class ObservationsPage extends BahmniPage {
 
     public void navigateToDashboard() {
         dashboard.click();
+    }
 
+    public void selectSuggestion(String enteredValue) {
+        List<WebElement> elements = this.driver.findElements(By.cssSelector(".suggestion-item"));
+        for (WebElement element : elements) {
+//            if (element.getText().equals(enteredValue))
+            element.click();
+            break;
+        }
     }
 
 }
