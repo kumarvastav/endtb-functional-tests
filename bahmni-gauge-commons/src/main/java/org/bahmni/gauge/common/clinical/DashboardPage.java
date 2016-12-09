@@ -150,8 +150,8 @@ public class DashboardPage extends BahmniPage {
     public void validateProgramsDisplayControl(Program program) {
         for (WebElement dispControls : displayControls) {
             if (dispControls.getText().contains("Programs")) {
-                (new ProgramsDisplayControl(dispControls)).validateActiveProgram(program);
                 waitForSpinnerOnDisplayControl();
+                (new ProgramsDisplayControl(dispControls)).validateActiveProgram(program);
             }
         }
     }
