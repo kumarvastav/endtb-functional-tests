@@ -223,7 +223,7 @@ public class DashboardPage extends BahmniPage {
     }
 
 
-    public void verifyPatientDetails(Patient patient){
+    public void verifyPatientDetails(Patient patient) {
         Assert.assertTrue("Patient ID don't match", patientNameAndID.getText().contains(patient.getIdNumber()));
         Assert.assertTrue("First Name don't match", patientNameAndID.getText().contains(patient.getIdNumber()));
         Assert.assertTrue("Last Name don't match", patientNameAndID.getText().contains(patient.getIdNumber()));
