@@ -1,8 +1,8 @@
-Patient Admit, Discharge and Transfer
-=====================================
-     
-Admit Patient through Disposition
----------------------------------
+Patient Admit, Transfer, Discharge and Undo Discharge
+=====================================================
+
+Verify Admit Patient end to end flow through Disposition
+--------------------------------------------------------
 
 Tags: regression, sanity
 
@@ -36,33 +36,12 @@ Tags: regression, sanity
 * Select "Admit Patient" from Patient Movement and click "Admit" button with notes "Patient Admitted as requested"
 * Click on "Yes" button
 * Assign an empty bed
+* Verify display control "view-content" on inpatient dashboard, has the following details
+    |details|
+    |Total Beds: 9 |
+    |Available Beds: <AppGlobal.bedCount>|
 * Navigate to Inpatient Dashboard
 * Verify display control with Caption "Admission Details" on inpatient dashboard, has the following details
-    |details|
-    |General Ward <Patient.bedNumber>|
-    |Admission Date<NOW[dd MMM yy]>|
-    |Patient Admitted as requested|
-* Navigate to dashboard
-* Click on clinical app
-* Select existing patient from patient listing page under tab "All"
-* Verify display control "Admission-Details" on dashboard, has the following details
-    |details|
-    |General Ward <Patient.bedNumber>|
-    |Admission Date<NOW[dd MMM yy]>|
-    |Patient Admitted as requested|
-* Open the current visit
-* Verify display control "admissionDetails" on visit page, has the following details
-    |details|
-    |General Ward <Patient.bedNumber>|
-    |Admission Date<NOW[dd MMM yy]>|
-    |Patient Admitted as requested|
-* Navigate to dashboard
-* Click on inpatient app
-* Select existing patient from patient listing page under tab "Ward List"
-* Select "Transfer Patient" from Patient Movement and click "Save" button with notes "Patient Transferred as requested"
-* Assign an empty bed
-* Navigate to Inpatient Dashboard
-* Verify display control "admissionDetails" on inpatient dashboard, has the following details
     |details|
     |General Ward <Patient.bedNumber>|
     |Admission Date<NOW[dd MMM yy]>|
@@ -84,17 +63,42 @@ Tags: regression, sanity
     |General Ward <Patient.bedNumber>|
     |Admission Date<NOW[dd MMM yy]>|
     |Patient Admitted as requested|
+* Navigate to dashboard
+* Click on inpatient app
+* Select existing patient from patient listing page under tab "Ward List"
 
 
-Discharge and Undo Discharge Patient through Disposition
---------------------------------------------------------
+Verify Transfer, Discharge and Undo Discharge Patient through Disposition
+--------------------------------------------------------------------------
 Tags: regression, sanity
 
 * Create and admit a patient through API
 * On the login page
 * Login to the application
+* Click on inpatient app
+* Select existing patient from patient listing page under tab "Admitted"
+* Select "Transfer Patient" from Patient Movement and click "Save" button with notes "Patient Transferred as requested"
+* Assign an empty bed
+* Navigate to Inpatient Dashboard
+* Verify display control "admissionDetails" on inpatient dashboard, has the following details
+    |details|
+    |General Ward <Patient.bedNumber>|
+    |Admission Date<NOW[dd MMM yy]>|
+* Navigate to dashboard
 * Click on clinical app
 * Select existing patient from patient listing page under tab "All"
+* Verify display control "Admission-Details" on dashboard, has the following details
+    |details|
+    |General Ward <Patient.bedNumber>|
+    |Admission Date<NOW[dd MMM yy]>|
+* Verify display control "Visits" on dashboard, has the following details
+    |details|
+    |OPD |
+* Open the current visit
+* Verify display control "admissionDetails" on visit page, has the following details
+    |details|
+    |General Ward <Patient.bedNumber>|
+    |Admission Date<NOW[dd MMM yy]>|
 * Navigate to consultation
 * Go to "Disposition" tab
 * Select "Discharge Patient" disposition with notes "Discharge this patient"
@@ -106,14 +110,13 @@ Tags: regression, sanity
 * Open the current visit
 * Verify details on visit page "Disposition" display control
 * Navigate to patient dashboard
-* Navigate to adt dashboard
+* Navigate to dashboard
+* Click on inpatient app
+* Select existing patient from patient listing page under tab "To Discharge"
 * Verify display control with Caption "Disposition" on inpatient dashboard, has the following details
     |details|
     |Discharge Patient<NOW[dd MMM yy]>|
     |Discharge this patient|
-* Navigate to dashboard
-* Click on inpatient app
-* Select existing patient from patient listing page under tab "To Discharge"
 * Select "Discharge Patient" from Patient Movement and click "Discharge" button with notes "Patient Discharged as requested"
 * Navigate to dashboard
 * Click on inpatient app
@@ -138,9 +141,6 @@ Tags: regression, sanity
     |details|
     |Discharge Date<NOW[dd MMM yy]>|
     |Patient Discharged as requested|
-* Navigate to dashboard
-* Click on clinical app
-* Select existing patient from patient listing page under tab "All"
 * Navigate to consultation
 * Go to "Disposition" tab
 * Select "Undo Discharge" disposition with notes "Undo Discharge this patient"
@@ -168,7 +168,6 @@ Tags: regression, sanity
   |details|
   |General Ward <Patient.bedNumber>|
   |Admission Date<NOW[dd MMM yy]>|
-  |Patient Admitted as requested|
 * Navigate to dashboard
 * Click on clinical app
 * Select existing patient from patient listing page under tab "All"
@@ -176,13 +175,8 @@ Tags: regression, sanity
   |details|
   |General Ward <Patient.bedNumber>|
   |Admission Date<NOW[dd MMM yy]>|
-  |Patient Admitted as requested|
 * Open the current visit
 * Verify display control "admissionDetails" on visit page, has the following details
   |details|
   |General Ward <Patient.bedNumber>|
   |Admission Date<NOW[dd MMM yy]>|
-  |Patient Admitted as requested|
-
-
-

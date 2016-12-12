@@ -138,11 +138,6 @@ public class DashboardPageSpec {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
     }
 
-    @Step("Verify Vitals display control is empty")
-    public void verifyVitalDisplayControlEmpty() {
-        dashboardPage.verifyNoVitals();
-    }
-
     @Step("Verify following value in display controls <table>")
     public void verifyDisplayControlEmpty(Table table) {
         for (int i = 0; i < table.getTableRows().size(); i++) {

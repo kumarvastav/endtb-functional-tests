@@ -59,7 +59,7 @@ public class InpatientSpec extends BaseSpec{
             dashboardPage.getPatientFromSpecStore().setAdmitted(true);
         else if(movement.toLowerCase().contains("discharge")){
             dashboardPage.getPatientFromSpecStore().setAdmitted(false);
-            StoreHelper.getAppGlobal().setBedCount(StoreHelper.getAppGlobal().getBedCount() - 1);
+            StoreHelper.getAppGlobal().setBedCount(StoreHelper.getAppGlobal().getBedCount() + 1);
         }
     }
 
@@ -145,8 +145,10 @@ public class InpatientSpec extends BaseSpec{
         if (patient != null) {
             String uuid = patient.getUuid();
             if (patient.isAdmitted())
-                if(BahmniRestClient.get().dischargePatient(uuid));
+                if(BahmniRestClient.get().dischargePatient(uuid)) {
                     patient.setAdmitted(false);
+                    patient.setBedNumber(null);
+                }
         }
     }
 

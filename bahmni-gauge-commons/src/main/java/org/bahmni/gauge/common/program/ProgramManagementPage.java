@@ -124,6 +124,7 @@ public class ProgramManagementPage extends BahmniPage {
 
     public void clickTreatmentDashboard(String program){
         WebElement programWidget = findProgram(program);
+        waitForSpinnerOnDisplayControl();
         waitForElementOnPage(programWidget);
         programWidget.findElement(id("dashboard-link")).click();
     }
@@ -292,5 +293,9 @@ public class ProgramManagementPage extends BahmniPage {
             e.printStackTrace();
         }
         Assert.assertFalse("Edit link visible", hasChild(weProgram,cssSelector("[value=\"Edit\"]")));
+    }
+
+    public String getProgramName() {
+        return getPatientProgramFromSpecStore().getProgram().getName();
     }
 }
