@@ -19,6 +19,7 @@ import org.bahmni.gauge.util.StringUtil;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.util.HashMap;
 import java.util.List;
@@ -153,16 +154,16 @@ public class ObservationSpec extends BaseSpec {
     }
 
     @Step("Fill Tuberculosis - Followup template with following observation details <table>")
-    public void enterTuberculosis(Table table) {
+    public void enterTuberculosis(Table table) throws InterruptedException {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
-//        observationsPage.enterObservations("Tuberculosis - Followup",table);
-//        storeObservationFormInSpecStore(observationForm);
-        observationsPage.expandObservationTemplate("Tuberculosis - Followup");
+        observationsPage.expandObservationTemplate("Tuberculosis_Followup_Template");
         List<TableRow> row = table.getTableRows();
         List<String> columns = table.getColumnNames();
-        String[] values = row.get(0).getCell("Adverse Effect").split(":");
+        String[] values = row.get(0).getCell("Adverse Effects").split(":");
         for (String value : values) {
-            observationsPage.adverseEffects.sendKeys();
+            observationsPage.adverseEffects.sendKeys(value);
+            observationsPage.waitForElementOnPage(observationsPage.adverseEffects);
+            Thread.sleep(1000);
             observationsPage.selectSuggestion(value);
         }
     }
@@ -172,5 +173,19 @@ public class ObservationSpec extends BaseSpec {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.navigateToDashboard();
         waitForAppReady();
+    }
+
+
+    @Step("Remove Adverse effect from Tuberculosis - Followup template <table>")
+    public void removeAdverseEffect(Table table){
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.expandObservationTemplate("Tuberculosis_Followup_Template");
+        List<TableRow> row = table.getTableRows();
+        List<String> columns = table.getColumnNames();
+        String[] values = row.get(0).getCell("Adverse Effects").split(":");
+        for (String value : values) {
+            WebElement adverseEffect = driver.findElement(By.xpath("//span[text()='"+ value +"']/../a"));
+            adverseEffect.click();;
+        }
     }
 }
