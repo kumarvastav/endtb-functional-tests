@@ -124,3 +124,5 @@ Tags: regression, sanity
     |Follow up Date15 Oct 16|
     |Plan for follow upPlan for follow up|
 
+    //testing access rights
+
