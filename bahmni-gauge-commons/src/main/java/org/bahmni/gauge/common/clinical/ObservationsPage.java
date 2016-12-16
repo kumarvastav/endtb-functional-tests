@@ -23,6 +23,9 @@ public class ObservationsPage extends BahmniPage {
     @FindBy(how = How.CSS, using = "#template-control-panel-button")
     public WebElement addFormbutton;
 
+    @FindBy(how=How.CSS, using = "button[id*=\"chief_complaint_data_addmore_observation\"]")
+    public WebElement addmore;
+
     @FindBy(how = How.CSS, using = "#dashboard-link")
     public WebElement dashboard;
 
@@ -115,6 +118,11 @@ public class ObservationsPage extends BahmniPage {
 
     public void navigateToDashboard() {
         dashboard.click();
+
+    }
+
+    public void addMoreObservation() {
+        addmore.click();
 
     }
 

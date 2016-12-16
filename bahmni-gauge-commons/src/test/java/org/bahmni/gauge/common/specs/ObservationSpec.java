@@ -156,4 +156,11 @@ public class ObservationSpec extends BaseSpec{
         observationsPage.navigateToDashboard();
         waitForAppReady();
     }
+
+    @Step("Add more observation")
+    public void addmoreobservation(){
+        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+        observationsPage.addMoreObservation();
+        waitForAppReady();
+    }
 }
