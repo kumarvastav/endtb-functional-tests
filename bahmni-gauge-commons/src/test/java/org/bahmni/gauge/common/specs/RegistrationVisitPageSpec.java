@@ -44,6 +44,7 @@ public class RegistrationVisitPageSpec {
     public void navigateToVisit() {
         RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
         registrationVisitPage.openLastVisit();
+        waitForAppReady();
     }
 
     @Step("Verify display control <displayControl> on visit page, has the following details <table>")

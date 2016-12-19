@@ -135,9 +135,11 @@ public class ObservationsPage extends BahmniPage {
         for (TableRow row : rows) {
             value = row.getCell(columnNames.get(0));
             driver.findElement(By.xpath(("(.//*[contains(@id,'observation_')])[" + rowCount + "]"))).sendKeys(value);
+            driver.findElement(By.xpath("(.//*[contains(@id,'observation_')])[" + rowCount + "]/../div/button")).click();
             rowCount++;
             addmore.click();
         }
+        save.click();
     }
 
 }

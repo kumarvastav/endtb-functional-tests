@@ -139,3 +139,18 @@ Tags: regression, sanity
   |Headache|
   |HeartBurn|
   |Injury|
+* Navigate to dashboard link
+* Verify display control "History and Examinations" on dashboard, has the following details
+      |details|
+      |History and Examination |
+      |Chief Complaint Headache|
+      |Chief Complaint HeartBurn|
+      |Chief Complaint Injury|
+* Navigate to latest visit page
+* Verify display control with Caption "Observations" on visit page, has the following details
+    |details|
+    |History and Examination |
+    |Chief Complaint Headache|
+    |Chief Complaint HeartBurn|
+    |Chief Complaint Injury|
+
