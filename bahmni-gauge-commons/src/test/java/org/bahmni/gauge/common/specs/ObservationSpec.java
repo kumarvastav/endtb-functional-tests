@@ -163,4 +163,11 @@ public class ObservationSpec extends BaseSpec{
         observationsPage.addMoreObservation();
         waitForAppReady();
     }
+
+    @Step("Add chief complaint on \"History and Examination\" template <table>")
+    public void addMoreChiefComplaint(String template,Table table){
+        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+        observationsPage.addChiefComplaints(template,table);
+    }
+
 }

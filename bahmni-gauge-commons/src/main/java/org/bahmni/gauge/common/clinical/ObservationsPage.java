@@ -126,4 +126,18 @@ public class ObservationsPage extends BahmniPage {
 
     }
 
+    public void addChiefComplaints(String template, Table data) {
+        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
+        List<TableRow> rows = data.getTableRows();
+        List<String> columnNames = data.getColumnNames();
+        int rowCount = 1;
+        String value;
+        for (TableRow row : rows) {
+            value = row.getCell(columnNames.get(0));
+            driver.findElement(By.xpath(("(.//*[contains(@id,'observation_')])[" + rowCount + "]"))).sendKeys(value);
+            rowCount++;
+            addmore.click();
+        }
+    }
+
 }

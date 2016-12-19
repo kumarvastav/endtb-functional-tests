@@ -124,3 +124,18 @@ Tags: regression, sanity
     |Follow up Date15 Oct 16|
     |Plan for follow upPlan for follow up|
 
+Consultation - Add More Complaints
+----------------
+Tags: regression, sanity
+
+* Create patient and open visit with details through API with details
+   |height|weight|registrationFee|
+   |172|67|200|
+* Login to app and navigate to "Clinical" app
+* Select existing patient from patient listing page under tab "Active"
+* Navigate to consultation
+* Add chief complaint on "History and Examination" template
+  |Chief Complaint|
+  |Headache|
+  |HeartBurn|
+  |Injury|
