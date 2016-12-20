@@ -18,6 +18,8 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -177,10 +179,10 @@ public class ObservationSpec extends BaseSpec{
         observationsPage.removeChiefComplaints(template,data);
     }
 
-    @Step("Upload  consultation images with Notes on \"History and Examinations\"")
-    public void uploadConsultationImage(String Template){
+    @Step("Upload  consultation images with Notes on \"History and Examinations\" <table>")
+    public void uploadConsultationImage(String template,Table table) throws IOException, AWTException {
         ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
-        observationsPage.uploadConsultaionImage();
+        observationsPage.uploadConsultaionImageAndAddComment(template,table);
     }
 
 }

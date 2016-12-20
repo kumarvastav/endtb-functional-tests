@@ -2,21 +2,21 @@ package org.bahmni.gauge.common.clinical;
 
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-//import javafx.scene.control.Tab;
+
 import org.bahmni.gauge.common.BahmniPage;
-import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
-import org.bahmni.gauge.common.registration.domain.Patient;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
+
+//import javafx.scene.control.Tab;
 
 public class ObservationsPage extends BahmniPage {
 
@@ -170,8 +170,21 @@ public class ObservationsPage extends BahmniPage {
         save.click();
     }
 
-    public void uploadConsultaionImage()
-    {
-        driver.findElement(By.xpath("//label[contains(@for,'file-browse-observation')]")).click();
+    public void uploadConsultaionImageAndAddComment(String template,Table table) throws AWTException, IOException {
+        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
+        List<TableRow> rows = table.getTableRows();
+        int rowSize=rows.size();
+        int rowCount=1;
+        List<String> columnNames = table.getColumnNames();
+        for(TableRow row:rows){
+            waitForSpinner();
+            driver.findElement(By.xpath("(//label[contains(@for,'file-browse-observation')])["+rowCount+"]")).click();
+            uploadFile(row.getCell("Image"));
+            waitForSpinner();
+            driver.findElement(By.xpath("(//legend/strong[contains(text(),'Images')]/../../..//button[@toggle='observation.showComment'])["+rowCount+"]")).click();
+            driver.findElement(By.xpath("(//textarea[contains(@class,'consultation-img-comments')])["+rowCount+"]")).sendKeys(row.getCell("Comment"));
+            driver.findElement(By.xpath(("(.//*[contains(@id,'image_addmore_observation_')])[" + rowCount + "]")));
+        }
+        save.click();
     }
 }

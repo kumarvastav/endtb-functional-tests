@@ -178,8 +178,10 @@ Tags: regression, sanity
 * Login to app and navigate to "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
-* Upload  consultation images with Notes on "History and Examinations"
-
+* Upload  consultation images with Notes on "History and Examination"
+  |Image|Comment|
+  |MRIScan.jpg|MRIScan|
+  |ultrasound.jpeg|ultrasound|
 
 
 
