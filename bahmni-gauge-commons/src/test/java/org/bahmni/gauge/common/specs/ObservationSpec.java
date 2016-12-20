@@ -168,6 +168,13 @@ public class ObservationSpec extends BaseSpec{
     public void addMoreChiefComplaint(String template,Table table){
         ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
         observationsPage.addChiefComplaints(template,table);
+
+    }
+
+    @Step("Remove chief complaint on \"History and Examination\" template <table>")
+    public void removeChiefComplaint(String template,Table data){
+        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+        observationsPage.removeChiefComplaints(template,data);
     }
 
 }

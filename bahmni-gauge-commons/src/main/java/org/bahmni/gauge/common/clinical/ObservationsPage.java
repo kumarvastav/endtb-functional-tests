@@ -23,7 +23,7 @@ public class ObservationsPage extends BahmniPage {
     @FindBy(how = How.CSS, using = "#template-control-panel-button")
     public WebElement addFormbutton;
 
-    @FindBy(how=How.CSS, using = "button[id*=\"chief_complaint_data_addmore_observation\"]")
+    @FindBy(how = How.CSS, using = "button[id*=\"chief_complaint_data_addmore_observation\"]")
     public WebElement addmore;
 
     @FindBy(how = How.CSS, using = "#dashboard-link")
@@ -47,7 +47,7 @@ public class ObservationsPage extends BahmniPage {
         List<WebElement> allForms = templatePanel.findElements(By.tagName("button"));
 
         for (int i = 0; i < allForms.size(); i++) {
-            String text = allForms.get(i).getText().replace(" ","_"); //For debugging
+            String text = allForms.get(i).getText().replace(" ", "_"); //For debugging
             if (text.contains(templateName)) {
                 allForms.get(i).click();
                 break;
@@ -126,11 +126,13 @@ public class ObservationsPage extends BahmniPage {
 
     }
 
+    int rowCount;
+
     public void addChiefComplaints(String template, Table data) {
         ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
         List<TableRow> rows = data.getTableRows();
         List<String> columnNames = data.getColumnNames();
-        int rowCount = 1;
+        rowCount = 1;
         String value;
         for (TableRow row : rows) {
             value = row.getCell(columnNames.get(0));
@@ -138,8 +140,33 @@ public class ObservationsPage extends BahmniPage {
             driver.findElement(By.xpath("(.//*[contains(@id,'observation_')])[" + rowCount + "]/../div/button")).click();
             rowCount++;
             addmore.click();
+
         }
         save.click();
     }
 
+
+    public void removeChiefComplaints(String template, Table data) {
+       ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
+        List<TableRow> rows = data.getTableRows();
+        int rowSize=rows.size();
+        List<String> columnNames = data.getColumnNames();
+        String value;
+        int rowCount=1;
+        for (TableRow row : rows) {
+            value = row.getCell(columnNames.get(0));
+
+            for (rowCount = 1; rowCount <= rowSize; rowCount++) {
+                WebElement element = driver.findElement(By.xpath(("(.//*[contains(@id,'observation_')])[" + rowCount + "]")));
+                if (value.equals(element.getAttribute("value")) && (rowCount!=1)) {
+                    System.out.println("Removed the Element ---------------->"+element.getAttribute("value"));
+                    driver.findElement(By.xpath(("(.//*[contains(@id,'removeClonedObs')])[" + rowCount + "]"))).click();
+
+                }
+
+
+            }
+        }
+        save.click();
+    }
 }
