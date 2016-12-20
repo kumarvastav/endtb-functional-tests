@@ -170,4 +170,18 @@ Tags: regression, sanity
     |Chief Complaint Injury|
 
 
+Ability to Upload Consultation Image
+----------------
+Tags: regression, sanity
+
+* Create patient and open visit with details through API
+* Login to app and navigate to "Clinical" app
+* Select existing patient from patient listing page under tab "Active"
+* Navigate to consultation
+* Upload  consultation images with Notes on "History and Examinations"
+
+
+
+
+
 

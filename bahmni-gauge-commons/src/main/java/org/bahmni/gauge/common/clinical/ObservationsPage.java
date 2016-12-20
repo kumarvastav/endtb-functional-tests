@@ -169,4 +169,9 @@ public class ObservationsPage extends BahmniPage {
         }
         save.click();
     }
+
+    public void uploadConsultaionImage()
+    {
+        driver.findElement(By.xpath("//label[contains(@for,'file-browse-observation')]")).click();
+    }
 }

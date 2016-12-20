@@ -177,4 +177,10 @@ public class ObservationSpec extends BaseSpec{
         observationsPage.removeChiefComplaints(template,data);
     }
 
+    @Step("Upload  consultation images with Notes on \"History and Examinations\"")
+    public void uploadConsultationImage(String Template){
+        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+        observationsPage.uploadConsultaionImage();
+    }
+
 }
