@@ -41,10 +41,10 @@ public class ObservationForm {
             throw new TestSpecException("Only one patient should be provided in the table");
         }
         TableRow row = rows.get(0);
-        for (String header : columnNames) {
-            String value = row.getCell(header);
+        for (String label : columnNames) {
+            String value = row.getCell(label);
             for (WebElement fieldset : observationNodes) {
-                if (hasField(fieldset, header)) {
+                if (hasField(fieldset, label)) {
                     if (value.contains(":")) {
                         // This fills the form label which has combination of element type
                         // Issue: fills data for label which has similar partial text
@@ -68,7 +68,7 @@ public class ObservationForm {
 
                     } else {
                         getFieldType(fieldset).fillUp(fieldset, value);
-                        data.put(header, value);
+                        data.put(label, value);
                     }
                 }
             }
