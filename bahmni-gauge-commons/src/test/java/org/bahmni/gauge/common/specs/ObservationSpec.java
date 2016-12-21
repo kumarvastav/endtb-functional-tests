@@ -23,6 +23,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -178,6 +180,7 @@ public class ObservationSpec extends BaseSpec {
     }
 
 
+
     @Step("Remove Adverse effect from Tuberculosis - Followup template <table>")
     public void removeAdverseEffect(Table table) throws InterruptedException {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
@@ -192,4 +195,26 @@ public class ObservationSpec extends BaseSpec {
             actions.moveToElement(adverseEffect).click().perform();
         }
     }
+
+    @Step("Add more observation")
+    public void addmoreobservation(){
+        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+        observationsPage.addMoreObservation();
+        waitForAppReady();
+    }
+
+    @Step("Add chief complaint on \"History and Examination\" template <table>")
+    public void addMoreChiefComplaint(String template,Table table){
+        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+        observationsPage.addChiefComplaints(template,table);
+
+    }
+
+    @Step("Remove chief complaint on \"History and Examination\" template <table>")
+    public void removeChiefComplaint(String template,Table data){
+        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+        observationsPage.removeChiefComplaints(template,data);
+    }
+
+
 }

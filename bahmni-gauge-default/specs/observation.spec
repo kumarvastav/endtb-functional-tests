@@ -169,6 +169,63 @@ Ability to select and delete multiple values against a single field
      |details|
      |Adverse Effects Dizziness|
 
+Consultation - Ability to select multiple autocomplete values using Add More
+----------------
+Tags: regression, sanity
+
+* Create patient and open visit with details through API with details
+   |height|weight|registrationFee|
+   |172|67|200|
+* Login to app and navigate to "Clinical" app
+* Select existing patient from patient listing page under tab "Active"
+* Navigate to consultation
+* Add chief complaint on "History and Examination" template
+  |Chief Complaint|
+  |Headache|
+  |HeartBurn|
+  |Injury|
+* Go to "Consultation" tab
+* Verify display control with Caption "History and Examination" on "Consultation" tab, has the following details
+  |details|
+  |Chief Complaint Headache|
+  |Chief Complaint HeartBurn|
+  |Chief Complaint Injury|
+* Navigate to dashboard link
+* Verify display control "History and Examinations" on dashboard, has the following details
+        |details|
+        |History and Examination |
+        |Chief Complaint Headache|
+        |Chief Complaint HeartBurn|
+        |Chief Complaint Injury|
+* Navigate to latest visit page
+* Verify display control with Caption "Observations" on visit page, has the following details
+      |details|
+      |History and Examination |
+      |Chief Complaint Headache|
+      |Chief Complaint HeartBurn|
+      |Chief Complaint Injury|
+* Navigate to consultation
+* Remove chief complaint on "History and Examination" template
+  |Chief Complaint|
+  |Headache|
+  |HeartBurn|
+* Go to "Consultation" tab
+* Verify display control with Caption "History and Examination" on "Consultation" tab, has the following details
+  |details|
+  |Chief Complaint Injury|
+* Navigate to dashboard link
+* Verify display control "History and Examinations" on dashboard, has the following details
+      |details|
+      |History and Examination |
+      |Chief Complaint Injury|
+* Navigate to latest visit page
+* Verify display control with Caption "Observations" on visit page, has the following details
+    |details|
+    |History and Examination |
+    |Chief Complaint Injury|
+
+
+
 
 
 
