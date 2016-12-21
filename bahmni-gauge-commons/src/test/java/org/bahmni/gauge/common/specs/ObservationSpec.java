@@ -18,8 +18,10 @@ import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.StringUtil;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.HashMap;
 import java.util.List;
@@ -177,7 +179,7 @@ public class ObservationSpec extends BaseSpec {
 
 
     @Step("Remove Adverse effect from Tuberculosis - Followup template <table>")
-    public void removeAdverseEffect(Table table){
+    public void removeAdverseEffect(Table table) throws InterruptedException {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.expandObservationTemplate("Tuberculosis_Followup_Template");
         List<TableRow> row = table.getTableRows();
@@ -185,7 +187,9 @@ public class ObservationSpec extends BaseSpec {
         String[] values = row.get(0).getCell("Adverse Effects").split(":");
         for (String value : values) {
             WebElement adverseEffect = driver.findElement(By.xpath("//span[text()='"+ value +"']/../a"));
-            adverseEffect.click();;
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", adverseEffect);
+            Actions actions = new Actions(driver);
+            actions.moveToElement(adverseEffect).click().perform();
         }
     }
 }
