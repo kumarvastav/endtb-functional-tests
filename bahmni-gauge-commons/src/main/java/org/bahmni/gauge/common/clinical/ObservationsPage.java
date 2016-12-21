@@ -170,24 +170,4 @@ public class ObservationsPage extends BahmniPage {
         save.click();
     }
 
-    public void uploadConsultaionImageAndAddComment(String template,Table table) throws AWTException, IOException, InterruptedException {
-        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
-        List<TableRow> rows = table.getTableRows();
-        int rowSize=rows.size();
-        int rowCount=1;
-        List<String> columnNames = table.getColumnNames();
-        for(TableRow row:rows){
-            waitForSpinner();
-            Thread.sleep(3000);
-            driver.findElement(By.xpath("(//label[contains(@for,'file-browse-observation')])["+rowCount+"]")).click();
-            Thread.sleep(3000);
-            uploadFile(row.getCell("Image"));
-            waitForSpinner();
-            driver.findElement(By.xpath("(//legend/strong[contains(text(),'Images')]/../../..//button[@toggle='observation.showComment'])["+rowCount+"]")).click();
-            driver.findElement(By.xpath("(//textarea[contains(@class,'consultation-img-comments')])["+rowCount+"]")).sendKeys(row.getCell("Comment"));
-            driver.findElement(By.xpath(("(.//*[contains(@id,'image_addmore_observation_')])[" + rowCount + "]"))).click();
-            rowCount++;
-        }
-        save.click();
-    }
 }

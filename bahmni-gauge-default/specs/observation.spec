@@ -124,7 +124,7 @@ Tags: regression, sanity
     |Follow up Date15 Oct 16|
     |Plan for follow upPlan for follow up|
 
-Consultation - Add More Complaints
+Consultation - Ability to select multiple autocomplete values using Add More
 ----------------
 Tags: regression, sanity
 
@@ -139,6 +139,12 @@ Tags: regression, sanity
   |Headache|
   |HeartBurn|
   |Injury|
+* Go to "Consultation" tab
+* Verify display control with Caption "History and Examination" on "Consultation" tab, has the following details
+  |details|
+  |Chief Complaint Headache|
+  |Chief Complaint HeartBurn|
+  |Chief Complaint Injury|
 * Navigate to dashboard link
 * Verify display control "History and Examinations" on dashboard, has the following details
         |details|
@@ -158,6 +164,10 @@ Tags: regression, sanity
   |Chief Complaint|
   |Headache|
   |HeartBurn|
+* Go to "Consultation" tab
+* Verify display control with Caption "History and Examination" on "Consultation" tab, has the following details
+  |details|
+  |Chief Complaint Injury|
 * Navigate to dashboard link
 * Verify display control "History and Examinations" on dashboard, has the following details
       |details|
@@ -170,18 +180,7 @@ Tags: regression, sanity
     |Chief Complaint Injury|
 
 
-Ability to Upload Consultation Image
-----------------
-Tags: regression, sanity
 
-* Create patient and open visit with details through API
-* Login to app and navigate to "Clinical" app
-* Select existing patient from patient listing page under tab "Active"
-* Navigate to consultation
-* Upload  consultation images with Notes on "History and Examination"
-  |Image|Comment|
-  |MRIScan.jpg|MRIScan|
-  |xray.jpeg|ultrasound|
 
 
 
