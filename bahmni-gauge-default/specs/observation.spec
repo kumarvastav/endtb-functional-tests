@@ -170,7 +170,7 @@ Ability to select and delete multiple values against a single field
      |Adverse Effects Dizziness|
 
 Consultation - Ability to select multiple autocomplete values using Add More
-----------------
+------------------------------------------------------------------------------
 Tags: regression, sanity
 
 * Create patient and open visit with details through API with details

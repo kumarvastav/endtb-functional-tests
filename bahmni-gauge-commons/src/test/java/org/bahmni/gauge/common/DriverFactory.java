@@ -23,56 +23,24 @@ public class DriverFactory {
 
     //TODO: Remove this static method!!!!!
     public static WebDriver getDriver() {
-
-        // Orignal Code
-        // return driver;
-
-        // Manpreet Code :
-
-        if (driver != null) return driver;
-
-        String browser = System.getenv("BROWSER");
-        if (browser == null) {
-            driver = new FirefoxDriver();
-        }
-        switch (browser) {
-            case "IE":
-                driver = new InternetExplorerDriver();
-                break;
-
-            case "Firefox":
-                driver = new FirefoxDriver();
-                break;
-
-            default:
-                driver = new ChromeDriver();
-                break;
-
-        }
+        
         return driver;
-
 
     }
 
     @BeforeSpec
     public void setup() {
 
-        // Original Code
-        /* ChromeDriverManager.getInstance().setup();
+
+        ChromeDriverManager.getInstance().setup();
         DesiredCapabilities capability = DesiredCapabilities.chrome();
-		ChromeOptions options=new ChromeOptions();
-		//options.addArguments("--use-fake-ui-for-media-stream");
-		capability.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-		//capability.setCapability(ChromeOptions.CAPABILITY,options);
-		driver = new ChromeDriver(capability);
-		driver.manage().window().setSize(new Dimension(1440, 900));
-	*/
-
-        // Manpreet Code
-
-
-        driver = DriverFactory.getDriver();
+        ChromeOptions options = new ChromeOptions();
+        //options.addArguments("--use-fake-ui-for-media-stream");
+        capability.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+        //capability.setCapability(ChromeOptions.CAPABILITY,options);
+        driver = new ChromeDriver(capability);
         driver.manage().window().setSize(new Dimension(1440, 900));
+
     }
 
     @AfterSpec
