@@ -46,6 +46,9 @@ public class RegistrationSpec {
     public void startVisitNavigateProgram(String visitType){
         registrationPage.showAllVisitTypeOptions();
         registrationPage.findVisit(visitType).click();
+        waitForAppReady();
+        RegistrationVisitDetailsPage registrationVisitPage = PageFactory.get(RegistrationVisitDetailsPage.class);
+        registrationVisitPage.saveButton.click();
     }
 
     @Step("Verify Legal Rep Values")
