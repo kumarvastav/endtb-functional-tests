@@ -1,9 +1,16 @@
 package org.bahmni.gauge.common.home;
 
+import com.thoughtworks.gauge.Table;
+import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.w3c.dom.html.HTMLTableElement;
+
+import java.util.List;
 
 public class HomePage extends BahmniPage {
 
@@ -79,4 +86,22 @@ public class HomePage extends BahmniPage {
 	public void clickRadiologyUploadApp() {
 		radiologyUpload.click();
 	}
+
+	public void verifyAppPresent(Table application) {
+
+		List<TableRow> rows = application.getTableRows();
+		//int rowSize=rows.size();
+		List<String> columnName = application.getColumnNames();
+		String value;
+
+		for (TableRow row : rows) {
+
+			value = row.getCell(columnName.get(0)).toLowerCase();
+			WebElement element=driver.findElement(By.xpath(".//*[contains(@id,'"+value+"')]"));
+			Assert.assertTrue(element.isDisplayed());
+
+
+		}
+	}
+
 }
