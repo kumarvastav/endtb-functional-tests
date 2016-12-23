@@ -101,6 +101,7 @@ public class ObservationSpec extends BaseSpec {
     @Step("Verify display control <displayControlId> on dashboard, has the following details <table>")
     public void verifyDisplayControlContent(String displayControlId, Table table) {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
+        waitForAppReady();
         String displayControlText = dashboardPage.getDisplayControlText(displayControlId.replace(" ", "-"));
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
