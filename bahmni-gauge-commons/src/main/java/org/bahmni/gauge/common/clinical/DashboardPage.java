@@ -16,6 +16,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
@@ -236,5 +237,12 @@ public class DashboardPage extends BahmniPage {
         }
         int age = new Date().getYear() - dob.getYear();
         Assert.assertTrue("Age don't match", patientGenderAndAge.getText().contains((age + "")));
+    }
+
+    public void openRetrospectiveVisit(String date){
+       WebElement visitDate= driver.findElement(By.xpath("(//a[@class='visit']/span[contains(text(),'"+date+"')])[1]"));
+        Actions builder = new Actions(driver);
+        builder.moveToElement(visitDate).click().perform();
+        waitForSpinner();
     }
 }

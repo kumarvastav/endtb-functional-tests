@@ -89,3 +89,45 @@ Tags: regression, sanity
 
 * Navigate to dashboard
 * Logout the user
+
+
+Add/delete coded and non coded retrospective dignosis for existing patient
+-----------------------------------------------------------------------
+Tags: regression, sanity
+
+* Create a new patient and open visit through API
+* On the login page
+* Login to the application
+* Click on clinical app
+* Select existing patient from patient listing page under tab "All"
+* Set retrospective date to "01/03/2015"
+* Navigate to consultation
+* Go to "Diagnosis" tab
+* Add following diagnosis
+    |type|diagnosis|order|certainty|status|
+    |noncoded|High Blood Pressure|Primary|Confirmed|Active|
+    |coded|Pyloric stenosis|Secondary|PRESUMED|Inactive|
+* Save the consultation
+* Verify past diagnoses on current display control on diagnosis page
+* Navigate to patient dashboard
+* Verify display control "Diagnosis" on dashboard, has the following details
+    |details|
+    |High Blood Pressure CONFIRMED PRIMARY|
+    |Pyloric stenosis PRESUMED SECONDARY|
+ * open the visit for date "01 Mar 15"
+ * Verify display control with Caption "Diagnoses" on visit page, has the following details
+     |details|
+     |High Blood Pressure CONFIRMED PRIMARY|
+     |Pyloric stenosis PRESUMED SECONDARY|
+* Navigate to patient dashboard
+* Set retrospective date to "current Date"
+* Navigate to consultation
+* Go to "Diagnosis" tab
+* Verify past diagnoses on current display control on diagnosis page
+* Navigate to patient dashboard
+* open the visit for date "01 Mar 15"
+* Verify display control with Caption "Diagnoses" on visit page, has the following details
+    |details|
+    |High Blood Pressure CONFIRMED PRIMARY|
+    |Pyloric stenosis PRESUMED SECONDARY|
+
