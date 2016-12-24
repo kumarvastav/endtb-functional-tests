@@ -143,7 +143,7 @@ public class HomeSpec {
     }
 
 
-    @Step("Verify only the following app is available <table>")
+    @Step("Verify only the following application is available <table>")
     public void verifyAppPresent(Table application){
         homePage = PageFactory.getHomePage();
         homePage.verifyAppPresent(application);

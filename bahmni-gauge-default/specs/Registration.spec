@@ -23,35 +23,6 @@ Tags: regression, sanity
 
 
 
-Login with the user which have only Registration role assigned and register a new user
---------------------------------------------------------------------------------------------
-
-Tags: regression, sanity
-
-* On the login page
-* Login with user "regone" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "Registration Desk"
-* Verify only the following app is available
-    |Application-ID(tagName)|
-    |Registration|
-* Click on registration app
-* Click on create new patient link
-* Create the following patient
-    |prefix|firstName|lastName|gender|dateOfBirth|age|district|village|
-    |GAN|Maria|Jones|Female|20/01/2011|50|Bilaspur|Kahnapur|
-* Start a visit "OPD"
-* Enter visit details from table
-    |height|weight|fees|comments|
-    |50|5|100|bmi observations seems normal|
-* Verify the details on "bmi" display control
-    |details|
-    |HEIGHT50|
-    |WEIGHT5|
-    |BMI20|
-    |BMI STATUSNormal|
-
-
-
-
 Verify the patient creation fails for duplicated id
 ----------------------------------------------------
 

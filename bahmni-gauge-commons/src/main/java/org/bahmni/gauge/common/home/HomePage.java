@@ -5,6 +5,7 @@ import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -88,18 +89,30 @@ public class HomePage extends BahmniPage {
 	}
 
 	public void verifyAppPresent(Table application) {
+		WebElement element;
 
 		List<TableRow> rows = application.getTableRows();
-		//int rowSize=rows.size();
 		List<String> columnName = application.getColumnNames();
 		String value;
 
 		for (TableRow row : rows) {
 
 			value = row.getCell(columnName.get(0)).toLowerCase();
-			WebElement element=driver.findElement(By.xpath(".//*[contains(@id,'"+value+"')]"));
-			Assert.assertTrue(element.isDisplayed());
 
+			if(row.getCell(columnName.get(1)).equals("true")) {
+				element=driver.findElement(By.xpath(".//*[contains(@id,'"+value+"')]"));
+				Assert.assertTrue(element.isDisplayed());
+			}else
+			{
+				try{
+					driver.findElement(By.xpath(".//*[contains(@id,'"+value+"')]"));
+					driver.quit();
+				}catch(NoSuchElementException noelement)
+				{
+					noelement.printStackTrace();
+				}
+
+			}
 
 		}
 	}
