@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AmmanPatient extends Patient {
+    private String activeVisitUuid;
 
     private List<PatientAttribute> patientAttributes;
 
@@ -31,5 +32,13 @@ public class AmmanPatient extends Patient {
             }
         }
         return null;
+    }
+
+    public String getActiveVisitUuid() {
+        return activeVisitUuid;
+    }
+
+    public void setActiveVisitUuid(String activeVisitUuid) {
+        this.activeVisitUuid = activeVisitUuid;
     }
 }
