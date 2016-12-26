@@ -13,31 +13,29 @@ Patient Registration Scenarios
 Create Patient Under Age 18 and Fill Legal Rep
 ----------------------------------------------
 * Enter Legal Rep Details
-| legalRepFullNameEnglish | legalRepFullNameArabic | legalRepRelationWithPatient | legalRepGender | legalRepDob  | legalRepNationality |
-| Al Bangalore            | حسن                    | Brother                     | Male           |  10-10-1980 | Egyptian            |
+| legalRepFullNameEnglish | legalRepFullNameArabic | legalRepRelationWithPatient | legalRepGender | legalRepDob | legalRepNationality |
+| Al Bangalore            | حسن                    | Brother                     | Male           | 10-10-1980  | Egyptian            |
 * Save Patient and refresh page
 * Verify Legal Rep Details after Save
-
-Create Patient And Fill Caretaker
----------------------------------
-* Enter Caretaker Details
-| caretakerNameEnglish | caretakerDocumentType | caretakerPhoneNumber1 |
-| Shruthi Hassan       | Passport              | +987653234567         |
-* Save Patient and refresh page
-* Verify caretaker details after save
 
 Create Patient And Verify Legal Rep Same As Caretaker
 -----------------------------------------------------
+* Enter Patient Details
+| isCareTakerRequiredCheckBox |
+| True                        |
 * Enter Caretaker Details
 | caretakerNameEnglish | caretakerNameArabic | caretakerGender | caretakerDob | caretakerNationality | legalRepalsoCaretaker |
-| Shruthi Hassan       | سن                  | Female          |  01-01-1986 | Iraqi                | Yes                   |
+| Shruthi Hassan       | سن                  | Female          | 01-01-1986   | Iraqi                | Yes                   |
 * Verify Legal Rep Values for autocomplete
 * Save Patient and refresh page
 * Verify caretaker details after save
-* Verify Legal Rep Details after Save
+* Verify Legal Rep Values for autocomplete
 
 Create Patient and Fill ID Documents
 ------------------------------------
+* Enter Patient Details
+| statusofOfficialIDdocuments |
+| Received                    |
 * Enter ID Document Details
 | id1DocumentType | id1DocNumber | id1FullNameEnglish |
 | Passport        | 1828DE0S     | Amitb Bachan       |
