@@ -60,4 +60,12 @@ public class DiagnosisPageSpec extends BahmniPage {
         BahmniRestClient.get().create(getPatientFromSpecStore(),"bahmnicore/bahmniencounter");
     }
 
+
+    @Step("Verify past diagnoses on current display control on diagnosis page")
+    public void verifyPastDiagnosesOnCurrentDiagnosis(){
+        DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
+
+        diagnosisPage.verifyCurrentDisplayControl(getPatientFromSpecStore().getDiagnoses());
+    }
+
 }

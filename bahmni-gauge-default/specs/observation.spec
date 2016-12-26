@@ -124,3 +124,111 @@ Tags: regression, sanity
     |Follow up Date15 Oct 16|
     |Plan for follow upPlan for follow up|
 
+
+
+Ability to select and delete multiple values against a single field
+--------------------------------------------------------------------------------------
+
+ Tags: regression, sanity
+
+* Create a new patient and open visit through API
+* Login to app and navigate to "Clinical" app
+* Select existing patient from patient listing page under tab "All"
+* Navigate to consultation
+* Select the template "Tuberculosis - Followup" from on the observation page
+* Fill Tuberculosis - Followup template with following observation details
+    |Adverse Effects|
+    |Numbness:Dizziness|
+* Save the consultation
+* Navigate to dashboard link
+* Verify display control "Tuberculosis Follow Up" on dashboard, has the following details
+      |details|
+      |Tuberculosis - Followup |
+      |Adverse Effects |
+      |Dizziness|
+      |Numbness|
+* Navigate to consultation
+* Go to "Consultation" tab
+* Verify display control with Caption "Tuberculosis - Followup" on "Consultation" tab, has the following details
+    |details|
+    |Adverse Effects Numbness|
+    |Adverse Effects Dizziness|
+* Go to "Observations" tab
+* Remove Adverse effect from Tuberculosis - Followup template
+ |Adverse Effects|
+ |Numbness|
+ * Save the consultation
+ * Navigate to dashboard link
+ * Verify display control "Tuberculosis Follow Up" on dashboard, has the following details
+       |details|
+       |Tuberculosis - Followup |
+       |Adverse Effects Dizziness|
+ * Navigate to consultation
+ * Go to "Consultation" tab
+ * Verify display control with Caption "Tuberculosis - Followup" on "Consultation" tab, has the following details
+     |details|
+     |Adverse Effects Dizziness|
+
+Consultation - Ability to select multiple autocomplete values using Add More
+------------------------------------------------------------------------------
+Tags: regression, sanity
+
+* Create patient and open visit with details through API with details
+   |height|weight|registrationFee|
+   |172|67|200|
+* Login to app and navigate to "Clinical" app
+* Select existing patient from patient listing page under tab "Active"
+* Navigate to consultation
+* Add chief complaint on "History and Examination" template
+  |Chief Complaint|
+  |Headache|
+  |HeartBurn|
+  |Injury|
+* Go to "Consultation" tab
+* Verify display control with Caption "History and Examination" on "Consultation" tab, has the following details
+  |details|
+  |Chief Complaint Headache|
+  |Chief Complaint HeartBurn|
+  |Chief Complaint Injury|
+* Navigate to dashboard link
+* Verify display control "History and Examinations" on dashboard, has the following details
+        |details|
+        |History and Examination |
+        |Chief Complaint Headache|
+        |Chief Complaint HeartBurn|
+        |Chief Complaint Injury|
+* Navigate to latest visit page
+* Verify display control with Caption "Observations" on visit page, has the following details
+      |details|
+      |History and Examination |
+      |Chief Complaint Headache|
+      |Chief Complaint HeartBurn|
+      |Chief Complaint Injury|
+* Navigate to consultation
+* Remove chief complaint on "History and Examination" template
+  |Chief Complaint|
+  |Headache|
+  |HeartBurn|
+* Go to "Consultation" tab
+* Verify display control with Caption "History and Examination" on "Consultation" tab, has the following details
+  |details|
+  |Chief Complaint Injury|
+* Navigate to dashboard link
+* Verify display control "History and Examinations" on dashboard, has the following details
+      |details|
+      |History and Examination |
+      |Chief Complaint Injury|
+* Navigate to latest visit page
+* Verify display control with Caption "Observations" on visit page, has the following details
+    |details|
+    |History and Examination |
+    |Chief Complaint Injury|
+
+
+
+
+
+
+
+
+

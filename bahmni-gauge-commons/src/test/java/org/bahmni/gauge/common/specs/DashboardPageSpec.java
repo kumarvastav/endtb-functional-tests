@@ -167,4 +167,13 @@ public class DashboardPageSpec {
     public void verifyPatientDetails() {
         dashboardPage.verifyPatientDetails(dashboardPage.getPatientFromSpecStore());
     }
+
+    //Date specification format "MM DD YY"
+    // Ex: "01 Mar 15"
+    @Step("open the visit for date <date>")
+    public void openVisitForDate(String date)
+    {
+        dashboardPage.openRetrospectiveVisit(date);
+    }
+
 }

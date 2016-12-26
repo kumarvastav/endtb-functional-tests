@@ -8,6 +8,10 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.ConsultationPage;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ConsultationPageSpec {
 
     ConsultationPage consultationPage;
@@ -42,7 +46,13 @@ public class ConsultationPageSpec {
 
     @Step("Set retrospective date to <date>")
     public void setRetrospectiveDate(String date) {
-        consultationPage.openRegistrationDeskAndSet("", "", date);
+        if (date.equalsIgnoreCase("current date")) {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date currentDate = new Date();
+            consultationPage.openRegistrationDeskAndSet("", "", currentDate.toString());
+        } else {
+            consultationPage.openRegistrationDeskAndSet("", "", date);
+        }
     }
 
 
