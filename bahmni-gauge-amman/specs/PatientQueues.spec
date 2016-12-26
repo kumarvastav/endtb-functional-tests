@@ -15,12 +15,10 @@ Create Patient and Verify Programs Queue
 | firstName | lastName | givenNameArabic | familyNameArabic | gender | age | governorate | country | phoneNumber1 | spokenLanguages | nationality1 | expectedDateofArrival |
 | Al Padasd | Hassan   | أل              | حسن              | Male   | 12  | Amman       | Jordan  | +9898989898  | English         | Egyptian     | r 11-11-2016          |
 * Start "First Stage Validation" visit and navigate to Programs page
-* Register the patient to following program
+* Enroll patient to the following program
 | name                   | dateOfRegistration | programStatus  |
 | Reconstructive Surgery | 09/09/2016         | Identification |
-* On the login page
-* Login with username "BAHMNI_GAUGE_DATA_ADMIN_USER" and password "BAHMNI_GAUGE_DATA_ADMIN_PASSWORD" with location "BAHMNI_GAUGE_DATA_ADMIN_LOCATION"
-* Click on programs app
+* Navigate to queues
 * Search patient "Al Padasd Hassan" from "Programs" queue
 * Verify patient details of "Al Padasd Hassan" in queue
 | Name             |
@@ -50,9 +48,7 @@ Patient In Medical File incomplete queue
 | Specialty                         | Orthopedic |
 | Stage                             | 1          |
 * Save the consultation
-* On the login page
-* Login with username "BAHMNI_GAUGE_DATA_ADMIN_USER" and password "BAHMNI_GAUGE_DATA_ADMIN_PASSWORD" with location "BAHMNI_GAUGE_DATA_ADMIN_LOCATION"
-* Click on programs app
+* Navigate to queues
 * Search patient "Al Padasd Hassan" from "Incomplete Medical File" queue
 * Verify patient details of "Al Padasd Hassan" in queue
 | Date Of File Received | Name             | Name Of MLO    | Documents Needed To Be Complete |
@@ -73,9 +69,7 @@ Patient In Awaiting 1st stage validation queue
 | Date Received                 | 10/10/2016 |
 | Is the medical file complete? | Yes        |
 * Save the consultation
-* On the login page
-* Login with username "BAHMNI_GAUGE_DATA_ADMIN_USER" and password "BAHMNI_GAUGE_DATA_ADMIN_PASSWORD" with location "BAHMNI_GAUGE_DATA_ADMIN_LOCATION"
-* Click on programs app
+* Navigate to queues
 * Search patient "Al Padasd Hassan" from "Awaiting Validation - 1st Stage " queue
 * Verify patient details of "Al Padasd Hassan" in queue
 | Date Of File Received | Name             | Name Of MLO    | Nationality | Specialty  |
@@ -98,9 +92,7 @@ Patient In MoreInformation/ Postponed queue
 | Outcome for 1st stage surgical validation | Postponed               |
 | Postpone Reason                           | P2: Waiting for healing |
 * Save the consultation
-* On the login page
-* Login with username "BAHMNI_GAUGE_DATA_ADMIN_USER" and password "BAHMNI_GAUGE_DATA_ADMIN_PASSWORD" with location "BAHMNI_GAUGE_DATA_ADMIN_LOCATION"
-* Click on programs app
+* Navigate to queues
 * Search patient "Al Padasd Hassan" from "More Information / Postponed " queue
 * Verify patient details of "Al Padasd Hassan" in queue
 | Date Of Presentation | Name             | Outcomes For 1st Stage Surgical Validation | Postpone Reason         |
@@ -117,9 +109,7 @@ Patient In Awaiting Follow up validation queue
 * Edit "Reconstructive Surgery" Program with following details
 | programStatus     |
 | Network Follow-up |
-* On the login page
-* Login with username "BAHMNI_GAUGE_DATA_ADMIN_USER" and password "BAHMNI_GAUGE_DATA_ADMIN_PASSWORD" with location "BAHMNI_GAUGE_DATA_ADMIN_LOCATION"
-* Click on programs app
+* Navigate to queues
 * Search patient "Al Padasd Hassan" from "Awaiting Validation - Follow Up Stage " queue
 * Verify patient details of "Al Padasd Hassan" in queue
 | Name             | Name Of MLO    | Nationality | Specialty  |
@@ -144,9 +134,7 @@ Patient In Continue Follow up validation queue
 | Time for next medical follow-up to be done | 1 month                  |
 | Comments about next follow-up              | Followup After 1 month   |
 * Save the consultation
-* On the login page
-* Login with username "BAHMNI_GAUGE_DATA_ADMIN_USER" and password "BAHMNI_GAUGE_DATA_ADMIN_PASSWORD" with location "BAHMNI_GAUGE_DATA_ADMIN_LOCATION"
-* Click on programs app
+* Navigate to queues
 * Search patient "Al Padasd Hassan" from "To Continue Under Follow-Up " queue
 * Verify patient details of "Al Padasd Hassan" in queue
 | Date Of Presentation | Name             | Time For Next Medical Follow-up | Comments               |
@@ -162,6 +150,3 @@ Patient In Expected arrival queue
 * Verify patient details of "Al Padasd Hassan" in queue
 | Name             | Country | Nationality | Specialty  | Expected Date Of Arrival |
 | Al Padasd Hassan | Jordan  | Egyptian    | Orthopedic | 11/11/2016               |
-
-
-

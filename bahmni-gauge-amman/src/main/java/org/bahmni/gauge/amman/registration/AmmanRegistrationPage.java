@@ -74,7 +74,6 @@ public class AmmanRegistrationPage extends RegistrationFirstPage {
 
     public void createPatientUsingApi(AmmanPatient ammanPatient){
         BahmniRestClient.get().createPatient(ammanPatient,"patient_create.ftl");
-        StoreHelper.store(AmmanPatient.class,ammanPatient);
     }
 
     public void clickSave() {
@@ -82,7 +81,7 @@ public class AmmanRegistrationPage extends RegistrationFirstPage {
     }
 
     public void startVisitUsingApi(AmmanPatient ammanPatient) {
-        JSONObject reponse = BahmniRestClient.get().create(StoreHelper.getLatest(AmmanPatient.class), "visit");
+        JSONObject reponse = BahmniRestClient.get().create(ammanPatient, "visit");
         Object activeVisitUuid = reponse.get("uuid");
         ammanPatient.setActiveVisitUuid(activeVisitUuid.toString());
     }

@@ -4,6 +4,7 @@ import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
+import org.bahmni.gauge.amman.SpecStoreHelper;
 import org.bahmni.gauge.amman.registration.AmmanRegistrationPage;
 import org.bahmni.gauge.amman.registration.domain.AmmanPatient;
 import org.bahmni.gauge.amman.registration.domain.Fields;
@@ -79,6 +80,7 @@ public class RegistrationSpec {
         patientAttribute.setValue(name);
         ammanPatient.addAttribute(patientAttribute);
         registrationPage.createPatientUsingApi(ammanPatient);
+        SpecStoreHelper.store(AmmanPatient.class,ammanPatient);
         ammanPatient.setVisitType(visitType);
         registrationPage.startVisitUsingApi(ammanPatient);
     }

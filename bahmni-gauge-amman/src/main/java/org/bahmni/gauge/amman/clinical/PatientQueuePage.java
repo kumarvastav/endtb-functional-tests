@@ -5,6 +5,7 @@ import org.bahmni.gauge.common.clinical.PatientListingPage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
@@ -14,6 +15,9 @@ import java.util.List;
  * Created by swarup on 10/24/16.
  */
 public class PatientQueuePage extends PatientListingPage{
+
+    @FindBy(how= How.CSS, using = ".tabs .tab-item a")
+    public List<WebElement> tabs;
 
     @FindBy(how= How.CSS, using = ".table thead strong")
     public List<WebElement> columnNameElements;
@@ -49,5 +53,38 @@ public class PatientQueuePage extends PatientListingPage{
         }
         Assert.fail("Column '"+coulmnName+"' not found");
         return -1;
+    }
+
+    public boolean isNotPatientPresentInAnyTab(String patientName) {
+
+        for (WebElement tab : tabs){
+            if(tab.getText().contains("Program") || tab.getText().contains("All"))
+                continue;
+
+            new Actions(driver).moveToElement(tab).click().perform();
+            waitForSpinner();
+            enterPatientIDOrName(patientName);
+            if (rowsList.size() != 0) return false;
+        }
+        return true;
+    }
+
+    public boolean isPatientPresentOnlyInGivenTab(String patientName, String queueName) {
+        boolean presentOneInGivenTab = false;
+        clickTab(queueName);
+        enterPatientIDOrName(patientName);
+        if (rowsList.size() > 0) presentOneInGivenTab = true;
+        
+        for (WebElement tab : tabs){
+            if(tab.getText().contains("Program") || tab.getText().contains("All") || tab.getText().contains(queueName))
+                continue;
+            new Actions(driver).moveToElement(tab).click().perform();
+            waitForSpinner();
+            enterPatientIDOrName(patientName);
+            if (rowsList.size() == 1) {
+                Assert.fail("patient also found in" +  tab.findElement(By.tagName("span")).getText());
+            }
+        }
+        return presentOneInGivenTab;
     }
 }
