@@ -55,13 +55,13 @@ public class RegistrationVisitDetailsPage extends BahmniPage{
 			waitForElementOnPage("[data-ng-switch-when*='"+displayControlName+"']");
 			WebElement displayControl = findElement(By.cssSelector("[data-ng-switch-when*='"+displayControlName+"']"));
 			waitForSpinner();
-			return displayControl.getText().replace("\n", " ");
+			return displayControl.getText().replace("\n", "");
 
 	}
 	public String getDisplayControlTextWithCaption(String displayControlCaption ){
 		WebElement displayControl = findElement(By.xpath(".//h2[contains(text(),\""+displayControlCaption+"\")]/ancestor::*[contains(@class,\"dashboard-section\")][1]"));
 		waitForSpinner();
-		return displayControl.getText().replace("\n", " ");
+		return displayControl.getText().replace("\n", "");
 
 	}
 
