@@ -24,7 +24,7 @@ public class ConsultationTabPage extends BahmniPage {
     public String getDisplayControlTextWithCaption(String displayControlCaption) {
         WebElement displayControl = findElement(By.xpath(".//*[contains(text(),\"" + displayControlCaption + "\")]/../../../../../table/tbody"));
         waitForSpinner();
-        return displayControl.getText().replace("\n", " ");
+        return displayControl.getText().replace("\n", "");
 
     }
 }
