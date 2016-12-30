@@ -4,7 +4,6 @@ import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
@@ -23,8 +22,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import java.awt.*;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -155,7 +152,6 @@ public class ObservationSpec extends BaseSpec {
     public void enterObservations(String template, Table table) {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.enterObservations(template, table);
-//        storeObservationFormInSpecStore(observationForm);
     }
 
     @Step("Fill Tuberculosis - Followup template with following observation details <table>")
