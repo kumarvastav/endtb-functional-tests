@@ -20,6 +20,7 @@ Tags: regression, sanity
 * Fill "Vitals" template with following observation details
     |Pulse|Systolic|Diastolic|Posture|Temperature|RR|SPO2|
     |71|111|77|Sitting|99|17|99|
+* Save the consultation
 * Navigate to dashboard
 * Logout the user
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_ANOTHER_LOCATION"
