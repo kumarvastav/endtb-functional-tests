@@ -88,8 +88,7 @@ Tags: regression, sanity
 
 Ability to select and delete multiple values against a single field
 --------------------------------------------------------------------
-
- Tags: regression, sanity
+Tags: regression, sanity
 
 * Create a new patient and open visit through API
 * Login to app and navigate to "Clinical" app
@@ -112,9 +111,10 @@ Ability to select and delete multiple values against a single field
       |Dizziness|
       |Numbness|
 * Navigate to consultation
+* Go to "Observation" tab
 * Remove Adverse effect from Tuberculosis - Followup template
- |Adverse Effects|
- |Numbness|
+      |Adverse Effects|
+      |Numbness|
  * Save the consultation
  * Go to "Consultation" tab
  * Verify display control with Caption "Tuberculosis - Followup" on "Consultation" tab, has the following details
