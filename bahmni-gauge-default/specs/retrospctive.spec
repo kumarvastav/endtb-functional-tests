@@ -12,7 +12,7 @@ Tags: regression, sanity
 * Create a new patient and open visit through API
 * Login to app and navigate to "Clinical" app
 * Select existing patient from patient listing page under tab "All"
-* Set retrospective date to "01/03/2015"
+* Set retrospective date to "03/01/2015"
 * Navigate to consultation
 * Fill "History and Examination" template with following observation details
     |Chief Complaint|for|Chief Complaint Notes|History Notes|Examination Notes|Smoking History|
@@ -53,7 +53,7 @@ Tags: regression, sanity
 * Navigate to dashboard
 * Click on clinical app
 * Select existing patient from patient listing page under tab "All"
-* Set retrospective date to "01/03/2015"
+* Set retrospective date to "03/01/2015"
 * Navigate to consultation
 * Go to "Medications" tab
 * Create drug order
@@ -100,7 +100,7 @@ Tags: regression, sanity
 * Login to the application
 * Click on clinical app
 * Select existing patient from patient listing page under tab "All"
-* Set retrospective date to "01/03/2015"
+* Set retrospective date to "03/01/2015"
 * Navigate to consultation
 * Go to "Diagnosis" tab
 * Add following diagnosis

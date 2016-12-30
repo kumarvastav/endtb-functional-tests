@@ -151,8 +151,8 @@ Ability to select and delete multiple values against a single field
 * Go to "Consultation" tab
 * Verify display control with Caption "Tuberculosis - Followup" on "Consultation" tab, has the following details
     |details|
-    |Adverse Effects Numbness|
-    |Adverse Effects Dizziness|
+    |Adverse EffectsNumbness|
+    |Adverse EffectsDizziness|
 * Go to "Observations" tab
 * Remove Adverse effect from Tuberculosis - Followup template
  |Adverse Effects|
@@ -162,12 +162,12 @@ Ability to select and delete multiple values against a single field
  * Verify display control "Tuberculosis Follow Up" on dashboard, has the following details
        |details|
        |Tuberculosis - Followup |
-       |Adverse Effects Dizziness|
+       |Adverse EffectsDizziness|
  * Navigate to consultation
  * Go to "Consultation" tab
  * Verify display control with Caption "Tuberculosis - Followup" on "Consultation" tab, has the following details
      |details|
-     |Adverse Effects Dizziness|
+     |Adverse EffectsDizziness|
 
 Consultation - Ability to select multiple autocomplete values using Add More
 ------------------------------------------------------------------------------
@@ -187,23 +187,23 @@ Tags: regression, sanity
 * Go to "Consultation" tab
 * Verify display control with Caption "History and Examination" on "Consultation" tab, has the following details
   |details|
-  |Chief Complaint Headache|
-  |Chief Complaint HeartBurn|
-  |Chief Complaint Injury|
+  |Chief ComplaintHeadache|
+  |Chief ComplaintHeartBurn|
+  |Chief ComplaintInjury|
 * Navigate to dashboard link
 * Verify display control "History and Examinations" on dashboard, has the following details
         |details|
         |History and Examination |
-        |Chief Complaint Headache|
-        |Chief Complaint HeartBurn|
-        |Chief Complaint Injury|
+        |Chief ComplaintHeadache|
+        |Chief ComplaintHeartBurn|
+        |Chief ComplaintInjury|
 * Navigate to latest visit page
 * Verify display control with Caption "Observations" on visit page, has the following details
       |details|
       |History and Examination |
-      |Chief Complaint Headache|
-      |Chief Complaint HeartBurn|
-      |Chief Complaint Injury|
+      |Chief ComplaintHeadache|
+      |Chief ComplaintHeartBurn|
+      |Chief ComplaintInjury|
 * Navigate to consultation
 * Remove chief complaint on "History and Examination" template
   |Chief Complaint|
