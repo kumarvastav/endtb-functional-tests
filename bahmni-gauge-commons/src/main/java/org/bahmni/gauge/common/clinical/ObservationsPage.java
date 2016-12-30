@@ -2,7 +2,6 @@ package org.bahmni.gauge.common.clinical;
 
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.openqa.selenium.By;
@@ -10,10 +9,7 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.awt.*;
-import java.io.IOException;
 import java.util.List;
 
 //import javafx.scene.control.Tab;
@@ -60,10 +56,8 @@ public class ObservationsPage extends BahmniPage {
 
     public WebElement expandObservationTemplate(String templateId) {
         WebElement template = driver.findElement(getSectionWithChildHavingId(templateId));
-        WebElement downKey = waitForElementwithTimeOut(driver, ExpectedConditions.presenceOfElementLocated(By.cssSelector("#" + templateId + " h2 i.fa-caret-down:not(.ng-hide)")), 1);
-        if (downKey != null) { //checking if down key exists
+        if (driver.findElements( By.cssSelector("#" + templateId + " h2 i.fa-caret-down:not(.ng-hide)")).size() != 0)
             return template;
-        }
 
         WebElement expandArrow = driver.findElement(By.cssSelector("#" + templateId + " h2 i.fa-caret-right:not(.ng-hide)"));
         if (null != expandArrow) {
@@ -113,7 +107,6 @@ public class ObservationsPage extends BahmniPage {
     public void enterObservations(String template, Table data) {
         ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
         observationForm.fillUp(data);
-        save.click();
         storeObservationFormInSpecStore(observationForm);
     }
 
