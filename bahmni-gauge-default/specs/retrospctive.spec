@@ -1,16 +1,14 @@
-[Retrospective] Existing patient retrospective data
-=====================
-Created by prabhashs on 08/12/16
-
-This is an executable specification file which follows markdown syntax.
-Every heading in this file denotes a scenario. Every bulleted point denotes a step.
+Retrospective Data
+==================
      
-Verify retrospective entry of data
-----------------
+Verify retrospective entry of observation data
+----------------------------------------------
 Tags: regression, sanity
 
 * Create a new patient and open visit through API
-* Login to app and navigate to "Clinical" app
+* On the login page
+* Login to the application
+* Click on clinical app
 * Select existing patient from patient listing page under tab "All"
 * Set retrospective date to "03/01/2015"
 * Navigate to consultation
@@ -24,27 +22,16 @@ Tags: regression, sanity
 * Fill "Gynaecology" template with following observation details
     |P/S (Per Speculum) - Cervix|
     |Normal:VIA -ve|
+* Save the consultation
 * Navigate to patient dashboard
-* Navigate to latest visit page
+* open the visit for date "01 Mar 15"
 * Verify display control with Caption "Observations" on visit page, has the following details
-    |details|
-    |Chief ComplaintFever|
-    |Chief Complaint NotesBody Pain|
-    |History Notesrepeat|
-    |Examination Notesrepeat|
-    |Smoking HistoryNo|
-    |Pulse (72 - 72)71/min|
-    |Systolic (110 - 140)111mm Hg|
-    |Diastolic (70 - 85)77mm Hg|
-    |PostureSitting|
-    |Temperature (98.6 - 98.6)99F|
-    |RR (16 - 20)17/min|
-    |SPO2 (> 97)99%|
-    |Normal|
+    |Chief Complaint|Chief Complaint Notes|History Notes|Examination Notes|Smoking History|Pulse (72 - 72)|Systolic (110 - 140)|Diastolic (70 - 85)|Posture|Temperature (98.6 - 98.6)|RR (16 - 20)|SPO2 (> 97)|P/S (Per Speculum) - Cervix|
+    |Fever|Body Pain|repeat|repeat|No|71/min|111mm Hg|77mm Hg|Sitting|99F|17/min|99%|Normal|
 
 
-Existing patient retrospective data >>Verify retrospective entry of data
------------------------------------------------------------------------
+Verify retrospective entry of drugs data
+----------------------------------------
 Tags: regression, sanity
 
 * Create a new patient through API
@@ -81,7 +68,7 @@ Tags: regression, sanity
     |details|
     |Paracetamol 4 mg, Immediately, Oral - 2 Day(s)|
     |Isoniazid (H) 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
-* Navigate to latest visit page
+* open the visit for date "01 Mar 15"
 * Verify display control "treatment" on visit page, has the following details
      |details|
      |Paracetamol 4 mg, Immediately, Oral - 2 Day(s)|
@@ -91,8 +78,8 @@ Tags: regression, sanity
 * Logout the user
 
 
-Add/delete coded and non coded retrospective dignosis for existing patient
------------------------------------------------------------------------
+Verify retrospective entry of coded and non coded dignosis
+----------------------------------------------------------
 Tags: regression, sanity
 
 * Create a new patient and open visit through API
@@ -114,8 +101,8 @@ Tags: regression, sanity
     |details|
     |High Blood Pressure CONFIRMED PRIMARY|
     |Pyloric stenosis PRESUMED SECONDARY|
- * open the visit for date "01 Mar 15"
- * Verify display control with Caption "Diagnoses" on visit page, has the following details
+* open the visit for date "01 Mar 15"
+* Verify display control with Caption "Diagnoses" on visit page, has the following details
      |details|
      |High Blood Pressure CONFIRMED PRIMARY|
      |Pyloric stenosis PRESUMED SECONDARY|
