@@ -1,24 +1,18 @@
 package org.bahmni.gauge.common;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.lang.reflect.Field;
+import java.util.Objects;
 
 public enum FormElement {
     INPUT("input") {
         public void fillUp(WebElement observationNode, String value) {
             WebElement element = observationNode.findElement(getSelector());
-            try {
+            if (!Objects.equals(element.getAttribute("type"), "date"))
                 element.clear();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             element.sendKeys(value);
         }
     },
