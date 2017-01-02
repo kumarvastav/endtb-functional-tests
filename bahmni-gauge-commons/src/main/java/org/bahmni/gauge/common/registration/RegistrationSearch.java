@@ -1,15 +1,13 @@
 package org.bahmni.gauge.common.registration;
 
+import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.data.BahmniTable;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -64,6 +62,15 @@ public class RegistrationSearch extends BahmniPage{
     public void clickCreateNew() {
     	iconCreateNew.click();
     }
+
+    public void verifycreateNewIconNotDisplayed(){
+    	try{
+    		Assert.assertFalse(iconCreateNew.isDisplayed());
+
+		}catch(NoSuchElementException exception){
+			exception.printStackTrace();
+		}
+	}
 
     public void enterName(String name) {
     	txtName.sendKeys(name,Keys.ENTER);

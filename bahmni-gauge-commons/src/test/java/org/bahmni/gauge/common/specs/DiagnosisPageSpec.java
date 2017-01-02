@@ -7,6 +7,7 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.DiagnosisPage;
+import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.common.clinical.domain.Diagnosis;
 import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
@@ -50,8 +51,13 @@ public class DiagnosisPageSpec extends BahmniPage {
     public void deleteDiagnoses(Table table){
         List<Diagnosis> diagnoses=TableTransformer.asEntityList(table, Diagnosis.class);
         DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
-
         diagnosisPage.deleteDiagnoses(diagnoses);
+    }
+
+    @Step("Remove following Diagnosis <table>")
+    public void removeDiagnosis(Table data) {
+        DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
+        diagnosisPage.removeDiagnosis(data);
     }
     @Step("Add diagnosis through API <table>")
     public void addDiagnosisAPI(Table table){

@@ -5,6 +5,7 @@ import com.thoughtworks.gauge.TableRow;
 
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
@@ -136,10 +137,12 @@ public class ObservationsPage extends BahmniPage {
         String value;
         for (TableRow row : rows) {
             value = row.getCell(columnNames.get(0));
-            driver.findElement(By.xpath(("(.//*[contains(@id,'observation_')])[" + rowCount + "]"))).sendKeys(value);
+            addmore.click();
+            WebElement chiefComplaints=driver.findElement(By.xpath(("(.//*[contains(@id,'observation_')])[" + rowCount + "]")));
+            chiefComplaints.sendKeys(value);
             driver.findElement(By.xpath("(.//*[contains(@id,'observation_')])[" + rowCount + "]/../div/button")).click();
             rowCount++;
-            addmore.click();
+
 
         }
         save.click();
@@ -149,7 +152,8 @@ public class ObservationsPage extends BahmniPage {
     public void removeChiefComplaints(String template, Table data) {
        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
         List<TableRow> rows = data.getTableRows();
-        int rowSize=rows.size();
+        int rowSize=driver.findElements(By.xpath("(. //*[contains(@class,'concept-name ng-pristine ng-untouched ng-valid ui-autocomplete-input')])")).size();
+        System.out.println("ROW SIZE IN Chief Complaint ---------------> --------->  "+rowSize);
         List<String> columnNames = data.getColumnNames();
         String value;
         int rowCount=1;
@@ -169,5 +173,4 @@ public class ObservationsPage extends BahmniPage {
         }
         save.click();
     }
-
 }

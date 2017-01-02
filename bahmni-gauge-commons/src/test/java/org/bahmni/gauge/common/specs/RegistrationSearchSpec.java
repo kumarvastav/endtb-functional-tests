@@ -17,6 +17,12 @@ public class RegistrationSearchSpec {
 		BahmniPage.waitForSpinner(DriverFactory.getDriver());
 	}
 
+	@Step("Verify createNewButton is notPresent")
+	public void verifyLinksonRegistrationPage() {
+		RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
+		registrationSearch.verifycreateNewIconNotDisplayed();
+	}
+
 	@Step("Click on create new patient link")
 	public void clickOnCreateNew() {
         RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);

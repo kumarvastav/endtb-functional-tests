@@ -1,5 +1,6 @@
 package org.bahmni.gauge.common;
 
+import com.thoughtworks.gauge.GaugeRuntime;
 import com.thoughtworks.gauge.TableRow;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
@@ -24,6 +25,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.os.WindowsUtils;
+import org.openqa.selenium.remote.service.DriverService;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -426,6 +429,39 @@ public class BahmniPage {
         robot.keyRelease(KeyEvent.VK_ENTER);
 
         robot.delay(1000);
+    }
+
+    // UploadFileNew reduces the dependency of Robot.
+
+    protected void uploadFileNew(String s) throws AWTException, IOException {
+
+
+        String sPath = new java.io.File(".").getCanonicalPath() + "/src/main/resources/upload/" + s;
+        File file = new File(sPath);
+        StringSelection stringSelection = new StringSelection(file.getAbsolutePath());
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+        Robot robot = new Robot();
+        WebElement frame = driver.switchTo().activeElement();
+        frame.sendKeys(sPath);
+        robot.keyPress(KeyEvent.VK_ESCAPE);
+        robot.keyRelease(KeyEvent.VK_ESCAPE);
+
+
+        robot.keyPress(KeyEvent.VK_META);
+        robot.keyPress(KeyEvent.VK_TAB);
+        robot.keyRelease(KeyEvent.VK_META);
+        robot.keyRelease(KeyEvent.VK_TAB);
+        robot.delay(2000);
+
+        robot.keyPress(KeyEvent.VK_ESCAPE);
+        robot.keyRelease(KeyEvent.VK_ESCAPE);
+
+        robot.delay(1000);
+
+       /* Runtime runtime = Runtime.getRuntime();
+        runtime.exec("kill -9 GaugeRuntime.exe").destroy();
+*/
+
     }
 
     public void switchToLatestTab() {
