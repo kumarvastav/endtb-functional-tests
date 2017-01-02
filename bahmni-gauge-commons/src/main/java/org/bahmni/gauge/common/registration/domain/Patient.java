@@ -7,6 +7,8 @@ import org.bahmni.gauge.data.Model;
 import org.bahmni.gauge.data.ModelMetaData;
 import org.bahmni.gauge.rest.BahmniRestClient;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -220,8 +222,10 @@ public class Patient extends Model {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDateOfBirth(String dateOfBirth) throws ParseException {
+        SimpleDateFormat userFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat serverFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        this.dateOfBirth = serverFormat.format(userFormat.parse(dateOfBirth));
     }
 
     public String getDistrict() {

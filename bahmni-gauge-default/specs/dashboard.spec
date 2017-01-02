@@ -10,8 +10,8 @@ Verify display of patient profile on ADT, dashboard & Visit page
 Tags: regression, sanity
 
 * Create the following patient using api
-    |prefix|firstName|lastName|gender|age|district|village|
-    |GAN|Ram|Singh|M|1/12/1966|Bilaspur|Khanapur|
+    |prefix|firstName|lastName|gender|dateOfBirth|district|village|
+    |GAN|Ram|Singh|M|20/10/1966|Bilaspur|Khanapur|
 * Open visit for previous patient using api
     |location|type|
     |Registration Desk|OPD|
