@@ -86,15 +86,7 @@ public class PatientListingPage extends BahmniPage {
 		clickTab(tab);
 		enterPatientIDOrName(patientID);
 		waitForSpinner();
-		try {
-			WebElement element = findElement(By.cssSelector(".active-patient"));
-			if(element!=null)
-				return true;
-			else
-				return false;
-		} catch (NoSuchElementException ex){
-			return false;
-		}
+		return driver.findElements(By.cssSelector(".active-patient")).size() != 0;
 	}
 
     public int getAvailableBedCount() {

@@ -4,16 +4,11 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.Disposition;
 import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.util.StringUtil;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormatter;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
-
-import java.text.Format;
 
 public class DispositionPage extends BahmniPage {
     @FindBy(how = How.CSS, using = "#dispositionAction")

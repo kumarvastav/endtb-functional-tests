@@ -72,21 +72,21 @@ Tags: regression, sanity
 * Start a visit "OPD"
 * Enter visit details from table
     |height|weight|fees|comments|
-    |50|5|100|bmi observations seems normal|
+    |150|50|100|bmi observations seems normal|
 * Verify the details on "bmi" display control
     |details|
-    |HEIGHT50|
-    |WEIGHT5|
-    |BMI20|
+    |HEIGHT150|
+    |WEIGHT50|
+    |BMI22.22|
     |BMI STATUSNormal|
 * Enter visit details from table
     |height|weight|fees|
-    |50|1|100|
+    |160|40|100|
 * Verify the details on "bmi" display control
     |details|
-    |HEIGHT50|
-    |WEIGHT1|
-    |BMI4|
+    |HEIGHT160|
+    |WEIGHT40|
+    |BMI15.62|
     |BMI STATUSVery Severely Underweight|
 
 Closing visit for an admitted patient displays error message

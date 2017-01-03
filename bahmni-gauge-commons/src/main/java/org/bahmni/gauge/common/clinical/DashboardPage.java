@@ -23,9 +23,10 @@ import org.openqa.selenium.support.How;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.Calendar;
+import java.util.*;
+
+import static java.util.Calendar.*;
 
 public class DashboardPage extends BahmniPage {
 
@@ -228,14 +229,16 @@ public class DashboardPage extends BahmniPage {
         Assert.assertTrue("Last Name don't match", patientNameAndID.getText().contains(patient.getIdNumber()));
 
         Assert.assertTrue("Gender don't match", patientGenderAndAge.getText().contains(patient.getGender()));
-        DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
         Date dob = null;
         try {
-            dob = df.parse(patient.getAge());
+            dob = df.parse(patient.getDateOfBirth());
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        int age = new Date().getYear() - dob.getYear();
+        int age = getDiffYears(new Date(), dob);
         Assert.assertTrue("Age don't match", patientGenderAndAge.getText().contains((age + "")));
     }
 
@@ -244,5 +247,22 @@ public class DashboardPage extends BahmniPage {
         Actions builder = new Actions(driver);
         builder.moveToElement(visitDate).click().perform();
         waitForSpinner();
+    }
+
+    private static int getDiffYears(Date today, Date dob) {
+        Calendar date1 = getCalendar(dob);
+        Calendar date2 = getCalendar(today);
+        int diff = date2.get(YEAR) - date1.get(YEAR);
+        if (date1.get(MONTH) > date2.get(MONTH) ||
+                (date1.get(MONTH) == date2.get(MONTH) && date1.get(DATE) > date2.get(DATE))) {
+            diff--;
+        }
+        return diff;
+    }
+
+    private static Calendar getCalendar(Date date) {
+        Calendar cal = Calendar.getInstance(Locale.US);
+        cal.setTime(date);
+        return cal;
     }
 }
