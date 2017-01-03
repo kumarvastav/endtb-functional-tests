@@ -43,9 +43,11 @@ public class DispositionPage extends BahmniPage {
         txtNotes.sendKeys(notes);
 
         Disposition disposition=new Disposition();
+
         disposition.setType(dispositionType);
         disposition.setNotes(notes);
-        disposition.setDate(StringUtil.transformPatternToData("<NOW[dd MMM yy h:mm a]>"));
+        disposition.setDate(StringUtil.transformPatternToData("<NOW[dd MMM yy h:]>"));
+
         StoreHelper.store(Disposition.class,disposition);
     }
 }
