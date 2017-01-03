@@ -2,6 +2,7 @@ package org.bahmni.gauge.common.clinical;
 
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.Disposition;
+import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -16,7 +17,8 @@ public class ConsultationTabPage extends BahmniPage {
     public WebElement dispositionDisplayControl;
 
     public void verifyDisposition(Disposition disposition) {
-        Assert.assertEquals("Disposition data dont match", (disposition.getType() + " on " + disposition.getDate()).toLowerCase(), dispositionDisplayControl.getText().toLowerCase());
+        Assert.assertThat("Disposition data dont match", dispositionDisplayControl.getText().toLowerCase(), CoreMatchers.containsString((disposition.getType() + " on " + disposition.getDate()).toLowerCase()));
+
         findElement(By.cssSelector(".toggle.fr.has-notes")).click();
         Assert.assertTrue("Disposition notes dont match", findElement(By.cssSelector(".consultation-content .disposition .notes")).getText().contains(disposition.getNotes()));
     }
