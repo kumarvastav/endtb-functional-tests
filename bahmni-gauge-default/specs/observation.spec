@@ -177,9 +177,50 @@ Tags: regression, sanity
       |Injury|
 * Navigate to latest visit page
 * Verify display control with Caption "Observations" on visit page, has the following details
+<<<<<<< 0348694097e31ad6c4eaa868f0a71d73a428fa9f
     |History and Examination|
     |Chief Complaint|
     |Injury|
+=======
+    |details|
+    |History and Examination |
+    |Chief Complaint Injury|
+
+Ability to Upload Consultation Image
+--------------------------------
+Tags: regression, sanity
+
+* Create patient and open visit with details through API
+* Login to app and navigate to "Clinical" app
+* Select existing patient from patient listing page under tab "Active"
+* Navigate to consultation
+* Upload consultation images with Notes on "History and Examination"
+  |Image|Comment|
+  |MRIScan.jpg|MRIScan|
+  |xray.jpeg|XRayCopy|
+  |ultrasound.jpeg|US Copy|
+* Go to "Consultation" tab
+* Verify display control with Caption "History and Examination" on "Consultation" tab, has the following details
+  |details|
+  |Image|
+  |Image|
+  |Image|
+* Navigate to dashboard link
+* Verify display control "History and Examinations" on dashboard, has the following details
+  |details|
+  |Image MRIScan|
+  |Image XRayCopy|
+  |Image US Copy|
+* Navigate to latest visit page
+* Verify display control with Caption "Observations" on visit page, has the following details
+  |details|
+  |Image MRIScan|
+  |Image XRayCopy|
+  |Image US Copy|
+
+
+
+>>>>>>> [Manpreet] Roles and Prvlages some scenario and Multiple Image upload Scenario
 
 
 Ability to Upload Consultation Image
