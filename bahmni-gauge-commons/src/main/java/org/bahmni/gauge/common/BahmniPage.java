@@ -458,10 +458,39 @@ public class BahmniPage {
 
         robot.delay(1000);
 
-       /* Runtime runtime = Runtime.getRuntime();
-        runtime.exec("kill -9 GaugeRuntime.exe").destroy();
-*/
 
+    }
+
+
+    protected void uploadImage(String imageName) throws AWTException, IOException {
+
+        String sPath = new java.io.File(".").getCanonicalPath() + "/src/main/resources/upload/" + imageName;
+        WebElement frame = driver.switchTo().activeElement();
+        frame.sendKeys(sPath);
+        String osName = System.getProperty("os.name");
+        boolean isOSX = osName.startsWith("Mac OS X");
+        Robot robot = new Robot();
+
+        robot.keyPress(KeyEvent.VK_ESCAPE);
+        robot.keyRelease(KeyEvent.VK_ESCAPE);
+
+        if(isOSX) {
+            robot.keyPress(KeyEvent.VK_META);
+            robot.keyPress(KeyEvent.VK_TAB);
+            robot.keyRelease(KeyEvent.VK_META);
+            robot.keyRelease(KeyEvent.VK_TAB);
+        }
+        else
+        {
+            robot.keyPress(KeyEvent.VK_ALT);
+            robot.keyPress(KeyEvent.VK_TAB);
+            robot.keyRelease(KeyEvent.VK_ALT);
+            robot.keyRelease(KeyEvent.VK_TAB);
+
+        }
+        robot.delay(3000);
+        robot.keyPress(KeyEvent.VK_ESCAPE);
+        robot.keyRelease(KeyEvent.VK_ESCAPE);
     }
 
     public void switchToLatestTab() {

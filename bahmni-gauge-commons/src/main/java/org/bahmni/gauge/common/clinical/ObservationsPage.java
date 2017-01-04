@@ -138,7 +138,7 @@ public class ObservationsPage extends BahmniPage {
         for (TableRow row : rows) {
             value = row.getCell(columnNames.get(0));
             addmore.click();
-            WebElement chiefComplaints=driver.findElement(By.xpath(("(.//*[contains(@id,'observation_')])[" + rowCount + "]")));
+            WebElement chiefComplaints = driver.findElement(By.xpath(("(.//*[contains(@id,'observation_')])[" + rowCount + "]")));
             chiefComplaints.sendKeys(value);
             driver.findElement(By.xpath("(.//*[contains(@id,'observation_')])[" + rowCount + "]/../div/button")).click();
             rowCount++;
@@ -150,25 +150,57 @@ public class ObservationsPage extends BahmniPage {
 
 
     public void removeChiefComplaints(String template, Table data) {
-       ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
+        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
         List<TableRow> rows = data.getTableRows();
-        int rowSize=driver.findElements(By.xpath("(. //*[contains(@class,'concept-name ng-pristine ng-untouched ng-valid ui-autocomplete-input')])")).size();
-        System.out.println("ROW SIZE IN Chief Complaint ---------------> --------->  "+rowSize);
+        int rowSize = driver.findElements(By.xpath("(. //*[contains(@class,'concept-name ng-pristine ng-untouched ng-valid ui-autocomplete-input')])")).size();
         List<String> columnNames = data.getColumnNames();
         String value;
-        int rowCount=1;
+        int rowCount = 1;
         for (TableRow row : rows) {
             value = row.getCell(columnNames.get(0));
+            for (rowCount = 1; rowCount <= rowSize; rowCount++) {
+                WebElement element = driver.findElement(By.xpath(("(.//*[contains(@id,'observation_')])[" + rowCount + "]")));
+                if (value.equals(element.getAttribute("value")) && (rowCount != 1)) {
+                    driver.findElement(By.xpath(("(.//*[contains(@id,'removeClonedObs')])[" + rowCount + "]"))).click();
+                }
+            }
+        }
+        save.click();
+    }
+
+    public void uploadConsultaionImageAndAddComment(String template, Table table) throws AWTException, IOException, InterruptedException {
+        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
+        List<TableRow> rows = table.getTableRows();
+        int rowCount = 1;
+        for (TableRow row : rows) {
+            String imageName = row.getCell("Image");
+            waitForSpinner();
+            scrollToBottom();
+            driver.findElement(By.xpath("(//label[contains(@class,'placeholder btn')])[" + rowCount + "]")).click();
+            Thread.sleep(3000);
+            uploadImage(imageName);
+            waitForSpinner();
+            driver.findElement(By.xpath("(//legend/strong[contains(text(),'Images')]/../../..//button[@toggle='observation.showComment'])[" + rowCount + "]")).click();
+            driver.findElement(By.xpath("(//textarea[contains(@class,'consultation-img-comments')])[" + rowCount + "]")).sendKeys(row.getCell("Comment"));
+            driver.findElement(By.xpath(("(.//*[contains(@id,'image_addmore_observation_')])"))).click();
+            rowCount++;
+        }
+        save.click();
+        waitForSpinner();
+    }
+
+    public void removeConsultationImage(String template, int data) {
+        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
+        int totalImages = driver.findElements(By.xpath("(//*[contains(@class,'has-image')])")).size();
+        String value;
+        int rowCount = 1;
+        while (rowCount<=data) {
 
             for (rowCount = 1; rowCount <= rowSize; rowCount++) {
                 WebElement element = driver.findElement(By.xpath(("(.//*[contains(@id,'observation_')])[" + rowCount + "]")));
-                if (value.equals(element.getAttribute("value")) && (rowCount!=1)) {
-                    System.out.println("Removed the Element ---------------->"+element.getAttribute("value"));
+                if (value.equals(element.getAttribute("value")) && (rowCount != 1)) {
                     driver.findElement(By.xpath(("(.//*[contains(@id,'removeClonedObs')])[" + rowCount + "]"))).click();
-
                 }
-
-
             }
         }
         save.click();
