@@ -16,18 +16,19 @@ Tags: regression
     |xray.jpeg|Knee - Right, 1 or 2 views (X-ray)|
     |xray.jpeg|Knee - Right, 1 or 2 views (X-ray)|
 * Save radiology upload
-//* Create new visit on radiology upload page
-//    |type|startDate|endDate|
-//    |LAB VISIT|2015-03-01|2015-03-02|
-//* Upload following images in visit "1"
-//    |image|name|
-//    |xray.jpeg|Knee - Right, 1 or 2 views (X-ray)|
-//* Save radiology upload
-//* Remove image no "1" on visit "2"
-//* Remove image no "1" on visit "2"
-//* Undo remove image no "1" on visit "2"
-//* Upload following images in visit "2"
-//    |image|name|
-//    |xray.jpeg|Knee - Right, 1 or 2 views (X-ray)|
-//* Save radiology upload
+* Create new visit on radiology upload page
+    |type|startDate|endDate|
+    |LAB VISIT|01-03-2015|02-03-2015|
+* Upload following images in visit "0"
+    |image|name|
+    |xray.jpeg|Knee - Right, 1 or 2 views (X-ray)|
+* Save radiology upload
+* Expand current visit
+* Remove image no "1" on current visit
+* Remove image no "2" on current visit
+* Undo Remove image no "1" on current visit
+* Upload following images in visit "1"
+    |image|name|
+    |xray.jpeg|Knee - Right, 1 or 2 views (X-ray)|
+* Save radiology upload
 

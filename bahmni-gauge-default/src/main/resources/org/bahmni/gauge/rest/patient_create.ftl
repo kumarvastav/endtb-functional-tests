@@ -10,7 +10,6 @@
 ],
 "addresses":[
 {
-"cityVillage": "SADVACHHAPAR"
 "countyDistrict":"${patient.district}",
 "stateProvince":"Chattisgarh"
 }
