@@ -183,7 +183,7 @@ public class BahmniPage {
 
     public static <T> T waitForElement(WebDriver driver, ExpectedCondition<T> expectedCondition) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, 60);
+            WebDriverWait wait = new WebDriverWait(driver, 120);
             return wait.until(expectedCondition);
         } catch (Exception e) {
             e.printStackTrace();

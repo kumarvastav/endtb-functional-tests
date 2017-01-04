@@ -12,8 +12,6 @@ import org.openqa.selenium.support.How;
 
 import java.util.List;
 
-//import javafx.scene.control.Tab;
-
 public class ObservationsPage extends BahmniPage {
 
     @FindBy(how = How.CSS, using = "#template-control-panel-button")
@@ -72,9 +70,9 @@ public class ObservationsPage extends BahmniPage {
     }
 
     @Deprecated
-    public void fillTemplateData(Table table, ObservationForm form) {
+    public void fillTemplateData(Table table) {
 
-        WebElement observ_label = null;
+        WebElement observ_label;
         WebElement answer;
         List<TableRow> rows = table.getTableRows();
         List<String> columnNames = table.getColumnNames();
@@ -114,10 +112,9 @@ public class ObservationsPage extends BahmniPage {
         dashboard.click();
     }
 
-    public void selectSuggestion(String enteredValue) {
+    public void selectSuggestion() {
         List<WebElement> elements = this.driver.findElements(By.cssSelector(".suggestion-item"));
         for (WebElement element : elements) {
-//            if (element.getText().equals(enteredValue))
             element.click();
             break;
         }
@@ -149,27 +146,22 @@ public class ObservationsPage extends BahmniPage {
 
 
     public void removeChiefComplaints(String template, Table data) {
-       ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
+        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
         List<TableRow> rows = data.getTableRows();
         int rowSize=rows.size();
         List<String> columnNames = data.getColumnNames();
         String value;
-        int rowCount=1;
+        int rowCount;
         for (TableRow row : rows) {
             value = row.getCell(columnNames.get(0));
 
             for (rowCount = 1; rowCount <= rowSize; rowCount++) {
                 WebElement element = driver.findElement(By.xpath(("(.//*[contains(@id,'observation_')])[" + rowCount + "]")));
                 if (value.equals(element.getAttribute("value")) && (rowCount!=1)) {
-                    System.out.println("Removed the Element ---------------->"+element.getAttribute("value"));
                     driver.findElement(By.xpath(("(.//*[contains(@id,'removeClonedObs')])[" + rowCount + "]"))).click();
-
                 }
-
-
             }
         }
         save.click();
     }
-
 }
