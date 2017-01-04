@@ -6,9 +6,6 @@ import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.radiologyUpload.RadiologyUploadPage;
 
-/**
- * Created by atmaramn on 17/11/2016.
- */
 public class RadiologyUploadPageSpec {
     private RadiologyUploadPage radiologyUploadPage;
 

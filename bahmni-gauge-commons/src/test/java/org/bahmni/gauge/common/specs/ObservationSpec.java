@@ -165,7 +165,7 @@ public class ObservationSpec extends BaseSpec {
             observationsPage.adverseEffects.sendKeys(value);
             observationsPage.waitForElementOnPage(observationsPage.adverseEffects);
             Thread.sleep(1000);
-            observationsPage.selectSuggestion(value);
+            observationsPage.selectSuggestion();
         }
     }
 

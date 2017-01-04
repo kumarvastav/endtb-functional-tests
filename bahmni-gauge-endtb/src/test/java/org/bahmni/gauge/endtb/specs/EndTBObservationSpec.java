@@ -18,7 +18,7 @@ public class EndTBObservationSpec {
     public void enterDataInBaselineForm(Table table) {
         ObservationsPage observationPage = PageFactory.get(ObservationsPage.class);
         BaselineForm baselineForm = transformTableToBaselineForm(table);
-        observationPage.fillTemplateData(table, baselineForm);
+        observationPage.fillTemplateData(table);
         new BahmniPage().storeObservationFormInSpecStore(baselineForm);
     }
 
