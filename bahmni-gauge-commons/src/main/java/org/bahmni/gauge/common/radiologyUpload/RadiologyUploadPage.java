@@ -5,6 +5,9 @@ import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.Select;
 
 import java.awt.*;
 import java.io.IOException;
@@ -13,6 +16,18 @@ import java.io.IOException;
  * Created by atmaramn on 17/11/2016.
  */
 public class RadiologyUploadPage extends BahmniPage{
+
+    @FindBy(how = How.CSS, using = "#newVisit > h5")
+    public WebElement new_visit;
+
+    @FindBy(how = How.CSS, using = "select.ng-pristine")
+    public WebElement visit_type;
+
+    @FindBy(how = How.NAME, using = "startDate")
+    public WebElement start_date;
+
+    @FindBy(how = How.NAME, using = "endDate")
+    public WebElement end_date;
 
     public void uploadImage(int visitNumber, Table table) {
         WebElement root;
@@ -38,5 +53,21 @@ public class RadiologyUploadPage extends BahmniPage{
 
     public void save(){
         findElement(By.cssSelector("button.btn.btn-primary:not([disabled])")).click();
+    }
+
+    public void createNewVisit(Table table) {
+        waitForSpinner();
+        waitForElementOnPage(new_visit).click();
+        new Select(visit_type).selectByVisibleText(table.getColumnValues("type").get(0));
+        start_date.sendKeys(table.getColumnValues("startDate").get(0));
+        end_date.sendKeys(table.getColumnValues("endDate").get(0));
+    }
+
+    public void removeImage(int imageNumber) {
+        waitForElementOnPage(By.cssSelector("#remove-image" + (imageNumber - 1))).click();
+    }
+
+    public void expandCurrentVisit() {
+        waitForElementOnPage(By.cssSelector(".fa-star")).click();
     }
 }
