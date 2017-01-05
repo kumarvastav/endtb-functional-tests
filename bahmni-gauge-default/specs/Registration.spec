@@ -32,8 +32,8 @@ Tags: regression, sanity
 * Click on registration app
 * Click on create new patient link
 * Try creating patient with same identifier
-    |prefix|firstName|lastName|gender|dateOfBirth|age|district|
-    |GAN|DevKumar|Karia|Male|20/01/2011|50|Bilaspur|
+    |prefix|firstName|lastName|gender|dateOfBirth|age|district|village|
+    |GAN|DevKumar|Karia|Male|20/01/2011|50|Bilaspur|Kahnapur|
 
 * Verify Identifier Error popup with message "'Patient#null' failed to validate with reason: Identifier %s already in use by another patient" is displayed
 * Logout the user
