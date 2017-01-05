@@ -148,7 +148,7 @@ public class ObservationSpec extends BaseSpec {
         new BahmniPage().closeApp(driver);
     }
 
-    @Step("Fill <Vitals> template with following observation details <table>")
+    @Step("Fill <template> template with following observation details <table>")
     public void enterObservations(String template, Table table) {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.enterObservations(template, table);
@@ -157,7 +157,7 @@ public class ObservationSpec extends BaseSpec {
     @Step("Fill Tuberculosis - Followup template with following observation details <table>")
     public void enterTuberculosis(Table table) throws InterruptedException {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
-        observationsPage.expandObservationTemplate("Tuberculosis_Followup_Template");
+        observationsPage.expandObservationTemplate("Tuberculosis - Followup");
         List<TableRow> row = table.getTableRows();
         List<String> columns = table.getColumnNames();
         String[] values = row.get(0).getCell("Adverse Effects").split(":");
@@ -178,19 +178,10 @@ public class ObservationSpec extends BaseSpec {
 
 
 
-    @Step("Remove Adverse effect from Tuberculosis - Followup template <table>")
-    public void removeAdverseEffect(Table table) throws InterruptedException {
+    @Step("Remove Adverse effect from <template> <table>")
+    public void removeAdverseEffect(String template, Table data) throws InterruptedException {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
-        observationsPage.expandObservationTemplate("Tuberculosis_Followup_Template");
-        List<TableRow> row = table.getTableRows();
-        List<String> columns = table.getColumnNames();
-        String[] values = row.get(0).getCell("Adverse Effects").split(":");
-        for (String value : values) {
-            WebElement adverseEffect = driver.findElement(By.xpath("//span[text()='"+ value +"']/../a"));
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", adverseEffect);
-            Actions actions = new Actions(driver);
-            actions.moveToElement(adverseEffect).click().perform();
-        }
+        observationsPage.removeAdverseEffect(template, data);
     }
 
     @Step("Add more observation")

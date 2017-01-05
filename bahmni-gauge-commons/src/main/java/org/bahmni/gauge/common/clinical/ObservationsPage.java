@@ -5,8 +5,10 @@ import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
@@ -54,10 +56,11 @@ public class ObservationsPage extends BahmniPage {
     }
 
     public WebElement expandObservationTemplate(String templateId) {
-
-        WebElement template = driver.findElement(By.cssSelector("section.concept-set-panel-left  li"));
-        if (template.findElement(By.cssSelector(".concept-set-name")).getText().contains(templateId))
-            template.click();
+        List <WebElement> templateList = driver.findElements(By.cssSelector("section.concept-set-panel-left  li .concept-set-name"));
+        for (WebElement templateName : templateList) {
+            if (templateName.getText().contains(templateId))
+                templateName.click();
+        }
         waitForSpinner();
         return driver.findElement(getSectionWithChildHavingId());
     }
@@ -144,8 +147,8 @@ public class ObservationsPage extends BahmniPage {
     public void removeChiefComplaints(String template, Table data) {
         new ObservationForm(expandObservationTemplate(template));
         List<TableRow> rows = data.getTableRows();
-        int rowSize=rows.size();
         List<String> columnNames = data.getColumnNames();
+        int rowSize=rows.size();
         String value;
         int rowCount;
         for (TableRow row : rows) {
@@ -159,5 +162,17 @@ public class ObservationsPage extends BahmniPage {
             }
         }
         save.click();
+    }
+
+    public void removeAdverseEffect(String template, Table data) {
+        new ObservationForm(expandObservationTemplate(template));
+        List<TableRow> row = data.getTableRows();
+        String[] values = row.get(0).getCell("Adverse Effects").split(":");
+        for (String value : values) {
+            WebElement adverseEffect = driver.findElement(By.xpath("//span[text()='" + value + "']/../a"));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", adverseEffect);
+            Actions actions = new Actions(driver);
+            actions.moveToElement(adverseEffect).click().perform();
+        }
     }
 }

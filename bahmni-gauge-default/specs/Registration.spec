@@ -35,7 +35,7 @@ Tags: regression, sanity
     |prefix|firstName|lastName|gender|dateOfBirth|age|district|village|
     |GAN|DevKumar|Karia|Male|20/01/2011|50|Bilaspur|Kahnapur|
 
-* Verify Identifier Error popup with message "'Patient#null' failed to validate with reason: Identifier %s already in use by another patient" is displayed
+* Verify Identifier Error popup with message "['Patient#null' failed to validate with reason: Identifier %s already in use by another patient]" is displayed
 * Logout the user
 
 Update patient, Search by gram panchayat, fetch & validate patient details
