@@ -11,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ObservationsPage extends BahmniPage {
 
@@ -53,19 +54,15 @@ public class ObservationsPage extends BahmniPage {
     }
 
     public WebElement expandObservationTemplate(String templateId) {
-        WebElement template = driver.findElement(getSectionWithChildHavingId(templateId));
-        if (driver.findElements( By.cssSelector("#" + templateId + " h2 i.fa-caret-down:not(.ng-hide)")).size() != 0)
-            return template;
 
-        WebElement expandArrow = driver.findElement(By.cssSelector("#" + templateId + " h2 i.fa-caret-right:not(.ng-hide)"));
-        if (null != expandArrow) {
-            expandArrow.click();
-        }
+        WebElement template = driver.findElement(By.cssSelector("section.concept-set-panel-left  li"));
+        if (template.findElement(By.cssSelector(".concept-set-name")).getText().contains(templateId))
+            template.click();
         waitForSpinner();
-        return template;
+        return driver.findElement(getSectionWithChildHavingId());
     }
 
-    public void clickTemplateButton() {
+    protected void clickTemplateButton() {
         addFormbutton.click();
     }
 
@@ -98,12 +95,13 @@ public class ObservationsPage extends BahmniPage {
         }
     }
 
-    private By getSectionWithChildHavingId(String templateId) {
-        return By.xpath("//div[contains(@class,\" section-grid\") and descendant::*[@id=\"" + templateId + "\"]]");
+    private By getSectionWithChildHavingId() {
+        return By.cssSelector(".concept-set-group.section-grid");
+
     }
 
     public void enterObservations(String template, Table data) {
-        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
+        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template));
         observationForm.fillUp(data);
         storeObservationFormInSpecStore(observationForm);
     }
@@ -125,13 +123,11 @@ public class ObservationsPage extends BahmniPage {
 
     }
 
-    int rowCount;
-
     public void addChiefComplaints(String template, Table data) {
-        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
+        new ObservationForm(expandObservationTemplate(template));
         List<TableRow> rows = data.getTableRows();
         List<String> columnNames = data.getColumnNames();
-        rowCount = 1;
+        int rowCount = 1;
         String value;
         for (TableRow row : rows) {
             value = row.getCell(columnNames.get(0));
@@ -146,7 +142,7 @@ public class ObservationsPage extends BahmniPage {
 
 
     public void removeChiefComplaints(String template, Table data) {
-        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
+        new ObservationForm(expandObservationTemplate(template));
         List<TableRow> rows = data.getTableRows();
         int rowSize=rows.size();
         List<String> columnNames = data.getColumnNames();
