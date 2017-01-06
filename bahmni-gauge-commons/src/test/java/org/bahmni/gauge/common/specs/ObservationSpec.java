@@ -46,15 +46,6 @@ public class ObservationSpec extends BaseSpec {
         waitForAppReady();
     }
 
-    @Step("Enter values in <template> template <table>")
-    public void enterTemplateValues(String template, Table table) throws InterruptedException {
-        ObservationForm observationForm = null;
-        if (template.toLowerCase().contains("obstetrics"))
-            observationForm = new ObservationForm(driver.findElement(By.cssSelector("#concept-set-3")));
-        observationForm.fillUp(table);
-        waitForAppReady();
-    }
-
     @Step("Create a <formName> form with following data <table>")
     public void createForm(String formName, Table table) {
         Patient patient = new BahmniPage().getPatientFromSpecStore();

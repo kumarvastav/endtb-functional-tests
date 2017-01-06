@@ -16,7 +16,7 @@ Tags: regression, sanity
 * Navigate to "TB Program" program dashboard
 * Navigate to consultation
 * Select the template "Obstetrics" from on the observation page
-* Enter values in "Obstetrics" template
+* Fill "Obstetrics" template with following observation details
     |Fundal Height (Weeks)|P/A Presenting Part|FHS|Amount of Liquor|
     |10|Breech|Absent|10|
 * Save the consultation

@@ -1,12 +1,8 @@
 Orders Tab related tests
-=====================
-Created by atmaramn on 09/11/2016
-
-This is an executable specification file which follows markdown syntax.
-Every heading in this file denotes a scenario. Every bulleted point denotes a step.
+========================
      
 Add Radiology Order
-----------------
+-------------------
 
 Tags: regression, sanity
 
@@ -37,8 +33,8 @@ Tags: regression, sanity
 * Open the current visit
 * Verify display control with Caption "Pacs Orders Visit Page" on visit page, has the following details
     |details|
-    |Chest, 1 view (X-ray)|
-    |Chest oblique - Bilateral (X-ray)|
+    |chest, 1 view (x-ray)|
+    |chest oblique - bilateral (x-ray)|
 * Open "Orders" tab on visit page
 * Verify display control with Caption "Radiology Orders" on visit page, has the following details
     |details|
@@ -49,7 +45,7 @@ Tags: regression, sanity
 
 
 Delete Radiology Orders
-----------------
+-----------------------
 Tags: regression, sanity
 * Create a new patient and open visit through API
 * Add the following orders through API
@@ -86,8 +82,8 @@ Tags: regression, sanity
 * Open the current visit
 * Verify display control with Caption "Pacs Orders Visit Page" on visit page, has the following details
     |details|
-    |CHEST apical lordotic|
-    |Chest, 2 views (X-ray)|
+    |chest apical lordotic|
+    |chest, 2 views (x-ray)|
 * Open "Orders" tab on visit page
 * Verify display control with Caption "Radiology Orders" on visit page, has the following details
     |details|
@@ -101,7 +97,7 @@ Tags: regression, sanity
 * Logout the user
 
 Fulfill Radiology orders
------------------------
+------------------------
 
 Tags: regression, sanity
 
