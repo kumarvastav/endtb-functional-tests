@@ -63,7 +63,7 @@ public class RegistrationVisitPageSpec {
         String displayControlText = registrationVisitPage.getDisplayControlTextWithCaption(displayControlCaption);
         for (String drugOrder : table.getColumnValues("details")) {
             drugOrder = StringUtil.transformPatternToData(drugOrder);
-            Assert.assertTrue("String " + drugOrder + " does not exist. Actual String :" + displayControlText, displayControlText.contains(drugOrder));
+            Assert.assertTrue("String " + drugOrder + " does not exist. Actual String :" + displayControlText, (displayControlText.toLowerCase()).contains(drugOrder.toLowerCase()));
         }
     }
 

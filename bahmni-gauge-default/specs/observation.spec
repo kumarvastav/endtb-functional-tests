@@ -95,7 +95,7 @@ Tags: regression, sanity
 * Select existing patient from patient listing page under tab "All"
 * Navigate to consultation
 * Select the template "Tuberculosis - Followup" from on the observation page
-* Fill "Tuberculosis - Followup" template with following observation details
+* Fill Tuberculosis - Followup template with following observation details
     |Adverse Effects|
     |Numbness:Dizziness|
 * Save the consultation
