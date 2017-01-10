@@ -20,7 +20,7 @@ import java.util.Map;
 public class EndTBBacteriologySpec {
 
 
-    EndTBBacteriologyPage bacteriologyPage;
+    private EndTBBacteriologyPage bacteriologyPage;
     PageFactory pageFactory;
 
 

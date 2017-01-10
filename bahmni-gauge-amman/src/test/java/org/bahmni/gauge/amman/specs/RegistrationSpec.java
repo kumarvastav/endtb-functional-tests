@@ -13,7 +13,6 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.registration.RegistrationVisitDetailsPage;
-import org.bahmni.gauge.rest.BahmniRestClient;
 
 import java.util.ArrayList;
 import java.util.List;

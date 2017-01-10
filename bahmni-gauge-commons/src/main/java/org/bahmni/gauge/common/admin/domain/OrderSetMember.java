@@ -1,12 +1,5 @@
 package org.bahmni.gauge.common.admin.domain;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-/**
- * Created by atmaramn on 05/10/2016.
- */
 public class OrderSetMember {
     private String orderType;
     private String orderTypeUuid;

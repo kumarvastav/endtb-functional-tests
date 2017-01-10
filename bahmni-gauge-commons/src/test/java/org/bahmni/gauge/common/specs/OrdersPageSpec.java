@@ -3,12 +3,10 @@ package org.bahmni.gauge.common.specs;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.OrdersPage;
 import org.bahmni.gauge.common.clinical.domain.Order;
 import org.bahmni.gauge.util.TableTransformer;
-import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 

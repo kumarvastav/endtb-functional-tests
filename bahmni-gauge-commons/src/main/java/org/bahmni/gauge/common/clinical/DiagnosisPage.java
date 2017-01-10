@@ -80,21 +80,21 @@ public class DiagnosisPage extends BahmniPage {
             if(row.getText().contains(diagnosis.getDiagnosis())){
                     row.findElement(By.cssSelector(".toggle.fr")).click();
 
-                    if(diagnosis.getOrder().toLowerCase().equals("primary")){
+                    if(diagnosis.getOrder().equalsIgnoreCase("primary")){
                         if(!row.findElements(bOrder).get(0).getAttribute("class").contains("active"))
                             row.findElements(bOrder).get(0).click();
                     }else {
                         if(!row.findElements(bOrder).get(1).getAttribute("class").contains("active"))
                             row.findElements(bOrder).get(1).click();
                     }
-                    if(diagnosis.getCertainty().toLowerCase().equals("confirmed")){
+                    if(diagnosis.getCertainty().equalsIgnoreCase("confirmed")){
                         if(!row.findElements(bCertainty).get(0).getAttribute("class").contains("active"))
                             row.findElements(bCertainty).get(0).click();
                     }else {
                         if(!row.findElements(bCertainty).get(1).getAttribute("class").contains("active"))
                             row.findElements(bCertainty).get(1).click();
                     }
-                    if(diagnosis.getStatus().toLowerCase().equals("inactive")){
+                    if(diagnosis.getStatus().equalsIgnoreCase("inactive")){
                         if(!row.findElement(bStatus).getAttribute("class").contains("active"))
                             row.findElement(bStatus).click();
                     }

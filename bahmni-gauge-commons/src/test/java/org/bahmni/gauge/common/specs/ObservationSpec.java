@@ -10,17 +10,13 @@ import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
-import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.StringUtil;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 import java.util.HashMap;
 import java.util.List;
@@ -128,7 +124,7 @@ public class ObservationSpec extends BaseSpec {
     @Step("Verify the <template> concept set is <displayType>")
     public void verifyObservationFormContent(String template, String displayType) {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-        if (displayType.toLowerCase().equals("not displayed"))
+        if (displayType.equalsIgnoreCase("not displayed"))
             Assert.assertFalse("Element " + template + " is displayed", dashboardPage.hasElement(By.cssSelector("#concept-set-4")));
         else
             Assert.assertTrue("Element " + template + " is not displayed", dashboardPage.hasElement(By.cssSelector("#concept-set-4")));

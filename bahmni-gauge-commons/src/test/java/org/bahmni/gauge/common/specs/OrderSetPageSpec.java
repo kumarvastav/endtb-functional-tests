@@ -14,7 +14,7 @@ import org.openqa.selenium.WebDriver;
 import java.util.ArrayList;
 
 public class OrderSetPageSpec {
-    OrderSetPage orderSetPage;
+    private OrderSetPage orderSetPage;
     private final WebDriver driver;
 
     public OrderSetPageSpec(){

@@ -1,7 +1,6 @@
 package org.bahmni.gauge.common.program;
 
 import org.bahmni.gauge.common.BahmniPage;
-import org.bahmni.gauge.common.program.domain.Program;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -61,7 +60,4 @@ public class TreatmentPage extends BahmniPage {
 	
 	@FindBy(how= How.CSS, using = ".refill-btn")
     public WebElement refill_drug_btn;
-
-
-
 }

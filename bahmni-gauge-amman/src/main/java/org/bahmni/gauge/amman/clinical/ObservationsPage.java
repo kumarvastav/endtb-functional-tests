@@ -2,7 +2,6 @@ package org.bahmni.gauge.amman.clinical;
 
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-import org.bahmni.gauge.common.BahmniPage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;

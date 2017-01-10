@@ -2,19 +2,16 @@ package org.bahmni.gauge.common.specs;
 
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
-
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.ConsultationPage;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ConsultationPageSpec {
 
-    ConsultationPage consultationPage;
+    private ConsultationPage consultationPage;
 
     public ConsultationPageSpec() {
         consultationPage = PageFactory.getConsultationPage();

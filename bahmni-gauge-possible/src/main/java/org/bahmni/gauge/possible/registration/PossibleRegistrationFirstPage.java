@@ -2,8 +2,6 @@ package org.bahmni.gauge.possible.registration;
 
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-import com.thoughtworks.gauge.datastore.DataStore;
-import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.possible.registration.domain.PossiblePatient;
@@ -62,11 +60,6 @@ public class PossibleRegistrationFirstPage extends RegistrationFirstPage {
         return serverFormat.format(userFormat.parse(dateOfBirth));
 
     }
-
-//    public void storePatientInSpecStore(Patient value) {
-//        DataStore specStore = DataStoreFactory.getSpecDataStore();
-//        specStore.put(PATIENT_KEY, value);
-//    }
 
     public void createPatientUsingApi(Table table) throws Exception {
         Patient patient = transformTableToPatient(table);

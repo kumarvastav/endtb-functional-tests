@@ -9,13 +9,9 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.junit.Assert;
-import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-/**
- * Created by swarup on 10/25/16.
- */
 public class PatientQueueSpec {
     @BeforeClassSteps
     public void waitForAppReady() {

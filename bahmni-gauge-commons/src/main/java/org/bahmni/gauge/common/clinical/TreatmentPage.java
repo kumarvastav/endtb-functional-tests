@@ -161,7 +161,7 @@ public class TreatmentPage extends BahmniPage{
 
     public String getDisplayControlText(String displayTabName) {
 
-        if (displayTabName.toLowerCase().equals("recent"))
+        if (displayTabName.equalsIgnoreCase("recent"))
             return driver.findElement(By.cssSelector(".drug-orders-history .tabs .tab:nth-of-type(1) .table-mimic")).getText().trim().replace("\n", "");
         else if(displayTabName.equalsIgnoreCase("current visit")) {
             DateFormat df = new SimpleDateFormat("dd MMM yy");

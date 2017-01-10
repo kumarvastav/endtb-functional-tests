@@ -10,15 +10,14 @@ import org.bahmni.gauge.common.orders.OrdersFulfillmentPage;
 
 import java.util.List;
 
-/**
- * Created by atmaramn on 11/11/2016.
- */
 public class OrdersFulfillmentPageSpec {
-    OrdersFulfillmentPage ordersFulfillmentPage;
+    private OrdersFulfillmentPage ordersFulfillmentPage;
+
     public OrdersFulfillmentPageSpec()
     {
         ordersFulfillmentPage=PageFactory.getOrdersFulfillmentPage();
     }
+
     @BeforeClassSteps
     public void waitForAppReady(){
         ordersFulfillmentPage.waitForSpinner();

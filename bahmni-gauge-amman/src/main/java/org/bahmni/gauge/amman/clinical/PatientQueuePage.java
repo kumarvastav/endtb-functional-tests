@@ -1,6 +1,5 @@
 package org.bahmni.gauge.amman.clinical;
 
-import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.PatientListingPage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -11,9 +10,6 @@ import org.openqa.selenium.support.How;
 
 import java.util.List;
 
-/**
- * Created by swarup on 10/24/16.
- */
 public class PatientQueuePage extends PatientListingPage{
 
     @FindBy(how= How.CSS, using = ".tabs .tab-item a")

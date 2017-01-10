@@ -12,12 +12,9 @@ import org.bahmni.gauge.util.TableTransformer;
 
 import java.util.List;
 
-/**
- * Created by atmaramn on 04/11/2016.
- */
 public class BacteriologyPageSpec{
 
-    BacteriologyPage bacteriologyPage;
+    private BacteriologyPage bacteriologyPage;
 
     public BacteriologyPageSpec(){
         bacteriologyPage= PageFactory.getBacteriologyPage();

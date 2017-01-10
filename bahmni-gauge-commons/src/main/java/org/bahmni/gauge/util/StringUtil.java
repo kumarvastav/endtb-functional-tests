@@ -7,10 +7,6 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by atmaramn on 25/10/2016.
- * Modified by nityadas on 27/10/2016
- */
 public class StringUtil {
     public static String stringDoesNotExist(String expected, String actual) {
         return "Expected and Actual text don't match.\nExpected Text : "+expected+"\nActual Text : "+actual;

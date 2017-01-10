@@ -8,15 +8,11 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.DiagnosisPage;
 import org.bahmni.gauge.common.clinical.domain.Diagnosis;
-import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.TableTransformer;
 
 import java.util.List;
 
-/**
- * Created by atmaramn on 01/11/2016.
- */
 public class DiagnosisPageSpec extends BahmniPage {
 
     @BeforeClassSteps

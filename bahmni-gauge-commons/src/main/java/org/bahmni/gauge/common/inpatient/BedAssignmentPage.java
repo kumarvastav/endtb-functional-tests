@@ -14,7 +14,7 @@ public class BedAssignmentPage extends BahmniPage{
     private final By assignButton = By.cssSelector(".bed-info a[ng-click=\"assignBed(selectedBed)\"]:not(.ng-hide)");
 
     @FindBy(how = How.TAG_NAME, using = "ward")
-    List<WebElement> wards;
+    private List<WebElement> wards;
 
     public Boolean assignAnEmptyBed() {
         waitForSpinner();

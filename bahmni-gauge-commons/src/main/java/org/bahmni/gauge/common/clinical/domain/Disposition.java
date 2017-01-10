@@ -1,12 +1,9 @@
 package org.bahmni.gauge.common.clinical.domain;
 
-/**
- * Created by atmaramn on 25/10/2016.
- */
 public class Disposition {
-    String type;
-    String date;
-    String notes;
+    private String type;
+    private String date;
+    private String notes;
 
     public String getType() {
         return type;

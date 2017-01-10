@@ -168,7 +168,7 @@ public class RegistrationFirstPage extends BahmniPage {
 			village.clear();
 			village.sendKeys(patient.getVillage());
 		}
-		if (patient.getPhoto()!=null && patient.getPhoto().toLowerCase().equals("true")){
+		if (patient.getPhoto()!=null && patient.getPhoto().equalsIgnoreCase("true")){
 			capturePhotoButton.click();
 
 			waitForElementOnPage(By.id("click")).click();

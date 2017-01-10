@@ -141,10 +141,6 @@ public class RegistrationFirstPageSpec {
 	}
 	@Step("Open <type> visit at <location> for previous patient using api")
 	public void openVisitThroughApi(String visitType, String location){
-//		Visit visit=new Visit();
-//		visit.setPatient(StoreHelper.getLatest(Patient.class));
-//		visit.setLocation(locationUuid);
-//		visit.setType(visitTypeUuid);
 		StoreHelper.getLatest(Patient.class).setLocation(location);
 		StoreHelper.getLatest(Patient.class).setVisitType(visitType);
 		BahmniRestClient.get().create(StoreHelper.getLatest(Patient.class),"visit");
@@ -152,7 +148,7 @@ public class RegistrationFirstPageSpec {
 
 	@Step("Verify <buttonText> button is <displayOption>")
 	public void verifyButtonDisplayed(String buttonText, String displayOption){
-		if (displayOption.toLowerCase().equals("displayed"))
+		if (displayOption.equalsIgnoreCase("displayed"))
 			Assert.assertTrue(buttonText+" button is not displayed",registrationFirstPage.findButtonByText(buttonText).isDisplayed());
 		else
 			Assert.assertTrue(buttonText+" button is displayed",registrationFirstPage.findButtonByText(buttonText).isDisplayed());

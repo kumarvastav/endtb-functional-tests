@@ -3,9 +3,7 @@ package org.bahmni.gauge.amman.registration;
 import org.bahmni.gauge.amman.registration.domain.AmmanPatient;
 import org.bahmni.gauge.amman.registration.domain.Fields;
 import org.bahmni.gauge.amman.registration.domain.PatientAttribute;
-import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
-import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.json.JSONObject;
 import org.junit.Assert;
@@ -14,7 +12,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
-import org.reflections.Store;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

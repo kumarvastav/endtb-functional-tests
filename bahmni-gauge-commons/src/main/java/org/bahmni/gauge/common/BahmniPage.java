@@ -75,8 +75,6 @@ public class BahmniPage {
     }
 
     public void storeBaselineFormInSpecStore(ObservationForm baselineForm) {
-//        DataStore specStore = DataStoreFactory.getSpecDataStore();
-//        specStore.put(BASELINE_KEY, baselineForm);
         StoreHelper.store(ObservationForm.class, baselineForm);
     }
 

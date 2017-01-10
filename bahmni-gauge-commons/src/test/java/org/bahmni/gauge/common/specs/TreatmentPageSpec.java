@@ -6,7 +6,6 @@ import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.apache.commons.beanutils.BeanUtils;
 import org.bahmni.gauge.common.BahmniPage;
-import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.TreatmentPage;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
@@ -14,7 +13,6 @@ import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;

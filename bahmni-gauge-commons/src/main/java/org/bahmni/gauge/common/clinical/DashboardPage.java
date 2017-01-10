@@ -74,11 +74,7 @@ public class DashboardPage extends BahmniPage {
 
     public boolean isEnterDataPresent() {
         try {
-            if (clinical.isDisplayed()) {
-                return true;
-            } else {
-                return false;
-            }
+            return clinical.isDisplayed();
 
         } catch (Exception ex) {
             return false;
@@ -261,7 +257,7 @@ public class DashboardPage extends BahmniPage {
     }
 
     private static Calendar getCalendar(Date date) {
-        Calendar cal = Calendar.getInstance(Locale.US);
+        Calendar cal = getInstance(Locale.US);
         cal.setTime(date);
         return cal;
     }

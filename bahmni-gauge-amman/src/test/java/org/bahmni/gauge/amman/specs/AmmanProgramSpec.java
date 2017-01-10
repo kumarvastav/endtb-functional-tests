@@ -9,16 +9,11 @@ import org.bahmni.gauge.amman.registration.domain.AmmanPatient;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
-import org.bahmni.gauge.common.program.ProgramManagementPage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
-import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.TableTransformer;
 
-/**
- * Created by swarup on 10/27/16.
- */
 public class AmmanProgramSpec {
     @BeforeClassSteps
     public void waitForAppReady() {
