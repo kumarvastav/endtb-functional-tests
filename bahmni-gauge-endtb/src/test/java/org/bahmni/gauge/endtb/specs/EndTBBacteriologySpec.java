@@ -11,9 +11,8 @@ import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.endtb.clinical.domain.EndTBSpecimen;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.TableTransformer;
-import org.bahmni.gauge.endtb.clinical.endTBBacteriologyPage;
+import org.bahmni.gauge.endtb.clinical.EndTBBacteriologyPage;
 import org.openqa.selenium.By;
-import  org.bahmni.gauge.common.PageFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -21,12 +20,12 @@ import java.util.Map;
 public class EndTBBacteriologySpec {
 
 
-    endTBBacteriologyPage bacteriologyPage;
+    EndTBBacteriologyPage bacteriologyPage;
     PageFactory pageFactory;
 
 
     public EndTBBacteriologySpec(){
-        bacteriologyPage = endTBPageFactory.getEndTB_BACTERIOLOGY_PAGE();
+        bacteriologyPage = EndTBPageFactory.getEndTbBacteriologyPage();
 
     }
 

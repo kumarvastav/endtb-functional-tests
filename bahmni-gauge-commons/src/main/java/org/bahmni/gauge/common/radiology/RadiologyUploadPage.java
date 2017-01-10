@@ -1,4 +1,4 @@
-package org.bahmni.gauge.common.radiologyUpload;
+package org.bahmni.gauge.common.radiology;
 
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
@@ -9,12 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 
-import java.awt.*;
 import java.io.IOException;
 
-/**
- * Created by atmaramn on 17/11/2016.
- */
 public class RadiologyUploadPage extends BahmniPage{
 
     @FindBy(how = How.CSS, using = "#newVisit > h5")

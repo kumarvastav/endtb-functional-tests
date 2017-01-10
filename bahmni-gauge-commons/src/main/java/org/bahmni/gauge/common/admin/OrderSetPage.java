@@ -59,7 +59,6 @@ public class OrderSetPage extends BahmniPage {
     }
 
     public OrderSetMember transformTableRowToOrderSetMember(TableRow row, List<String> columnNames) {
-        String name = row.getCell(columnNames.get(0)) + new Random().nextInt();
         OrderSetMember orderSetMember = new OrderSetMember();
         OrderSetMember returnValue = (OrderSetMember) transform(row,orderSetMember,columnNames);
         return returnValue;

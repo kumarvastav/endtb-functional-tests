@@ -133,11 +133,6 @@ public class DashboardPageSpec {
         dashboardPage.validateVitalsObservationDisplayControl();
     }
 
-    @Step("Navigate to Program Management Page from dashboard page")
-    public void navigateToProgramManagementPageFromDashboardPage() {
-        DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
-    }
-
     @Step("Verify following value in display controls <table>")
     public void verifyDisplayControlEmpty(Table table) {
         for (int i = 0; i < table.getTableRows().size(); i++) {

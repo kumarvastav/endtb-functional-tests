@@ -150,7 +150,6 @@ public class ObservationSpec extends BaseSpec {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.expandObservationTemplate("Tuberculosis - Followup");
         List<TableRow> row = table.getTableRows();
-        List<String> columns = table.getColumnNames();
         String[] values = row.get(0).getCell("Adverse Effects").split(":");
         for (String value : values) {
             observationsPage.adverseEffects.sendKeys(value);
@@ -166,8 +165,6 @@ public class ObservationSpec extends BaseSpec {
         observationsPage.navigateToDashboard();
         waitForAppReady();
     }
-
-
 
     @Step("Remove Adverse effect from <template> <table>")
     public void removeAdverseEffect(String template, Table data) throws InterruptedException {

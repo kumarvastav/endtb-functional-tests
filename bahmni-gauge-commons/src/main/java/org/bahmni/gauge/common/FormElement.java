@@ -52,13 +52,14 @@ public enum FormElement {
         }
     };
 
+    public static final FormElement[] allTypes = {INPUT, TEXT_AREA, SELECT, BUTTON};
+
     private final String tagName;
 
     FormElement(String tagName) {
         this.tagName = tagName;
     }
 
-    public static final FormElement[] allTypes = {INPUT, TEXT_AREA, SELECT, BUTTON};
 
     abstract public void fillUp(WebElement observationNode, String value);
 

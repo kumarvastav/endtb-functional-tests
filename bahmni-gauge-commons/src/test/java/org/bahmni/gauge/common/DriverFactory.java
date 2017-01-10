@@ -34,8 +34,6 @@ public class DriverFactory {
 
         ChromeDriverManager.getInstance().setup();
         DesiredCapabilities capability = DesiredCapabilities.chrome();
-        ChromeOptions options = new ChromeOptions();
-        //options.addArguments("--use-fake-ui-for-media-stream");
         capability.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
         //capability.setCapability(ChromeOptions.CAPABILITY,options);
         driver = new ChromeDriver(capability);

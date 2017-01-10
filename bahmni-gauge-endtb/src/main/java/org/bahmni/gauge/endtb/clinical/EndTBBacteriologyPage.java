@@ -14,7 +14,7 @@ import org.bahmni.gauge.common.clinical.BacteriologyPage;
 
 import java.util.List;
 
-public class endTBBacteriologyPage extends BacteriologyPage{
+public class EndTBBacteriologyPage extends BacteriologyPage{
 
     @FindBy(how= How.CSS, using = ".fa-caret-right.ng-scope")
     public WebElement results;

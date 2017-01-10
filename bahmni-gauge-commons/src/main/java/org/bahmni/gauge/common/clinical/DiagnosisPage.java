@@ -51,7 +51,6 @@ public class DiagnosisPage extends BahmniPage {
     }
 
     public void verifyCurrentDisplayControl(List<Diagnosis> diagnoses) {
-        int index=0;
         for (Diagnosis diagnosis:diagnoses) {
             List<WebElement> rows = driver.findElements(By.cssSelector(".diagnosis-row"));
             boolean bFound = false;

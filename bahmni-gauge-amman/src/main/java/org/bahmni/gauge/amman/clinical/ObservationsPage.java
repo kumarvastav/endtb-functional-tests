@@ -69,13 +69,6 @@ public class ObservationsPage extends org.bahmni.gauge.common.clinical.Observati
 
     }
 
-    private boolean fieldEnabled(WebElement observationNode) {
-        if (observationNode.getAttribute("disabled") == null){
-            return true;
-        }
-        return false;
-    }
-
     private boolean hasTag(WebElement answer, String input) {
         boolean val = true;
         try{

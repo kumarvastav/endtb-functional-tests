@@ -3,15 +3,8 @@ package org.bahmni.gauge.common.specs;
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
-import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.PageFactory;
-import org.bahmni.gauge.common.TestSpecException;
-import org.bahmni.gauge.common.clinical.domain.Order;
-import org.bahmni.gauge.common.program.domain.Program;
-import org.bahmni.gauge.common.radiologyUpload.RadiologyUploadPage;
-import org.bahmni.gauge.common.registration.domain.Patient;
-
-import java.util.List;
+import org.bahmni.gauge.common.radiology.RadiologyUploadPage;
 
 public class RadiologyUploadPageSpec {
     private RadiologyUploadPage radiologyUploadPage;

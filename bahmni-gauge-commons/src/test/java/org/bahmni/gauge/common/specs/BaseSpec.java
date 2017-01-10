@@ -42,11 +42,9 @@ public class BaseSpec {
  */
     @AfterSpec @Deprecated
     public void teardown() {
-//        PreTearDownHooks.executeAll();
         List<Patient> patients = StoreHelper.getAll(Patient.class);
         for (Patient patient : patients) {
             if (patient != null) {
-                String uuid = patient.getUuid();
                 BahmniRestClient.get().retirePatient(patient);
             }
         }

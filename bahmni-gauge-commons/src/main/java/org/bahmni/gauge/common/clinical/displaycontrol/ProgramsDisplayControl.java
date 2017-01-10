@@ -16,9 +16,6 @@ public class ProgramsDisplayControl {
     private By locTreatmentDate = By.cssSelector(".program-attributes .program-attribute:nth-of-type(2) .program-attribute-value");
     private By locPatientStage = By.cssSelector(".program-attributes .program-attribute:nth-of-type(5) .program-attribute-value");
     private By locProgramState = By.cssSelector(".program-table table tbody tr:nth-of-type(1) td:nth-of-type(1)");
-    private By locTreatmentStartDate = By.cssSelector(".program-table table tbody tr:nth-of-type(1) td:nth-of-type(2)");
-
-
     private By locStartDate = By.cssSelector(".program-dates.fr");
     private By locProgramName = By.cssSelector(".program-name.fl");
     public ProgramsDisplayControl(WebElement webElement) {
@@ -37,10 +34,7 @@ public class ProgramsDisplayControl {
             try {
                 actualDate = (new SimpleDateFormat("dd MMM yy")).parse(actualTreatmentDate.getText());
                 Date expectedDate = (new SimpleDateFormat("dd/MM/yyyy")).parse(treatment.getTreatmentDate());
-                if (actualDate.equals(expectedDate))
-                    return true;
-                else
-                    return false;
+                return actualDate.equals(expectedDate);
 
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -60,16 +54,13 @@ public class ProgramsDisplayControl {
         return true;
     }
 
-    public boolean isStartDateProper(Program treatment) {
+    private boolean isStartDateProper(Program treatment) {
         if (treatment.getDateOfRegistration() != null) {
             WebElement actualStartDate = webElement.findElement(locStartDate);
             try {
                 Date actualDate = (new SimpleDateFormat("dd MMM yy")).parse(actualStartDate.getText().substring(13));
                 Date expectedDate = (new SimpleDateFormat("dd/MM/yyyy")).parse(treatment.getDateOfRegistration());
-                if (actualDate.equals(expectedDate))
-                    return true;
-                else
-                    return false;
+                return actualDate.equals(expectedDate);
 
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -80,7 +71,7 @@ public class ProgramsDisplayControl {
         return true;
 
     }
-    public boolean isPatientStageProper(Program treatment){
+    private boolean isPatientStageProper(Program treatment){
         if (treatment.getPatientStatus()!=null){
             WebElement actualPatientStage=webElement.findElement(locPatientStage);
             return actualPatientStage.getText().equals(treatment.getPatientStatus());
@@ -93,26 +84,19 @@ public class ProgramsDisplayControl {
     private boolean isProgramDisplayed(String name) {
         WebElement actualProgramName = webElement.findElement(locProgramName);
         return name.equals(actualProgramName.getText());
-/*if(name.equals(actualProgramName.getText()))
-return true;
-else
-return false;*/
     }
 
-    public boolean isStartDateDisplayed(String doReg) {
+    private boolean isStartDateDisplayed(String doReg) {
         if (doReg != null) {
             WebElement actualStartDate = webElement.findElement(locStartDate);
             String text =actualStartDate.getText().substring(13);
             System.out.println(text);
 
-            Date actualDate = null;
+            Date actualDate;
             try {
                 actualDate = (new SimpleDateFormat("dd MMM yy")).parse(text);
                 Date expectedDate = (new SimpleDateFormat("dd/MM/yyyy")).parse(doReg);
-                if (actualDate.equals(expectedDate))
-                    return true;
-                else
-                    return false;
+                return actualDate.equals(expectedDate);
 
             } catch (ParseException e) {
                 e.printStackTrace();

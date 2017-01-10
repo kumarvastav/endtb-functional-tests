@@ -1,7 +1,6 @@
 package org.bahmni.gauge.common.registration;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-import org.apache.commons.beanutils.PropertyUtils;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.TestSpecException;
 import org.bahmni.gauge.common.registration.domain.Patient;
@@ -109,7 +108,6 @@ public class RegistrationFirstPage extends BahmniPage {
 			if(enterID_checkbox.isDisplayed() & patient.getIdNumber()!= null) {
 				enterID_checkbox.click();
 				txtRegistrationNumber.sendKeys(patient.getIdNumber());
-				//+new Random().nextInt()
 			}
 		} catch (NoSuchElementException ex){
 
@@ -204,10 +202,6 @@ public class RegistrationFirstPage extends BahmniPage {
 		return (Patient)transform(row,patient,headers);
 	}
 
-	private static boolean propertyExists (Object object, String property) {
-		return PropertyUtils.isReadable(object, property) && PropertyUtils.isWriteable(object, property);
-	}
-
 	public WebElement findVisit(String visit) {
 		return find(visitTypeOptions,visit);
 	}
@@ -221,15 +215,7 @@ public class RegistrationFirstPage extends BahmniPage {
 		enterVisitDetails.click();
 	}
     public void createPatientUsingApi(Table table) throws Exception {
-//		List<TableRow> rows = table.getTableRows();
-//		List<String> columnNames = table.getColumnNames();
-//
-//		if (rows.size() != 1) {
-//			throw new TestSpecException("Only one patient should be provided in the table");
-//		}
-
 		Patient patient = TableTransformer.asEntity(table,Patient.class);
-		//transformTableRowToPatient(rows.get(0), columnNames);
         BahmniRestClient.get().createPatient(patient,"patient_create.ftl");
 		patient.setIdNumber(patient.getIdentifier().substring(3));
 		patient.setPrefix(patient.getIdentifier().substring(0,3));
@@ -264,7 +250,7 @@ public class RegistrationFirstPage extends BahmniPage {
 		}
 	}
 
-	public Patient transformTableToPatient(Table table) throws Exception {
+	protected Patient transformTableToPatient(Table table) throws Exception {
 		List<TableRow> rows = table.getTableRows();
 		List<String> columnNames = table.getColumnNames();
 
@@ -308,7 +294,6 @@ public class RegistrationFirstPage extends BahmniPage {
 		try{
 		if(enterID_checkbox.isDisplayed() && patient.getIdNumber()!= null) {
 			Assert.assertEquals("Identifier dont match",patient.getIdentifier(),txtRegistrationNumber.getAttribute("value"));
-			//+new Random().nextInt()
 		}} catch (NoSuchElementException ex){
 
 		}

@@ -47,7 +47,6 @@ public class ConsultationPageSpec {
     @Step("Set retrospective date to <date>")
     public void setRetrospectiveDate(String date) {
         if (date.equalsIgnoreCase("current date")) {
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             Date currentDate = new Date();
             consultationPage.openRegistrationDeskAndSet("", "", currentDate.toString());
         } else {

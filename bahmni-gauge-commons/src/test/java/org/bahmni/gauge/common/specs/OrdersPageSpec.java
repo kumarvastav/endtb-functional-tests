@@ -1,15 +1,12 @@
 package org.bahmni.gauge.common.specs;
 
-import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.OrdersPage;
 import org.bahmni.gauge.common.clinical.domain.Order;
-import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.TableTransformer;
 import org.openqa.selenium.WebDriver;
 
@@ -17,11 +14,9 @@ import java.util.List;
 
 
 public class OrdersPageSpec {
-    private final WebDriver driver;
-    OrdersPage ordersPage;
+    private OrdersPage ordersPage;
 
     public OrdersPageSpec() {
-        driver = DriverFactory.getDriver();
         ordersPage = PageFactory.get(OrdersPage.class);
     }
 
@@ -82,7 +77,6 @@ public class OrdersPageSpec {
 
     @Step("Enter notes to following <orderType> orders <table>")
     public void selectOrders(String orderType, Table table){
-        List<Order> orders=TableTransformer.asEntityList(table,Order.class);
         for(TableRow row:table.getTableRows()){
             ordersPage.enterNotes(row.getCell("order"),row.getCell("note"));
         }
