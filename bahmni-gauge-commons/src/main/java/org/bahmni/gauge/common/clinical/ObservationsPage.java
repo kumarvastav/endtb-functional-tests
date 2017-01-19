@@ -192,11 +192,11 @@ public class ObservationsPage extends BahmniPage {
     public void removeConsultationImage(String template, int data) {
         ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
         int totalImages = driver.findElements(By.xpath("(//*[contains(@class,'has-image')])")).size();
-        String value;
+        String value = new String();
         int rowCount = 1;
         while (rowCount<=data) {
 
-            for (rowCount = 1; rowCount <= rowSize; rowCount++) {
+            for (rowCount = 1; rowCount <= totalImages; rowCount++) {
                 WebElement element = driver.findElement(By.xpath(("(.//*[contains(@id,'observation_')])[" + rowCount + "]")));
                 if (value.equals(element.getAttribute("value")) && (rowCount != 1)) {
                     driver.findElement(By.xpath(("(.//*[contains(@id,'removeClonedObs')])[" + rowCount + "]"))).click();
