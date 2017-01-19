@@ -218,11 +218,6 @@ Tags: regression, sanity
   |Image XRayCopy|
   |Image US Copy|
 
-
-
->>>>>>> [Manpreet] Roles and Prvlages some scenario and Multiple Image upload Scenario
-
-
 Ability to Upload Consultation Image
 --------------------------------
 Tags: regression, sanity

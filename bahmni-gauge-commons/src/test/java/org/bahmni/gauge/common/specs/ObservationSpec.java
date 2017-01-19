@@ -193,7 +193,6 @@ public class ObservationSpec extends BaseSpec {
     @Step("Upload consultation images with Notes on \"History and Examinations\" <table>")
     public void uploadConsultationImage(String template,Table table) throws InterruptedException, IOException, AWTException {
         ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
-<<<<<<< 0348694097e31ad6c4eaa868f0a71d73a428fa9f
         observationsPage.uploadConsultationImageAndAddComment(template,table);
     }
 
@@ -205,9 +204,4 @@ public class ObservationSpec extends BaseSpec {
         observationsPage.removeImage(imageNumber);
         waitForAppReady();
     }
-=======
-        observationsPage.uploadConsultaionImageAndAddComment(template,table);
-    }
-
->>>>>>> [Manpreet] Roles and Prvlages some scenario and Multiple Image upload Scenario
 }
