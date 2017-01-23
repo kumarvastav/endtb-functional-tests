@@ -210,8 +210,11 @@ Tags: regression, sanity
   |Image MRIScan|
   |Image XRayCopy|
   |Image US Copy|
+* Navigate to dashboard link
 * Navigate to consultation
-* Remove first image
+* Go to "Observations" tab
+* Remove first image from "History and Examinations" on Consultation page
+* Go to "Consultation" tab
 * Verify display control with Caption "History and Examination" on "Consultation" tab, has the following details
   |details|
   |Image|
@@ -219,10 +222,10 @@ Tags: regression, sanity
 * Navigate to dashboard link
 * Verify display control "History and Examinations" on dashboard, has the following details
   |details|
+  |Image MRIScan|
   |Image XRayCopy|
-  |Image US Copy|
 * Navigate to latest visit page
 * Verify display control with Caption "Observations" on visit page, has the following details
   |details|
+  |Image MRIScan|
   |Image XRayCopy|
-  |Image US Copy|

@@ -185,10 +185,11 @@ public class ObservationSpec extends BaseSpec{
         observationsPage.uploadConsultaionImageAndAddComment(template,table);
     }
 
-    @Step("Remove first image")
-    public void removeFirstImage(){
+
+    @Step("Remove first image from \"History and Examinations\" on Consultation page")
+    public void removeFirstImage(String template){
         ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
-        observationsPage.addMoreObservation();
+        observationsPage.removeFirstConsultationImage();
         waitForAppReady();
     }
 

@@ -189,6 +189,12 @@ public class ObservationsPage extends BahmniPage {
         waitForSpinner();
     }
 
+    public void removeFirstConsultationImage()
+    {
+        driver.findElement(By.xpath("(//button[@class='row-remover'])[1]")).click();
+        save.click();
+        waitForSpinner();
+    }
     public void removeConsultationImage(String template, int data) {
         ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template.replace(' ', '_')));
         int totalImages = driver.findElements(By.xpath("(//*[contains(@class,'has-image')])")).size();
