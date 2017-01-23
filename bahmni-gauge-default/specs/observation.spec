@@ -177,14 +177,9 @@ Tags: regression, sanity
       |Injury|
 * Navigate to latest visit page
 * Verify display control with Caption "Observations" on visit page, has the following details
-<<<<<<< 0348694097e31ad6c4eaa868f0a71d73a428fa9f
     |History and Examination|
     |Chief Complaint|
     |Injury|
-=======
-    |details|
-    |History and Examination |
-    |Chief Complaint Injury|
 
 Ability to Upload Consultation Image
 --------------------------------
