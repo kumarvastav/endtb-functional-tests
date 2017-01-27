@@ -103,6 +103,7 @@ public class RegistrationFirstPageSpec {
 	public void enterVisitDetailsPage() {
 		registrationFirstPage.enterVisitDetailsPage();
 	}
+
 	@Step("Enter Visit Details for Admitted Patient")
 	public void enterVisitDetailsForAdmittedPatient() {
 		registrationFirstPage.enterVisitDetailButton.click();

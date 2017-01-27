@@ -7,7 +7,7 @@ Create a new patient with Auto generated id, search by name & validate patient d
 Tags: regression, sanity
 
 * On the login page
-* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_ANOTHER_LOCATION"
+* Login to the application
 * Click on registration app
 * Click on create new patient link
 * Create the following patient
@@ -28,7 +28,7 @@ Tags: regression, sanity
 
 * Create a new patient through API
 * On the login page
-* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_ANOTHER_LOCATION"
+* Login to the application
 * Click on registration app
 * Click on create new patient link
 * Try creating patient with same identifier
@@ -48,7 +48,7 @@ Tags: regression, sanity
     |GAN|Hanah|Jones|F|20/01/2011|Bilaspur|Narnia|
 
 * On the login page
-* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_ANOTHER_LOCATION"
+* Login to the application
 * Click on registration app
 * Search previously created patient with exact identifier
 * Edit previous patient details as follow

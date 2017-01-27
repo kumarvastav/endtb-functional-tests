@@ -52,9 +52,7 @@ Add and Edit drug order & verify display controls
 -------------------------------------------------
 Tags: regression, sanity
 * Create a new patient through API
-* Open visit for previous patient using api
-    |location|type|
-    |Registration Desk|OPD|
+* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
 * On the login page
 * Login to the application
 * Navigate to dashboard
@@ -161,28 +159,24 @@ Refill Drug order
 
 Tags: regression, sanity
 
- * Create a new patient through API
- * Open visit for previous patient using api
-     |location|type|
-     |Registration Desk|OPD|
- * On the login page
- * Login to the application
- * Navigate to dashboard
- * Click on clinical app
- * Select existing patient from patient listing page under tab "All"
- * Navigate to consultation
- * Go to "Medications" tab
- * Create drug order
-     |drugName|dose|doseUnit|frequency|route|additionalInstructions|duration|durationUnit|
-     |Paracetamol|2|Tablet(s)|Twice a day|Intravenous|After meals|2| Month(s)|
-     |Isoniazid (H)|4|mg|Immediately|Oral|Take if Needed|2| Day(s)|
-
- * Save the consultation
- * Refill previous drug order as following
-     |drugName|dose|doseUnit|frequency|route|additionalInstructions|duration|durationUnit|
-     |Paracetamol|4|Tablet(s)|Twice a day|Intravenous|After meals|2| Month(s)|
-     |Isoniazid (H)|8|mg|Immediately|Oral|Take if Needed|2| Day(s)|
-
+* Create a new patient through API
+* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
+* On the login page
+* Login to the application
+* Navigate to dashboard
+* Click on clinical app
+* Select existing patient from patient listing page under tab "All"
+* Navigate to consultation
+* Go to "Medications" tab
+* Create drug order
+    |drugName|dose|doseUnit|frequency|route|additionalInstructions|duration|durationUnit|
+    |Paracetamol|2|Tablet(s)|Twice a day|Intravenous|After meals|2| Month(s)|
+    |Isoniazid (H)|4|mg|Immediately|Oral|Take if Needed|2| Day(s)|
+* Save the consultation
+* Refill previous drug order as following
+    |drugName|dose|doseUnit|frequency|route|additionalInstructions|duration|durationUnit|
+    |Paracetamol|4|Tablet(s)|Twice a day|Intravenous|After meals|2| Month(s)|
+    |Isoniazid (H)|8|mg|Immediately|Oral|Take if Needed|2| Day(s)|
 * Save the consultation
 * Verify display control "Recent" on medications tab, has the following details
      |details|
@@ -198,23 +192,22 @@ Tags: regression, sanity
     |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)(240 Tablet(s))|
     |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)(8 mg)|
 
- * Navigate to patient dashboard
- * Verify display control "Treatments" on dashboard, has the following details
+* Navigate to patient dashboard
+* Verify display control "Treatments" on dashboard, has the following details
      |details|
      |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
      |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)|
      |Isoniazid (H) 8 mg, Immediately, Oral - 2 Day(s)|
      |Paracetamol 4 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
-
- * click  "Treatments" on dashboard, and verify displayed dialog has the following details
+* click  "Treatments" on dashboard, and verify displayed dialog has the following details
     |details|
     |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
     |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)|
     |Isoniazid (H) 8 mg, Immediately, Oral - 2 Day(s)|
     |Paracetamol 4 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
 
- * Navigate to latest visit page
- * Verify display control "treatment" on visit page, has the following details
+* Navigate to latest visit page
+* Verify display control "treatment" on visit page, has the following details
     |details|
     |Paracetamol 2 Tablet(s), Twice a day, Intravenous - 2 Month(s)|
     |Isoniazid (H) 4 mg, Immediately, Oral - 2 Day(s)|

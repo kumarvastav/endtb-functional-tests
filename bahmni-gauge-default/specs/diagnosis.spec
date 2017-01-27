@@ -1,19 +1,13 @@
 Diagnosis
 ===========
-Created by atmaramn on 01/11/2016
 
-This is an executable specification file which follows markdown syntax.
-Every heading in this file denotes a scenario. Every bulleted point denotes a step.
-     
 Add coded and non coded dignosis for existing patient
 --------------------------------------------
 
 Tags: regression, sanity
 
 * Create a new patient through API
-* Open visit for previous patient using api
-    |location|type|
-    |Registration Desk|OPD|
+* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
 * On the login page
 * Login to the application
 * Click on clinical app

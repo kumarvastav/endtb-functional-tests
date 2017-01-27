@@ -50,9 +50,8 @@ public class DriverFactory {
     public void tearDownScenario() {
         Patient patient = new RegistrationFirstPage().getPatientFromSpecStore();
         if (patient != null) {
-            String uuid = patient.getUuid();
             if (patient.isAdmitted()) {
-                if (BahmniRestClient.get().dischargePatient(uuid)) {
+                if (BahmniRestClient.get().dischargePatient(patient)) {
                     patient.setBedNumber(null);
                     BahmniRestClient.get().retirePatient(patient);
                 }

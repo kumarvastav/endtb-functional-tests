@@ -1,5 +1,5 @@
 This is a concept file with following syntax for each concept.
 # Login to app and navigate to <app> app
 * On the login page
-* Login to the application
+* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
 * Click on <app> app

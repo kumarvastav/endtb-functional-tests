@@ -145,7 +145,7 @@ public class InpatientSpec extends BaseSpec{
         if (patient != null) {
             String uuid = patient.getUuid();
             if (patient.isAdmitted())
-                if(BahmniRestClient.get().dischargePatient(uuid)) {
+                if(BahmniRestClient.get().dischargePatient(patient)) {
                     patient.setAdmitted(false);
                     patient.setBedNumber(null);
                 }

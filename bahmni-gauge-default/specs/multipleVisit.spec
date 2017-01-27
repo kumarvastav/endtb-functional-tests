@@ -26,8 +26,6 @@ Tags: regression, sanity
 * Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_ANOTHER_LOCATION"
 * Click on clinical app
 * Verify previous patient is not listed on patient listing page under tab "Active"
-* Navigate to dashboard
-* Click on clinical app
 * Select existing patient from patient listing page under tab "All"
 * Verify Consultation button is not present
 * Navigate to dashboard

@@ -6,9 +6,7 @@
 
 # Create a new patient and open visit through API
 * Create a new patient through API
-* Open visit for previous patient using api
-    |location|type|
-    |Registration Desk|OPD|
+* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
 
 # Create a new patient and add diagnosis through API
 * Create a new patient and open visit through API
@@ -19,13 +17,11 @@
 
 
 # Create patient and open visit with details through API
-
 * Create a new patient and open visit through API
 * Enter visit details through API
    |height|weight|registrationFee|
    |172|67|200|
    
 # Create patient and open visit with details through API with details <table>
-
 * Create a new patient and open visit through API
 * Enter visit details through API <table>

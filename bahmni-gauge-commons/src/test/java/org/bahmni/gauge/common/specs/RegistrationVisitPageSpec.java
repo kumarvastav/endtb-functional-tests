@@ -90,11 +90,11 @@ public class RegistrationVisitPageSpec {
         Assert.assertEquals("Error popup message dont match", message, registrationVisitPage.findElement(By.cssSelector("#view-content .msg")).getText());
     }
 
-    @Step("Open visit for previous patient using api <table>")
-    public void openVisitThroughApi(Table table) {
+    @Step("Open visit of type <visitType> in <visitLocation> location for previous patient using api")
+    public void openVisitThroughApi(String visitType, String visitLocation) {
         RegistrationVisitDetailsPage registrationVisitPage = PageFactory.getRegistrationVisitPage();
-        registrationVisitPage.getPatientFromSpecStore().setLocation(table.getColumnValues("location").get(0));
-        registrationVisitPage.getPatientFromSpecStore().setVisitType(table.getColumnValues("type").get(0));
+        registrationVisitPage.getPatientFromSpecStore().setLocation(System.getenv(visitLocation));
+        registrationVisitPage.getPatientFromSpecStore().setVisitType(visitType);
         BahmniRestClient.get().create(registrationVisitPage.getPatientFromSpecStore(), "visit");
     }
 

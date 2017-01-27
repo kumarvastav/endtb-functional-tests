@@ -82,10 +82,10 @@ public class Patient extends Model {
     }
 
     public String getVisitTypeUuid() {
-//        if (visitType != null && visitTypeUuid == null) {
-//            visitTypeUuid = BahmniRestClient.get().getUuidwithDisplayOnPartialUrl(this.visitType, "visittype");
-//        }
-        visitTypeUuid = "c1e42932-3f10-11e4-adec-0800271c1b75";
+        if (visitType != null && visitTypeUuid == null) {
+            visitTypeUuid = BahmniRestClient.get().getUuidwithDisplayOnPartialUrl(this.visitType, "visittype");
+        }
+     //   visitTypeUuid = "c1e42932-3f10-11e4-adec-0800271c1b75";
         return visitTypeUuid;
     }
 

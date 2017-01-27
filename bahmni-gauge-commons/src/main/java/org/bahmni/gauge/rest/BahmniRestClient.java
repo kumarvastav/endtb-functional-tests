@@ -44,15 +44,9 @@ public class BahmniRestClient {
 
     private static final String url_mrsportion_rest = "/openmrs/ws/rest/v1";
 
-//	private static final String ORDERSET_URL = "/bahmniorderset/";
-
     private static final String PATIENT_PROFILE_URL = "/bahmnicore/patientprofile";
 
-    //private static final String PATIENT_URL = "/patient/";
-
     private static final String PROGRAM_ENROLLMENT_URL = "/bahmniprogramenrollment";
-
-//	private static final String EMRAPI_URL = "/bahmnicore/bahmniencounter";
 
     private static final String GET_ORDERTYPE_LIST_URL = "/ordertype?v=custom:(uuid,display)";
 
@@ -63,8 +57,6 @@ public class BahmniRestClient {
     private static final String GET_CONCEPT_UUID_URL = "/concept?q=%s&v=custom:(uuid,display)";
 
     private static final String GET_CONCEPT_ANSWER_URL = "/concept?q=%s&v=custom:(uuid,name:(uuid,name),answers:(uuid,display))";
-
-//	private static final String ADMIT_INPATIENT_CREATE_URL = "/bahmnicore/bahmniencounter";
 
     private static final String BAHMNI_ENCOUNTER_URL = "/bahmnicore/bahmniencounter";
 
@@ -167,49 +159,10 @@ public class BahmniRestClient {
 
     public void retirePatient(Patient patient) {
         retire(patient);
-//		try {
-//			Unirest.delete(mrs_url +"/"+ patient.getMRSName() + patient.getUuid())
-//				.basicAuth(username, password)
-//				.header("content-type", "application/json")
-//				.asString();
-//		} catch (Exception e) {
-//			throw new BahmniAPIException(e);
-//		}
     }
 
     public void retireOrderSet(OrderSet orderSet) {
         retire(orderSet);
-//		try {
-//			Unirest.delete(mrs_url + "/"+orderSet.getMRSName() +"/"+ orderSet.getUuid())
-//				.basicAuth(username, password)
-//				.header("content-type", "application/json")
-//				.asString();
-//		} catch (Exception e) {
-//			throw new BahmniAPIException(e);
-//		}
-    }
-
-    public boolean dischargePatient(String uuid) {
-        try {
-            Template freemarkerTemplate = freemarkerConfiguration.getTemplate("discharge_patient.ftl");
-            Map<String, Object> programData = new HashMap<>();
-            programData.put("patientUUID", uuid);
-
-            StringWriter stringWriter = new StringWriter();
-            freemarkerTemplate.process(programData, stringWriter);
-            String requestJson = stringWriter.toString();
-
-            HttpResponse<JsonNode> response = Unirest.post(mrs_url + DISCHARGE_PATIENT_URL)
-                    .basicAuth(username, password)
-                    .header("content-type", "application/json")
-                    .body(requestJson)
-                    .asJson();
-            if (response.getStatus() != 200 && response.getStatus() != 201)
-                throw new BahmniAPIException("Discharge patient through API Failed!!");
-        } catch (Exception e) {
-            throw new BahmniAPIException(e);
-        }
-        return true;
     }
 
     public void enrollToProgram(PatientProgram patientProgram) {
@@ -295,46 +248,10 @@ public class BahmniRestClient {
 
     public String getUuidOfDrug(String drugName) {
         return getUuidwithDisplayOnUrl(drugName, mrs_url + GET_DRUG_LIST_URL);
-//		try {
-//			HttpResponse<JsonNode> request = Unirest.get(url + GET_DRUG_LIST_URL)
-//				.basicAuth(username, password)
-//				.header("content-type", "application/json")
-//				.asJson();
-//
-//			int size = request.getBody().getArray().getJSONObject(0).getJSONArray("results").length();
-//
-//			for (int pos = 0; pos < size; pos++) {
-//				if (request.getBody().getArray().getJSONObject(0).getJSONArray("results").getJSONObject(pos).get("display").equals(drugName)) {
-//					return String.valueOf(request.getBody().getArray().getJSONObject(0).getJSONArray("results").getJSONObject(pos).get("uuid"));
-//				}
-//			}
-//
-//		} catch (Exception e) {
-//			throw new BahmniAPIException(e);
-//		}
-//		return null;
     }
 
     public String getUuidOfOrderType(String orderType) {
         return getUuidwithDisplayOnUrl(orderType, mrs_url + GET_ORDERTYPE_LIST_URL);
-//		try {
-//			HttpResponse<JsonNode> request = Unirest.get()
-//				.basicAuth(username, password)
-//				.header("content-type", "application/json")
-//				.asJson();
-//
-//			int size = request.getBody().getArray().getJSONObject(0).getJSONArray("results").length();
-//
-//			for (int pos = 0; pos < size; pos++) {
-//				if (request.getBody().getArray().getJSONObject(0).getJSONArray("results").getJSONObject(pos).get("display").equals(orderType)) {
-//					return String.valueOf(request.getBody().getArray().getJSONObject(0).getJSONArray("results").getJSONObject(pos).get("uuid"));
-//				}
-//			}
-//
-//		} catch (Exception e) {
-//			throw new BahmniAPIException(e);
-//		}
-//		return null;
     }
 
     public String getUuidwithDisplayOnUrl(String display, String finalUrl) {
@@ -445,24 +362,6 @@ public class BahmniRestClient {
         } catch (UnsupportedEncodingException e) {
             throw new BahmniAPIException(e);
         }
-//		try {;
-//			HttpResponse<JsonNode> request = Unirest.get(url + String.format(GET_CONCEPT_UUID_URL, URLEncoder.encode(conceptName, "UTF-8")))
-//				.basicAuth(username, password)
-//				.header("content-type", "application/json")
-//				.asJson();
-//
-//			int size = request.getBody().getArray().getJSONObject(0).getJSONArray("results").length();
-//
-//			for (int pos = 0; pos < size; pos++) {
-//				if (request.getBody().getArray().getJSONObject(0).getJSONArray("results").getJSONObject(pos).get("display").equals(conceptName)) {
-//					return String.valueOf(request.getBody().getArray().getJSONObject(0).getJSONArray("results").getJSONObject(pos).get("uuid"));
-//				}
-//			}
-//
-//		} catch (Exception e) {
-//			throw new BahmniAPIException(e);
-//		}
-//		return null;
     }
 
     public Map<String, String> getConceptAnswersForConceptName(String conceptName) {
@@ -491,29 +390,6 @@ public class BahmniRestClient {
 
     public <T extends Model> JSONObject create(T entity) {
         return create(entity, entity.getMRSName());
-//		try {
-//			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(entity.getTemplateName() + "_create.ftl");
-//			Map<String, Object> objectData = new HashMap<>();
-//
-//			objectData.put("object", entity);
-//
-//			StringWriter stringWriter = new StringWriter();
-//			freemarkerTemplate.process(objectData, stringWriter);
-//
-//			String requestJson = stringWriter.toString();
-//
-//			HttpResponse<JsonNode> response = Unirest.post(mrs_url +"/"+ entity.getMRSName())
-//				.basicAuth(username, password)
-//				.header("content-type", "application/json")
-//				.body(requestJson)
-//				.asJson();
-//
-//			if (response.getStatus() != 200 && response.getStatus() != 201)
-//				throw new BahmniAPIException(entity.getClass() + " Creation Failed!!");
-//			return response.getBody().getObject();
-//		} catch (Exception e) {
-//			throw new BahmniAPIException(e);
-//		}
     }
 
     public <T extends Model> JSONObject create(T entity, String partialUrl) {
@@ -622,30 +498,6 @@ public class BahmniRestClient {
 
         }
         orderSet.setUuid(JSONs.get(create(orderSet), "uuid").toString());
-//			Template freemarkerTemplate = freemarkerConfiguration.getTemplate(templateName);
-//			Map<String, Object> orderSetData = new HashMap<>();
-//			orderSetData.put("orderSet", orderSet);
-//
-//			StringWriter stringWriter = new StringWriter();
-//			freemarkerTemplate.process(orderSetData, stringWriter);
-//			String requestJson = stringWriter.toString();
-//
-//			HttpResponse<JsonNode> response = Unirest.post(mrs_url + ORDERSET_URL)
-//				.basicAuth(username, password)
-//				.header("content-type", "application/json")
-//				.body(requestJson)
-//				.asJson();
-//
-//			Object uuid = JSONs.get(response.getBody(), "uuid");
-//			if (null == uuid) {
-//				System.err.println("Response from the server for patient creation:");
-//				System.err.println(response.getBody().toString());
-//				throw new BahmniAPIException("Patient creation failed!!");
-//			}
-//			orderSet.setUuid(uuid.toString());
-//		} catch (Exception e) {
-//			throw new BahmniAPIException(e);
-//		}
     }
 
 
@@ -671,10 +523,27 @@ public class BahmniRestClient {
         }
     }
 
-    public static void dischargePatient(Patient patient) {
-        BahmniRestClient bahmniRestClient = get();
-        String requestBody = bahmniRestClient.serialize(patient, "discharge_patient.ftl");
-        post(url_mrsportion_rest + DISCHARGE_PATIENT_URL, requestBody);
+    public boolean dischargePatient(Patient patient) {
+        try {
+            Template freemarkerTemplate = freemarkerConfiguration.getTemplate("discharge_patient.ftl");
+            Map<String, Object> programData = new HashMap<>();
+            programData.put("patient", patient);
+
+            StringWriter stringWriter = new StringWriter();
+            freemarkerTemplate.process(programData, stringWriter);
+            String requestJson = stringWriter.toString();
+
+            HttpResponse<JsonNode> response = Unirest.post(mrs_url + DISCHARGE_PATIENT_URL)
+                    .basicAuth(username, password)
+                    .header("content-type", "application/json")
+                    .body(requestJson)
+                    .asJson();
+            if (response.getStatus() != 200 && response.getStatus() != 201)
+                throw new BahmniAPIException("Discharge patient through API Failed!!");
+        } catch (Exception e) {
+            throw new BahmniAPIException(e);
+        }
+        return true;
     }
 
     public String serialize(Object object, String templateName) {

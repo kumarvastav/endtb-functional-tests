@@ -1,9 +1,5 @@
 Admin Activities
 =====================
-Created by atmaramn on 27/10/2016
-
-This is an executable specification file which follows markdown syntax.
-Every heading in this file denotes a scenario. Every bulleted point denotes a step.
      
 Order Set - Add
 ---------------

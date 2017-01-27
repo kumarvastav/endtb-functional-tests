@@ -6,9 +6,7 @@ Verify Program Specfic data on display controls & Observation Templates
 Tags: regression, sanity
 
 * Enroll patient to program through API
-* Open visit for previous patient using api
-      |location|type|
-      |Registration Desk|OPD|
+* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
 * On the login page
 * Login to the application
 * Click on programs app
@@ -50,9 +48,7 @@ Verify data captured through clinical is not present on Program Specific Patient
 Tags: regression, sanity
 
 * Enroll patient to program through API
-* Open visit for previous patient using api
-    |location|type|
-    |Registration Desk|OPD|
+* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
 * On the login page
 * Login to the application
 * Click on clinical app

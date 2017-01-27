@@ -1,20 +1,14 @@
 Multiple Dashboard Scenarios
-=====================
-Created by atmaramn on 17/11/2016
-
-This is an executable specification file which follows markdown syntax.
-Every heading in this file denotes a scenario. Every bulleted point denotes a step.
+============================
      
 Verify display of patient profile on ADT, dashboard & Visit page
---------------------------
+----------------------------------------------------------------
 Tags: regression, sanity
 
 * Create the following patient using api
     |prefix|firstName|lastName|gender|dateOfBirth|district|village|
     |GAN|Ram|Singh|M|20/10/1966|Bilaspur|Khanapur|
-* Open visit for previous patient using api
-    |location|type|
-    |Registration Desk|OPD|
+* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
 * Enter visit details through API
     |height|weight|registrationFee|
     |170|70|15|

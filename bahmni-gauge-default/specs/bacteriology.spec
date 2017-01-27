@@ -8,7 +8,7 @@ Tags: regression, sanity
 
 * Create a new patient and open visit through API
 * On the login page
-* Login to the application
+* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
 * Click on clinical app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
