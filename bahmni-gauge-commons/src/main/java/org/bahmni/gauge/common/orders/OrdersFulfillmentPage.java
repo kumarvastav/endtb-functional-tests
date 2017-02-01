@@ -39,6 +39,7 @@ public class OrdersFulfillmentPage extends BahmniPage {
             uploadFile(root,order.getImage());
             root.findElement(By.cssSelector("[ng-model=\"observation.value\"]")).sendKeys(order.getNote());
         }
+      //  waitForSpinner();
         save.click();
     }
 
