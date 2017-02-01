@@ -36,16 +36,6 @@ public class RadiologyUploadPage extends BahmniPage{
         }
     }
 
-    private void uploadFile(int visitNumber, String image) {
-        String sPath = null;
-        try {
-            sPath = new java.io.File(".").getCanonicalPath() + "/src/main/resources/upload/" + image;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        driver.findElements(By.cssSelector("input[type=\"file\"]")).get(visitNumber).sendKeys(sPath);
-
-    }
 
     public void save(){
         findElement(By.cssSelector("button.btn.btn-primary:not([disabled])")).click();

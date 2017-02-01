@@ -18,6 +18,7 @@ public class OrdersFulfillmentPage extends BahmniPage {
 
     @FindBy(how = How.CSS, using = ".confirm")
     public  WebElement save;
+
     private String sSectionXpath="//span[contains(text(),\"%s\")]/ancestor::div[contains(@class,\"order-fullfilment-contianer\")]";
 
     public void verifyOrders(List<Order> orders) {
@@ -32,24 +33,11 @@ public class OrdersFulfillmentPage extends BahmniPage {
 
     public void fulfill(List<Order> orders) {
         for(Order order:orders) {
-            WebElement root=findElement(By.xpath(String.format(sSectionXpath,order.getName())));
-            try {
-                root.findElement(By.cssSelector(".fa-caret-right")).click();
-                waitForSpinner();
-            } catch (NoSuchElementException ex){
-
-            }catch (ElementNotVisibleException ex){
-
-            }
+            WebElement root = findElement(By.xpath(String.format(sSectionXpath,order.getName())));
+            root.findElement(By.cssSelector(".fa-caret-right")).click();
+            waitForSpinner();
+            uploadFile(root,order.getImage());
             root.findElement(By.cssSelector("[ng-model=\"observation.value\"]")).sendKeys(order.getNote());
-            root.findElement(By.cssSelector(".fa-plus")).click();
-            try{
-
-                uploadFile(order.getImage());
-            } catch (Exception ex){
-
-            }
-
         }
         save.click();
     }
@@ -58,8 +46,6 @@ public class OrdersFulfillmentPage extends BahmniPage {
         for(Order order:orders){
             try{
                 WebElement element=findElement(By.xpath(String.format(sSectionXpath,order.getName())));
-                element.findElement(By.cssSelector(".fa-caret-right")).click();
-                waitForSpinner();
                 Assert.assertTrue("Note " + order.getNote() + " not found",element.getText().contains(order.getNote()));
 
             } catch (NoSuchElementException ex){

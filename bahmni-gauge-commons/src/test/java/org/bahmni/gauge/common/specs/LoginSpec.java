@@ -45,6 +45,7 @@ public class LoginSpec {
 		LoginPage loginPage = PageFactory.get(LoginPage.class);
 		loginPage.closeCurrentBrowserTab();
 	}
+
     @Step("Login to the application")
 	public void login() {
 		login("BAHMNI_GAUGE_APP_USER", "BAHMNI_GAUGE_APP_PASSWORD");

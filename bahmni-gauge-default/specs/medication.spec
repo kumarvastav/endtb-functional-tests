@@ -108,13 +108,9 @@ Stop drug and Verify the details in display controls
 
 Tags: regression, sanity
 
-* Enroll patient to program through API
+* Create a new patient and open visit through API
 * On the login page
-* Login with username "BAHMNI_GAUGE_APP_USER" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "BAHMNI_GAUGE_APP_LOCATION"
-* Click on registration app
-* Search previously created patient with exact identifier
-* Start a visit "OPD"
-* Navigate to dashboard
+* Login to the application
 * Click on clinical app
 * Select existing patient from patient listing page under tab "All"
 * Navigate to consultation

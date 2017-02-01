@@ -367,63 +367,25 @@ public class BahmniPage {
 
     }
 
-    protected void uploadFile(String s) throws AWTException, IOException {
-        String sPath = new java.io.File(".").getCanonicalPath() + "/src/main/resources/upload/" + s;
-        File file = new File(sPath);
-        StringSelection stringSelection = new StringSelection(file.getAbsolutePath());
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+    protected void uploadFile(int visitNumber, String image) {
+        String sPath = getImagePath(image);
+        driver.findElements(By.cssSelector("input[type=\"file\"]")).get(visitNumber).sendKeys(sPath);
 
-        Robot robot = new Robot();
+    }
 
-// Cmd + Tab is needed since it launches a Java app and the browser looses focus
+    protected void uploadFile(WebElement root, String image) {
+        String sPath = getImagePath(image);
+        root.findElement(By.cssSelector("input[type=\"file\"]")).sendKeys(sPath);
+    }
 
-        robot.keyPress(KeyEvent.VK_META);
-
-        robot.keyPress(KeyEvent.VK_TAB);
-
-        robot.keyRelease(KeyEvent.VK_META);
-
-        robot.keyRelease(KeyEvent.VK_TAB);
-
-        robot.delay(500);
-
-//Open Goto window
-
-        robot.keyPress(KeyEvent.VK_META);
-
-        robot.keyPress(KeyEvent.VK_SHIFT);
-
-        robot.keyPress(KeyEvent.VK_G);
-
-        robot.keyRelease(KeyEvent.VK_META);
-
-        robot.keyRelease(KeyEvent.VK_SHIFT);
-
-        robot.keyRelease(KeyEvent.VK_G);
-
-//Paste the clipboard value
-
-        robot.keyPress(KeyEvent.VK_META);
-
-        robot.keyPress(KeyEvent.VK_V);
-
-        robot.keyRelease(KeyEvent.VK_META);
-
-        robot.keyRelease(KeyEvent.VK_V);
-
-//Press Enter key to close the Goto window and Upload window
-
-        robot.keyPress(KeyEvent.VK_ENTER);
-
-        robot.keyRelease(KeyEvent.VK_ENTER);
-
-        robot.delay(1000);
-
-        robot.keyPress(KeyEvent.VK_ENTER);
-
-        robot.keyRelease(KeyEvent.VK_ENTER);
-
-        robot.delay(1000);
+    private String getImagePath(String image) {
+        String sPath = null;
+        try {
+            sPath = new File(".").getCanonicalPath() + "/src/main/resources/upload/" + image;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sPath;
     }
 
     public void switchToLatestTab() {
