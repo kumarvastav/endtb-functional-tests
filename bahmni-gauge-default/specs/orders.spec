@@ -58,7 +58,6 @@ Tags: regression, sanity
 * Login to the application
 * Click on clinical app
 * Select existing patient from patient listing page under tab "Active"
-
 * Navigate to consultation
 * Go to "Orders" tab
 * Expand "Radiology" section on orders page
