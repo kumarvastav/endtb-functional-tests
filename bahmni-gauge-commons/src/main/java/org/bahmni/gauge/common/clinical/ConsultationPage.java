@@ -1,7 +1,11 @@
 package org.bahmni.gauge.common.clinical;
 
+import com.thoughtworks.gauge.Table;
+import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
+import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -63,5 +67,15 @@ public class ConsultationPage extends BahmniPage {
         if (!date.equals(""))
             findElement(By.xpath("//label[text()='Enter data for']/../input")).sendKeys(date);
         findElement(By.cssSelector(".retro-widget-button.ok_btn")).click();
+    }
+
+    public void verifyTabsPresent(Table tabs)
+    {
+        WebElement element;
+
+        for (String tabName : tabs.getColumnValues("tabName")) {
+            element = findElement(By.xpath(".//a[@ng-click='showBoard($index)' and contains(text(),'"+tabName+"')]"));
+            Assert.assertTrue(element.isDisplayed());
+        }
     }
 }

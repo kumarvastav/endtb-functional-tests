@@ -266,3 +266,40 @@ Tags: regression, sanity
     |image|name|
     |xray.jpeg|Knee - Right, 1 or 2 views (X-ray)|
 * Save radiology upload
+
+
+[WIP] Scenario 5 : Validation with "Clinical-App-Disposition", "Clinical-App-Observations", "InPatient-App" role
+
+Scneario: Validation with "Clinical-App-Disposition", "Clinical-App-Observations", "InPatient-App" role
+-----------------------------------------------------------------------------------------------------------
+Tags: regression, sanity
+
+* On the login page
+* Login with user "nurseone" and password "BAHMNI_GAUGE_APP_PASSWORD" with location "Registration Desk"
+* Verify only the following application is available
+    |Application~ID(tagName)|Is Available|
+    |Registration           |false       |
+    |Programs               |true        |
+    |Clinical               |true        |
+    |ADT                    |true        |
+    |Radiology              |false       |
+    |Patient.Document       |false       |
+    |Admin                  |false       |
+    |Reports                |false       |
+    |Orders                 |false       |
+    |Implementer            |false       |
+    |AtomFeed               |false       |
+* Click on clinical app
+* Select patient "GAN203687" in tab "Active"
+* Navigate to consultation
+* Verify only the following tab is available
+    |tabName     |
+    |Observations|
+    |Disposition |
+* Go to "Disposition" tab
+* Select "Admit Patient" disposition with notes "Admit this patient"
+* Save the consultation
+* Navigate to dashboard link
+* Verify details on dashboard "Disposition" display control
+* Navigate to dashboard
+* Click on inpatient app
