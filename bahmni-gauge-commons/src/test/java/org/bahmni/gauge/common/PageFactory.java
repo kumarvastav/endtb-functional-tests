@@ -76,6 +76,8 @@ public class PageFactory {
 		return (HomePage) get(HOME);
 	}
 
+
+
 	public static RegistrationFirstPage getRegistrationFirstPage() {
 		return (RegistrationFirstPage) get(REGISTRATION_FIRST_PAGE);
 	}

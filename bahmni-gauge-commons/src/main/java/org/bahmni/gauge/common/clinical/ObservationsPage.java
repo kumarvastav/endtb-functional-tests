@@ -12,6 +12,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.List;
 
 public class ObservationsPage extends BahmniPage {
@@ -31,9 +33,6 @@ public class ObservationsPage extends BahmniPage {
     @FindBy(how = How.CSS, using = ".template-control-panel")
     public WebElement templatePanel;
 
-    @FindBy(how = How.CSS, using = ".concept-set-title")
-    public List<WebElement> observationTemplates;
-
     @FindBy(how = How.CSS, using = ".save-consultation")
     public WebElement save;
 
@@ -45,10 +44,10 @@ public class ObservationsPage extends BahmniPage {
         clickTemplateButton();
         List<WebElement> allForms = templatePanel.findElements(By.tagName("button"));
 
-        for (int i = 0; i < allForms.size(); i++) {
-            String text = allForms.get(i).getText().replace(" ", "_"); //For debugging
+        for (WebElement allForm : allForms) {
+            String text = allForm.getText(); //For debugging
             if (text.contains(templateName)) {
-                allForms.get(i).click();
+                allForm.click();
                 break;
             }
         }
@@ -133,10 +132,12 @@ public class ObservationsPage extends BahmniPage {
         String value;
         for (TableRow row : rows) {
             value = row.getCell(columnNames.get(0));
-            driver.findElement(By.xpath(("(.//*[contains(@id,'observation_')])[" + rowCount + "]"))).sendKeys(value);
+            addmore.click();
+            WebElement chiefComplaints = driver.findElement(By.xpath(("(.//*[contains(@id,'observation_')])[" + rowCount + "]")));
+            chiefComplaints.sendKeys(value);
             driver.findElement(By.xpath("(.//*[contains(@id,'observation_')])[" + rowCount + "]/../div/button")).click();
             rowCount++;
-            addmore.click();
+
 
         }
         save.click();
@@ -152,7 +153,6 @@ public class ObservationsPage extends BahmniPage {
         int rowCount;
         for (TableRow row : rows) {
             value = row.getCell(columnNames.get(0));
-
             for (rowCount = 1; rowCount <= rowSize; rowCount++) {
                 WebElement element = driver.findElement(By.xpath(("(.//*[contains(@id,'observation_')])[" + rowCount + "]")));
                 if (value.equals(element.getAttribute("value")) && (rowCount!=1)) {
@@ -161,6 +161,31 @@ public class ObservationsPage extends BahmniPage {
             }
         }
         save.click();
+    }
+
+    public void uploadConsultationImageAndAddComment(String template, Table table) throws AWTException, IOException, InterruptedException {
+        new ObservationForm(expandObservationTemplate(template));
+        List<TableRow> rows = table.getTableRows();
+        int rowCount = 1;
+        for (TableRow row : rows) {
+            String imageName = row.getCell("Image");
+            waitForSpinnerOnDisplayControl();
+            uploadFile((rowCount - 1), imageName);
+            waitForSpinner();
+            driver.findElement(By.xpath("(//legend/strong[contains(text(),'Images')]/../../..//button[@toggle='observation.showComment'])[" + rowCount + "]")).click();
+            driver.findElement(By.xpath("(//textarea[contains(@class,'consultation-img-comments')])[" + rowCount + "]")).sendKeys(row.getCell("Comment"));
+            driver.findElement(By.xpath(("(.//*[contains(@id,'image_addmore_observation_')])"))).click();
+            rowCount++;
+        }
+        save.click();
+        waitForSpinner();
+    }
+
+    public void removeImage(Integer imageNumber)
+    {
+        driver.findElement(By.xpath("(//button[@class='row-remover'])[" + imageNumber + "]")).click();
+        save.click();
+        waitForSpinner();
     }
 
     public void removeAdverseEffect(String template, Table data) {

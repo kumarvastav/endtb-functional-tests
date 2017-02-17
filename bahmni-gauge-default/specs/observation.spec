@@ -182,10 +182,53 @@ Tags: regression, sanity
     |Injury|
 
 
+Ability to Upload Consultation Image
+--------------------------------
+Tags: regression, sanity
 
-
-
-
-
-
-
+* Create patient and open visit with details through API
+* Login to app and navigate to "Clinical" app
+* Select existing patient from patient listing page under tab "Active"
+* Navigate to consultation
+* Upload consultation images with Notes on "History and Examination"
+  |Image            |Comment    |
+  |MRIScan.jpg      |MRIScan    |
+  |xray.jpeg        |XRayCopy   |
+  |ultrasound.jpeg  |US Copy    |
+* Go to "Consultation" tab
+* Verify display control with Caption "History and Examination" on "Consultation" tab, has the following details
+  |details|
+  |Image|
+  |Image|
+  |Image|
+* Navigate to dashboard link
+* Verify display control "History and Examinations" on dashboard, has the following details
+  |Image|
+  |MRIScan|
+  |XRayCopy|
+  |US Copy|
+* Navigate to latest visit page
+* Verify display control with Caption "Observations" on visit page, has the following details
+  |Image|
+  |MRIScan|
+  |XRayCopy|
+  |US Copy|
+* Navigate to dashboard link
+* Navigate to consultation
+* Go to "Observations" tab
+* Remove image "1" from "History and Examinations" on Consultation page
+* Go to "Consultation" tab
+* Verify display control with Caption "History and Examination" on "Consultation" tab, has the following details
+  |details|
+  |Image|
+  |Image|
+* Navigate to dashboard link
+* Verify display control "History and Examinations" on dashboard, has the following details
+  |Image|
+  |MRIScan|
+  |XRayCopy|
+* Navigate to latest visit page
+* Verify display control with Caption "Observations" on visit page, has the following details
+  |Image|
+  |MRIScan|
+  |XRayCopy|

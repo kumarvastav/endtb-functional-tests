@@ -2,6 +2,7 @@ package org.bahmni.gauge.common.specs;
 
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Step;
+import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
@@ -49,6 +50,12 @@ public class ConsultationPageSpec {
         } else {
             consultationPage.openRegistrationDeskAndSet("", "", date);
         }
+    }
+
+    @Step("Verify only the following tab is available <table>")
+    public void verifyTabPresent(Table tabs)
+    {
+        consultationPage.verifyTabsPresent(tabs);
     }
 
 

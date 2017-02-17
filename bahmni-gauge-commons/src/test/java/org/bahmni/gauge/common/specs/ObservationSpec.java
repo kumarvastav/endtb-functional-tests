@@ -18,6 +18,8 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -188,5 +190,18 @@ public class ObservationSpec extends BaseSpec {
         observationsPage.removeChiefComplaints(template,data);
     }
 
+    @Step("Upload consultation images with Notes on \"History and Examinations\" <table>")
+    public void uploadConsultationImage(String template,Table table) throws InterruptedException, IOException, AWTException {
+        ObservationsPage observationsPage=PageFactory.get(ObservationsPage.class);
+        observationsPage.uploadConsultationImageAndAddComment(template,table);
+    }
 
+
+    @Step("Remove image <imageNumber> from <History and Examinations> on Consultation page")
+    public void removeConsultationImage(Integer imageNumber, String template) {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.expandObservationTemplate(template);
+        observationsPage.removeImage(imageNumber);
+        waitForAppReady();
+    }
 }

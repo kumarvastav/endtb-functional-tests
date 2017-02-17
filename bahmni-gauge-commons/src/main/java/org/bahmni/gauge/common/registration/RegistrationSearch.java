@@ -52,19 +52,23 @@ public class RegistrationSearch extends BahmniPage{
     public void clickSearch() {
     	iconSearch.click();
     }
-    
+
     public void clickHome() {
     	iconHome.click();
     }
-    
+
     public void clickCreateNew() {
     	iconCreateNew.click();
     }
 
+    public void verifyCreateNewIconNotDisplayed(){
+    		Assert.assertFalse(driver.findElements(By.cssSelector("i.fa-plus")).size() != 0);
+	}
+
     public void enterName(String name) {
     	txtName.sendKeys(name,Keys.ENTER);
     }
-    
+
     public void searchByExactIdentifier(String prefix, String id){
 	    selectPrefix(prefix);
 

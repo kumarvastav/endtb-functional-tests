@@ -1,9 +1,11 @@
 package org.bahmni.gauge.common.specs;
 
+import com.gargoylesoftware.htmlunit.Page;
 import com.thoughtworks.gauge.BeforeClassSteps;
 import com.thoughtworks.gauge.Gauge;
 import com.thoughtworks.gauge.Step;
 
+import com.thoughtworks.gauge.Table;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
@@ -25,6 +27,7 @@ public class HomeSpec {
     public void waitForAppReady() {
         BahmniPage.waitForSpinner(driver);
     }
+
 
     @Step("Click on registration app")
     public void goToRegistrationPage() {
@@ -139,4 +142,11 @@ public class HomeSpec {
         Assert.assertTrue(homePage.exports.isDisplayed());
     }
 
+
+    @Step("Verify only the following application is available <table>")
+    public void verifyAppPresent(Table application){
+        homePage = PageFactory.getHomePage();
+        homePage.verifyAppPresent(application);
+
+    }
 }

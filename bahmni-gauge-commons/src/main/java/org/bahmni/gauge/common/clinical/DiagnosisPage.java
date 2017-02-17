@@ -1,11 +1,16 @@
 package org.bahmni.gauge.common.clinical;
 
+import com.thoughtworks.gauge.Table;
+import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.Diagnosis;
 import org.bahmni.gauge.util.StringUtil;
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 
 import java.util.List;
 
@@ -18,6 +23,10 @@ public class DiagnosisPage extends BahmniPage {
     By bAcceptButton=By.cssSelector(".accept-btn");
     By bCertainty=By.cssSelector("[model=\"diagnosis.certainty\"] button");
     By bStatus=By.cssSelector("[model=\"diagnosis.diagnosisStatus\"] button");
+
+    @FindBy(how = How.CSS, using = ".save-consultation")
+    public WebElement save;
+
     public void enterDiagnoses(List<Diagnosis> diagnoses) {
         int index=0;
         for(Diagnosis diagnosis : diagnoses){
@@ -130,4 +139,27 @@ public class DiagnosisPage extends BahmniPage {
             }
         }
     }
+
+
+    public void removeDiagnosis(Table data) {
+        List<TableRow> rows = data.getTableRows();
+        int rowSize=driver.findElements(By.xpath("(.//*[contains(@class,'diagnosis-name')])/span[1]")).size();
+        List<String> columnNames = data.getColumnNames();
+        String value;
+        int rowCount=1;
+        for (TableRow row : rows) {
+            value = row.getCell(columnNames.get(0));
+            for (rowCount = 1; rowCount <=rowSize; rowCount++) {
+                WebElement element = driver.findElement(By.xpath(("((.//*[contains(@class,'diagnosis-name')])/span[1])[" + rowCount + "]")));
+                if (value.equals(element.getText())){
+                    driver.findElement(By.xpath(("(.//*[contains(@id,'deleteDiagnosis')])[" + rowCount + "]"))).click();
+                    acceptAlert(driver);
+                }
+                waitForSpinner();
+            }
+        }
+
+        save.click();
+    }
+
 }
