@@ -197,10 +197,10 @@ Tags: regression, sanity
       |details                              |
       |High Blood Pressure CONFIRMED PRIMARY|
 
-//Read only privilege is available from 0.89 in default db
 
 Scneario: Registarion-App-Read-only should not have "Create New" option, but should have radiology upload, patient documents upload, and running the reports
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
+Tags: regression, sanity
 
 * Create patient and open visit with details through API with details
        |height  |weight |registrationFee|
