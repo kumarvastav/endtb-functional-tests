@@ -46,48 +46,25 @@ public class HomeSpec {
     }
 
     @ContinueOnFailure
-    @Step("Verify page load time for clinical app is less than <time> seconds")
-    public void verifyPageLoadForClinical(long loadTime) {
+    @Step("Verify page load time for <app> app is less than <time> seconds")
+    public void verifyPageLoadForClinical(String app, long loadTime) {
         homePage = PageFactory.getHomePage();
         Date beforeTime = new Date();
-        homePage.clickClinicalApp();
+        switch (app) {
+            case "Clinical"    :homePage.clickClinicalApp();
+                                break;
+            case "Programs"    :homePage.clickProgramsApp();
+                                break;
+            case "ADT"         :homePage.clickInpatientApp();
+                                break;
+            case "Registration":homePage.clickRegistrationApp();
+                                break;
+                        default:break;
+        }
         BahmniPage.waitForSpinner(driver);
         Date afterTime = new Date();
         long difference = (afterTime.getTime()-beforeTime.getTime())/1000;
-        Assert.assertTrue("Actual Time to load Clinical app is " + Long.toString(difference) +" seconds", difference <= loadTime);
-    }
-
-    @Step("Verify page load time for programs app is less than <time> seconds")
-    public void verifyPageLoadForPrograms(long loadTime) {
-        homePage = PageFactory.getHomePage();
-        Date beforeTime = new Date();
-        homePage.clickProgramsApp();
-        BahmniPage.waitForSpinner(driver);
-        Date afterTime = new Date();
-        long difference = (afterTime.getTime()-beforeTime.getTime())/1000;
-        Assert.assertTrue("Actual Time to load Programs app is " + Long.toString(difference) +" seconds", difference <= loadTime);
-    }
-
-    @Step("Verify page load time for ADT app is less than <time> seconds")
-    public void verifyPageLoadForADT(long loadTime) {
-        homePage = PageFactory.getHomePage();
-        Date beforeTime = new Date();
-        homePage.clickInpatientApp();
-        BahmniPage.waitForSpinner(driver);
-        Date afterTime = new Date();
-        long difference = (afterTime.getTime()-beforeTime.getTime())/1000;
-        Assert.assertTrue("Actual Time to load ADT app is " + Long.toString(difference) +" seconds", difference <= loadTime);
-    }
-
-    @Step("Verify page load time for registration app is less than <time> seconds")
-    public void verifyPageLoadForRegistration(long loadTime) {
-        homePage = PageFactory.getHomePage();
-        Date beforeTime = new Date();
-        homePage.clickRegistrationApp();
-        BahmniPage.waitForSpinner(driver);
-        Date afterTime = new Date();
-        long difference = (afterTime.getTime()-beforeTime.getTime())/1000;
-        Assert.assertTrue("Actual Time to load Registration app is " + Long.toString(difference) +" seconds", difference <= loadTime);
+        Assert.assertTrue("Actual Time to load " + app + " app is " + Long.toString(difference) +" seconds", difference <= loadTime);
     }
 
     @Step("Click on inpatient app")
