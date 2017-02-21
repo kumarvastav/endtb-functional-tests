@@ -40,7 +40,7 @@ public class ObservationSpec extends BaseSpec {
     @Step("Select the template <template> from on the observation page")
     public void clickOnTreatmentEnrollment(String template) throws InterruptedException {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
-        observationsPage.selectTemplate(template.replace(" ", "_"));
+        observationsPage.selectTemplate(template);
         waitForAppReady();
     }
 
