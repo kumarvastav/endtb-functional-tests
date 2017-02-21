@@ -1,5 +1,5 @@
-Specification Heading
-=====================
+Page Load Time
+===============
      
 Verify page load times
 ----------------------

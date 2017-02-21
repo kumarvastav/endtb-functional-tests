@@ -1,4 +1,4 @@
-Specification Heading
+Roles and Privileges
 =====================
 
 Login with the user which have only Registration role assigned and register a new user
