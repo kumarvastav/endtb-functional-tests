@@ -6,6 +6,7 @@ import org.bahmni.gauge.common.clinical.ConsultationPage;
 import org.bahmni.gauge.common.clinical.ConsultationTabPage;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.TreatmentPage;
+import org.bahmni.gauge.common.formBuilder.ImplementerInterfacePage;
 import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.orders.OrdersFulfillmentPage;
 import org.bahmni.gauge.common.program.ProgramManagementPage;
@@ -20,6 +21,7 @@ import java.util.Properties;
 public class PageFactory {
 
 	private static final String HOME = "home";
+	private static final String IMPLEMENTER_INTERFACE_PAGE = "implementer-interface";
 	private static final String REGISTRATION_FIRST_PAGE = "registration.page1";
 	private static final String REGISTRATION_VISIT_PAGE = "registration.visitPage";
 	private static final String PROGRAMS_PAGE = "programs";
@@ -76,7 +78,9 @@ public class PageFactory {
 		return (HomePage) get(HOME);
 	}
 
-
+	public static ImplementerInterfacePage getImplementerInterfacePage(){
+		return (ImplementerInterfacePage)get(IMPLEMENTER_INTERFACE_PAGE);
+	}
 
 	public static RegistrationFirstPage getRegistrationFirstPage() {
 		return (RegistrationFirstPage) get(REGISTRATION_FIRST_PAGE);

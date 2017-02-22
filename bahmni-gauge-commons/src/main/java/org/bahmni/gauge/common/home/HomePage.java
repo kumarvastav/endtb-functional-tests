@@ -5,11 +5,9 @@ import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.w3c.dom.html.HTMLTableElement;
 
 import java.util.List;
 
@@ -47,10 +45,16 @@ public class HomePage extends BahmniPage {
 	@FindBy(how = How.CSS, using = "#bahmni\\.orders")
 	public WebElement orders;
 
+	@FindBy(how = How.ID, using = "bahmni.implementer.interface")
+	public WebElement implementerInterface;
+
 	@FindBy(how = How.CSS, using = "#bahmni\\.radiology\\.document\\.upload")
 	public WebElement radiologyUpload;
 
-    public void clickRegistrationApp(){
+	@FindBy(how = How.CSS, using = "i.fa-user-secret")
+	public WebElement formBuilder;
+
+	public void clickRegistrationApp(){
     	registration.click();
     }
 
@@ -81,7 +85,10 @@ public class HomePage extends BahmniPage {
 
 	public void clickOrdersApp() {
 		orders.click();
-		
+	}
+
+	public void clickImplementerInterfaceApp(){
+		implementerInterface.click();
 	}
 
 	public void clickRadiologyUploadApp() {

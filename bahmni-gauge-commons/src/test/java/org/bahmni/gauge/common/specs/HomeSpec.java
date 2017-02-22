@@ -45,6 +45,12 @@ public class HomeSpec {
         homePage.clickClinicalApp();
     }
 
+    @Step("Click on implementer interface app")
+    public void goToImplementerInterfacePage() {
+        homePage = PageFactory.getHomePage();
+        homePage.clickImplementerInterfaceApp();
+    }
+
     @ContinueOnFailure
     @Step("Verify page load time for <app> app is less than <time> seconds")
     public void verifyPageLoadForClinical(String app, long loadTime) {
