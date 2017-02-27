@@ -10,6 +10,7 @@ import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
+import org.bahmni.gauge.common.formBuilder.domain.Form;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
@@ -109,6 +110,24 @@ public class ObservationSpec extends BaseSpec {
     public void expandControl(String controlText) {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
         dashboardPage.expandControlWithCaption(controlText);
+    }
+
+    @Step("Click on add new obs form")
+    public void showAllObsForm() {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.clickOnAddNewObsForm();
+    }
+
+    @Step("Choose <selectedObsForm> obs form")
+    public void showChooosedObsForm(String selectedObsForm) {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.clickOnSelectedObsForm(selectedObsForm);
+    }
+
+    @Step("Choose the obs form")
+    public void showChoosedObsForm() {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        Form form = observationsPage.getObsFormFromSpecStore();
     }
 
     @Step("click  <displayControlId> on dashboard, and verify displayed dialog has the following details <table>")

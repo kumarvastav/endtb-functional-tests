@@ -58,6 +58,7 @@ public class PageFactory {
 		}
 	}
 
+
 	public static AdminPage getAdminPage() {
 		return (AdminPage) get(ADMIN_PAGE);
 	}

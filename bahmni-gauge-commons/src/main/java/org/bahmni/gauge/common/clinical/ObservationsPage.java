@@ -39,6 +39,8 @@ public class ObservationsPage extends BahmniPage {
     @FindBy(how = How.XPATH, using = "//span[text()='Adverse Effects']/../../div//input")
     public WebElement adverseEffects;
 
+    @FindBy(how = How.ID, using = "template-control-panel-button")
+    public WebElement addNewObsForm;
 
     public void selectTemplate(String templateName) {
         clickTemplateButton();
@@ -198,5 +200,13 @@ public class ObservationsPage extends BahmniPage {
             Actions actions = new Actions(driver);
             actions.moveToElement(adverseEffect).click().perform();
         }
+    }
+
+    public void clickOnAddNewObsForm() {
+        addNewObsForm.click();
+    }
+
+    public void clickOnSelectedObsForm(String selectedObsForm) {
+        driver.findElement(By.id(selectedObsForm)).click();
     }
 }

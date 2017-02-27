@@ -25,6 +25,7 @@ public class StoreHelper {
         if (CollectionUtils.isEmpty(entities)) {
             return null;
         }
+
         return entities.get(entities.size() - 1);
     }
 

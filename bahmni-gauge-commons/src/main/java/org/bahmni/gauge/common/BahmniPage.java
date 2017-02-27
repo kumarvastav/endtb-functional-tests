@@ -8,6 +8,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.bahmni.gauge.common.admin.domain.OrderSet;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
+import org.bahmni.gauge.common.formBuilder.domain.Form;
 import org.bahmni.gauge.common.home.HomePage;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.program.domain.Program;
@@ -53,6 +54,11 @@ public class BahmniPage {
 
     public Patient getPatientFromSpecStore() {
         return StoreHelper.getLatest(Patient.class);
+    }
+
+    public Form getObsFormFromSpecStore() {
+        List<Form> a = StoreHelper.getAll(Form.class);
+        return a.get(0);
     }
 
     public List<DrugOrder> getDrugOrderFromSpecStore() {
