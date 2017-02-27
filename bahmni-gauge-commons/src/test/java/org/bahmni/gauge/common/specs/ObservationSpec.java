@@ -15,7 +15,6 @@ import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.bahmni.gauge.util.StringUtil;
-import org.bahmni.gauge.util.TableTransformer;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -57,7 +56,16 @@ public class ObservationSpec extends BaseSpec {
         formAttributes.putAll(transformTableToMap(table));
 
         BahmniRestClient.get().createForm(formName + ".ftl", formAttributes);
+    }
 
+    @Step("Create a <formName> form")
+    public void createForm(String formName) {
+        Form form = new Form();
+        form.setName(formName);
+        Map<String, Object> formAttributes = new HashMap<>();
+        formAttributes.put("name", form.getName());
+        BahmniRestClient.get().createFormUsingAPI("form_create.ftl", formAttributes);
+//        BahmniRestClient.get().saveAndPublishFormUsingAPI("form_create.ftl", formAttributes);
     }
 
     private Map<String, String> transformTableToMap(Table table) {

@@ -62,6 +62,10 @@ public class BahmniRestClient {
 
     private static final String DISCHARGE_PATIENT_URL = "/bahmnicore/discharge";
 
+    private static final String SAVE_FORM_URL = "/bahmniie/form/save";
+
+    private static final String CREATE_FORM_URL = "/form";
+
     private Configuration freemarkerConfiguration;
 
     private String url;
@@ -589,6 +593,52 @@ public class BahmniRestClient {
             throw new BahmniAPIException(responseAsString.substring(0, 10000));
         }
         return responseAsJson.getBody();
+    }
+
+//    public void saveAndPublishFormUsingAPI(String formTemplate, Map<String, Object> attributes) {
+//        try {
+//            Template freemarkerTemplate = freemarkerConfiguration.getTemplate(formTemplate);
+//
+//            StringWriter stringWriter = new StringWriter();
+//            freemarkerTemplate.process(attributes, stringWriter);
+//            String requestJson = stringWriter.toString();
+//
+//            HttpResponse<JsonNode> response = Unirest.post(mrs_url + SAVE_FORM_URL)
+//                    .basicAuth(username, password)
+//                    .header("content-type", "application/json")
+//                    .body(requestJson)
+//                    .asJson();
+//
+//            if (response.getStatus() != 200) {
+//                throw new BahmniAPIException("Invalid response for [" + formTemplate + "]");
+//            }
+//
+//        } catch (Exception ex) {
+//            throw new BahmniAPIException(ex);
+//        }
+//    }
+
+    public void createFormUsingAPI(String formTemplate, Map<String, Object> attributes){
+        try {
+            Template freemarkerTemplate = freemarkerConfiguration.getTemplate(formTemplate);
+
+            StringWriter stringWriter = new StringWriter();
+            freemarkerTemplate.process(attributes, stringWriter);
+            String requestJson = stringWriter.toString();
+
+            HttpResponse<JsonNode> response = Unirest.post(mrs_url + CREATE_FORM_URL)
+                    .basicAuth(username, password)
+                    .header("content-type", "application/json")
+                    .body(requestJson)
+                    .asJson();
+
+            if (response.getStatus() != 201) {
+                throw new BahmniAPIException("Invalid response for [" + formTemplate + "]");
+            }
+
+        } catch (Exception ex) {
+            throw new BahmniAPIException(ex);
+        }
     }
 
 
