@@ -10,3 +10,5 @@ Tags: regression, sanity
 * Login to the application
 * Click on implementer interface app
 * Click on form builder app
+* Click create a form
+* Create a form with name "Observation test form"

@@ -26,5 +26,4 @@ public class ImplementerInterfaceSpec {
         implementerInterfacePage = PageFactory.getImplementerInterfacePage();
         implementerInterfacePage.clickFormBuilderApp();
     }
-
 }
