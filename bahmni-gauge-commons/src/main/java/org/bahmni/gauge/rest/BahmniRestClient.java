@@ -64,6 +64,8 @@ public class BahmniRestClient {
 
     private static final String SAVE_FORM_URL = "/bahmniie/form/save";
 
+    private static final String PUBLISH_FORM_URL = "/bahmniie/form/publish?formUuid=";
+
     private static final String CREATE_FORM_URL = "/form";
 
     private Configuration freemarkerConfiguration;
@@ -595,30 +597,30 @@ public class BahmniRestClient {
         return responseAsJson.getBody();
     }
 
-//    public void saveAndPublishFormUsingAPI(String formTemplate, Map<String, Object> attributes) {
-//        try {
-//            Template freemarkerTemplate = freemarkerConfiguration.getTemplate(formTemplate);
-//
-//            StringWriter stringWriter = new StringWriter();
-//            freemarkerTemplate.process(attributes, stringWriter);
-//            String requestJson = stringWriter.toString();
-//
-//            HttpResponse<JsonNode> response = Unirest.post(mrs_url + SAVE_FORM_URL)
-//                    .basicAuth(username, password)
-//                    .header("content-type", "application/json")
-//                    .body(requestJson)
-//                    .asJson();
-//
-//            if (response.getStatus() != 200) {
-//                throw new BahmniAPIException("Invalid response for [" + formTemplate + "]");
-//            }
-//
-//        } catch (Exception ex) {
-//            throw new BahmniAPIException(ex);
-//        }
-//    }
+    public void saveFormUsingAPI(String formTemplate, Map<String, Object> attributes) {
+        try {
+            Template freemarkerTemplate = freemarkerConfiguration.getTemplate(formTemplate);
 
-    public void createFormUsingAPI(String formTemplate, Map<String, Object> attributes){
+            StringWriter stringWriter = new StringWriter();
+            freemarkerTemplate.process(attributes, stringWriter);
+            String requestJson = stringWriter.toString();
+
+            HttpResponse<JsonNode> response = Unirest.post(mrs_url + SAVE_FORM_URL)
+                    .basicAuth(username, password)
+                    .header("content-type", "application/json")
+                    .body(requestJson)
+                    .asJson();
+
+            if (response.getStatus() != 200) {
+                throw new BahmniAPIException("Invalid response for [" + formTemplate + "]");
+            }
+
+        } catch (Exception ex) {
+            throw new BahmniAPIException(ex);
+        }
+    }
+
+    public String createFormUsingAPI(String formTemplate, Map<String, Object> attributes){
         try {
             Template freemarkerTemplate = freemarkerConfiguration.getTemplate(formTemplate);
 
@@ -636,10 +638,34 @@ public class BahmniRestClient {
                 throw new BahmniAPIException("Invalid response for [" + formTemplate + "]");
             }
 
+            String a = response.getBody().getObject().getString("uuid");
+
+            return response.getBody().getObject().getString("uuid");
+
         } catch (Exception ex) {
             throw new BahmniAPIException(ex);
         }
     }
 
 
+    public void publishFormUsingAPI(String formTemplate, Map<String, Object> formAttributes) {
+        try {
+
+            StringWriter stringWriter = new StringWriter();
+            String requestJson = stringWriter.toString();
+
+            HttpResponse<JsonNode> response = Unirest.post(mrs_url + PUBLISH_FORM_URL + formAttributes.get("uuid"))
+                    .basicAuth(username, password)
+                    .header("content-type", "application/json")
+                    .body(requestJson)
+                    .asJson();
+
+            if (response.getStatus() != 200) {
+                throw new BahmniAPIException("Invalid response for [" + formTemplate + "]");
+            }
+
+        } catch (Exception ex) {
+            throw new BahmniAPIException(ex);
+        }
+    }
 }

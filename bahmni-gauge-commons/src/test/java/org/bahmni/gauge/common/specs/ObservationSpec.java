@@ -64,8 +64,12 @@ public class ObservationSpec extends BaseSpec {
         form.setName(formName);
         Map<String, Object> formAttributes = new HashMap<>();
         formAttributes.put("name", form.getName());
-        BahmniRestClient.get().createFormUsingAPI("form_create.ftl", formAttributes);
-//        BahmniRestClient.get().saveAndPublishFormUsingAPI("form_create.ftl", formAttributes);
+        String formUUID = BahmniRestClient.get().createFormUsingAPI("form_create.ftl", formAttributes);
+
+        formAttributes.put("uuid", formUUID);
+        BahmniRestClient.get().saveFormUsingAPI("form_save.ftl", formAttributes);
+
+        BahmniRestClient.get().publishFormUsingAPI("form_save.ftl", formAttributes);
     }
 
     private Map<String, String> transformTableToMap(Table table) {

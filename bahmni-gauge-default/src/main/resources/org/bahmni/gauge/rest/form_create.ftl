@@ -1,5 +1,5 @@
 {
   "name":"${name}",
   "version":"1",
-  "published":true
+  "published":false
 }
