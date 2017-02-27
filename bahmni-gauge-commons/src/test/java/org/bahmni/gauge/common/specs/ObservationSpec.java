@@ -69,7 +69,7 @@ public class ObservationSpec extends BaseSpec {
         formAttributes.put("uuid", formUUID);
         BahmniRestClient.get().saveFormUsingAPI("form_save.ftl", formAttributes);
 
-        BahmniRestClient.get().publishFormUsingAPI("form_save.ftl", formAttributes);
+        BahmniRestClient.get().publishFormUsingAPI(formAttributes);
     }
 
     private Map<String, String> transformTableToMap(Table table) {
