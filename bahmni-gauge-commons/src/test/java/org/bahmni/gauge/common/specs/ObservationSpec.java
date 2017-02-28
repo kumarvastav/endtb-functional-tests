@@ -129,7 +129,7 @@ public class ObservationSpec extends BaseSpec {
         observationsPage.clickOnAddNewObsForm();
     }
 
-    @Step("search <formName> obs form")
+    @Step("Search <formName> obs form")
     public void showSearchedObsForm(String formName) {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.searchObsForm(formName);
