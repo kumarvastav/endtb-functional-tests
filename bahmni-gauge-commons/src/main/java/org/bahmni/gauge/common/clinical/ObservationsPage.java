@@ -45,6 +45,9 @@ public class ObservationsPage extends BahmniPage {
     @FindBy(how = How.ID, using = "template-control-panel-button")
     public WebElement addNewObsForm;
 
+    @FindBy(how = How.CSS, using = "div[ng-if=\"isFormTemplate(conceptSet)\"]")
+    public WebElement formTemplate;
+
     public void selectTemplate(String templateName) {
         clickTemplateButton();
         List<WebElement> allForms = templatePanel.findElements(By.tagName("button"));
@@ -215,5 +218,11 @@ public class ObservationsPage extends BahmniPage {
 
     public void searchObsForm(String formName) {
         searchInput.sendKeys(formName);
+    }
+
+    public void enterValueToFirstInput(String value) {
+
+        List<WebElement> allInput = formTemplate.findElements(By.cssSelector("input"));
+        allInput.get(0).sendKeys(value);
     }
 }

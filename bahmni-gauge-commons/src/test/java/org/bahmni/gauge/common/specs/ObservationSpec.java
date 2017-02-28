@@ -202,6 +202,12 @@ public class ObservationSpec extends BaseSpec {
         waitForAppReady();
     }
 
+    @Step("Enter <value> into control")
+    public void enterValueToControl(String value) {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.enterValueToFirstInput(value);
+    }
+
     @Step("Remove Adverse effect from <template> <table>")
     public void removeAdverseEffect(String template, Table data) throws InterruptedException {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
