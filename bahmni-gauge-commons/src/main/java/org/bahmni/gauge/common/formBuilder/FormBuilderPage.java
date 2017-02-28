@@ -1,9 +1,12 @@
 package org.bahmni.gauge.common.formBuilder;
 
 import org.bahmni.gauge.common.BahmniPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+
+import java.util.List;
 
 public class FormBuilderPage extends BahmniPage {
 
@@ -15,6 +18,9 @@ public class FormBuilderPage extends BahmniPage {
 	@FindBy(how= How.CSS, using = ".form-name")
 	public WebElement formNameInput;
 
+	@FindBy(how= How.CSS, using = "tbody")
+	public WebElement formTableBody;
+
 	@FindBy(how= How.CSS, using = ".button")
 	public WebElement btnCreateForm;
 
@@ -25,5 +31,21 @@ public class FormBuilderPage extends BahmniPage {
 	public void enterName(String formName) {
 		formNameInput.sendKeys(formName);
 		btnCreateForm.click();
+	}
+
+    public void clickOnAction(String versionNumber, String formName) {
+		WebElement icon = findFormIcon(formName, versionNumber);
+		icon.click();
+    }
+
+	private WebElement findFormIcon(String formName, String versionNumber) {
+		List<WebElement> formList = formTableBody.findElements(By.cssSelector("tr"));
+		for(int i = 0; i < formList.size(); i++) {
+			if(formList.get(i).findElements(By.cssSelector("td")).get(0).getText().equals(formName) &&
+					formList.get(i).findElements(By.cssSelector("td")).get(1).getText().equals(versionNumber)){
+				return formList.get(i).findElement(By.cssSelector("a"));
+			}
+		}
+		return null;
 	}
 }

@@ -1,7 +1,7 @@
 Form Builder
 =============
 
-Enter the form builder page
+Create form using form builder
 --------------------------------------------------------------------------------------
 
 Tags: regression, sanity
@@ -12,3 +12,14 @@ Tags: regression, sanity
 * Click on form builder app
 * Click create a form
 * Create a form with name "Observation test form"
+
+Edit a pulished form using form builder
+---------------------------------------------------------------------------------------
+Tags: regression, sanity
+
+* On the login page
+* Login to the application
+* Click on implementer interface app
+* Click on form builder app
+* Enter version "1" of "11" form details
+//* Click on Edit
