@@ -16,6 +16,9 @@ public class FormDetailPage extends BahmniPage {
 	@FindBy(how = How.CSS, using = ".breadcrumbs")
 	public  WebElement breadCrumbsGuider;
 
+	@FindBy(how = How.CSS, using = ".publish-button")
+    public  WebElement publishButton;
+
 	public void clickOnEdit() {
 		editButton.click();
 	}
@@ -25,4 +28,8 @@ public class FormDetailPage extends BahmniPage {
 	public void clickOnFormBuilder() {
 		breadCrumbsGuider.findElements(By.cssSelector("a")).get(1).click();
 	}
+
+    public void clickOnPublish() {
+	    publishButton.click();
+    }
 }

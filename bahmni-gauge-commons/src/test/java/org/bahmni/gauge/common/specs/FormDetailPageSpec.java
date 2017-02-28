@@ -44,6 +44,12 @@ public class FormDetailPageSpec {
         formDetailPage.clickOnFormBuilder();
     }
 
+    @Step("Click on publish")
+    public void publishForm() {
+        formDetailPage = PageFactory.get(FormDetailPage.class);
+        formDetailPage.clickOnPublish();
+    }
+
     @Step("Save <formName> form using <formModleName> by API")
     public void saveFormByAPI(String formName, String formModelName) {
         String uuid = getUuid();
