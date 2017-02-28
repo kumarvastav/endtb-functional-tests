@@ -64,11 +64,9 @@ public class ObservationSpec extends BaseSpec {
         form.setName(formName);
         Map<String, Object> formAttributes = new HashMap<>();
         formAttributes.put("name", form.getName());
-        String formUUID = BahmniRestClient.get().createFormUsingAPI(formModleName, formAttributes);
-
+        String formUUID = BahmniRestClient.get().createFormUsingAPI(("form_" + formModleName + "_create.ftl"), formAttributes);
         formAttributes.put("uuid", formUUID);
-        BahmniRestClient.get().saveFormUsingAPI(formModleName, formAttributes);
-
+        BahmniRestClient.get().saveFormUsingAPI(("form_" + formModleName + "_save.ftl"), formAttributes);
         BahmniRestClient.get().publishFormUsingAPI(formAttributes);
     }
 
