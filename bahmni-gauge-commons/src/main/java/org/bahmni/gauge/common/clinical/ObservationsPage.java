@@ -225,4 +225,13 @@ public class ObservationsPage extends BahmniPage {
         List<WebElement> allInput = formTemplate.findElements(By.cssSelector("input"));
         allInput.get(0).sendKeys(value);
     }
+
+    public void clearValueToFirstInput() {
+        List<WebElement> allInput = formTemplate.findElements(By.cssSelector("input"));
+
+        String inputValue = allInput.get(0).getAttribute("value");
+        for(int i = 0; i < inputValue.length(); i++) {
+            allInput.get(0).sendKeys("\b");
+        }
+    }
 }

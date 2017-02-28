@@ -136,9 +136,15 @@ public class ObservationSpec extends BaseSpec {
     }
 
     @Step("Choose <selectedObsForm> obs form")
-    public void showChooosedObsForm(String selectedObsForm) {
+    public void showChoosedObsForm(String selectedObsForm) {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.clickOnSelectedObsForm(selectedObsForm);
+    }
+
+    @Step("Expand <formName> obs form")
+    public void expandObsForm(String formName) {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.expandObservationTemplate(formName);
     }
 
     @Step("Choose the obs form")
@@ -204,6 +210,12 @@ public class ObservationSpec extends BaseSpec {
     public void enterValueToControl(String value) {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.enterValueToFirstInput(value);
+    }
+
+    @Step("Clear the value in controls")
+    public void clearValueOfControl() {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.clearValueToFirstInput();
     }
 
     @Step("Remove Adverse effect from <template> <table>")
