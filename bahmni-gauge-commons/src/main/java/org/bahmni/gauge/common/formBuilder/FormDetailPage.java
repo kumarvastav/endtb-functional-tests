@@ -9,7 +9,12 @@ public class FormDetailPage extends BahmniPage {
 	@FindBy(how = How.CSS, using = "button")
 	public WebElement editButton;
 
+	@FindBy(how = How.CSS, using = ".button")
+	public WebElement okButton;
+
 	public void clickOnEdit() {
 		editButton.click();
 	}
+
+	public void clickOnOK() { okButton.click(); }
 }
