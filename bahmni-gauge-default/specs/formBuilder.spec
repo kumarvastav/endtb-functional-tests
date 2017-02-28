@@ -22,4 +22,4 @@ Tags: regression, sanity
 * Click on implementer interface app
 * Click on form builder app
 * Enter version "1" of "11" form details
-//* Click on Edit
+* Click on Edit
