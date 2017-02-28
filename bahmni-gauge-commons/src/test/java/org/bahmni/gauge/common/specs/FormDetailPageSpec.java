@@ -38,6 +38,12 @@ public class FormDetailPageSpec {
         formDetailPage.clickOnOK();
     }
 
+    @Step("Navigate to form list")
+    public void goToFormList() {
+        formDetailPage = PageFactory.get(FormDetailPage.class);
+        formDetailPage.clickOnFormBuilder();
+    }
+
     @Step("Save <formName> form using <formModleName> by API")
     public void saveFormByAPI(String formName, String formModelName) {
         String uuid = getUuid();
