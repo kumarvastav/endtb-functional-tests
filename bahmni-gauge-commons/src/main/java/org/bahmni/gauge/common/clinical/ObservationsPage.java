@@ -21,6 +21,9 @@ public class ObservationsPage extends BahmniPage {
     @FindBy(how = How.CSS, using = "#template-control-panel-button")
     public WebElement addFormbutton;
 
+    @FindBy(how = How.ID, using = "templateSearch")
+    public WebElement searchInput;
+
     @FindBy(how = How.CSS, using = "button[id*=\"chief_complaint_data_addmore_observation\"]")
     public WebElement addmore;
 
@@ -208,5 +211,9 @@ public class ObservationsPage extends BahmniPage {
 
     public void clickOnSelectedObsForm(String selectedObsForm) {
         driver.findElement(By.id(selectedObsForm)).click();
+    }
+
+    public void searchObsForm(String formName) {
+        searchInput.sendKeys(formName);
     }
 }
