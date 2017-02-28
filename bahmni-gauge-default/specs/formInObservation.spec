@@ -17,3 +17,4 @@ tags: regression, sanity
 * Choose "xueying27" obs form
 * Enter "11" into control
 * Save the consultation
+* Navigate to dashboard
