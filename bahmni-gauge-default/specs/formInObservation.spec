@@ -12,7 +12,7 @@ tags: regression, sanity
 * Login to app and navigate to "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
-* Add the "xueying67" exited form
+* Add the "xueying67" existing form
 * Enter "123" into control
 * Save the consultation
 
@@ -30,9 +30,9 @@ tags: regression, sanity
 * Click on "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
-* Add the "xueying67" exited form
+* Add the "xueying67" existing form
 * Verify "xueying67" is disabled to add
 * Expand "xueying67" obs form
 * Clear the value in controls
 * Save the consultation
-* Add the "xueying67" exited form
+* Add the "xueying67" existing form
