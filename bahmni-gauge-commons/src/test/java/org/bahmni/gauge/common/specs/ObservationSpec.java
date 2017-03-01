@@ -135,6 +135,13 @@ public class ObservationSpec extends BaseSpec {
         observationsPage.searchObsForm(formName);
     }
 
+    @Step("Verify <formName> is disabled to add")
+    public void verifyFormDisabled(String formName) {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        Boolean isDisabled = observationsPage.getDisabledValue(formName);
+        Assert.assertTrue(isDisabled);
+    }
+
     @Step("Choose <selectedObsForm> obs form")
     public void showChoosedObsForm(String selectedObsForm) {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);

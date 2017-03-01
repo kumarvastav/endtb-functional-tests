@@ -234,4 +234,8 @@ public class ObservationsPage extends BahmniPage {
             allInput.get(0).sendKeys("\b");
         }
     }
+
+    public Boolean getDisabledValue(String formName) {
+        return (driver.findElement(By.id(formName)).getAttribute("disabled").equals("true"));
+    }
 }
