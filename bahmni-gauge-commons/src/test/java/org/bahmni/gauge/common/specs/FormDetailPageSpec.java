@@ -7,6 +7,7 @@ import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.formBuilder.FormDetailPage;
 import org.bahmni.gauge.common.formBuilder.domain.Form;
+import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.WebDriver;
 
@@ -46,6 +47,10 @@ public class FormDetailPageSpec {
 
     @Step("Click on publish")
     public void publishForm() {
+        String uuid = getUuid();
+        Form form = new Form();
+        form.setUuid(uuid);
+        StoreHelper.store(Form.class, form);
         formDetailPage = PageFactory.get(FormDetailPage.class);
         formDetailPage.clickOnPublish();
     }
@@ -53,10 +58,8 @@ public class FormDetailPageSpec {
     @Step("Save <formName> form using <formModleName> by API")
     public void saveFormByAPI(String formName, String formModelName) {
         String uuid = getUuid();
-        Form form = new Form();
-        form.setName(formName);
         Map<String, Object> formAttributes = new HashMap<>();
-        formAttributes.put("name", form.getName());
+        formAttributes.put("name", formName);
         formAttributes.put("uuid", uuid);
         BahmniRestClient.get().saveFormUsingAPI(("form_" + formModelName + "_save.ftl"), formAttributes);
     }

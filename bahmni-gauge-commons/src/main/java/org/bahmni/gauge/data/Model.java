@@ -1,8 +1,5 @@
 package org.bahmni.gauge.data;
 
-/**
- * Created by atmaramn on 17/10/2016.
- */
 public class Model {
     public String uuid;
     public String display;

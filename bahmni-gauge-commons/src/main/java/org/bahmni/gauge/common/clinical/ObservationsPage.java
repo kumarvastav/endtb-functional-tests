@@ -5,6 +5,7 @@ import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
 import org.bahmni.gauge.common.formBuilder.domain.Form;
+import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -250,8 +251,9 @@ public class ObservationsPage extends BahmniPage {
         formAttributes.put("name", form.getName());
         String formUUID = BahmniRestClient.get().createFormUsingAPI(("form_create.ftl"), formAttributes);
         formAttributes.put("uuid", formUUID);
+        form.setUuid(formUUID);
         BahmniRestClient.get().saveFormUsingAPI(("form_" + formModelName + "_save.ftl"), formAttributes);
         BahmniRestClient.get().publishFormUsingAPI(formAttributes);
-        storeFormInSpecStore(form);
+        StoreHelper.store(Form.class, form);
     }
 }

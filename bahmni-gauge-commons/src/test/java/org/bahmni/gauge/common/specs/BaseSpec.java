@@ -54,9 +54,11 @@ public class BaseSpec {
             BahmniRestClient.get().retireOrderSet(orderSet);
         }
 
-        Form form = new BahmniPage().getObsFormFromSpecStore();
-        if(form != null){
-            BahmniRestClient.get().retireObsForm(form);
+        List<Form> forms = StoreHelper.getAll(Form.class);
+        for(Form form : forms) {
+            if(form != null) {
+                BahmniRestClient.get().retireObsForm(form);
+            }
         }
     }
 }
