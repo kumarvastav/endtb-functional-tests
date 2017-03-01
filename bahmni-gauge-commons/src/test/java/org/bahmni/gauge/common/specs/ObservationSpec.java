@@ -10,7 +10,6 @@ import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.clinical.DashboardPage;
 import org.bahmni.gauge.common.clinical.ObservationsPage;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
-import org.bahmni.gauge.common.formBuilder.domain.Form;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.rest.BahmniRestClient;
@@ -60,14 +59,8 @@ public class ObservationSpec extends BaseSpec {
 
     @Step("Create a <formName> form using <formModelName>")
     public void createForm(String formName, String formModelName) {
-        Form form = new Form();
-        form.setName(formName);
-        Map<String, Object> formAttributes = new HashMap<>();
-        formAttributes.put("name", form.getName());
-        String formUUID = BahmniRestClient.get().createFormUsingAPI(("form_create.ftl"), formAttributes);
-        formAttributes.put("uuid", formUUID);
-        BahmniRestClient.get().saveFormUsingAPI(("form_" + formModelName + "_save.ftl"), formAttributes);
-        BahmniRestClient.get().publishFormUsingAPI(formAttributes);
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.createAndPublishFormByAPI(formName, formModelName);
     }
 
     private Map<String, String> transformTableToMap(Table table) {
@@ -152,12 +145,6 @@ public class ObservationSpec extends BaseSpec {
     public void expandObsForm(String formName) {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.expandObservationTemplate(formName);
-    }
-
-    @Step("Choose the obs form")
-    public void showChoosedObsForm() {
-        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
-        Form form = observationsPage.getObsFormFromSpecStore();
     }
 
     @Step("click  <displayControlId> on dashboard, and verify displayed dialog has the following details <table>")

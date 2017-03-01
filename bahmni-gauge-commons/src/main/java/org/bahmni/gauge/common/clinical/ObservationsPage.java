@@ -4,6 +4,8 @@ import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.clinical.domain.ObservationForm;
+import org.bahmni.gauge.common.formBuilder.domain.Form;
+import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
@@ -14,7 +16,9 @@ import org.openqa.selenium.support.How;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ObservationsPage extends BahmniPage {
 
@@ -237,5 +241,17 @@ public class ObservationsPage extends BahmniPage {
 
     public Boolean getDisabledValue(String formName) {
         return (driver.findElement(By.id(formName)).getAttribute("disabled").equals("true"));
+    }
+
+    public void createAndPublishFormByAPI(String formName, String formModelName){
+        Form form = new Form();
+        form.setName(formName);
+        Map<String, Object> formAttributes = new HashMap<>();
+        formAttributes.put("name", form.getName());
+        String formUUID = BahmniRestClient.get().createFormUsingAPI(("form_create.ftl"), formAttributes);
+        formAttributes.put("uuid", formUUID);
+        BahmniRestClient.get().saveFormUsingAPI(("form_" + formModelName + "_save.ftl"), formAttributes);
+        BahmniRestClient.get().publishFormUsingAPI(formAttributes);
+        storeFormInSpecStore(form);
     }
 }

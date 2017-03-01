@@ -3,6 +3,7 @@ package org.bahmni.gauge.common.specs;
 import com.thoughtworks.gauge.AfterSpec;
 import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.admin.domain.OrderSet;
+import org.bahmni.gauge.common.formBuilder.domain.Form;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
@@ -51,6 +52,11 @@ public class BaseSpec {
         OrderSet orderSet = new BahmniPage().getOrderSetInSpecStore();
         if (orderSet != null) {
             BahmniRestClient.get().retireOrderSet(orderSet);
+        }
+
+        Form form = new BahmniPage().getObsFormFromSpecStore();
+        if(form != null){
+            BahmniRestClient.get().retireObsForm(form);
         }
     }
 }

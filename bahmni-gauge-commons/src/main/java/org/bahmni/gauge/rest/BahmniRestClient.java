@@ -21,6 +21,7 @@ import org.bahmni.gauge.common.admin.domain.OrderSet;
 import org.bahmni.gauge.common.admin.domain.OrderSetMember;
 import org.bahmni.gauge.common.clinical.domain.DrugOrder;
 import org.bahmni.gauge.common.clinical.domain.Specimen;
+import org.bahmni.gauge.common.formBuilder.domain.Form;
 import org.bahmni.gauge.common.program.domain.PatientProgram;
 import org.bahmni.gauge.common.registration.domain.Patient;
 import org.bahmni.gauge.data.Model;
@@ -665,5 +666,9 @@ public class BahmniRestClient {
         } catch (Exception ex) {
             throw new BahmniAPIException(ex);
         }
+    }
+
+    public void retireObsForm(Form form) {
+        retire(form);
     }
 }

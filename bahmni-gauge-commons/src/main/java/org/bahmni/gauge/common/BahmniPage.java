@@ -52,13 +52,16 @@ public class BahmniPage {
         StoreHelper.store(Patient.class, value);
     }
 
+    public void storeFormInSpecStore(Form value) {
+        StoreHelper.store(Form.class, value);
+    }
+
     public Patient getPatientFromSpecStore() {
         return StoreHelper.getLatest(Patient.class);
     }
 
     public Form getObsFormFromSpecStore() {
-        List<Form> a = StoreHelper.getAll(Form.class);
-        return a.get(0);
+        return StoreHelper.getLatest(Form.class);
     }
 
     public List<DrugOrder> getDrugOrderFromSpecStore() {
