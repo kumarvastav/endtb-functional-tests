@@ -22,6 +22,12 @@ public class RegistrationSearchSpec {
 		registrationSearch.verifyCreateNewIconNotDisplayed();
 	}
 
+	@Step("Click on create new patient link")
+	public void clickOnCreateNew() {
+        RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
+		registrationSearch.clickCreateNew();
+	}
+
 	@Step({"Click on search patient link","Navigate to Registration search page"})
 	public void clickOnSearch() {
         RegistrationSearch registrationSearch = PageFactory.get(RegistrationSearch.class);
