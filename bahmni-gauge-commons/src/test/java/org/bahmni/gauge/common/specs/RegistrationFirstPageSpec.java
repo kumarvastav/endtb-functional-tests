@@ -73,11 +73,6 @@ public class RegistrationFirstPageSpec {
 		registrationFirstPage.createPatientWithId(table);
 	}
 
-	@Step("Click on search patient link")
-	public void navigateToPatientSearch() {
-		registrationFirstPage.navigateToSearchPage();
-	}
-
 	@Step("Validate that the patient edit page is opened for previously created patient")
 	public void validateThePatientPageIsOpened() {
 		registrationFirstPage.verifyPatientWithIdentifierAndName();
