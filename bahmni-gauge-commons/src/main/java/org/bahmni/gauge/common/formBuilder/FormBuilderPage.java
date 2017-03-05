@@ -31,6 +31,7 @@ public class FormBuilderPage extends BahmniPage {
 	public void enterName(String formName) {
 		formNameInput.sendKeys(formName);
 		btnCreateForm.click();
+		waitForSpinner();
 	}
 
     public void clickOnAction(String versionNumber, String formName) {

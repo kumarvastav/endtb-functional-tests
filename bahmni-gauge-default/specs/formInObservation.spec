@@ -36,3 +36,11 @@ tags: regression, sanity
 * Clear the value in controls
 * Save the consultation
 * Add the "10xueying67" existing form
+
+
+Function test three
+--------------------------------------------------------
+tags: regression, sanity
+
+* Login and create the "Observation test form1" form by form builder
+* Verify form is "v1" version and "Draft" status

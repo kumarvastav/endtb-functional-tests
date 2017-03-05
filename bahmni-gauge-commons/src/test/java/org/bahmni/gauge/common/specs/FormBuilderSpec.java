@@ -6,6 +6,8 @@ import org.bahmni.gauge.common.BahmniPage;
 import org.bahmni.gauge.common.DriverFactory;
 import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.formBuilder.FormBuilderPage;
+import org.bahmni.gauge.common.formBuilder.domain.Form;
+import org.bahmni.gauge.data.StoreHelper;
 import org.openqa.selenium.WebDriver;
 
 public class FormBuilderSpec {
@@ -31,11 +33,20 @@ public class FormBuilderSpec {
     public void enterFormName(String formName) {
         formBuilderPage = PageFactory.getFormBuilderPage();
         formBuilderPage.enterName(formName);
+        String uuid = getUuid();
+        Form form = new Form();
+        form.setUuid(uuid);
+        StoreHelper.store(Form.class, form);
     }
 
     @Step("Enter version <versionNumber> of <formName> form details")
     public void enterFormDetail(String versionNumber, String formName) {
         formBuilderPage = PageFactory.getFormBuilderPage();
         formBuilderPage.clickOnAction(versionNumber, formName);
+    }
+
+    private String getUuid() {
+        String[] splitedString = driver.getCurrentUrl().split("/");
+        return splitedString[splitedString.length - 1];
     }
 }

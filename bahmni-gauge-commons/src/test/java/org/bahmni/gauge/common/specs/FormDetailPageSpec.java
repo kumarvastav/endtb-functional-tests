@@ -9,6 +9,7 @@ import org.bahmni.gauge.common.formBuilder.FormDetailPage;
 import org.bahmni.gauge.common.formBuilder.domain.Form;
 import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 import java.util.HashMap;
@@ -62,6 +63,21 @@ public class FormDetailPageSpec {
         formAttributes.put("name", formName);
         formAttributes.put("uuid", uuid);
         BahmniRestClient.get().saveFormUsingAPI(("form_" + formModelName + "_save.ftl"), formAttributes);
+    }
+
+    @Step("Verify form is <version> version and <statusValue> status")
+    public void verifyFormVersionAndStatus(String version, String statusValue) {
+        formDetailPage = PageFactory.get(FormDetailPage.class);
+        String[] parsedFormInfo = parseVersionAndStatus(formDetailPage.getFormInfo());
+        Assert.assertTrue("Version or status is not correct",
+                (parsedFormInfo[0].equals(version) && parsedFormInfo[1].equals(statusValue)));
+    }
+
+    private String[] parseVersionAndStatus(String formInfo) {
+        String[] splitInfo = formInfo.split(" - ");
+        String[] splitFirstHarf = splitInfo[0].split(" ");
+        splitInfo[0] = splitFirstHarf[splitFirstHarf.length - 1];
+        return splitInfo;
     }
 
     private String getUuid() {

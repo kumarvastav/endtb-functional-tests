@@ -19,6 +19,9 @@ public class FormDetailPage extends BahmniPage {
 	@FindBy(how = How.CSS, using = ".publish-button")
     public  WebElement publishButton;
 
+    @FindBy(how = How.CSS, using = ".header-title")
+    public  WebElement formHeader;
+
 	public void clickOnEdit() {
 		editButton.click();
 	}
@@ -31,5 +34,9 @@ public class FormDetailPage extends BahmniPage {
 
     public void clickOnPublish() {
 	    publishButton.click();
+    }
+
+    public String getFormInfo() {
+        return formHeader.getText();
     }
 }
