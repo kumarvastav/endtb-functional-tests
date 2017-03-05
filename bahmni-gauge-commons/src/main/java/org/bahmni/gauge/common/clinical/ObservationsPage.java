@@ -244,7 +244,7 @@ public class ObservationsPage extends BahmniPage {
         return (driver.findElement(By.id(formName)).getAttribute("disabled").equals("true"));
     }
 
-    public void createAndPublishFormByAPI(String formName, String formModelName){
+    public void createAndPublishFormByAPI(String formName, String formModelName, String conceptName) {
         Form form = new Form();
         form.setName(formName);
         Map<String, Object> formAttributes = new HashMap<>();
@@ -252,7 +252,7 @@ public class ObservationsPage extends BahmniPage {
         String formUUID = BahmniRestClient.get().createFormUsingAPI(("form_create.ftl"), formAttributes);
         formAttributes.put("uuid", formUUID);
         form.setUuid(formUUID);
-        BahmniRestClient.get().saveFormUsingAPI(("form_" + formModelName + "_save.ftl"), formAttributes);
+        BahmniRestClient.get().saveFormUsingAPI(("form_" + formModelName + "_with_" + conceptName +"_save.ftl"), formAttributes);
         BahmniRestClient.get().publishFormUsingAPI(formAttributes);
         StoreHelper.store(Form.class, form);
     }

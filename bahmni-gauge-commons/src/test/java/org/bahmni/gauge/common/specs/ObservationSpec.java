@@ -57,10 +57,10 @@ public class ObservationSpec extends BaseSpec {
         BahmniRestClient.get().createForm(formName + ".ftl", formAttributes);
     }
 
-    @Step("Create a <formName> form using <formModelName>")
-    public void createForm(String formName, String formModelName) {
+    @Step("Create a <formName> form using <formModelName> with <conceptName>")
+    public void createForm(String formName, String formModelName, String conceptName) {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
-        observationsPage.createAndPublishFormByAPI(formName, formModelName);
+        observationsPage.createAndPublishFormByAPI(formName, formModelName, conceptName);
     }
 
     private Map<String, String> transformTableToMap(Table table) {

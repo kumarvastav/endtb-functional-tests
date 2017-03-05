@@ -104,4 +104,10 @@ public class FormDetailPageSpec {
         String[] splitedString = driver.getCurrentUrl().split("/");
         return splitedString[splitedString.length - 1];
     }
+
+    @Step("Save the new form")
+    public void saveForm() {
+        formDetailPage = PageFactory.get(FormDetailPage.class);
+        formDetailPage.clickSave();
+    }
 }

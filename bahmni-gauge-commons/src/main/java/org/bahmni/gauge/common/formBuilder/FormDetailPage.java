@@ -27,6 +27,9 @@ public class FormDetailPage extends BahmniPage {
 	@FindBy(how = How.CSS, using = ".grid")
 	public  WebElement canvas;
 
+	@FindBy(how = How.CSS, using = ".save-button")
+	public  WebElement saveButton;
+
 	public void clickOnEdit() {
 		editButton.click();
 	}
@@ -47,5 +50,9 @@ public class FormDetailPage extends BahmniPage {
 
 	public List<WebElement> getCanvasBodyLabelList() {
 		return canvas.findElements(By.cssSelector("label"));
+	}
+
+	public void clickSave() {
+		saveButton.click();
 	}
 }
