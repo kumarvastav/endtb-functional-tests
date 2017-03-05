@@ -42,5 +42,9 @@ Function test three
 --------------------------------------------------------
 tags: regression, sanity
 
-* Login and create the "Observation test form1" form by form builder
+* Login and create the "Observation test form" form by form builder
 * Verify form is "v1" version and "Draft" status
+* Save "Observation test form" form using "section" by API
+* Navigate to form list
+* Enter version "1" of "Observation test form" form details
+* Verify canvas has "Outer Section" label

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import java.util.List;
+
 public class FormDetailPage extends BahmniPage {
 	@FindBy(how = How.CSS, using = "button")
 	public WebElement editButton;
@@ -21,6 +23,9 @@ public class FormDetailPage extends BahmniPage {
 
     @FindBy(how = How.CSS, using = ".header-title")
     public  WebElement formHeader;
+
+	@FindBy(how = How.CSS, using = ".grid")
+	public  WebElement canvas;
 
 	public void clickOnEdit() {
 		editButton.click();
@@ -39,4 +44,8 @@ public class FormDetailPage extends BahmniPage {
     public String getFormInfo() {
         return formHeader.getText();
     }
+
+	public List<WebElement> getCanvasBodyLabelList() {
+		return canvas.findElements(By.cssSelector("label"));
+	}
 }

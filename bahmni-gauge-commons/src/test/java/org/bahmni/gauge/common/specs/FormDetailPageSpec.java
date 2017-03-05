@@ -11,9 +11,12 @@ import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 
 public class FormDetailPageSpec {
     private final WebDriver driver;
@@ -71,6 +74,23 @@ public class FormDetailPageSpec {
         String[] parsedFormInfo = parseVersionAndStatus(formDetailPage.getFormInfo());
         Assert.assertTrue("Version or status is not correct",
                 (parsedFormInfo[0].equals(version) && parsedFormInfo[1].equals(statusValue)));
+    }
+
+    @Step("Verify canvas has <labelName> label")
+    public void verifyFormHasLabel(String labelName) {
+        formDetailPage = PageFactory.get(FormDetailPage.class);
+        List<WebElement> labelList = formDetailPage.getCanvasBodyLabelList();
+        Assert.assertTrue("Canvas don't have " + labelName,
+                hasLabel(labelList, labelName));
+    }
+
+    private boolean hasLabel(List<WebElement> labelList, String labelName) {
+        for(int i = 0; i < labelList.size(); i++) {
+            if(labelList.get(i).getText().equals(labelName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private String[] parseVersionAndStatus(String formInfo) {
