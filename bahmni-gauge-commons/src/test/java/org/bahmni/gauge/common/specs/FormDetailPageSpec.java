@@ -59,6 +59,27 @@ public class FormDetailPageSpec {
         formDetailPage.clickOnPublish();
     }
 
+    @Step("Select <propertyType> property for <controlName>")
+    public void setPropertyForControl(String propertyType, String controlName) {
+        formDetailPage = PageFactory.get(FormDetailPage.class);
+        List<WebElement> labelList = formDetailPage.getCanvasBodyLabelList();
+        WebElement control = getControl(labelList, controlName);
+
+        Assert.assertTrue("No " + controlName + "in canvas", control != null);
+
+        formDetailPage.clickOnControl(control);
+        formDetailPage.clickOnProperty(propertyType);
+    }
+
+    private WebElement getControl(List<WebElement> labelList, String controlName) {
+        for (int i = 0; i < labelList.size(); i++) {
+            if(labelList.get(i).getText().equals(controlName)) {
+                return labelList.get(i);
+            }
+        }
+        return null;
+    }
+
     @Step("Save <formName> form using <formModleName> by API")
     public void saveFormByAPI(String formName, String formModelName) {
         String uuid = getUuid();

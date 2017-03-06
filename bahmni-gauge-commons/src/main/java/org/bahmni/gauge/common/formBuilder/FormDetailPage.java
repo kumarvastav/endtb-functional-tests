@@ -30,6 +30,9 @@ public class FormDetailPage extends BahmniPage {
 	@FindBy(how = How.CSS, using = ".save-button")
 	public  WebElement saveButton;
 
+	@FindBy(how = How.CSS, using = ".form-properties")
+	public  WebElement propertiesBody;
+
 	public void clickOnEdit() {
 		editButton.click();
 	}
@@ -54,5 +57,19 @@ public class FormDetailPage extends BahmniPage {
 
 	public void clickSave() {
 		saveButton.click();
+	}
+	public void clickOnControl(WebElement control) {
+		control.click();
+	}
+
+	public void clickOnProperty(String propertyType) {
+		List<WebElement> allPropertyType = propertiesBody.findElements(By.cssSelector("label"));
+		List<WebElement> propertyCheckBox = propertiesBody.findElements(By.cssSelector("input"));
+
+		for(int i = 0; i < allPropertyType.size(); i++) {
+			if(allPropertyType.get(i).getText().equals(propertyType)) {
+				propertyCheckBox.get(i).click();
+			}
+		}
 	}
 }

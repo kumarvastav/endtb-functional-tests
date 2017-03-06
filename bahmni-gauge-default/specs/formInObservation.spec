@@ -63,7 +63,11 @@ tags: regression, sanity
 * Save "Observation test form" form using "innerSectionObsGroup" by API
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
-* Add the "ObservationTest" existing form
+* Verify canvas has "Systolic Data" label
+* Select "Mandatory" property for "Systolic Abnormal"
+* Select "Notes" property for "Systolic Abnormal"
+* Select "Notes" property for "Systolic(mm Hg)"
+
 
 
 Create new obs form
@@ -81,4 +85,3 @@ tags: regression, sanity
 * Fill "ObservationTestForm3" template with following observation details
     |Systolic(mm Hg)|Systolic Abnormal|
         |130|Yes|
-* Save the consultation
