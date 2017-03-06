@@ -90,6 +90,12 @@ tags: regression, sanity
 * Select "AutoComplete" property for "Diabetes, Cormorbidities"
 * Select "MultiSelect" property for "Diabetes, Cormorbidities"
 
+* Save "Observation test form" form using "threeObsInnerSectionObsGroups" by API
+* Navigate to form list
+* Enter version "1" of "Observation test form" form details
+* Verify canvas has "Diabetes, Exercise" label
+* Select "MultiSelect" property for "Diabetes, Exercise"
+
 Create new obs form
 -----------------------------------------------------
 
