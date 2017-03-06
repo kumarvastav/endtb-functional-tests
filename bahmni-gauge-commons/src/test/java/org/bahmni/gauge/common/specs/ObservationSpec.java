@@ -197,6 +197,12 @@ public class ObservationSpec extends BaseSpec {
         observationsPage.clickOk();
     }
 
+    @Step("Click add Note button")
+    public void clickAddNoteButton() {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.clickAddNote();
+    }
+
     @Step("Fill Tuberculosis - Followup template with following observation details <table>")
     public void enterTuberculosis(Table table) throws InterruptedException {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);

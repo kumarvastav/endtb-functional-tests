@@ -139,7 +139,8 @@ tags: regression, sanity
         |130|Yes|
 * Save the consultation
 * Click the error message button
+* Click add Note button
 * Enter "ObservationTestForm4" template with all observation details
     |Consultation Note|WEIGHT|P/A Presenting Part|Is Patient Smoking ?|Date|Systolic(mm Hg)|Systolic Abnormal|
-        |test|55|Breech|Yes|11-02-2016|130|Yes|
+        |test:hello|55:world|Breech|Yes|11-02-2016|130|Yes|
 * Save the consultation

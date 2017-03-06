@@ -279,4 +279,11 @@ public class ObservationsPage extends BahmniPage {
     public void clickOk() {
         ok.click();
     }
+
+    public void clickAddNote() {
+        List<WebElement> addNoteButtonList = driver.findElements(By.cssSelector(".form-builder-comment-toggle"));
+        for (WebElement addNoteButton: addNoteButtonList) {
+            addNoteButton.click();
+        }
+    }
 }
