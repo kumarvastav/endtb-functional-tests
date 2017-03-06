@@ -68,6 +68,13 @@ tags: regression, sanity
 * Select "Notes" property for "Systolic Abnormal"
 * Select "Notes" property for "Systolic(mm Hg)"
 
+* Save "Observation test form" form using "innerSectionObsGroups" by API
+* Navigate to form list
+* Enter version "1" of "Observation test form" form details
+* Verify canvas has "BMI Status Data" label
+* Select "Mandatory" property for "BMI STATUS ABNORMAL"
+* Select "Notes" property for "BMI STATUS ABNORMAL"
+* Select "Notes" property for "BMI STATUS"
 
 
 Create new obs form
