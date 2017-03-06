@@ -53,6 +53,9 @@ public class ObservationsPage extends BahmniPage {
     @FindBy(how = How.CSS, using = "div[ng-if=\"isFormTemplate(conceptSet)\"]")
     public WebElement formTemplate;
 
+    @FindBy(how = How.CSS, using = ".show-btn")
+    public WebElement ok;
+
     public void selectTemplate(String templateName) {
         clickTemplateButton();
         List<WebElement> allForms = templatePanel.findElements(By.tagName("button"));
@@ -261,5 +264,16 @@ public class ObservationsPage extends BahmniPage {
         ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template));
         observationForm.enterUp(data, element);
         storeObservationFormInSpecStore(observationForm);
+     }
+
+    public void enterOther(String template, Table data) {
+        WebElement element = expandObservationTemplate(template);
+        ObservationForm observationForm = new ObservationForm(element);
+        observationForm.enterUp(data, element);
+        storeObservationFormInSpecStore(observationForm);
+    }
+
+    public void clickOk() {
+        ok.click();
     }
 }

@@ -109,11 +109,17 @@ tags: regression, sanity
 
 * Create a new patient through API
 * Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
-* Create a "ObservationTestForm3" form using "obs" with "manyobs"
+* Create a "ObservationTestForm4" form using "obs" with "manyobs"
 * Login to app and navigate to "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
-* Add the "ObservationTestForm3" existing form
-* Enter "ObservationTestForm3" template with following observation details
+* Add the "ObservationTestForm4" existing form
+* Enter "ObservationTestForm4" template with following observation details
     |Systolic(mm Hg)|Systolic Abnormal|
         |130|Yes|
+* Save the consultation
+* Click the error message button
+* Enter "ObservationTestForm4" template with all observation details
+    |Consultation Note|WEIGHT|P/A Presenting Part|Is Patient Smoking ?|Date|Systolic(mm Hg)|Systolic Abnormal|
+        |test|55|Breech|Yes|11-02-2016|130|Yes|
+* Save the consultation
