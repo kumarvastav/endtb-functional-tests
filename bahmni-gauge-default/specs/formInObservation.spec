@@ -97,6 +97,8 @@ tags: regression, sanity
 * Select "MultiSelect" property for "Diabetes, Exercise"
 * Click on save
 * Click on publish
+* Navigate to form list
+* Enter version "1" of "Observation test form" form details
 * Verify form is "v1" version and "Published" status
 
 

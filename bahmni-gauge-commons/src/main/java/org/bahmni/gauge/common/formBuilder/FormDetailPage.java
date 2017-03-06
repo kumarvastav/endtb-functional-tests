@@ -9,8 +9,8 @@ import org.openqa.selenium.support.How;
 import java.util.List;
 
 public class FormDetailPage extends BahmniPage {
-	@FindBy(how = How.CSS, using = "button")
-	public WebElement editButton;
+    @FindBy(how = How.CSS, using = "button")
+    public WebElement editButton;
 
 	@FindBy(how = How.CSS, using = ".button")
 	public WebElement okButton;
