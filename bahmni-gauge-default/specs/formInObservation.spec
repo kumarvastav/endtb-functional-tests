@@ -54,3 +54,8 @@ tags: regression, sanity
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 * Verify canvas has "Death Note, Hospital Course" label
+
+* Save "Observation test form" form using "innerSection" by API
+* Navigate to form list
+* Enter version "1" of "Observation test form" form details
+* Verify canvas has "Inner Section" label
