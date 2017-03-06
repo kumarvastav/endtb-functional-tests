@@ -116,6 +116,12 @@ tags: regression, sanity
 * Click on collapse all
 * Click on expand all
 
+* Enter "ObservationTestForm4" template with all observation details
+    |Death Note, Hospital Course|Systolic(mm Hg)|Systolic Abnormal|BMI STATUS|BMI STATUS ABNORMAL|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
+        |test|55|Yes|test|No|Cephalic|CKD|Standing at work|
+* Save the consultation
+
+
 Create new obs form
 -----------------------------------------------------
 
