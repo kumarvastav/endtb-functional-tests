@@ -76,6 +76,12 @@ tags: regression, sanity
 * Select "Notes" property for "BMI STATUS ABNORMAL"
 * Select "Notes" property for "BMI STATUS"
 
+* Save "Observation test form" form using "obsInnerSectionObsGroups" by API
+* Navigate to form list
+* Enter version "1" of "Observation test form" form details
+* Verify canvas has "P/A Presenting Part" label
+* Select "Notes" property for "P/A Presenting Part"
+* Select "DropDown" property for "P/A Presenting Part"
 
 Create new obs form
 -----------------------------------------------------
