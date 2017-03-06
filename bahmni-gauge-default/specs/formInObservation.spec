@@ -83,6 +83,13 @@ tags: regression, sanity
 * Select "Notes" property for "P/A Presenting Part"
 * Select "DropDown" property for "P/A Presenting Part"
 
+* Save "Observation test form" form using "twoObsInnerSectionObsGroups" by API
+* Navigate to form list
+* Enter version "1" of "Observation test form" form details
+* Verify canvas has "Diabetes, Cormorbidities" label
+* Select "AutoComplete" property for "Diabetes, Cormorbidities"
+* Select "MultiSelect" property for "Diabetes, Cormorbidities"
+
 Create new obs form
 -----------------------------------------------------
 
