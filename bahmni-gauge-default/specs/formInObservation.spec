@@ -95,6 +95,10 @@ tags: regression, sanity
 * Enter version "1" of "Observation test form" form details
 * Verify canvas has "Diabetes, Exercise" label
 * Select "MultiSelect" property for "Diabetes, Exercise"
+* Click on save
+* Click on publish
+* Verify form is "v1" version and "Published" status
+
 
 Create new obs form
 -----------------------------------------------------

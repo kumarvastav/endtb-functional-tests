@@ -59,6 +59,12 @@ public class FormDetailPageSpec {
         formDetailPage.clickOnPublish();
     }
 
+    @Step("Click on save")
+    public void saveForm() {
+        formDetailPage = PageFactory.get(FormDetailPage.class);
+        formDetailPage.clickOnSave();
+    }
+
     @Step("Select <propertyType> property for <controlName>")
     public void setPropertyForControl(String propertyType, String controlName) {
         formDetailPage = PageFactory.get(FormDetailPage.class);
@@ -124,11 +130,5 @@ public class FormDetailPageSpec {
     private String getUuid() {
         String[] splitedString = driver.getCurrentUrl().split("/");
         return splitedString[splitedString.length - 1];
-    }
-
-    @Step("Save the new form")
-    public void saveForm() {
-        formDetailPage = PageFactory.get(FormDetailPage.class);
-        formDetailPage.clickSave();
     }
 }

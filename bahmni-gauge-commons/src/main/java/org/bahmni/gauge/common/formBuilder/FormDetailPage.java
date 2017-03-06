@@ -55,7 +55,7 @@ public class FormDetailPage extends BahmniPage {
 		return canvas.findElements(By.cssSelector("label"));
 	}
 
-	public void clickSave() {
+	public void clickOnSave() {
 		saveButton.click();
 	}
 	public void clickOnControl(WebElement control) {
