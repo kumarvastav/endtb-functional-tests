@@ -110,7 +110,13 @@ tags: regression, sanity
 * Create a new patient through API
 * Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
 * Create a "ObservationTestForm4" form using "obs" with "manyobs"
-* Login to app and navigate to "Clinical" app
+* Login to app and navigate to "Implementer Interface" app
+* Go to form builder page
+* Enter version "1" of "ObservationTestForm4" form details
+* Verify canvas has "Consultation Note" label
+* Verify canvas has "WEIGHT" label
+* Navigate to dashboard
+* Click on "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
 * Add the "ObservationTestForm4" existing form
