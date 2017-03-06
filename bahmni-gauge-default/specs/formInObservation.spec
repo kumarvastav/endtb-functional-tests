@@ -101,6 +101,20 @@ tags: regression, sanity
 * Enter version "1" of "Observation test form" form details
 * Verify form is "v1" version and "Published" status
 
+* Navigate to dashboard
+* Create a new patient through API
+* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
+* Click on "Clinical" app
+* Select existing patient from patient listing page under tab "Active"
+* Navigate to consultation
+* Add the "Observation test form" existing form
+* Enter "Observation test form" template with following observation details
+    |Systolic(mm Hg)|Systolic Abnormal|
+        |130|Yes|
+* Save the consultation
+
+* Click on collapse all
+* Click on expand all
 
 Create new obs form
 -----------------------------------------------------

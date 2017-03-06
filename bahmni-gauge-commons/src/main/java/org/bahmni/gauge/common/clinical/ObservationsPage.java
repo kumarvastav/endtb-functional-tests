@@ -220,7 +220,8 @@ public class ObservationsPage extends BahmniPage {
     }
 
     public void clickOnSelectedObsForm(String selectedObsForm) {
-        driver.findElement(By.id(selectedObsForm)).click();
+        String transformName = selectedObsForm.replace(" ", "_");
+        driver.findElement(By.id(transformName)).click();
     }
 
     public void searchObsForm(String formName) {
