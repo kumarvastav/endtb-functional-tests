@@ -59,3 +59,8 @@ tags: regression, sanity
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 * Verify canvas has "Inner Section" label
+
+* Save "Observation test form" form using "innerSectionObsGroup" by API
+* Navigate to form list
+* Enter version "1" of "Observation test form" form details
+* Verify canvas has "Systolic Data" label
