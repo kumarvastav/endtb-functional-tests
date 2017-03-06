@@ -35,6 +35,15 @@ public class ObservationForm {
 
 
     public void fillUp(Table table) {
+        enter(table, observationNodes);
+    }
+
+    public void enterUp(Table table, WebElement element) {
+        List<WebElement> elementList = element.findElements(By.cssSelector(".form-builder-row"));
+        enter(table, elementList);
+    }
+
+    private void enter(Table table, List<WebElement> elementList) {
         List<TableRow> rows = table.getTableRows();
         List<String> columnNames = table.getColumnNames();
         if (rows.size() != 1) {
@@ -43,7 +52,7 @@ public class ObservationForm {
         TableRow row = rows.get(0);
         for (String label : columnNames) {
             String value = row.getCell(label);
-            for (WebElement fieldset : observationNodes) {
+            for (WebElement fieldset : elementList) {
                 if (hasField(fieldset, label)) {
                     if (value.contains(":")) {
                         // This fills the form label which has combination of element type

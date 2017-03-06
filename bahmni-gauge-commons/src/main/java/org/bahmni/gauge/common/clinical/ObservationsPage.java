@@ -111,7 +111,6 @@ public class ObservationsPage extends BahmniPage {
 
     private By getSectionWithChildHavingId() {
         return By.cssSelector(".concept-set-group.section-grid");
-
     }
 
     public void enterObservations(String template, Table data) {
@@ -255,5 +254,12 @@ public class ObservationsPage extends BahmniPage {
         BahmniRestClient.get().saveFormUsingAPI(("form_" + formModelName + "_with_" + conceptName +"_save.ftl"), formAttributes);
         BahmniRestClient.get().publishFormUsingAPI(formAttributes);
         StoreHelper.store(Form.class, form);
+    }
+
+    public void enterObsGroup(String template, Table data) {
+        WebElement element = driver.findElement(By.cssSelector(".form-builder-fieldset"));
+        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template));
+        observationForm.enterUp(data, element);
+        storeObservationFormInSpecStore(observationForm);
     }
 }

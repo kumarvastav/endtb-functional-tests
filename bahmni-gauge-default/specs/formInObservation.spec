@@ -112,6 +112,6 @@ tags: regression, sanity
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
 * Add the "ObservationTestForm3" existing form
-* Fill "ObservationTestForm3" template with following observation details
+* Enter "ObservationTestForm3" template with following observation details
     |Systolic(mm Hg)|Systolic Abnormal|
         |130|Yes|
