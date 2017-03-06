@@ -1,8 +1,11 @@
 package org.bahmni.gauge.common.formBuilder;
 
+import com.thoughtworks.selenium.Selenium;
 import org.bahmni.gauge.common.BahmniPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 

@@ -35,7 +35,7 @@ tags: regression, sanity
 * Expand "ObservationTest" obs form
 * Clear the value in controls
 * Save the consultation
-* Add the "10xueying67" existing form
+* Add the "ObservationTest" existing form
 
 
 Add a mix of combination of section controls, obs controls and obsGroup controls
@@ -127,26 +127,69 @@ Create new obs form
 
 tags: regression, sanity
 
+//* Enter "ObservationTestForm4" template with all observation details
+//    |Consultation Note|WEIGHT|P/A Presenting Part|Is Patient Smoking ?|Date|Systolic(mm Hg)|Systolic Abnormal|
+//        |test:hello|55:world|Breech|Yes|11-02-2016|130|Yes|
+////* Enter "ObservationTestForm4" template note ""
+//* Save the consultation
+
+* Login and create the "ObservationTestForm" form by form builder
+* Verify form is "v1" version and "Draft" status
+
+* Save "ObservationTestForm" form using "consultationnote" by API
+* Navigate to form list
+* Enter version "1" of "ObservationTestForm" form details
+* Verify canvas has "Consultation Note" label
+* Select "Mandatory" property for "Consultation Note"
+* Select "Notes" property for "Consultation Note"
+
+* Save "ObservationTestForm" form using "weight" by API
+* Navigate to form list
+* Enter version "1" of "ObservationTestForm" form details
+* Verify canvas has "WEIGHT" label
+* Select "Mandatory" property for "WEIGHT"
+* Select "Notes" property for "WEIGHT"
+
+* Save "ObservationTestForm" form using "presentingpart" by API
+* Navigate to form list
+* Enter version "1" of "ObservationTestForm" form details
+* Verify canvas has "P/A Presenting Part" label
+* Select "AutoComplete" property for "P/A Presenting Part"
+
+* Save "ObservationTestForm" form using "smokinghistory" by API
+* Navigate to form list
+* Enter version "1" of "ObservationTestForm" form details
+* Verify canvas has "Smoking History" label
+//* Change the "Smoking History" label name to "Is Patient Smoking ?"
+
+* Save "ObservationTestForm" form using "date" by API
+* Navigate to form list
+* Enter version "1" of "ObservationTestForm" form details
+* Verify canvas has "Date of Operation" label
+* Select "HideLabel" property for "Date of Operation"
+
+* Save "ObservationTestForm" form using "systolicdata" by API
+* Navigate to form list
+* Enter version "1" of "ObservationTestForm" form details
+* Verify canvas has "Systolic Data" label
+
+* Click on save
+* Click on publish
+* Navigate to form list
+* Enter version "1" of "ObservationTestForm" form details
+* Verify form is "v1" version and "Published" status
+
+* Navigate to dashboard
 * Create a new patient through API
 * Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
-* Create a "ObservationTestForm4" form using "obs" with "manyobs"
-* Login to app and navigate to "Implementer Interface" app
-* Go to form builder page
-* Enter version "1" of "ObservationTestForm4" form details
-* Verify canvas has "Consultation Note" label
-* Verify canvas has "WEIGHT" label
-* Navigate to dashboard
 * Click on "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
-* Add the "ObservationTestForm4" existing form
-* Enter "ObservationTestForm4" template with following observation details
+* Add the "ObservationTestForm" existing form
+
+* Enter "ObservationTestForm" template with following observation details
     |Systolic(mm Hg)|Systolic Abnormal|
         |130|Yes|
 * Save the consultation
 * Click the error message button
 * Click add Note button
-* Enter "ObservationTestForm4" template with all observation details
-    |Consultation Note|WEIGHT|P/A Presenting Part|Is Patient Smoking ?|Date|Systolic(mm Hg)|Systolic Abnormal|
-        |test:hello|55:world|Breech|Yes|11-02-2016|130|Yes|
-* Save the consultation

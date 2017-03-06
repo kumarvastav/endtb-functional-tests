@@ -265,7 +265,7 @@ public class ObservationsPage extends BahmniPage {
         enterValue(template, data, element);
      }
 
-    public void enterOther(String template, Table data) {
+    public void enterAll(String template, Table data) {
         WebElement element = expandObservationTemplate(template);
         enterValue(template, data, element);
     }
