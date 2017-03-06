@@ -261,14 +261,16 @@ public class ObservationsPage extends BahmniPage {
 
     public void enterObsGroup(String template, Table data) {
         WebElement element = driver.findElement(By.cssSelector(".form-builder-fieldset"));
-        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template));
-        observationForm.enterUp(data, element);
-        storeObservationFormInSpecStore(observationForm);
+        enterValue(template, data, element);
      }
 
     public void enterOther(String template, Table data) {
         WebElement element = expandObservationTemplate(template);
-        ObservationForm observationForm = new ObservationForm(element);
+        enterValue(template, data, element);
+    }
+
+    private void enterValue(String template, Table data, WebElement element) {
+        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template));
         observationForm.enterUp(data, element);
         storeObservationFormInSpecStore(observationForm);
     }
