@@ -65,7 +65,7 @@ public class FormDetailPageSpec {
     @Step("Select <propertyType> property for <controlName>")
     public void setPropertyForControl(String propertyType, String controlName) {
         List<WebElement> labelList = formDetailPage.getCanvasBodyLabelList();
-        WebElement control = getControl(labelList, controlName);
+        WebElement control = findControl(labelList, controlName);
 
         Assert.assertTrue("No " + controlName + "in canvas", control != null);
 
@@ -73,7 +73,7 @@ public class FormDetailPageSpec {
         formDetailPage.clickOnProperty(propertyType);
     }
 
-    private WebElement getControl(List<WebElement> labelList, String controlName) {
+    private WebElement findControl(List<WebElement> labelList, String controlName) {
         for (int i = 0; i < labelList.size(); i++) {
             if(labelList.get(i).getText().equals(controlName)) {
                 return labelList.get(i);
@@ -111,12 +111,12 @@ public class FormDetailPageSpec {
                 hasLabel(labelList, labelName));
     }
 
-    @Step("Verify <sectionName> section have <obsName>")
-    public void verifySectionOwnElement(String sectionName, String obsName) {
+    @Step("Verify <sectionName> section have <controlName>")
+    public void verifySectionOwnElement(String sectionName, String controlName) {
         WebElement sectionLabel = formDetailPage.findElementByText("label", sectionName);
         WebElement section = sectionLabel.findElement(By.xpath("../.."));
         List<WebElement> labels = section.findElements(By.cssSelector("label"));
-        Assert.assertTrue(sectionName + "has no " + obsName, hasLabel(labels, obsName));
+        Assert.assertTrue(sectionName + "has no " + controlName, hasLabel(labels, controlName));
     }
 
     @Step("Verify the form is read only")
@@ -124,6 +124,16 @@ public class FormDetailPageSpec {
         WebElement editButton = formDetailPage.getEditButton();
         Assert.assertTrue("Form is not read only", editButton != null);
 
+    }
+
+    @Step("Verify <controlName> checked <propertyType> property")
+    public void verifyControlCheckedProperty(String controlName, String propertyType) {
+        List<WebElement> labelList = formDetailPage.getCanvasBodyLabelList();
+        WebElement control = findControl(labelList, controlName);
+
+        formDetailPage.clickOnControl(control);
+
+        Assert.assertTrue(propertyType + " is not checked.", formDetailPage.isPropertyChecked(propertyType));
     }
 
     @Step("Verify <buttonText> button is <enableOption> on form builder")

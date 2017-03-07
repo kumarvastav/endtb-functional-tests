@@ -63,15 +63,22 @@ tags: regression, sanity
 * Save "Observation test form" form using "innerSection" by API
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
+* Change the "Section" label name to "Inner Section"
 * Verify canvas has "Inner Section" label
+* Verify "Outer Section" section have "Inner Section"
 
 * Save "Observation test form" form using "innerSectionObsGroup" by API
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 * Verify canvas has "Systolic Data" label
+* Verify "Inner Section" section have "Systolic Data"
 * Select "Mandatory" property for "Systolic Abnormal"
 * Select "Notes" property for "Systolic Abnormal"
 * Select "Notes" property for "Systolic(mm Hg)"
+* Verify "Systolic Abnormal" checked "Mandatory" property
+* Verify "Systolic Abnormal" checked "Notes" property
+* Verify "Systolic(mm Hg)" checked "Notes" property
+
 
 * Save "Observation test form" form using "innerSectionObsGroups" by API
 * Navigate to form list
@@ -126,7 +133,6 @@ tags: regression, sanity
     |Death Note, Hospital Course|Systolic(mm Hg)|Systolic Abnormal|BMI STATUS|BMI STATUS ABNORMAL|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
         |test|55|Yes|test|No|Cephalic|CKD|Standing at work|
 * Save the consultation
-
 
 Create new obs form
 -----------------------------------------------------
