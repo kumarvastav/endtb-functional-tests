@@ -53,7 +53,6 @@ tags: regression, sanity
 * Change the "Section" label name to "Outer Section"
 * Verify canvas has "Outer Section" label
 
-
 * Save "Observation test form" form using "sectionObs" by API
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
@@ -119,15 +118,19 @@ tags: regression, sanity
 * Select "AutoComplete" property for "Diabetes, Cormorbidities"
 * Select "MultiSelect" property for "Diabetes, Cormorbidities"
 * Verify "Diabetes, Cormorbidities" checked "MultiSelect" property
-* Verify "AutoComplete" checked "MultiSelect" property
+* Verify "Diabetes, Cormorbidities" checked "AutoComplete" property
 
 * Save "Observation test form" form using "threeObsInnerSectionObsGroups" by API
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 * Verify canvas has "Diabetes, Exercise" label
 * Select "MultiSelect" property for "Diabetes, Exercise"
+* Verify "Diabetes, Cormorbidities" checked "MultiSelect" property
+
 * Click on save
+* Verify "Form Saved Successfully" showed up
 * Click on publish
+* Verify "Form Successfully Published" showed up
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 * Verify form is "v1" version and "Published" status
@@ -140,10 +143,12 @@ tags: regression, sanity
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
 * Add the "Observation test form" existing form
+
 * Enter "Observation test form" template with following observation details
     |Systolic(mm Hg)|Systolic Abnormal|
         |130|Yes|
 * Save the consultation
+* Verify error message "Please enter a value in the mandatory fields or correct the value in the highlighted fields to proceed" is displayed
 
 * Click on collapse all
 * Click on expand all

@@ -276,4 +276,11 @@ public class ObservationSpec extends BaseSpec {
         observationsPage.removeImage(imageNumber);
         waitForAppReady();
     }
+
+    @Step("Verify error message <message> is displayed")
+    public void verifyErrorMessage(String message){
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.waitForElementOnPage(By.cssSelector(".error-message-container"));
+        Assert.assertEquals("Error popup message dont match", message, observationsPage.findElement(By.cssSelector(".msg")).getText());
+    }
 }

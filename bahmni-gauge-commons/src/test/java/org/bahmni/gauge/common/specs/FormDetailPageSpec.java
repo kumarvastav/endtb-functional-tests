@@ -93,7 +93,6 @@ public class FormDetailPageSpec {
 
     @Step("Change the <labelName> label name to <name>")
     public void changeLabelName(String labelName, String name) {
-        formDetailPage = PageFactory.get(FormDetailPage.class);
         formDetailPage.changeName(labelName, name);
     }
 
@@ -109,6 +108,12 @@ public class FormDetailPageSpec {
         List<WebElement> labelList = formDetailPage.getCanvasBodyLabelList();
         Assert.assertTrue("Canvas don't have " + labelName,
                 hasLabel(labelList, labelName));
+    }
+
+    @Step("Verify <message> showed up")
+    public void verifyMessageShowUp(String message) {
+        Assert.assertTrue(message + "doesn't show up",
+                driver.findElement(By.cssSelector(".message")).getText().equals(message));
     }
 
     @Step("Verify <sectionName> section has <controlName>")
