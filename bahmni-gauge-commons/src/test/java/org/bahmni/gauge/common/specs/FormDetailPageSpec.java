@@ -10,6 +10,7 @@ import org.bahmni.gauge.common.formBuilder.domain.Form;
 import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -108,6 +109,14 @@ public class FormDetailPageSpec {
         List<WebElement> labelList = formDetailPage.getCanvasBodyLabelList();
         Assert.assertTrue("Canvas don't have " + labelName,
                 hasLabel(labelList, labelName));
+    }
+
+    @Step("Verify <sectionName> section have <obsName>")
+    public void verifySectionOwnElement(String sectionName, String obsName) {
+        WebElement sectionLabel = formDetailPage.findElementByText("label", sectionName);
+        WebElement section = sectionLabel.findElement(By.xpath("../.."));
+        List<WebElement> labels = section.findElements(By.cssSelector("label"));
+        Assert.assertTrue(sectionName + "has no " + obsName, hasLabel(labels, obsName));
     }
 
     @Step("Verify the form is read only")

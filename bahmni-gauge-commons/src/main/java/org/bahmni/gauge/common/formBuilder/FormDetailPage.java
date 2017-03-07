@@ -94,6 +94,8 @@ public class FormDetailPage extends BahmniPage {
 
 				childElement.clear();
 				childElement.sendKeys(name);
+
+				canvas.click();
 			}
 		}
 	}

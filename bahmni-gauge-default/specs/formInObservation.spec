@@ -50,12 +50,15 @@ tags: regression, sanity
 * Save "Observation test form" form using "section" by API
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
+* Change the "Section" label name to "Outer Section"
 * Verify canvas has "Outer Section" label
+
 
 * Save "Observation test form" form using "sectionObs" by API
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 * Verify canvas has "Death Note, Hospital Course" label
+* Verify "Outer Section" section have "Death Note, Hospital Course"
 
 * Save "Observation test form" form using "innerSection" by API
 * Navigate to form list
