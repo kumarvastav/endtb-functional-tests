@@ -8,10 +8,7 @@ import org.bahmni.gauge.common.TestSpecException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.bahmni.gauge.common.BahmniPage.hasChild;
 

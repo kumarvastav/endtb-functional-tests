@@ -93,7 +93,7 @@ public class FormDetailPage extends BahmniPage {
 				WebElement childElement = parentElement.findElement(By.cssSelector(".form-builder-label"));
 
 				childElement.clear();
-				childElement.sendKeys("Is Patient Smoking ?");
+				childElement.sendKeys(name);
 			}
 		}
 	}
