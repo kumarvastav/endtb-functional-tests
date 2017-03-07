@@ -84,7 +84,7 @@ public class FormDetailPage extends BahmniPage {
 	public void changeName(String labelName, String name) {
 		List<WebElement> labelList = driver.findElements(By.tagName("label"));
 		for (WebElement label : labelList) {
-			if(label.getText().contains(labelName)){
+			if(label.getText().equals(labelName)){
 				WebElement parentElement = label.findElement(By.xpath("../.."));
 
 				Actions action = new Actions(driver).doubleClick(label);

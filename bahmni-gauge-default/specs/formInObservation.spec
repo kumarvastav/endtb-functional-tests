@@ -122,7 +122,7 @@ tags: regression, sanity
 * Click on collapse all
 * Click on expand all
 
-* Enter "ObservationTestForm4" template with all observation details
+* Enter "Observation test form" template with all observation details
     |Death Note, Hospital Course|Systolic(mm Hg)|Systolic Abnormal|BMI STATUS|BMI STATUS ABNORMAL|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
         |test|55|Yes|test|No|Cephalic|CKD|Standing at work|
 * Save the consultation
@@ -132,12 +132,6 @@ Create new obs form
 -----------------------------------------------------
 
 tags: regression, sanity
-
-//* Enter "ObservationTestForm4" template with all observation details
-//    |Consultation Note|WEIGHT|P/A Presenting Part|Is Patient Smoking ?|Date|Systolic(mm Hg)|Systolic Abnormal|
-//        |test:hello|55:world|Breech|Yes|11-02-2016|130|Yes|
-////* Enter "ObservationTestForm4" template note ""
-//* Save the consultation
 
 * Login and create the "ObservationTestForm" form by form builder
 * Verify form is "v1" version and "Draft" status
@@ -167,6 +161,7 @@ tags: regression, sanity
 * Enter version "1" of "ObservationTestForm" form details
 * Verify canvas has "Smoking History" label
 * Change the "Smoking History" label name to "Is Patient Smoking ?"
+//* Verify canvas has "Is Patient Smoking ?" label
 
 * Save "ObservationTestForm" form using "date" by API
 * Navigate to form list
@@ -200,3 +195,9 @@ tags: regression, sanity
 * Save the consultation
 * Click the error message button
 * Click add Note button
+
+* Enter "ObservationTestForm" template with all observation details
+    |Consultation Note|WEIGHT|P/A Presenting Part|Is Patient Smoking ?|Systolic(mm Hg)|Systolic Abnormal|
+        |test|55|Breech|Yes|130|Yes|
+//* Enter "ObservationTestForm4" template note ""
+* Save the consultation

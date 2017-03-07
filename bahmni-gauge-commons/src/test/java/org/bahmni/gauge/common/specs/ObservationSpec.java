@@ -191,12 +191,6 @@ public class ObservationSpec extends BaseSpec {
         observationsPage.enterAll(template, table);
     }
 
-//    @Step("Enter <template> template with all observation details <table>")
-//    public void enterNoteValue(String template, Table table) {
-//        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
-//        observationsPage.enterNote(template, table);
-//    }
-
     @Step("Click the error message button")
     public void clickOkButton() {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
