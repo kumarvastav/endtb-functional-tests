@@ -85,7 +85,7 @@ public class FormDetailPage extends BahmniPage {
 		List<WebElement> labelList = driver.findElements(By.tagName("label"));
 		for (WebElement label : labelList) {
 			if(label.getText().contains(labelName)){
-				WebElement parentElement = label.findElement(By.xpath("./.."));
+				WebElement parentElement = label.findElement(By.xpath("../.."));
 
 				Actions action = new Actions(driver).doubleClick(label);
 				action.build().perform();
