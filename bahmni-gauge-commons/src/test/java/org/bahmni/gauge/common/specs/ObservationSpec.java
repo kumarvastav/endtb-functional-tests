@@ -17,6 +17,7 @@ import org.bahmni.gauge.util.StringUtil;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.awt.*;
 import java.io.IOException;
@@ -282,5 +283,23 @@ public class ObservationSpec extends BaseSpec {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.waitForElementOnPage(By.cssSelector(".error-message-container"));
         Assert.assertEquals("Error popup message dont match", message, observationsPage.findElement(By.cssSelector(".msg")).getText());
+    }
+
+    @Step("Verify <controlName> is <property>")
+    public void verifyControlHasProperty(String controlName, String property){
+        String cssStyle = parsePropertyToCss(property);
+        Assert.assertTrue("Property doesn't exist.", (cssStyle != null));
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        WebElement controlLabel = observationsPage.findLabelByText(controlName);
+        WebElement controlSuper = controlLabel.findElement(By.xpath("../.."));
+        controlSuper.findElement(By.cssSelector(cssStyle));
+    }
+
+    private String parsePropertyToCss(String property) {
+        if (property.equalsIgnoreCase("autocomplete")) { return ".is-searchable"; }
+        if (property.equalsIgnoreCase("multiselect")) { return ".Select--multi"; }
+        if (property.equalsIgnoreCase("dropdown")) { return ".Select"; }
+
+        return null;
     }
 }

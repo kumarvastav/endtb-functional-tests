@@ -286,4 +286,14 @@ public class ObservationsPage extends BahmniPage {
             addNoteButton.click();
         }
     }
+
+    public WebElement findLabelByText(String controlName) {
+        List<WebElement> allLabels = driver.findElements(By.cssSelector("label"));
+        for(WebElement label : allLabels) {
+            if (label.getText().equals(controlName)) {
+                return label;
+            }
+        }
+        return null;
+    }
 }

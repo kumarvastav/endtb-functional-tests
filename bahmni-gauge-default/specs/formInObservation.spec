@@ -149,6 +149,8 @@ tags: regression, sanity
         |130|Yes|
 * Save the consultation
 * Verify error message "Please enter a value in the mandatory fields or correct the value in the highlighted fields to proceed" is displayed
+* Verify "Diabetes, Cormorbidities" is "autocomplete"
+* Verify "Diabetes, Cormorbidities" is "multiSelect"
 
 * Click on collapse all
 * Click on expand all
