@@ -163,7 +163,7 @@ tags: regression, sanity
 * Navigate to form list
 * Enter version "1" of "ObservationTestForm" form details
 * Verify canvas has "Smoking History" label
-//* Change the "Smoking History" label name to "Is Patient Smoking ?"
+* Change the "Smoking History" label name to "Is Patient Smoking ?"
 
 * Save "ObservationTestForm" form using "date" by API
 * Navigate to form list
@@ -175,6 +175,7 @@ tags: regression, sanity
 * Navigate to form list
 * Enter version "1" of "ObservationTestForm" form details
 * Verify canvas has "Systolic Data" label
+* Change the "Systolic Data" label name to "Systolic Observation Data"
 
 * Click on save
 * Click on publish

@@ -76,7 +76,25 @@ public class FormDetailPage extends BahmniPage {
 		}
 	}
 
+
 	public WebElement getEditButton() {
 		return editButton;
+	}
+
+	public void changeName(String labelName, String name) {
+		List<WebElement> labelList = driver.findElements(By.tagName("label"));
+		for (WebElement label : labelList) {
+			if(label.getText().contains(labelName)){
+				WebElement parentElement = label.findElement(By.xpath("./.."));
+
+				Actions action = new Actions(driver).doubleClick(label);
+				action.build().perform();
+
+				WebElement childElement = parentElement.findElement(By.cssSelector(".form-builder-label"));
+
+				childElement.clear();
+				childElement.sendKeys("Is Patient Smoking ?");
+			}
+		}
 	}
 }

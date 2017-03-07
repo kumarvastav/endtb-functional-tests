@@ -90,6 +90,12 @@ public class FormDetailPageSpec {
         BahmniRestClient.get().saveFormUsingAPI(("form_" + formModelName + "_save.ftl"), formAttributes);
     }
 
+    @Step("Change the <labelName> label name to <name>")
+    public void changeLabelName(String labelName, String name) {
+        formDetailPage = PageFactory.get(FormDetailPage.class);
+        formDetailPage.changeName(labelName, name);
+    }
+
     @Step("Verify form is <version> version and <statusValue> status")
     public void verifyFormVersionAndStatus(String version, String statusValue) {
         String[] parsedFormInfo = parseVersionAndStatus(formDetailPage.getFormInfo());
