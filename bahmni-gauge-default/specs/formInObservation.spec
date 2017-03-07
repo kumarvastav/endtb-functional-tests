@@ -44,6 +44,8 @@ tags: regression, sanity
 
 * Login and create the "Observation test form" form by form builder
 * Verify form is "v1" version and "Draft" status
+* Verify "Save" button is "enable" on form builder
+* Verify "Publish" button is "disabled" on form builder
 
 * Save "Observation test form" form using "section" by API
 * Navigate to form list
@@ -100,6 +102,7 @@ tags: regression, sanity
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 * Verify form is "v1" version and "Published" status
+* Verify the form is read only
 
 * Navigate to dashboard
 * Create a new patient through API

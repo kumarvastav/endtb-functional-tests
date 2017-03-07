@@ -69,10 +69,14 @@ public class FormDetailPage extends BahmniPage {
 		List<WebElement> allPropertyType = propertiesBody.findElements(By.cssSelector("label"));
 		List<WebElement> propertyCheckBox = propertiesBody.findElements(By.cssSelector("input"));
 
-		for(int i = 0; i < allPropertyType.size(); i++) {
-			if(allPropertyType.get(i).getText().equals(propertyType)) {
+		for (int i = 0; i < allPropertyType.size(); i++) {
+			if (allPropertyType.get(i).getText().equals(propertyType)) {
 				propertyCheckBox.get(i).click();
 			}
 		}
+	}
+
+	public WebElement getEditButton() {
+		return editButton;
 	}
 }

@@ -24,6 +24,7 @@ public class FormDetailPageSpec {
 
     public FormDetailPageSpec() {
         this.driver = DriverFactory.getDriver();
+        formDetailPage = PageFactory.get(FormDetailPage.class);
     }
 
     @BeforeClassSteps
@@ -33,19 +34,16 @@ public class FormDetailPageSpec {
 
     @Step("Click on Edit")
     public void showConfirmEdit() {
-        formDetailPage = PageFactory.get(FormDetailPage.class);
         formDetailPage.clickOnEdit();
     }
 
     @Step("Confirm edit")
     public void goToEditModal() {
-        formDetailPage = PageFactory.get(FormDetailPage.class);
         formDetailPage.clickOnOK();
     }
 
     @Step("Navigate to form list")
     public void goToFormList() {
-        formDetailPage = PageFactory.get(FormDetailPage.class);
         formDetailPage.clickOnFormBuilder();
     }
 
@@ -55,19 +53,16 @@ public class FormDetailPageSpec {
         Form form = new Form();
         form.setUuid(uuid);
         StoreHelper.store(Form.class, form);
-        formDetailPage = PageFactory.get(FormDetailPage.class);
         formDetailPage.clickOnPublish();
     }
 
     @Step("Click on save")
     public void saveForm() {
-        formDetailPage = PageFactory.get(FormDetailPage.class);
         formDetailPage.clickOnSave();
     }
 
     @Step("Select <propertyType> property for <controlName>")
     public void setPropertyForControl(String propertyType, String controlName) {
-        formDetailPage = PageFactory.get(FormDetailPage.class);
         List<WebElement> labelList = formDetailPage.getCanvasBodyLabelList();
         WebElement control = getControl(labelList, controlName);
 
@@ -97,7 +92,6 @@ public class FormDetailPageSpec {
 
     @Step("Verify form is <version> version and <statusValue> status")
     public void verifyFormVersionAndStatus(String version, String statusValue) {
-        formDetailPage = PageFactory.get(FormDetailPage.class);
         String[] parsedFormInfo = parseVersionAndStatus(formDetailPage.getFormInfo());
         Assert.assertTrue("Version or status is not correct",
                 (parsedFormInfo[0].equals(version) && parsedFormInfo[1].equals(statusValue)));
@@ -105,10 +99,24 @@ public class FormDetailPageSpec {
 
     @Step("Verify canvas has <labelName> label")
     public void verifyFormHasLabel(String labelName) {
-        formDetailPage = PageFactory.get(FormDetailPage.class);
         List<WebElement> labelList = formDetailPage.getCanvasBodyLabelList();
         Assert.assertTrue("Canvas don't have " + labelName,
                 hasLabel(labelList, labelName));
+    }
+
+    @Step("Verify the form is read only")
+    public void verifyFormReadOnly() {
+        WebElement editButton = formDetailPage.getEditButton();
+        Assert.assertTrue("Form is not read only", editButton != null);
+
+    }
+
+    @Step("Verify <buttonText> button is <enableOption> on form builder")
+    public void verifyButtonDisplayed(String buttonText, String enableOption){
+        if (enableOption.equalsIgnoreCase("enable"))
+            Assert.assertTrue(buttonText+" button is disable",formDetailPage.findButtonByText(buttonText).isDisplayed());
+        else
+            Assert.assertTrue(buttonText+" button is enable",formDetailPage.findButtonByText(buttonText).isDisplayed());
     }
 
     private boolean hasLabel(List<WebElement> labelList, String labelName) {
