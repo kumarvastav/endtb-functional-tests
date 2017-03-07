@@ -58,52 +58,68 @@ tags: regression, sanity
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 * Verify canvas has "Death Note, Hospital Course" label
-* Verify "Outer Section" section have "Death Note, Hospital Course"
+* Verify "Outer Section" section has "Death Note, Hospital Course"
 
 * Save "Observation test form" form using "innerSection" by API
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 * Change the "Section" label name to "Inner Section"
 * Verify canvas has "Inner Section" label
-* Verify "Outer Section" section have "Inner Section"
+* Verify "Outer Section" section has "Inner Section"
 
 * Save "Observation test form" form using "innerSectionObsGroup" by API
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 * Verify canvas has "Systolic Data" label
-* Verify "Inner Section" section have "Systolic Data"
+* Verify "Inner Section" section has "Systolic Data"
 * Select "Mandatory" property for "Systolic Abnormal"
 * Select "Notes" property for "Systolic Abnormal"
 * Select "Notes" property for "Systolic(mm Hg)"
 * Verify "Systolic Abnormal" checked "Mandatory" property
 * Verify "Systolic Abnormal" checked "Notes" property
-* Verify "Systolic(mm Hg)" checked "Notes" property
 * Verify "Systolic Abnormal" has notes icon
-* Verify "Systolic(mm Hg)" has notes icon
 * Verify "Systolic Abnormal" has asterisk mark
-
+* Verify "Systolic(mm Hg)" checked "Notes" property
+* Verify "Systolic(mm Hg)" has notes icon
 
 * Save "Observation test form" form using "innerSectionObsGroups" by API
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 * Verify canvas has "BMI Status Data" label
+* Verify "Inner Section" section has "BMI Status Data"
 * Select "Mandatory" property for "BMI STATUS ABNORMAL"
 * Select "Notes" property for "BMI STATUS ABNORMAL"
 * Select "Notes" property for "BMI STATUS"
+* Verify "BMI STATUS ABNORMAL" checked "Mandatory" property
+* Verify "BMI STATUS ABNORMAL" checked "Notes" property
+* Verify "BMI STATUS ABNORMAL" has notes icon
+* Verify "BMI STATUS ABNORMAL" has asterisk mark
+* Verify "BMI STATUS" checked "Notes" property
+* Verify "BMI STATUS" has notes icon
 
 * Save "Observation test form" form using "obsInnerSectionObsGroups" by API
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 * Verify canvas has "P/A Presenting Part" label
+* Verify "Outer Section" section has "P/A Presenting Part"
+* Verify "Inner Section" section has no "P/A Presenting Part"
 * Select "Notes" property for "P/A Presenting Part"
 * Select "DropDown" property for "P/A Presenting Part"
+* Verify "P/A Presenting Part" checked "DropDown" property
+* Verify "P/A Presenting Part" checked "Notes" property
+* Verify "P/A Presenting Part" has notes icon
+* Verify "P/A Presenting Part" is displayed by drop down style
 
 * Save "Observation test form" form using "twoObsInnerSectionObsGroups" by API
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 * Verify canvas has "Diabetes, Cormorbidities" label
+* Verify "Outer Section" section has "Diabetes, Cormorbidities"
+* Verify "Inner Section" section has no "Diabetes, Cormorbidities"
 * Select "AutoComplete" property for "Diabetes, Cormorbidities"
 * Select "MultiSelect" property for "Diabetes, Cormorbidities"
+* Verify "Diabetes, Cormorbidities" checked "MultiSelect" property
+* Verify "AutoComplete" checked "MultiSelect" property
 
 * Save "Observation test form" form using "threeObsInnerSectionObsGroups" by API
 * Navigate to form list

@@ -111,12 +111,20 @@ public class FormDetailPageSpec {
                 hasLabel(labelList, labelName));
     }
 
-    @Step("Verify <sectionName> section have <controlName>")
+    @Step("Verify <sectionName> section has <controlName>")
     public void verifySectionOwnElement(String sectionName, String controlName) {
         WebElement sectionLabel = formDetailPage.findElementByText("label", sectionName);
         WebElement section = sectionLabel.findElement(By.xpath("../.."));
         List<WebElement> labels = section.findElements(By.cssSelector("label"));
         Assert.assertTrue(sectionName + "has no " + controlName, hasLabel(labels, controlName));
+    }
+
+    @Step("Verify <sectionName> section has no <controlName>")
+    public void verifySectionNotOwnElement(String sectionName, String controlName) {
+        WebElement sectionLabel = formDetailPage.findElementByText("label", sectionName);
+        WebElement section = sectionLabel.findElement(By.xpath("../.."));
+        List<WebElement> labels = section.findElements(By.cssSelector("label"));
+        Assert.assertTrue(sectionName + "has no " + controlName, !hasLabel(labels, controlName));
     }
 
     @Step("Verify the form is read only")
@@ -143,6 +151,15 @@ public class FormDetailPageSpec {
         WebElement controlSuper = control.findElement(By.xpath("../../.."));
 
         controlSuper.findElement(By.cssSelector(".form-builder-comment-toggle"));
+    }
+
+    @Step("Verify <controlName> is displayed by drop down style")
+    public void verifyControlIsDropDown(String controlName) {
+        List<WebElement> labelList = formDetailPage.getCanvasBodyLabelList();
+        WebElement control = findControl(labelList, controlName);
+        WebElement controlSuper = control.findElement(By.xpath("../../.."));
+
+        controlSuper.findElement(By.cssSelector(".obs-control-select-wrapper"));
     }
 
     @Step("Verify <controlName> has asterisk mark")
