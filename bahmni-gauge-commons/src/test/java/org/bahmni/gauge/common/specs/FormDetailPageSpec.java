@@ -136,6 +136,24 @@ public class FormDetailPageSpec {
         Assert.assertTrue(propertyType + " is not checked.", formDetailPage.isPropertyChecked(propertyType));
     }
 
+    @Step("Verify <controlName> has notes icon")
+    public void verifyControlHasNoteIcon(String controlName) {
+        List<WebElement> labelList = formDetailPage.getCanvasBodyLabelList();
+        WebElement control = findControl(labelList, controlName);
+        WebElement controlSuper = control.findElement(By.xpath("../../.."));
+
+        controlSuper.findElement(By.cssSelector(".form-builder-comment-toggle"));
+    }
+
+    @Step("Verify <controlName> has asterisk mark")
+    public void verifyControlHasAsteriskMark(String controlName) {
+        List<WebElement> labelList = formDetailPage.getCanvasBodyLabelList();
+        WebElement control = findControl(labelList, controlName);
+        WebElement controlSuper = control.findElement(By.xpath("../../.."));
+
+        controlSuper.findElement(By.cssSelector(".form-builder-asterisk"));
+    }
+
     @Step("Verify <buttonText> button is <enableOption> on form builder")
     public void verifyButtonDisplayed(String buttonText, String enableOption){
         if (enableOption.equalsIgnoreCase("enable"))

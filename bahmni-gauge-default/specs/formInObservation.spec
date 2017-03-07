@@ -78,6 +78,9 @@ tags: regression, sanity
 * Verify "Systolic Abnormal" checked "Mandatory" property
 * Verify "Systolic Abnormal" checked "Notes" property
 * Verify "Systolic(mm Hg)" checked "Notes" property
+* Verify "Systolic Abnormal" has notes icon
+* Verify "Systolic(mm Hg)" has notes icon
+* Verify "Systolic Abnormal" has asterisk mark
 
 
 * Save "Observation test form" form using "innerSectionObsGroups" by API
