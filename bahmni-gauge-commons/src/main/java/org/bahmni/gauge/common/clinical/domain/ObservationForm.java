@@ -37,7 +37,7 @@ public class ObservationForm {
 
     public void enterUp(Table table, WebElement element) {
         List<WebElement> elementList = element.findElements(By.cssSelector(".form-builder-row"));
-        enter1(table, elementList);
+        enter(table, elementList);
     }
 
     private void enter(Table table, List<WebElement> elementList) {

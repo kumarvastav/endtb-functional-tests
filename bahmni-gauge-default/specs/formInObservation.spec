@@ -15,36 +15,37 @@ tags: regression, sanity
 * Save "Observation test form" form using "labelObs" by API
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
+* Verify canvas has "WEIGHT" label
 
-* Create a new patient through API
-* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
-* Login to app and navigate to "Clinical" app
-* Select existing patient from patient listing page under tab "Active"
-* Navigate to consultation
-* Add the "ObservationTest" existing form
-* Enter "123" into control
-* Save the consultation
-
-* Navigate to dashboard
-* Go to form builder page
-* Enter version "1" of "ObservationTest" form details
-* Click on Edit
-* Confirm edit
-* Save "ObservationTest" form using "obs_obsGroup" by API
-* Navigate to form list
-* Enter version "2" of "ObservationTest" form details
-* Click on publish
-* Navigate to dashboard
-
-* Click on "Clinical" app
-* Select existing patient from patient listing page under tab "Active"
-* Navigate to consultation
-* Add the "ObservationTest" existing form
-* Verify "ObservationTest" is disabled to add
-* Expand "ObservationTest" obs form
-* Clear the value in controls
-* Save the consultation
-* Add the "ObservationTest" existing form
+//* Create a new patient through API
+//* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
+//* Login to app and navigate to "Clinical" app
+//* Select existing patient from patient listing page under tab "Active"
+//* Navigate to consultation
+//* Add the "ObservationTest" existing form
+//* Enter "123" into control
+//* Save the consultation
+//
+//* Navigate to dashboard
+//* Go to form builder page
+//* Enter version "1" of "ObservationTest" form details
+//* Click on Edit
+//* Confirm edit
+//* Save "ObservationTest" form using "obs_obsGroup" by API
+//* Navigate to form list
+//* Enter version "2" of "ObservationTest" form details
+//* Click on publish
+//* Navigate to dashboard
+//
+//* Click on "Clinical" app
+//* Select existing patient from patient listing page under tab "Active"
+//* Navigate to consultation
+//* Add the "ObservationTest" existing form
+//* Verify "ObservationTest" is disabled to add
+//* Expand "ObservationTest" obs form
+//* Clear the value in controls
+//* Save the consultation
+//* Add the "ObservationTest" existing form
 
 
 Add a mix of combination of section controls, obs controls and obsGroup controls
