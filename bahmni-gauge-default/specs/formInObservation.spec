@@ -16,7 +16,6 @@ tags: regression, sanity
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 
-
 * Create a new patient through API
 * Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
 * Login to app and navigate to "Clinical" app
@@ -178,13 +177,6 @@ tags: regression, sanity
 * Verify "Inner Section" set is "collapsed"
 * Click on "Inner Section" stronged text
 * Verify "Inner Section" set is "expanded"
-
-* Create a new patient through API
-* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
-* Login to app and navigate to "Clinical" app
-* Select existing patient from patient listing page under tab "Active"
-* Navigate to consultation
-* Add the "Demo1" existing form
 
 * Enter "Demo1" template with all observation details
     |Death Note, Hospital Course|Systolic(mm Hg)|Systolic Abnormal|BMI STATUS|BMI STATUS ABNORMAL|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
