@@ -76,6 +76,18 @@ public class ObservationSpec extends BaseSpec {
         return formVariables;
     }
 
+    @Step("Click on expand all")
+    public void expandAll() {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.clickOnExpand();
+    }
+
+    @Step("Click on collapse all")
+    public void collapseAll() {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.clickOnCollapse();
+    }
+
     @Step("Verify observations recorded under <formName>")
     public void verifyObservationsOnDashboard(String formName) {
         DashboardPage dashboardPage = PageFactory.get(DashboardPage.class);
@@ -121,6 +133,12 @@ public class ObservationSpec extends BaseSpec {
     public void showAllObsForm() {
         ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
         observationsPage.clickOnAddNewObsForm();
+    }
+
+    @Step("Click on <strongText> stronged text")
+    public void clickOnLabel(String strongText) {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        observationsPage.clickOnLabel(observationsPage.findStrongByText(strongText));
     }
 
     @Step("Search <formName> obs form")
@@ -293,6 +311,19 @@ public class ObservationSpec extends BaseSpec {
         WebElement controlLabel = observationsPage.findLabelByText(controlName);
         WebElement controlSuper = controlLabel.findElement(By.xpath("../.."));
         controlSuper.findElement(By.cssSelector(cssStyle));
+    }
+
+    @Step("Verify <controlName> set is <expandedOrCollapsed>")
+    public void verifyExpandOrCollapsed(String controlName, String status){
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        WebElement controlLabel = observationsPage.findStrongByText(controlName);
+        WebElement controlSuper = controlLabel.findElement(By.xpath("../.."));
+        if (status.equalsIgnoreCase("expanded")){
+            controlSuper.findElement(By.cssSelector(".active-group-controls"));
+        }
+        else {
+            controlSuper.findElement(By.cssSelector(".closing-group-controls"));
+        }
     }
 
     private String parsePropertyToCss(String property) {

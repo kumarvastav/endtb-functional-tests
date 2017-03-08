@@ -30,18 +30,6 @@ public class ConsultationPageSpec {
         waitForAppReady();
     }
 
-    @Step("Click on expand all")
-    public void expandAll() {
-        consultationPage.clickOnExpand();
-        waitForAppReady();
-    }
-
-    @Step("Click on collapse all")
-    public void collapseAll() {
-        consultationPage.clickOnCollapse();
-        waitForAppReady();
-    }
-
     @Step("Navigate to patient dashboard")
     public void clickOnDashboard() {
         consultationPage.clickPatientProfile();

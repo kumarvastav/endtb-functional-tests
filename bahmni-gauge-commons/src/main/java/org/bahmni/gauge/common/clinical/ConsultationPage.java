@@ -33,12 +33,6 @@ public class ConsultationPage extends BahmniPage {
     @FindBy(how = How.CSS, using = ".retro-date-widget-header.fr")
     public WebElement registrationDeskButton;
 
-    @FindBy(how = How.CSS, using = ".icon-bahmni-expand")
-    public WebElement expandAllButton;
-
-    @FindBy(how = How.CSS, using = ".icon-bahmni-collapse")
-    public WebElement collapseAllButton;
-
     public void saveConsultation() {
         save.click();
     }
@@ -83,13 +77,5 @@ public class ConsultationPage extends BahmniPage {
             element = findElement(By.xpath(".//a[@ng-click='showBoard($index)' and contains(text(),'"+tabName+"')]"));
             Assert.assertTrue(element.isDisplayed());
         }
-    }
-
-    public void clickOnExpand() {
-        expandAllButton.click();
-    }
-
-    public void clickOnCollapse() {
-        collapseAllButton.click();
     }
 }

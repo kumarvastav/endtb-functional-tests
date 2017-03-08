@@ -23,6 +23,12 @@ import java.util.Map;
 
 public class ObservationsPage extends BahmniPage {
 
+    @FindBy(how = How.CSS, using = ".icon-bahmni-expand")
+    public WebElement expandAllButton;
+
+    @FindBy(how = How.CSS, using = ".icon-bahmni-collapse")
+    public WebElement collapseAllButton;
+
     @FindBy(how = How.CSS, using = "#template-control-panel-button")
     public WebElement addFormbutton;
 
@@ -287,6 +293,14 @@ public class ObservationsPage extends BahmniPage {
         }
     }
 
+    public void clickOnExpand() {
+        expandAllButton.click();
+    }
+
+    public void clickOnCollapse() {
+        collapseAllButton.click();
+    }
+
     public WebElement findLabelByText(String controlName) {
         List<WebElement> allLabels = driver.findElements(By.cssSelector("label"));
         for(WebElement label : allLabels) {
@@ -295,5 +309,19 @@ public class ObservationsPage extends BahmniPage {
             }
         }
         return null;
+    }
+
+    public WebElement findStrongByText(String controlName) {
+        List<WebElement> allStrong = driver.findElements(By.cssSelector("strong"));
+        for(WebElement strong : allStrong) {
+            if (strong.getText().equals(controlName)) {
+                return strong;
+            }
+        }
+        return null;
+    }
+
+    public void clickOnLabel(WebElement labelByText) {
+        labelByText.click();
     }
 }
