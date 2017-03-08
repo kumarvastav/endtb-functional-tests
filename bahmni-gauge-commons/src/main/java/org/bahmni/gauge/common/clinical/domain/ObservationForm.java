@@ -37,7 +37,7 @@ public class ObservationForm {
 
     public void enterUp(Table table, WebElement element) {
         List<WebElement> elementList = element.findElements(By.cssSelector(".form-builder-row"));
-        enter(table, elementList);
+        enter1(table, elementList);
     }
 
     private void enter(Table table, List<WebElement> elementList) {
@@ -84,10 +84,15 @@ public class ObservationForm {
 
     private static FormElement getFieldType(WebElement fieldset) {
         for (FormElement type : FormElement.allTypes) {
-            if (hasChild(fieldset, type.getSelector())) {
+            boolean a = hasChild(fieldset, FormElement.allTypes[2].getSelector());
+            boolean b = hasChild(fieldset, FormElement.allTypes[0].getSelector());
+            if(hasChild(fieldset, FormElement.allTypes[2].getSelector()) && hasChild(fieldset, FormElement.allTypes[0].getSelector())){
+                return type;
+            } else if (hasChild(fieldset, type.getSelector())) {
                 return type;
             }
         }
+
         return FormElement.UNKNOWN;
     }
 
@@ -105,5 +110,26 @@ public class ObservationForm {
 
     private static boolean hasField(WebElement fieldset, String fieldName) {
         return fieldset.findElement(By.tagName("label")).getText().contains(fieldName);
+    }
+
+    private void enter1(Table table, List<WebElement> elementList){
+        List<TableRow> rows = table.getTableRows();
+        List<String> columnNames = table.getColumnNames();
+        if (rows.size() != 1) {
+            throw new TestSpecException("Only one patient should be provided in the table");
+        }
+        TableRow row = rows.get(0);
+
+        for (String label : columnNames) {
+            String value = row.getCell(label);
+            if(elementList.size() >= 1){
+                for (WebElement fieldset : elementList) {
+                    getFieldType(fieldset).fillUp(fieldset, value);
+                    data.put(label, value);
+                    elementList.remove(0);
+                    break;
+                }
+            }
+        }
     }
 }

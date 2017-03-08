@@ -307,7 +307,7 @@ public class BahmniPage {
         try {
             return null != parent.findElement(child);
         } catch (NoSuchElementException e) {
-            return false;
+              return false;
         }
     }
 

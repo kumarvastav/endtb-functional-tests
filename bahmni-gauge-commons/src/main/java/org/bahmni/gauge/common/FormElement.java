@@ -46,6 +46,11 @@ public enum FormElement {
             }
         }
     },
+    SELECTWITHAUTOCOMPLETE("selectwithautocomplete") {
+        public void fillUp(WebElement observationNode, String value) {
+            new Select(observationNode.findElement(getSelector())).selectByValue(value);
+        }
+    },
     UNKNOWN("") {
         public void fillUp(WebElement observationNode, String value) {
             System.out.println("Value :" + value + " not entered.");
