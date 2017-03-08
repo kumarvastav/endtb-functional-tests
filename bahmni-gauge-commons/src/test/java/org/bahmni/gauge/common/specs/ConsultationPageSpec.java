@@ -57,6 +57,4 @@ public class ConsultationPageSpec {
     {
         consultationPage.verifyTabsPresent(tabs);
     }
-
-
 }

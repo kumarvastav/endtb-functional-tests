@@ -6,9 +6,19 @@ Enter the add new obs form dialog in observation page
 
 tags: regression, sanity
 
+* Login and create the "Observation test form" form by form builder
+* Verify form is "v1" version and "Draft" status
+
+* Save "Observation test form" form using "label" by API
+* Change the "label" label name to "Observation Form"
+* Verify canvas has "Observation Form" label
+* Save "Observation test form" form using "labelObs" by API
+* Navigate to form list
+* Enter version "1" of "Observation test form" form details
+
+
 * Create a new patient through API
 * Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
-* Create a "ObservationTest" form using "obs" with "label"
 * Login to app and navigate to "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
@@ -169,10 +179,25 @@ tags: regression, sanity
 * Click on "Inner Section" stronged text
 * Verify "Inner Section" set is "expanded"
 
-* Enter "Observation test form" template with all observation details
+* Create a new patient through API
+* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
+* Login to app and navigate to "Clinical" app
+* Select existing patient from patient listing page under tab "Active"
+* Navigate to consultation
+* Add the "Demo1" existing form
+
+* Enter "Demo1" template with all observation details
     |Death Note, Hospital Course|Systolic(mm Hg)|Systolic Abnormal|BMI STATUS|BMI STATUS ABNORMAL|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
-        |test|55|Yes|test|No|Cephalic|CKD|Standing at work|
+        |test|55|No|test|Yes|Cephalic|CKD|Standing at work|
 * Save the consultation
+* Go to "Consultation" tab
+* Verify display control with Caption "Demo1" on "Consultation" tab, has the following details
+|Death Note, Hospital Course|Systolic(mm Hg)|BMI STATUS|Diabetes, Exercise|
+        |test|55|test|Standing at work|
+
+* Verify display control with Caption "Demo1" on "Consultation" tab, has the following details
+|Death Note, Hospital Course|Systolic(mm Hg)|BMI STATUS|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
+        |test|55|test|Cephalic|CKD|Standing at work|
 
 Create new obs form
 -----------------------------------------------------
