@@ -70,6 +70,7 @@ public class ObservationForm {
                                 continue;
                             }
                             elements.get(fieldCount).fillUp(fieldset, val);
+                            fieldCount++;
                             if (values.length == elements.size())
                                 fieldCount++;
                                 // This case failed in case of gynecology template, with has two sections of buttons
@@ -126,6 +127,20 @@ public class ObservationForm {
             String value = row.getCell(label);
             if(elementList.size() >= 1){
                 for (WebElement fieldset : elementList) {
+                    if(value.contains(":")){
+                        String values[] = value.split(":");
+                        List<FormElement> elements = getAllFieldType(fieldset);
+                        int num = 0;
+                        for (String val : values) {
+                            if(val.equals(" ")){
+                                num++;
+                                continue;
+                            }
+                            elements.get(num).fillUp(fieldset, val);
+                            num++;
+                        }
+                    }
+
                     getFieldType(fieldset).fillUp(fieldset, value);
                     data.put(label, value);
                     elementList.remove(0);
