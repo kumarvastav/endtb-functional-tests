@@ -78,7 +78,7 @@ public class FormBuilderSpec {
             if(value.equalsIgnoreCase("edit")) {
                 allFormProperty.get(4).findElement(By.cssSelector(".fa-pencil"));
             }
-            else {
+            if (value.equalsIgnoreCase("published")) {
                 allFormProperty.get(4).findElement(By.cssSelector(".fa-eye"));
             }
         }

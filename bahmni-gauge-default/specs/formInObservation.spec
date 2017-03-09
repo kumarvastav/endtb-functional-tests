@@ -36,7 +36,11 @@ tags: regression, sanity
 * Verify the form is non-editable
 * Verify form is "v1" version and "Published" status
 
-
+* Navigate to form list
+* Verify "Observation test form" form "version" is "1" on form dashboard
+* Verify "Observation test form" form is created On today on form dashboard
+* Verify "Observation test form" form "Status" is "Published" on form dashboard
+* Verify "Observation test form" form "action" is "Published" on form dashboard
 
 //* Navigate to dashboard
 //* Go to form builder page

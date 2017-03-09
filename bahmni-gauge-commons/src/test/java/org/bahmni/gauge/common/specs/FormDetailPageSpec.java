@@ -100,7 +100,7 @@ public class FormDetailPageSpec {
     @Step("Verify the form is non-editable")
     public void verifyFormIsNoneditable() {
         WebElement title = formDetailPage.findCanvasTitle();
-        formDetailPage.doubleClickOnLable(title.findElement(By.cssSelector("label")));
+        formDetailPage.doubleClickOnLabel(title.findElement(By.cssSelector("label")));
         Assert.assertEquals(0,title.findElements(By.cssSelector("input")).size());
     }
 

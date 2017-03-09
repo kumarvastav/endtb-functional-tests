@@ -9,6 +9,7 @@ import org.openqa.selenium.support.How;
 
 import java.util.List;
 
+
 public class FormDetailPage extends BahmniPage {
     @FindBy(how = How.CSS, using = "button")
     public WebElement editButton;
@@ -88,7 +89,7 @@ public class FormDetailPage extends BahmniPage {
             if (label.getText().equals(labelName)) {
                 WebElement parentElement = label.findElement(By.xpath("../.."));
 
-                doubleClickOnLable(label);
+                doubleClickOnLabel(label);
 
                 WebElement childElement = parentElement.findElement(By.cssSelector(".form-builder-label"));
 
@@ -100,7 +101,7 @@ public class FormDetailPage extends BahmniPage {
         }
     }
 
-    public void doubleClickOnLable(WebElement label) {
+    public void doubleClickOnLabel(WebElement label) {
         Actions action = new Actions(driver).doubleClick(label);
         action.build().perform();
     }
