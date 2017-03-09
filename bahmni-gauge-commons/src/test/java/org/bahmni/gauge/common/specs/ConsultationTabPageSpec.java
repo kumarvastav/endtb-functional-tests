@@ -38,7 +38,7 @@ public class ConsultationTabPageSpec {
     public void verifyDisplayControlOnTabWithCaption(String displayControlCaption, String tab, Table table) {
         ConsultationTabPage consultationTabPage = PageFactory.get(ConsultationTabPage.class);
         String displayControlText = consultationTabPage.getDisplayControlTextWithCaption(displayControlCaption);
-        for (String data : table.getColumnValues("details")) {
+        for (String data : table.getTableRows().get(0).getCellValues()) {
             data = StringUtil.transformPatternToData(data);
             Assert.assertTrue("String " + data + " does not exist. Actual String :" + displayControlText, displayControlText.contains(data));
         }
