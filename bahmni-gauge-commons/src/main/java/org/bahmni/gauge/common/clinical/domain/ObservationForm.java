@@ -40,6 +40,11 @@ public class ObservationForm {
         enter(table, elementList);
     }
 
+    public void enterUpAll(Table table, WebElement element) {
+        List<WebElement> elementList = element.findElements(By.cssSelector(".form-builder-row"));
+        enterHideLabel(table, elementList);
+    }
+
     private void enter(Table table, List<WebElement> elementList) {
         List<TableRow> rows = table.getTableRows();
         List<String> columnNames = table.getColumnNames();
@@ -85,11 +90,7 @@ public class ObservationForm {
 
     private static FormElement getFieldType(WebElement fieldset) {
         for (FormElement type : FormElement.allTypes) {
-            boolean a = hasChild(fieldset, FormElement.allTypes[2].getSelector());
-            boolean b = hasChild(fieldset, FormElement.allTypes[0].getSelector());
-            if(hasChild(fieldset, FormElement.allTypes[2].getSelector()) && hasChild(fieldset, FormElement.allTypes[0].getSelector())){
-                return type;
-            } else if (hasChild(fieldset, type.getSelector())) {
+            if (hasChild(fieldset, type.getSelector())) {
                 return type;
             }
         }
@@ -113,7 +114,7 @@ public class ObservationForm {
         return fieldset.findElement(By.tagName("label")).getText().contains(fieldName);
     }
 
-    private void enter1(Table table, List<WebElement> elementList){
+    private void enterHideLabel(Table table, List<WebElement> elementList){
         List<TableRow> rows = table.getTableRows();
         List<String> columnNames = table.getColumnNames();
         if (rows.size() != 1) {

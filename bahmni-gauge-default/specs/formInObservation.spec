@@ -204,52 +204,52 @@ Create new obs form
 
 tags: regression, sanity
 
-* Login and create the "ObservationTestForm1" form by form builder
+* Login and create the "ObservationTestForm" form by form builder
 //* Verify form is "v1" version and "Draft" status
 
-* Save "ObservationTestForm1" form using "consultationnote" by API
+* Save "ObservationTestForm" form using "consultationnote" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm1" form details
+* Enter version "1" of "ObservationTestForm" form details
 //* Verify canvas has "Consultation Note" label
 * Select "Mandatory" property for "Consultation Note"
 * Select "Notes" property for "Consultation Note"
 
-* Save "ObservationTestForm1" form using "weight" by API
+* Save "ObservationTestForm" form using "weight" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm1" form details
+* Enter version "1" of "ObservationTestForm" form details
 //* Verify canvas has "WEIGHT" label
 * Select "Mandatory" property for "WEIGHT"
 * Select "Notes" property for "WEIGHT"
 
-* Save "ObservationTestForm1" form using "presentingpart" by API
+* Save "ObservationTestForm" form using "presentingpart" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm1" form details
+* Enter version "1" of "ObservationTestForm" form details
 //* Verify canvas has "P/A Presenting Part" label
 * Select "AutoComplete" property for "P/A Presenting Part"
 
-* Save "ObservationTestForm1" form using "smokinghistory" by API
+* Save "ObservationTestForm" form using "smokinghistory" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm1" form details
+* Enter version "1" of "ObservationTestForm" form details
 //* Verify canvas has "Smoking History" label
 * Change the "Smoking History" label name to "Is Patient Smoking ?"
 //* Verify canvas has "Is Patient Smoking ?" label
 
-* Save "ObservationTestForm1" form using "date" by API
+* Save "ObservationTestForm" form using "date" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm1" form details
+* Enter version "1" of "ObservationTestForm" form details
 //* Verify canvas has "Date of Operation" label
 * Select "HideLabel" property for "Date of Operation"
 
-* Save "ObservationTestForm1" form using "systolicdata" by API
+* Save "ObservationTestForm" form using "systolicdata" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm1" form details
+* Enter version "1" of "ObservationTestForm" form details
 //* Verify canvas has "Systolic Data" label
 * Change the "Systolic Data" label name to "Systolic Observation Data"
 
 * Click on save
 * Click on publish
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm1" form details
+* Enter version "1" of "ObservationTestForm" form details
 //* Verify form is "v1" version and "Published" status
 
 * Navigate to dashboard
@@ -258,17 +258,17 @@ tags: regression, sanity
 * Click on "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
-* Add the "ObservationTestForm1" existing form
+* Add the "ObservationTestForm" existing form
 
-* Enter "ObservationTestForm1" template with following observation details
+* Enter "ObservationTestForm" template with following observation details
     |Systolic(mm Hg)|Systolic Abnormal|
         |130|Yes|
 * Save the consultation
 * Click the error message button
 * Click add Note button
 
-* Enter "ObservationTestForm1" template with all observation details
+* Enter "ObservationTestForm" template with all observation details with hide label
     |Consultation Note|WEIGHT|P/A Presenting Part|Is Patient Smoking ?|Date|Systolic(mm Hg)|Systolic Abnormal|
         |test|55|Breech|Yes|11/11/2016|131|No|
-//* Enter "ObservationTestForm1" template note ""
-//* Save the consultation
+//* Enter "ObservationTestForm" template note ""
+* Save the consultation
