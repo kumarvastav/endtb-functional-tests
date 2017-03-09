@@ -10,13 +10,18 @@ tags: regression, sanity
 * Verify form is "v1" version and "Draft" status
 
 * Save "Observation test form" form using "label" by API
-* Change the "label" label name to "Observation Form"
+* Navigate to form list
+* Enter version "1" of "Observation test form" form details
+* Change the "Label" label name to "Observation Form"
 * Verify canvas has "Observation Form" label
 * Save "Observation test form" form using "labelObs" by API
 * Navigate to form list
 * Enter version "1" of "Observation test form" form details
 * Verify canvas has "WEIGHT" label
 
+* Click on save
+* Verify "Form Saved Successfully" showed up
+* Verify "Publish" button is "enabled" on form builder
 //* Create a new patient through API
 //* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
 //* Login to app and navigate to "Clinical" app
