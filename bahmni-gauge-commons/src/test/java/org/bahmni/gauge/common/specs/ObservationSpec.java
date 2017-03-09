@@ -187,6 +187,25 @@ public class ObservationSpec extends BaseSpec {
             Assert.assertTrue("Element " + template + " is not displayed", dashboardPage.hasElement(By.cssSelector("#concept-set-4")));
     }
 
+    @Step("Verify <formName> is added to the left pane")
+    public void verifyObservationFormAddedToLeftPane(String formName) {
+        ObservationsPage observationsPage = PageFactory.get(ObservationsPage.class);
+        WebElement leftPane = observationsPage.getLeftPane();
+        List<WebElement> allTabs = leftPane.findElements(By.cssSelector("span"));
+        WebElement tab = findWebElementByText(allTabs, formName);
+
+        Assert.assertTrue("form is not added to pane", tab != null);
+    }
+
+    private WebElement findWebElementByText(List<WebElement> allElement, String text) {
+        for(WebElement element : allElement) {
+            if(element.getText().equals(text)) {
+                return element;
+            }
+        }
+        return null;
+    }
+
     @Step("Close the app")
     public void closeApplication() {
         new BahmniPage().closeApp(driver);

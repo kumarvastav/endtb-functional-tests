@@ -36,11 +36,14 @@ tags: regression, sanity
 * Verify the form is non-editable
 * Verify form is "v1" version and "Published" status
 
-* Navigate to form list
-* Verify "Observation test form" form "version" is "1" on form dashboard
-* Verify "Observation test form" form is created On today on form dashboard
-* Verify "Observation test form" form "Status" is "Published" on form dashboard
-* Verify "Observation test form" form "action" is "Published" on form dashboard
+* Create a new patient through API
+* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
+* Navigate to dashboard
+* Select existing patient from patient listing page under tab "Active"
+* Navigate to consultation
+* Click on "Clinical" app
+* Add the "Observation test form" existing form
+* Verify "Observation test form" is added to the left pane
 
 //* Navigate to dashboard
 //* Go to form builder page
@@ -68,7 +71,7 @@ Add a mix of combination of section controls, obs controls and obsGroup controls
 --------------------------------------------------------------------------------
 tags: regression, sanity
 
-* Login and create the "Observation test form" form by form builder
+//* Login and create the "Observation test form" form by form builder
 //* Verify form is "v1" version and "Draft" status
 //* Verify "Save" button is "enable" on form builder
 //* Verify "Publish" button is "disabled" on form builder
@@ -146,23 +149,25 @@ tags: regression, sanity
 //* Verify "Diabetes, Cormorbidities" checked "MultiSelect" property
 //* Verify "Diabetes, Cormorbidities" checked "AutoComplete" property
 //
-* Save "Observation test form" form using "threeObsInnerSectionObsGroups" by API
-* Navigate to form list
-* Enter version "1" of "Observation test form" form details
+
+//* Save "Observation test form" form using "threeObsInnerSectionObsGroups" by API
+//* Navigate to form list
+//* Enter version "1" of "Observation test form" form details
 //* Verify canvas has "Diabetes, Exercise" label
-* Select "MultiSelect" property for "Diabetes, Exercise"
+//* Select "MultiSelect" property for "Diabetes, Exercise"
 //* Verify "Diabetes, Cormorbidities" checked "MultiSelect" property
 //
-* Click on save
+//* Click on save
 //* Verify "Form Saved Successfully" showed up
-* Click on publish
+//* Click on publish
 //* Verify "Form Successfully Published" showed up
-* Navigate to form list
+//* Navigate to form list
 //* Enter version "1" of "Observation test form" form details
 //* Verify form is "v1" version and "Published" status
 //* Verify the form is read only
 //
-* Navigate to dashboard
+
+//* Navigate to dashboard
 //* Create a new patient through API
 //* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
 //* Click on "Clinical" app
@@ -194,13 +199,13 @@ tags: regression, sanity
 //* Verify "Inner Section" set is "collapsed"
 //* Click on "Inner Section" stronged text
 //* Verify "Inner Section" set is "expanded"
-
 * Create a new patient through API
 * Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
 * Login to app and navigate to "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
-* Add the "Observation test form" existing form
+* Add the "Demo1" existing form
+
 * Enter "Observation test form" template with all observation details
     |Death Note, Hospital Course|Systolic(mm Hg)|Systolic Abnormal|BMI STATUS|BMI STATUS ABNORMAL|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
     |test|55|No|test|Yes|Cephalic|CKD|Standing at work|

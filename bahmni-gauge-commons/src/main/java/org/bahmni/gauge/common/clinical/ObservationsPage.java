@@ -30,7 +30,7 @@ public class ObservationsPage extends BahmniPage {
     public WebElement collapseAllButton;
 
     @FindBy(how = How.CSS, using = "#template-control-panel-button")
-    public WebElement addFormbutton;
+    public WebElement addFormButton;
 
     @FindBy(how = How.ID, using = "templateSearch")
     public WebElement searchInput;
@@ -62,6 +62,9 @@ public class ObservationsPage extends BahmniPage {
     @FindBy(how = How.CSS, using = ".show-btn")
     public WebElement ok;
 
+    @FindBy(how = How.CSS, using = ".multi-select-lab-tests")
+    public WebElement leftPane;
+
     public void selectTemplate(String templateName) {
         clickTemplateButton();
         List<WebElement> allForms = templatePanel.findElements(By.tagName("button"));
@@ -86,7 +89,7 @@ public class ObservationsPage extends BahmniPage {
     }
 
     protected void clickTemplateButton() {
-        addFormbutton.click();
+        addFormButton.click();
     }
 
     @Deprecated
@@ -330,5 +333,9 @@ public class ObservationsPage extends BahmniPage {
         ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template));
         observationForm.enterUpAll(data, element);
         storeObservationFormInSpecStore(observationForm);
+    }
+
+    public WebElement getLeftPane() {
+        return leftPane;
     }
 }
