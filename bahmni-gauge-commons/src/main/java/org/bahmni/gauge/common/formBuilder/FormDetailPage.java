@@ -35,6 +35,9 @@ public class FormDetailPage extends BahmniPage {
     @FindBy(how = How.CSS, using = ".form-properties")
     public WebElement propertiesBody;
 
+    @FindBy(how = How.CSS, using = ".dialog--no-header")
+    public WebElement editConfirmBox;
+
     public void clickOnEdit() {
         editButton.click();
     }
@@ -125,5 +128,9 @@ public class FormDetailPage extends BahmniPage {
 
     public WebElement findCanvasTitle() {
         return driver.findElement(By.cssSelector(".canvas-title"));
+    }
+
+    public WebElement getEditConfirmBox() {
+        return editConfirmBox;
     }
 }

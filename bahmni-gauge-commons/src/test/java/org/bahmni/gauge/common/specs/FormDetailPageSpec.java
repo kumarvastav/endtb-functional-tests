@@ -201,6 +201,16 @@ public class FormDetailPageSpec {
         controlSuper.findElement(By.cssSelector(".form-builder-asterisk"));
     }
 
+    @Step("Verify confirmation message for form builder when click on edit button")
+    public void verifyConfirmMessageShowUp() {
+        Assert.assertTrue("Confirm message doesn't show up", formDetailPage.hasElement(By.cssSelector(".dialog--no-header")));
+
+        WebElement confirmBox = formDetailPage.getEditConfirmBox();
+        String message = confirmBox.findElement(By.cssSelector(".dialog--container")).getText();
+
+        Assert.assertEquals("Edit of the form will allow you to create a new version of form. Do you want to proceed?", message);
+    }
+
     @Step("Verify <buttonText> button is <enableOption> on form builder")
     public void verifyButtonDisplayed(String buttonText, String enableOption){
         if (enableOption.equalsIgnoreCase("enable"))
