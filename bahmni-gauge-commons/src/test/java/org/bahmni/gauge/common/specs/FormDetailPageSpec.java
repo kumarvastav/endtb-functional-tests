@@ -96,6 +96,14 @@ public class FormDetailPageSpec {
         formDetailPage.changeName(labelName, name);
     }
 
+
+    @Step("Verify the form is non-editable")
+    public void verifyFormIsNoneditable() {
+        WebElement title = formDetailPage.findCanvasTitle();
+        formDetailPage.doubleClickOnLable(title.findElement(By.cssSelector("label")));
+        Assert.assertEquals(0,title.findElements(By.cssSelector("input")).size());
+    }
+
     @Step("Verify form is <version> version and <statusValue> status")
     public void verifyFormVersionAndStatus(String version, String statusValue) {
         String[] parsedFormInfo = parseVersionAndStatus(formDetailPage.getFormInfo());
@@ -132,11 +140,28 @@ public class FormDetailPageSpec {
         Assert.assertTrue(sectionName + "has no " + controlName, !hasLabel(labels, controlName));
     }
 
-    @Step("Verify the form is read only")
-    public void verifyFormReadOnly() {
+    @Step("Verify the form has edit button and notice message")
+    public void verifyFormhasEditButton() {
         WebElement editButton = formDetailPage.getEditButton();
-        Assert.assertTrue("Form is not read only", editButton != null);
+        WebElement buttonParent = editButton.findElement(By.xpath(".."));
+        Assert.assertTrue("edit button doesn't show up on the page", editButton != null);
+        Assert.assertEquals("This Form is a Published version. For editing click on",
+                buttonParent.findElement(By.cssSelector(".info-message")).getText());
+    }
 
+    @Step("Verify the form doesn't has <buttonName> button")
+    public void verifyButtonNotAppearOnForm(String buttonName) {
+        List<WebElement> buttons = formDetailPage.getAllButton();
+        Assert.assertTrue(buttonName + " shows up on the page", (findButtonByName(buttons, buttonName) == null));
+    }
+
+    private WebElement findButtonByName(List<WebElement> buttons, String buttonName) {
+        for (WebElement button : buttons) {
+            if(button.getText().equals(buttonName)) {
+                return button;
+            }
+        }
+        return null;
     }
 
     @Step("Verify <controlName> checked <propertyType> property")

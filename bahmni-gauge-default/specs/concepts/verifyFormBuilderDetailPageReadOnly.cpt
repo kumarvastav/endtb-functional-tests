@@ -1,0 +1,5 @@
+# Verify the form is read only
+* Verify the form has edit button and notice message
+* Verify the form doesn't has "Save" button
+* Verify the form doesn't has "Publish" button
+* Verify the form is non-editable

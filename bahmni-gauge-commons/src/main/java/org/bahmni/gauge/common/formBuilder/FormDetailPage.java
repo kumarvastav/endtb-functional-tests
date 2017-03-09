@@ -1,9 +1,7 @@
 package org.bahmni.gauge.common.formBuilder;
 
-import com.thoughtworks.selenium.Selenium;
 import org.bahmni.gauge.common.BahmniPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -87,8 +85,7 @@ public class FormDetailPage extends BahmniPage {
 			if(label.getText().equals(labelName)){
 				WebElement parentElement = label.findElement(By.xpath("../.."));
 
-				Actions action = new Actions(driver).doubleClick(label);
-				action.build().perform();
+				doubleClickOnLable(label);
 
 				WebElement childElement = parentElement.findElement(By.cssSelector(".form-builder-label"));
 
@@ -100,7 +97,12 @@ public class FormDetailPage extends BahmniPage {
 		}
 	}
 
-    public boolean isPropertyChecked(String propertyType) {
+	public void doubleClickOnLable(WebElement label) {
+		Actions action = new Actions(driver).doubleClick(label);
+		action.build().perform();
+	}
+
+	public boolean isPropertyChecked(String propertyType) {
         List<WebElement> allPropertyType = propertiesBody.findElements(By.cssSelector("label"));
         List<WebElement> propertyCheckBox = propertiesBody.findElements(By.cssSelector("input"));
 
@@ -112,4 +114,12 @@ public class FormDetailPage extends BahmniPage {
         }
         return false;
     }
+
+	public List<WebElement> getAllButton() {
+		return driver.findElement(By.cssSelector(".breadcrumb-wrap")).findElements(By.cssSelector("button"));
+	}
+
+	public WebElement findCanvasTitle() {
+		return driver.findElement(By.cssSelector(".canvas-title"));
+	}
 }
