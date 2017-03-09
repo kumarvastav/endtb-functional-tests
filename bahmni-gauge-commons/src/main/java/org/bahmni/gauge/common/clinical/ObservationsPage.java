@@ -324,4 +324,11 @@ public class ObservationsPage extends BahmniPage {
     public void clickOnLabel(WebElement labelByText) {
         labelByText.click();
     }
+
+    public void enterAllWithHideLabel(String template, Table data) {
+        WebElement element = expandObservationTemplate(template);
+        ObservationForm observationForm = new ObservationForm(expandObservationTemplate(template));
+        observationForm.enterUpAll(data, element);
+        storeObservationFormInSpecStore(observationForm);
+    }
 }
