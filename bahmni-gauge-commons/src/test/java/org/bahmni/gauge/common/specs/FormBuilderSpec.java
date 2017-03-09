@@ -74,6 +74,14 @@ public class FormBuilderSpec {
         if(formProperty.equalsIgnoreCase("Status")) {
             Assert.assertTrue("The status of this form is not " + value, allFormProperty.get(3).getText().equals(value));
         }
+        if (formProperty.equalsIgnoreCase("action")){
+            if(value.equalsIgnoreCase("edit")) {
+                allFormProperty.get(4).findElement(By.cssSelector(".fa-pencil"));
+            }
+            else {
+                allFormProperty.get(4).findElement(By.cssSelector(".fa-eye"));
+            }
+        }
     }
 
     private String getUuid() {

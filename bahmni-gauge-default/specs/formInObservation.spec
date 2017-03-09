@@ -23,12 +23,20 @@ tags: regression, sanity
 * Verify "Form Saved Successfully" showed up
 * Verify "Publish" button is "enabled" on form builder
 
-//Validate the newely created From is available with Version 1, Created on Date, Status as "Draft" and
-  Action as "Edit"
 * Navigate to form list
-* Verify "Observation test form" form "verison" is "2" on form dashboard
+* Verify "Observation test form" form "version" is "1" on form dashboard
 * Verify "Observation test form" form is created On today on form dashboard
 * Verify "Observation test form" form "Status" is "Draft" on form dashboard
+* Verify "Observation test form" form "action" is "edit" on form dashboard
+
+
+//5. Publish the Form by viewing the same form.
+//Validate on Publish, Confirmation message is displayed and "Save" "Publish" button goes off.
+  "This Form is a Published version. For editing click on Edit" message seen on From. Form should be
+  non-editable. On left top corner it should be "Observation ??? V1 - Published" status.
+
+
+
 //* Navigate to dashboard
 //* Go to form builder page
 //* Enter version "1" of "ObservationTest" form details
