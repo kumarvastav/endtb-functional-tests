@@ -1,5 +1,6 @@
 package org.bahmni.gauge.common;
 
+import com.sun.tools.javac.comp.Enter;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -14,6 +15,9 @@ public enum FormElement {
             if (!Objects.equals(element.getAttribute("type"), "date"))
                 element.clear();
             element.sendKeys(value);
+            if (element.getAttribute("role") != null){
+                element.sendKeys(Keys.ENTER);
+            }
         }
     },
     TEXT_AREA("textarea") {

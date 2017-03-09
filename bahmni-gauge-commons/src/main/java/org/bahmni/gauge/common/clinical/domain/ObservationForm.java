@@ -49,6 +49,7 @@ public class ObservationForm {
         TableRow row = rows.get(0);
         for (String label : columnNames) {
             String value = row.getCell(label);
+
             for (WebElement fieldset : elementList) {
                 if (hasField(fieldset, label)) {
                     if (value.contains(":")) {
