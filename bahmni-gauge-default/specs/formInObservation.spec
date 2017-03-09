@@ -24,10 +24,10 @@ tags: regression, sanity
 * Verify "Publish" button is "enabled" on form builder
 
 * Navigate to form list
-* Verify "Observation test form" form "version" is "1" on form dashboard
-* Verify "Observation test form" form is created On today on form dashboard
-* Verify "Observation test form" form "Status" is "Draft" on form dashboard
-* Verify "Observation test form" form "action" is "edit" on form dashboard
+* Verify version "1" of "Observation test form" form "version" is "1" on form dashboard
+* Verify version "1" of "Observation test form" form is created On today on form dashboard
+* Verify version "1" of "Observation test form" form "Status" is "Draft" on form dashboard
+* Verify version "1" of "Observation test form" form "action" is "edit" on form dashboard
 
 * Enter version "1" of "Observation test form" form details
 * Click on publish
@@ -39,71 +39,68 @@ tags: regression, sanity
 * Create a new patient through API
 * Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
 * Navigate to dashboard
+* Click on "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
-* Click on "Clinical" app
 * Add the "Observation test form" existing form
 * Verify "Observation test form" is added to the left pane
 
-* Enter "test" into control
+* Enter "11" into control
 * Save the consultation
 * Go to "Consultation" tab
 * Verify display control with Caption "Observation test form" on "Consultation" tab, has the following details
 |WEIGHT|
-|test|
+|11|
 
-//Open the same form from form builder and edit the form and drag another obs group to the form and
-//  assign "Pulse Data" to the control and Save the Form.
-
-//On Edit the confirmation message should be coming. New Obs group should be dragged to the canvas and should be
-//  highlighted. Pulse Data should have all the concept set members in it. On Save th version of the form should be changed.
-//  on Publish, form should be in Publish status. Same needs to be verified from Form builder dashboard.
 * Navigate to dashboard
 * Go to form builder page
-* Enter version "1" of "ObservationTest" form details
+* Enter version "1" of "Observation test form" form details
 * Click on Edit
 * Verify confirmation message for form builder when click on edit button
 * Confirm edit
 * Click on save
 * Verify form is "v2" version and "Draft" status
-* Save "ObservationTest" form using "obs_obsGroup" by API
+* Save "Observation test form" form using "obs_obsGroup" by API
 * Navigate to form list
-* Enter version "2" of "ObservationTest" form details
+* Enter version "2" of "Observation test form" form details
 * Click on publish
 * Verify form is "v2" version and "Published" status
 * Navigate to form list
+* Verify version "2" of "Observation test form" form "version" is "2" on form dashboard
+* Verify version "2" of "Observation test form" form is created On today on form dashboard
+* Verify version "2" of "Observation test form" form "Status" is "Published" on form dashboard
+* Verify version "2" of "Observation test form" form "action" is "Published" on form dashboard
 
-
-* Create a new patient through API
-* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
-* Create a "ObservationTest" form using "obs" with "label"
-* Login to app and navigate to "Clinical" app
-* Select existing patient from patient listing page under tab "Active"
-* Navigate to consultation
-* Add the "ObservationTest" existing form
-* Enter "123" into control
-* Save the consultation
-
-* Navigate to dashboard
-* Go to form builder page
-* Enter version "1" of "ObservationTest" form details
-* Click on Edit
-* Confirm edit
-* Save "ObservationTest" form using "obs_obsGroup" by API
-* Navigate to form list
-* Enter version "2" of "ObservationTest" form details
-* Click on publish
-* Navigate to dashboard
-
-* Click on "Clinical" app
-* Select existing patient from patient listing page under tab "Active"
-* Navigate to consultation
-* Add the "ObservationTest" existing form
-* Verify "ObservationTest" is disabled to add
-* Expand "ObservationTest" obs form
-* Clear the value in controls
-* Save the consultation
-* Add the "ObservationTest" existing form
+//* Create a new patient through API
+//* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
+//* Create a "ObservationTest" form using "obs" with "label"
+//* Login to app and navigate to "Clinical" app
+//* Select existing patient from patient listing page under tab "Active"
+//* Navigate to consultation
+//* Add the "ObservationTest" existing form
+//* Enter "123" into control
+//* Save the consultation
+//
+//* Navigate to dashboard
+//* Go to form builder page
+//* Enter version "1" of "ObservationTest" form details
+//* Click on Edit
+//* Confirm edit
+//* Save "ObservationTest" form using "obs_obsGroup" by API
+//* Navigate to form list
+//* Enter version "2" of "ObservationTest" form details
+//* Click on publish
+//* Navigate to dashboard
+//
+//* Click on "Clinical" app
+//* Select existing patient from patient listing page under tab "Active"
+//* Navigate to consultation
+//* Add the "ObservationTest" existing form
+//* Verify "ObservationTest" is disabled to add
+//* Expand "ObservationTest" obs form
+//* Clear the value in controls
+//* Save the consultation
+//* Add the "ObservationTest" existing form
 
 
 Add a mix of combination of section controls, obs controls and obsGroup controls

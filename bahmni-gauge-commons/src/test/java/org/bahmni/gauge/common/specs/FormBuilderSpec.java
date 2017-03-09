@@ -51,18 +51,18 @@ public class FormBuilderSpec {
         formBuilderPage.clickOnAction(versionNumber, formName);
     }
 
-    @Step("Verify <formName> form <formProperty> is <value> on form dashboard")
-    public void verifyFormPropertyOnFormDashboard(String formName, String formProperty, String value) {
+    @Step("Verify version <versionNum> of <formName> form <formProperty> is <value> on form dashboard")
+    public void verifyFormPropertyOnFormDashboard(String versionNum, String formName, String formProperty, String value) {
         formBuilderPage = PageFactory.getFormBuilderPage();
-        List<WebElement> allFormProperty = formBuilderPage.findFormByName(formName).findElements(By.cssSelector("td"));
+        List<WebElement> allFormProperty = formBuilderPage.findFormByNameAndVersion(versionNum, formName).findElements(By.cssSelector("td"));
 
         verifyFormProperty(formProperty, value, allFormProperty);
     }
 
-    @Step("Verify <formName> form is created On today on form dashboard")
-    public void verifyFormCreatedOnToday(String formName) {
+    @Step("Verify version <versionNum> of <formName> form is created On today on form dashboard")
+    public void verifyFormCreatedOnToday(String versionNum, String formName) {
         formBuilderPage = PageFactory.getFormBuilderPage();
-        List<WebElement> allFormProperty = formBuilderPage.findFormByName(formName).findElements(By.cssSelector("td"));
+        List<WebElement> allFormProperty = formBuilderPage.findFormByNameAndVersion(versionNum, formName).findElements(By.cssSelector("td"));
         String today = String.format("%1$td %1$tb %1$ty", new Date());
         Assert.assertTrue("The created date of this form is not " + today, allFormProperty.get(2).getText().equals(today));
     }
