@@ -22,15 +22,13 @@ tags: regression, sanity
 * Click on save
 * Verify "Form Saved Successfully" showed up
 * Verify "Publish" button is "enabled" on form builder
-//* Create a new patient through API
-//* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
-//* Login to app and navigate to "Clinical" app
-//* Select existing patient from patient listing page under tab "Active"
-//* Navigate to consultation
-//* Add the "ObservationTest" existing form
-//* Enter "123" into control
-//* Save the consultation
-//
+
+//Validate the newely created From is available with Version 1, Created on Date, Status as "Draft" and
+  Action as "Edit"
+* Navigate to form list
+* Verify "Observation test form" form "verison" is "2" on form dashboard
+* Verify "Observation test form" form is created On today on form dashboard
+* Verify "Observation test form" form "Status" is "Draft" on form dashboard
 //* Navigate to dashboard
 //* Go to form builder page
 //* Enter version "1" of "ObservationTest" form details
@@ -184,18 +182,14 @@ tags: regression, sanity
 * Click on "Inner Section" stronged text
 * Verify "Inner Section" set is "expanded"
 
-* Enter "Demo1" template with all observation details
+* Enter "Observation test form" template with all observation details
     |Death Note, Hospital Course|Systolic(mm Hg)|Systolic Abnormal|BMI STATUS|BMI STATUS ABNORMAL|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
-        |test|55|No|test|Yes|Cephalic|CKD|Standing at work|
+    |test|55|No|test|Yes|Cephalic|CKD|Standing at work|
 * Save the consultation
 * Go to "Consultation" tab
-* Verify display control with Caption "Demo1" on "Consultation" tab, has the following details
-|Death Note, Hospital Course|Systolic(mm Hg)|BMI STATUS|Diabetes, Exercise|
-        |test|55|test|Standing at work|
-
-* Verify display control with Caption "Demo1" on "Consultation" tab, has the following details
+* Verify display control with Caption "Observation test form" on "Consultation" tab, has the following details
 |Death Note, Hospital Course|Systolic(mm Hg)|BMI STATUS|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
-        |test|55|test|Cephalic|CKD|Standing at work|
+|test|55|test|Cephalic|CKD|Standing at work|
 
 Create new obs form
 -----------------------------------------------------

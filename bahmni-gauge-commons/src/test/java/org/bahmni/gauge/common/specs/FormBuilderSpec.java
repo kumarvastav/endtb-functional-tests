@@ -8,7 +8,13 @@ import org.bahmni.gauge.common.PageFactory;
 import org.bahmni.gauge.common.formBuilder.FormBuilderPage;
 import org.bahmni.gauge.common.formBuilder.domain.Form;
 import org.bahmni.gauge.data.StoreHelper;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.Date;
+import java.util.List;
 
 public class FormBuilderSpec {
     private final WebDriver driver;
@@ -43,6 +49,31 @@ public class FormBuilderSpec {
     public void enterFormDetail(String versionNumber, String formName) {
         formBuilderPage = PageFactory.getFormBuilderPage();
         formBuilderPage.clickOnAction(versionNumber, formName);
+    }
+
+    @Step("Verify <formName> form <formProperty> is <value> on form dashboard")
+    public void verifyFormPropertyOnFormDashboard(String formName, String formProperty, String value) {
+        formBuilderPage = PageFactory.getFormBuilderPage();
+        List<WebElement> allFormProperty = formBuilderPage.findFormByName(formName).findElements(By.cssSelector("td"));
+
+        verifyFormProperty(formProperty, value, allFormProperty);
+    }
+
+    @Step("Verify <formName> form is created On today on form dashboard")
+    public void verifyFormCreatedOnToday(String formName) {
+        formBuilderPage = PageFactory.getFormBuilderPage();
+        List<WebElement> allFormProperty = formBuilderPage.findFormByName(formName).findElements(By.cssSelector("td"));
+        String today = String.format("%1$td %1$tb %1$ty", new Date());
+        Assert.assertTrue("The created date of this form is not " + today, allFormProperty.get(2).getText().equals(today));
+    }
+
+    private void verifyFormProperty(String formProperty, String value, List<WebElement> allFormProperty) {
+        if(formProperty.equalsIgnoreCase("version")) {
+            Assert.assertTrue("The version of this form is not " + value, allFormProperty.get(1).getText().equals(value));
+        }
+        if(formProperty.equalsIgnoreCase("Status")) {
+            Assert.assertTrue("The status of this form is not " + value, allFormProperty.get(3).getText().equals(value));
+        }
     }
 
     private String getUuid() {

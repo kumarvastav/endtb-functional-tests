@@ -39,6 +39,11 @@ public class FormBuilderPage extends BahmniPage {
 		icon.click();
     }
 
+    public WebElement findFormByName(String formName) {
+		WebElement formIcon = findFormIcon(formName, "1");
+		return formIcon.findElement(By.xpath("../.."));
+	}
+
 	private WebElement findFormIcon(String formName, String versionNumber) {
 		List<WebElement> formList = formTableBody.findElements(By.cssSelector("tr"));
 		for(int i = 0; i < formList.size(); i++) {
