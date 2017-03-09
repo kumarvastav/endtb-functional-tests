@@ -71,36 +71,25 @@ tags: regression, sanity
 * Verify version "2" of "Observation test form" form "Status" is "Published" on form dashboard
 * Verify version "2" of "Observation test form" form "action" is "Published" on form dashboard
 
-//* Create a new patient through API
-//* Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
-//* Create a "ObservationTest" form using "obs" with "label"
-//* Login to app and navigate to "Clinical" app
-//* Select existing patient from patient listing page under tab "Active"
-//* Navigate to consultation
-//* Add the "ObservationTest" existing form
-//* Enter "123" into control
-//* Save the consultation
-//
-//* Navigate to dashboard
-//* Go to form builder page
-//* Enter version "1" of "ObservationTest" form details
-//* Click on Edit
-//* Confirm edit
-//* Save "ObservationTest" form using "obs_obsGroup" by API
-//* Navigate to form list
-//* Enter version "2" of "ObservationTest" form details
-//* Click on publish
-//* Navigate to dashboard
-//
-//* Click on "Clinical" app
-//* Select existing patient from patient listing page under tab "Active"
-//* Navigate to consultation
-//* Add the "ObservationTest" existing form
-//* Verify "ObservationTest" is disabled to add
-//* Expand "ObservationTest" obs form
-//* Clear the value in controls
-//* Save the consultation
-//* Add the "ObservationTest" existing form
+* Navigate to dashboard
+* Click on "Clinical" app
+* Select existing patient from patient listing page under tab "Active"
+* Navigate to consultation
+* Add the "Observation test form" existing form
+* Verify "Observation test form" is disabled to add
+
+* Expand "Observation test form" obs form
+* Clear the value in controls
+* Save the consultation
+* Add the "Observation test form" existing form
+* Enter "Observation test form" template with all observation details
+|WEIGHT|Pulse(/min)|Pulse Abnormal|
+|11|50|Yes|
+* Save the consultation
+* Go to "Consultation" tab
+* Verify display control with Caption "Observation test form" on "Consultation" tab, has the following details
+|WEIGHT|Pulse(/min)|
+|11|50|
 
 
 Add a mix of combination of section controls, obs controls and obsGroup controls

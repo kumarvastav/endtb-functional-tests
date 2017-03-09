@@ -229,8 +229,8 @@ public class ObservationsPage extends BahmniPage {
     }
 
     public void clickOnSelectedObsForm(String selectedObsForm) {
-        String transformName = selectedObsForm.replace(" ", "_");
-        driver.findElement(By.id(transformName)).click();
+        String parsedFormName = parseFormName(selectedObsForm);
+        driver.findElement(By.id(parsedFormName)).click();
     }
 
     public void searchObsForm(String formName) {
@@ -253,7 +253,8 @@ public class ObservationsPage extends BahmniPage {
     }
 
     public Boolean getDisabledValue(String formName) {
-        return (driver.findElement(By.id(formName)).getAttribute("disabled").equals("true"));
+        String parsedFormName = parseFormName(formName);
+        return (driver.findElement(By.id(parsedFormName)).getAttribute("disabled").equals("true"));
     }
 
     public void createAndPublishFormByAPI(String formName, String formModelName, String conceptName) {
@@ -337,5 +338,9 @@ public class ObservationsPage extends BahmniPage {
 
     public WebElement getLeftPane() {
         return leftPane;
+    }
+
+    private String parseFormName(String formName) {
+        return formName.replace(" ", "_");
     }
 }
