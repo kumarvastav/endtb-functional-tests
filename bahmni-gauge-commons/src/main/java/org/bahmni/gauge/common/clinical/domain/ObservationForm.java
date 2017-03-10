@@ -114,12 +114,20 @@ public class ObservationForm {
     }
 
     private static List<FormElement> getAllFieldType(WebElement fieldset) {
+        return getAllFieldType(fieldset, 1);
+    }
+
+    private static List<FormElement> getAllFieldType(WebElement fieldset, int multipleLoopNum) {
         ArrayList<FormElement> types = new ArrayList<>();
-        for (FormElement type : FormElement.allTypes) {
-            if (hasChild(fieldset, type.getSelector())) {
-                types.add(type);
+
+        for (int i = 0; i < multipleLoopNum; i ++) {
+            for (FormElement type : FormElement.allTypes) {
+                if (hasChild(fieldset, type.getSelector())) {
+                    types.add(type);
+                }
             }
         }
+
         if (types.size() == 0)
             types.add(FormElement.UNKNOWN);
         return types;
@@ -143,13 +151,14 @@ public class ObservationForm {
                 for (WebElement fieldset : elementList) {
                     if(value.contains(":")){
                         String values[] = value.split(":");
-                        List<FormElement> elements = getAllFieldType(fieldset);
+                        List<FormElement> elements = getAllFieldType(fieldset, 2);
                         int num = 0;
                         for (String val : values) {
                             if(val.equals(" ")){
                                 num++;
                                 continue;
                             }
+
                             elements.get(num).fillUp(fieldset, val);
                             num++;
                         }

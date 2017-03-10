@@ -5,6 +5,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.lang.reflect.Field;
+import java.util.List;
 import java.util.Objects;
 
 public enum FormElement {
@@ -21,9 +22,15 @@ public enum FormElement {
     },
     TEXT_AREA("textarea") {
         public void fillUp(WebElement observationNode, String value) {
-            WebElement element = observationNode.findElement(getSelector());
-            element.clear();
-            observationNode.findElement(getSelector()).sendKeys(value);
+            List<WebElement> elementList = observationNode.findElements(getSelector());
+
+            for (WebElement element : elementList) {
+                if(element.getText().isEmpty()){
+                    element.clear();
+                    element.sendKeys(value);
+                    break;
+                }
+            }
         }
     },
     SELECT("select") {
