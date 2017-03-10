@@ -324,7 +324,7 @@ tags: regression, sanity
 * Click add Note button
 
 * Enter "ObservationTestForm" template with all observation details with hide label
-    |Consultation Note|WEIGHT|P/A Presenting Part|Is Patient Smoking ?|Date|
-        |test:hello|55:world|Breech|Yes|11/11/2016|
+    |Consultation Note|WEIGHT|P/A Presenting Part|Is Patient Smoking ?|Date|Systolic(mm Hg)|Systolic Abnormal|
+        |test:hello|55:world|Breech|Yes|11/11/2016|133|No|
 //* Enter "ObservationTestForm" template note ""
 * Save the consultation

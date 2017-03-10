@@ -2,13 +2,15 @@ package org.bahmni.gauge.common.clinical.domain;
 
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
-
 import org.bahmni.gauge.common.FormElement;
 import org.bahmni.gauge.common.TestSpecException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.bahmni.gauge.common.BahmniPage.hasChild;
 
@@ -165,6 +167,12 @@ public class ObservationForm {
                     break;
                 }
             }
+        }
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
