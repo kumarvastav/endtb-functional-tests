@@ -37,12 +37,23 @@ public class ObservationForm {
 
     public void enterUp(Table table, WebElement element) {
         List<WebElement> elementList = element.findElements(By.cssSelector(".form-builder-row"));
+        elementList = filterElementList(elementList);
         enter(table, elementList);
     }
 
     public void enterUpAll(Table table, WebElement element) {
         List<WebElement> elementList = element.findElements(By.cssSelector(".form-builder-row"));
         enterHideLabel(table, elementList);
+    }
+
+    private List<WebElement> filterElementList(List<WebElement> elementList) {
+        List<WebElement> listClone = new ArrayList<>(elementList);
+        for(WebElement element : listClone) {
+            if(element.findElements(By.cssSelector("label")).size() > 1) {
+                elementList.remove(element);
+            }
+        }
+        return elementList;
     }
 
     private void enter(Table table, List<WebElement> elementList) {
@@ -85,6 +96,12 @@ public class ObservationForm {
                     }
                 }
             }
+        }
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -139,9 +156,10 @@ public class ObservationForm {
                             elements.get(num).fillUp(fieldset, val);
                             num++;
                         }
+                    } else {
+                        getFieldType(fieldset).fillUp(fieldset, value);
                     }
 
-                    getFieldType(fieldset).fillUp(fieldset, value);
                     data.put(label, value);
                     elementList.remove(0);
                     break;
