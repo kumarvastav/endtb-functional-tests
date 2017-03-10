@@ -56,24 +56,17 @@ public enum FormElement {
             }
         }
     },
-
-    DIV_SELECT_SINGLE(".Select--single"){
-        @Override
+    DIV_SELECT_SINGLE(".Select--single") {
         public void fillUp(WebElement observationNode, String value) {
-            WebElement dropdown = (observationNode.findElement(getSelector())).findElement(By.className("Select-input"));
-            Actions actions = new Actions(getCurrentDriver(dropdown));
-            actions.moveToElement(dropdown).perform();
-            Integer index = Integer.parseInt(value);
-            for (int i = 0; i < index; i++) {
-                dropdown.sendKeys(Keys.ARROW_DOWN);
+            WebElement selector = observationNode.findElement(getSelector());
+            selector.click();
+            List<WebElement> selections = selector.findElement(By.cssSelector(".Select-menu-outer")).findElements(By.cssSelector("div"));
+            for(WebElement selection : selections) {
+                if (selection.getText().equals(value)) {
+                    selection.click();
+                    break;
+                }
             }
-            dropdown.sendKeys(Keys.ENTER);
-        }
-    },
-
-    SELECTWITHAUTOCOMPLETE("selectwithautocomplete") {
-        public void fillUp(WebElement observationNode, String value) {
-            new Select(observationNode.findElement(getSelector())).selectByValue(value);
         }
     },
     UNKNOWN("") {
@@ -92,7 +85,7 @@ public enum FormElement {
     abstract public void fillUp(WebElement observationNode, String value);
 
     public By getSelector() {
-        return By.cssSelector(this.cssSelector);
+        return By.cssSelector(cssSelector);
     }
 
     public WebDriver getCurrentDriver(WebElement element) {

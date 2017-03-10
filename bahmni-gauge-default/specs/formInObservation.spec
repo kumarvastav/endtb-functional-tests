@@ -231,7 +231,7 @@ tags: regression, sanity
 * Click add Note button
 * Enter "Demo1" template with all observation details with hide label
     |Death Note, Hospital Course|Systolic(mm Hg)|Systolic Abnormal|BMI STATUS|BMI STATUS ABNORMAL|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
-    |test|55:note|note:No|test: :note|note:Yes|note: :Cephalic|CKD|Standing at work|
+    |test|55:note|note:No|test: :note|note:Yes|note:Cephalic:Cephalic|CKD|Standing at work|
 * Save the consultation
 * Go to "Consultation" tab
 * Verify display control with Caption "Demo1" on "Consultation" tab, has the following details
