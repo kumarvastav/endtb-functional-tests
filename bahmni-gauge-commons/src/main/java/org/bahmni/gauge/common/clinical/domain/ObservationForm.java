@@ -45,6 +45,7 @@ public class ObservationForm {
 
     public void enterUpAll(Table table, WebElement element) {
         List<WebElement> elementList = element.findElements(By.cssSelector(".form-builder-row"));
+        elementList = filterElementList(elementList);
         enterHideLabel(table, elementList);
     }
 
@@ -98,12 +99,6 @@ public class ObservationForm {
                     }
                 }
             }
-        }
-
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 
