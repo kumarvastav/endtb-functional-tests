@@ -5,14 +5,18 @@ import com.thoughtworks.gauge.AfterSpec;
 import com.thoughtworks.gauge.BeforeSpec;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.bahmni.gauge.common.admin.domain.OrderSet;
+import org.bahmni.gauge.common.formBuilder.domain.Form;
 import org.bahmni.gauge.common.registration.RegistrationFirstPage;
 import org.bahmni.gauge.common.registration.domain.Patient;
+import org.bahmni.gauge.data.StoreHelper;
 import org.bahmni.gauge.rest.BahmniRestClient;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.List;
 
 public class DriverFactory {
 
@@ -62,6 +66,13 @@ public class DriverFactory {
         OrderSet orderSet = new BahmniPage().getOrderSetInSpecStore();
         if (orderSet != null) {
             BahmniRestClient.get().retireOrderSet(orderSet);
+        }
+
+        List<Form> forms = StoreHelper.getAll(Form.class);
+        for(Form form : forms) {
+            if(form != null) {
+                BahmniRestClient.get().retireObsForm(form);
+            }
         }
     }
 }
