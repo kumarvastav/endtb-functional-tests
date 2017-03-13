@@ -227,26 +227,26 @@ tags: regression, sanity
 * Click add Note button
 * Enter "Observation test form" template with all observation details with hide label
     |Death Note, Hospital Course|Systolic(mm Hg)|Systolic Abnormal|BMI STATUS|BMI STATUS ABNORMAL|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
-    |test|55:note|note:No|test: :note|note:Yes|note:Cephalic:Cephalic|CKD|Standing at work|
+    |test|110:note|note:No|test: :note|note:Yes|note:Cephalic:Cephalic|CKD|Standing at work|
 * Save the consultation
 * Go to "Consultation" tab
 * Verify display control with Caption "Observation test form" on "Consultation" tab, has the following details
 |Death Note, Hospital Course|Systolic(mm Hg)|BMI STATUS|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
-|test|55|test|Cephalic|CKD|Standing at work|
+|test|110|test|Cephalic|CKD|Standing at work|
 
 Create new obs form
 -----------------------------------------------------
 
 tags: regression, sanity
 
-* Login and create the "ObservationTestForm" form by form builder
+* Login and create the "Observation test form" form by form builder
 * Verify form is "v1" version and "Draft" status
 * Verify "Save" button is "enable" on form builder
 * Verify "Publish" button is "disabled" on form builder
 
-* Save "ObservationTestForm" form using "consultationnote" by API
+* Save "Observation test form" form using "consultationnote" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm" form details
+* Enter version "1" of "Observation test form" form details
 * Verify canvas has "Consultation Note" label
 * Select "Mandatory" property for "Consultation Note"
 * Select "Notes" property for "Consultation Note"
@@ -256,9 +256,9 @@ tags: regression, sanity
 * Verify "Consultation Note" has notes icon
 * Verify "Consultation Note" has asterisk mark
 
-* Save "ObservationTestForm" form using "weight" by API
+* Save "Observation test form" form using "weight" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm" form details
+* Enter version "1" of "Observation test form" form details
 * Verify canvas has "WEIGHT" label
 * Select "Mandatory" property for "WEIGHT"
 * Select "Notes" property for "WEIGHT"
@@ -267,29 +267,29 @@ tags: regression, sanity
 * Verify "WEIGHT" has notes icon
 * Verify "WEIGHT" has asterisk mark
 
-* Save "ObservationTestForm" form using "presentingpart" by API
+* Save "Observation test form" form using "presentingpart" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm" form details
+* Enter version "1" of "Observation test form" form details
 * Verify canvas has "P/A Presenting Part" label
 * Select "AutoComplete" property for "P/A Presenting Part"
 * Verify "P/A Presenting Part" checked "AutoComplete" property
 
-* Save "ObservationTestForm" form using "smokinghistory" by API
+* Save "Observation test form" form using "smokinghistory" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm" form details
+* Enter version "1" of "Observation test form" form details
 * Verify canvas has "Smoking History" label
 * Change the "Smoking History" label name to "Is Patient Smoking ?"
 * Verify canvas has "Is Patient Smoking ?" label
 
-* Save "ObservationTestForm" form using "date" by API
+* Save "Observation test form" form using "date" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm" form details
+* Enter version "1" of "Observation test form" form details
 * Verify canvas has "Date of Operation" label
 * Select "HideLabel" property for "Date of Operation"
 
-* Save "ObservationTestForm" form using "systolicdata" by API
+* Save "Observation test form" form using "systolicdata" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm" form details
+* Enter version "1" of "Observation test form" form details
 * Verify canvas has "Systolic Data" label
 * Change the "Systolic Data" label name to "Systolic Observation Data"
 * Verify canvas has "Systolic Observation Data" label
@@ -299,7 +299,7 @@ tags: regression, sanity
 * Click on publish
 * Verify "Form Successfully Published" showed up
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm" form details
+* Enter version "1" of "Observation test form" form details
 * Verify form is "v1" version and "Published" status
 * Verify the form is read only
 
@@ -309,9 +309,9 @@ tags: regression, sanity
 * Click on "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
-* Add the "ObservationTestForm" existing form
+* Add the "Observation test form" existing form
 
-* Enter "ObservationTestForm" template with following observation details
+* Enter "Observation test form" template with following observation details
     |Systolic(mm Hg)|Systolic Abnormal|
         |130|Yes|
 * Save the consultation
@@ -319,10 +319,11 @@ tags: regression, sanity
 * Click the error message button
 * Click add Note button
 
-* Enter "ObservationTestForm" template with all observation details with hide label
+* Enter "Observation test form" template with all observation details with hide label
     |Consultation Note|WEIGHT|P/A Presenting Part|Is Patient Smoking ?|Date|Systolic(mm Hg)|Systolic Abnormal|
         |test: :hello|55:world|Breech|Yes|11/11/2016|133|No|
 * Save the consultation
-* Verify display control with Caption "ObservationTestForm" on "Consultation" tab, has the following details
-                    |Consultation Note|WEIGHT|P/A Presenting Part|Systolic(mm Hg)|
-                    |test|55|Breech|133|
+
+//* Verify display control with Caption "Observation test form" on "Consultation" tab, has the following details
+//|Consultation Note|WEIGHT|P/A Presenting Part|Is Patient Smoking ?|Systolic(mm Hg)|Systolic Abnormal|
+//|test|55|Breech|Yes|133|No|
