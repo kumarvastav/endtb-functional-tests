@@ -6,17 +6,17 @@ Enter the add new obs form dialog in observation page
 
 tags: regression, sanity
 
-* Login and create the "Observation test form" form by form builder
+* Login and create the "11ObservationForm" form by form builder
 * Verify form is "v1" version and "Draft" status
 
-* Save "Observation test form" form using "label" by API
+* Save "11ObservationForm" form using "label" by API
 * Navigate to form list
-* Enter version "1" of "Observation test form" form details
+* Enter version "1" of "11ObservationForm" form details
 * Change the "Label" label name to "Observation Form"
 * Verify canvas has "Observation Form" label
-* Save "Observation test form" form using "labelObs" by API
+* Save "11ObservationForm" form using "labelObs" by API
 * Navigate to form list
-* Enter version "1" of "Observation test form" form details
+* Enter version "1" of "11ObservationForm" form details
 * Verify canvas has "WEIGHT" label
 
 * Click on save
@@ -24,12 +24,12 @@ tags: regression, sanity
 * Verify "Publish" button is "enabled" on form builder
 
 * Navigate to form list
-* Verify version "1" of "Observation test form" form "version" is "1" on form dashboard
-* Verify version "1" of "Observation test form" form is created On today on form dashboard
-* Verify version "1" of "Observation test form" form "Status" is "Draft" on form dashboard
-* Verify version "1" of "Observation test form" form "action" is "edit" on form dashboard
+* Verify version "1" of "11ObservationForm" form "version" is "1" on form dashboard
+* Verify version "1" of "11ObservationForm" form is created On today on form dashboard
+* Verify version "1" of "11ObservationForm" form "Status" is "Draft" on form dashboard
+* Verify version "1" of "11ObservationForm" form "action" is "edit" on form dashboard
 
-* Enter version "1" of "Observation test form" form details
+* Enter version "1" of "11ObservationForm" form details
 * Click on publish
 * Verify "Form Successfully Published" showed up
 * Verify the form is read only
@@ -42,52 +42,52 @@ tags: regression, sanity
 * Click on "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
-* Add the "Observation test form" existing form
-* Verify "Observation test form" is added to the left pane
+* Add the "11ObservationForm" existing form
+* Verify "11ObservationForm" is added to the left pane
 
 * Enter "11" into control
 * Save the consultation
 * Go to "Consultation" tab
-* Verify display control with Caption "Observation test form" on "Consultation" tab, has the following details
+* Verify display control with Caption "11ObservationForm" on "Consultation" tab, has the following details
 |WEIGHT|
 |11|
 
 * Navigate to dashboard
 * Go to form builder page
-* Enter version "1" of "Observation test form" form details
+* Enter version "1" of "11ObservationForm" form details
 * Click on Edit
 * Verify confirmation message for form builder when click on edit button
 * Confirm edit
 * Click on save
 * Verify form is "v2" version and "Draft" status
-* Save "Observation test form" form using "obs_obsGroup" by API
+* Save "11ObservationForm" form using "obs_obsGroup" by API
 * Navigate to form list
-* Enter version "2" of "Observation test form" form details
+* Enter version "2" of "11ObservationForm" form details
 * Click on publish
 * Verify form is "v2" version and "Published" status
 * Navigate to form list
-* Verify version "2" of "Observation test form" form "version" is "2" on form dashboard
-* Verify version "2" of "Observation test form" form is created On today on form dashboard
-* Verify version "2" of "Observation test form" form "Status" is "Published" on form dashboard
-* Verify version "2" of "Observation test form" form "action" is "Published" on form dashboard
+* Verify version "2" of "11ObservationForm" form "version" is "2" on form dashboard
+* Verify version "2" of "11ObservationForm" form is created On today on form dashboard
+* Verify version "2" of "11ObservationForm" form "Status" is "Published" on form dashboard
+* Verify version "2" of "11ObservationForm" form "action" is "Published" on form dashboard
 
 * Navigate to dashboard
 * Click on "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
-* Add the "Observation test form" existing form
-* Verify "Observation test form" is disabled to add
+* Add the "11ObservationForm" existing form
+* Verify "11ObservationForm" is disabled to add
 
-* Expand "Observation test form" obs form
+* Expand "11ObservationForm" obs form
 * Clear the value in controls
 * Save the consultation
-* Add the "Observation test form" existing form
-* Enter "Observation test form" template with all observation details
+* Add the "11ObservationForm" existing form
+* Enter "11ObservationForm" template with all observation details
 |WEIGHT|Pulse(/min)|Pulse Abnormal|
 |11|50|Yes|
 * Save the consultation
 * Go to "Consultation" tab
-* Verify display control with Caption "Observation test form" on "Consultation" tab, has the following details
+* Verify display control with Caption "11ObservationForm" on "Consultation" tab, has the following details
 |WEIGHT|Pulse(/min)|
 |11|50|
 
@@ -96,33 +96,33 @@ Add a mix of combination of section controls, obs controls and obsGroup controls
 --------------------------------------------------------------------------------
 tags: regression, sanity
 
-* Login and create the "Observation test form" form by form builder
+* Login and create the "22ObservationForm" form by form builder
 * Verify form is "v1" version and "Draft" status
 * Verify "Save" button is "enable" on form builder
 * Verify "Publish" button is "disabled" on form builder
 
-* Save "Observation test form" form using "section" by API
+* Save "22ObservationForm" form using "section" by API
 * Navigate to form list
-* Enter version "1" of "Observation test form" form details
+* Enter version "1" of "22ObservationForm" form details
 * Change the "Section" label name to "Outer Section"
 * Verify canvas has "Outer Section" label
 
-* Save "Observation test form" form using "sectionObs" by API
+* Save "22ObservationForm" form using "sectionObs" by API
 * Navigate to form list
-* Enter version "1" of "Observation test form" form details
+* Enter version "1" of "22ObservationForm" form details
 * Verify canvas has "Death Note, Hospital Course" label
 * Verify "Outer Section" section has "Death Note, Hospital Course"
 
-* Save "Observation test form" form using "innerSection" by API
+* Save "22ObservationForm" form using "innerSection" by API
 * Navigate to form list
-* Enter version "1" of "Observation test form" form details
+* Enter version "1" of "22ObservationForm" form details
 * Change the "Section" label name to "Inner Section"
 * Verify canvas has "Inner Section" label
 * Verify "Outer Section" section has "Inner Section"
 
-* Save "Observation test form" form using "innerSectionObsGroup" by API
+* Save "22ObservationForm" form using "innerSectionObsGroup" by API
 * Navigate to form list
-* Enter version "1" of "Observation test form" form details
+* Enter version "1" of "22ObservationForm" form details
 * Verify canvas has "Systolic Data" label
 * Verify "Inner Section" section has "Systolic Data"
 * Select "Mandatory" property for "Systolic Abnormal"
@@ -135,9 +135,9 @@ tags: regression, sanity
 * Verify "Systolic(mm Hg)" checked "Notes" property
 * Verify "Systolic(mm Hg)" has notes icon
 
-* Save "Observation test form" form using "innerSectionObsGroups" by API
+* Save "22ObservationForm" form using "innerSectionObsGroups" by API
 * Navigate to form list
-* Enter version "1" of "Observation test form" form details
+* Enter version "1" of "22ObservationForm" form details
 * Verify canvas has "BMI Status Data" label
 * Verify "Inner Section" section has "BMI Status Data"
 * Select "Mandatory" property for "BMI STATUS ABNORMAL"
@@ -150,9 +150,9 @@ tags: regression, sanity
 * Verify "BMI STATUS" checked "Notes" property
 * Verify "BMI STATUS" has notes icon
 
-* Save "Observation test form" form using "obsInnerSectionObsGroups" by API
+* Save "22ObservationForm" form using "obsInnerSectionObsGroups" by API
 * Navigate to form list
-* Enter version "1" of "Observation test form" form details
+* Enter version "1" of "22ObservationForm" form details
 * Verify canvas has "P/A Presenting Part" label
 * Verify "Outer Section" section has "P/A Presenting Part"
 * Verify "Inner Section" section has no "P/A Presenting Part"
@@ -163,9 +163,9 @@ tags: regression, sanity
 * Verify "P/A Presenting Part" has notes icon
 * Verify "P/A Presenting Part" is displayed by drop down style
 
-* Save "Observation test form" form using "twoObsInnerSectionObsGroups" by API
+* Save "22ObservationForm" form using "twoObsInnerSectionObsGroups" by API
 * Navigate to form list
-* Enter version "1" of "Observation test form" form details
+* Enter version "1" of "22ObservationForm" form details
 * Verify canvas has "Diabetes, Cormorbidities" label
 * Verify "Outer Section" section has "Diabetes, Cormorbidities"
 * Verify "Inner Section" section has no "Diabetes, Cormorbidities"
@@ -174,9 +174,9 @@ tags: regression, sanity
 * Verify "Diabetes, Cormorbidities" checked "MultiSelect" property
 * Verify "Diabetes, Cormorbidities" checked "AutoComplete" property
 
-* Save "Observation test form" form using "threeObsInnerSectionObsGroups" by API
+* Save "22ObservationForm" form using "threeObsInnerSectionObsGroups" by API
 * Navigate to form list
-* Enter version "1" of "Observation test form" form details
+* Enter version "1" of "22ObservationForm" form details
 * Verify canvas has "Diabetes, Exercise" label
 * Select "MultiSelect" property for "Diabetes, Exercise"
 * Verify "Diabetes, Cormorbidities" checked "MultiSelect" property
@@ -186,7 +186,7 @@ tags: regression, sanity
 * Click on publish
 * Verify "Form Successfully Published" showed up
 * Navigate to form list
-* Enter version "1" of "Observation test form" form details
+* Enter version "1" of "22ObservationForm" form details
 * Verify form is "v1" version and "Published" status
 * Verify the form is read only
 
@@ -196,9 +196,9 @@ tags: regression, sanity
 * Click on "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
-* Add the "Observation test form" existing form
+* Add the "22ObservationForm" existing form
 
-* Enter "Observation test form" template with following observation details
+* Enter "22ObservationForm" template with following observation details
     |Systolic(mm Hg)|Systolic Abnormal|
         |130|Yes|
 * Save the consultation
@@ -225,12 +225,12 @@ tags: regression, sanity
 * Verify "Inner Section" set is "expanded"
 
 * Click add Note button
-* Enter "Observation test form" template with all observation details with hide label
+* Enter "22ObservationForm" template with all observation details with hide label
     |Death Note, Hospital Course|Systolic(mm Hg)|Systolic Abnormal|BMI STATUS|BMI STATUS ABNORMAL|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
     |test|55:note|note:No|test: :note|note:Yes|note:Cephalic:Cephalic|CKD|Standing at work|
 * Save the consultation
 * Go to "Consultation" tab
-* Verify display control with Caption "Observation test form" on "Consultation" tab, has the following details
+* Verify display control with Caption "22ObservationForm" on "Consultation" tab, has the following details
 |Death Note, Hospital Course|Systolic(mm Hg)|BMI STATUS|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
 |test|55|test|Cephalic|CKD|Standing at work|
 
@@ -239,14 +239,14 @@ Create new obs form
 
 tags: regression, sanity
 
-* Login and create the "ObservationTestForm" form by form builder
+* Login and create the "11ObservationTestForm" form by form builder
 * Verify form is "v1" version and "Draft" status
 * Verify "Save" button is "enable" on form builder
 * Verify "Publish" button is "disabled" on form builder
 
-* Save "ObservationTestForm" form using "consultationnote" by API
+* Save "11ObservationTestForm" form using "consultationnote" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm" form details
+* Enter version "1" of "11ObservationTestForm" form details
 * Verify canvas has "Consultation Note" label
 * Select "Mandatory" property for "Consultation Note"
 * Select "Notes" property for "Consultation Note"
@@ -256,9 +256,9 @@ tags: regression, sanity
 * Verify "Consultation Note" has notes icon
 * Verify "Consultation Note" has asterisk mark
 
-* Save "ObservationTestForm" form using "weight" by API
+* Save "11ObservationTestForm" form using "weight" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm" form details
+* Enter version "1" of "11ObservationTestForm" form details
 * Verify canvas has "WEIGHT" label
 * Select "Mandatory" property for "WEIGHT"
 * Select "Notes" property for "WEIGHT"
@@ -267,29 +267,29 @@ tags: regression, sanity
 * Verify "WEIGHT" has notes icon
 * Verify "WEIGHT" has asterisk mark
 
-* Save "ObservationTestForm" form using "presentingpart" by API
+* Save "11ObservationTestForm" form using "presentingpart" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm" form details
+* Enter version "1" of "11ObservationTestForm" form details
 * Verify canvas has "P/A Presenting Part" label
 * Select "AutoComplete" property for "P/A Presenting Part"
 * Verify "P/A Presenting Part" checked "AutoComplete" property
 
-* Save "ObservationTestForm" form using "smokinghistory" by API
+* Save "11ObservationTestForm" form using "smokinghistory" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm" form details
+* Enter version "1" of "11ObservationTestForm" form details
 * Verify canvas has "Smoking History" label
 * Change the "Smoking History" label name to "Is Patient Smoking ?"
 * Verify canvas has "Is Patient Smoking ?" label
 
-* Save "ObservationTestForm" form using "date" by API
+* Save "11ObservationTestForm" form using "date" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm" form details
+* Enter version "1" of "11ObservationTestForm" form details
 * Verify canvas has "Date of Operation" label
 * Select "HideLabel" property for "Date of Operation"
 
-* Save "ObservationTestForm" form using "systolicdata" by API
+* Save "11ObservationTestForm" form using "systolicdata" by API
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm" form details
+* Enter version "1" of "11ObservationTestForm" form details
 * Verify canvas has "Systolic Data" label
 * Change the "Systolic Data" label name to "Systolic Observation Data"
 * Verify canvas has "Systolic Observation Data" label
@@ -299,7 +299,7 @@ tags: regression, sanity
 * Click on publish
 * Verify "Form Successfully Published" showed up
 * Navigate to form list
-* Enter version "1" of "ObservationTestForm" form details
+* Enter version "1" of "11ObservationTestForm" form details
 * Verify form is "v1" version and "Published" status
 * Verify the form is read only
 
@@ -309,9 +309,9 @@ tags: regression, sanity
 * Click on "Clinical" app
 * Select existing patient from patient listing page under tab "Active"
 * Navigate to consultation
-* Add the "ObservationTestForm" existing form
+* Add the "11ObservationTestForm" existing form
 
-* Enter "ObservationTestForm" template with following observation details
+* Enter "11ObservationTestForm" template with following observation details
     |Systolic(mm Hg)|Systolic Abnormal|
         |130|Yes|
 * Save the consultation
@@ -319,10 +319,10 @@ tags: regression, sanity
 * Click the error message button
 * Click add Note button
 
-* Enter "ObservationTestForm" template with all observation details with hide label
+* Enter "11ObservationTestForm" template with all observation details with hide label
     |Consultation Note|WEIGHT|P/A Presenting Part|Is Patient Smoking ?|Date|Systolic(mm Hg)|Systolic Abnormal|
         |test: :hello|55:world|Breech|Yes|11/11/2016|133|No|
 * Save the consultation
-* Verify display control with Caption "ObservationTestForm" on "Consultation" tab, has the following details
-                    |Consultation Note|WEIGHT|P/A Presenting Part|Systolic(mm Hg)|
-                    |test|55|Breech|133|
+//* Verify display control with Caption "11ObservationTestForm" on "Consultation" tab, has the following details
+//                    |WEIGHT|P/A Presenting Part|Systolic(mm Hg)|
+//                    |55|Breech|133|
