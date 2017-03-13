@@ -74,6 +74,5 @@ public class DriverFactory {
                 BahmniRestClient.get().retireObsForm(form);
             }
         }
-
     }
 }

@@ -227,12 +227,12 @@ tags: regression, sanity
 * Click add Note button
 * Enter "Observation test form" template with all observation details with hide label
     |Death Note, Hospital Course|Systolic(mm Hg)|Systolic Abnormal|BMI STATUS|BMI STATUS ABNORMAL|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
-    |test|110:note|note:No|test: :note|note:Yes|note:Cephalic:Cephalic|CKD|Standing at work|
+    |test|55:note|note:No|test: :note|note:Yes|note:Cephalic:Cephalic|CKD|Standing at work|
 * Save the consultation
 * Go to "Consultation" tab
 * Verify display control with Caption "Observation test form" on "Consultation" tab, has the following details
 |Death Note, Hospital Course|Systolic(mm Hg)|BMI STATUS|P/A Presenting Part|Diabetes, Cormorbidities|Diabetes, Exercise|
-|test|110|test|Cephalic|CKD|Standing at work|
+|test|55|test|Cephalic|CKD|Standing at work|
 
 Create new obs form
 -----------------------------------------------------
@@ -323,7 +323,6 @@ tags: regression, sanity
     |Consultation Note|WEIGHT|P/A Presenting Part|Is Patient Smoking ?|Date|Systolic(mm Hg)|Systolic Abnormal|
         |test: :hello|55:world|Breech|Yes|11/11/2016|133|No|
 * Save the consultation
-
 //* Verify display control with Caption "Observation test form" on "Consultation" tab, has the following details
-//|Consultation Note|WEIGHT|P/A Presenting Part|Is Patient Smoking ?|Systolic(mm Hg)|Systolic Abnormal|
-//|test|55|Breech|Yes|133|No|
+//                    |WEIGHT|P/A Presenting Part|Systolic(mm Hg)|
+//                    |55|Breech|133|
