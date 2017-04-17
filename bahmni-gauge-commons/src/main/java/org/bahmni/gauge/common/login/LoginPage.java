@@ -26,11 +26,11 @@ public class LoginPage extends BahmniPage{
     public WebElement btnLogin;
 
 	public void login(String username, String password){
-		login(username,password,System.getenv("BAHMNI_GAUGE_APP_LOCATION"),"en");
+        login(username,password,System.getenv("BAHMNI_GAUGE_APP_LOCATION"),"English");
 	}
 
     public void login(String username, String password, String location){
-        login(username,password,location,"en");
+        login(username,password,location,"English");
     }
 
     public void login(String username, String password, String location, String locale){

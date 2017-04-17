@@ -84,7 +84,6 @@ public class ObservationForm {
                                 continue;
                             }
                             elements.get(fieldCount).fillUp(fieldset, val);
-                            fieldCount++;
                             if (values.length == elements.size())
                                 fieldCount++;
                                 // This case failed in case of gynecology template, with has two sections of buttons
