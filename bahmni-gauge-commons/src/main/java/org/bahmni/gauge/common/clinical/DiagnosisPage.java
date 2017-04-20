@@ -60,6 +60,10 @@ public class DiagnosisPage extends BahmniPage {
     }
 
     public void verifyCurrentDisplayControl(List<Diagnosis> diagnoses) {
+        List<WebElement> pastDiagnosis = driver.findElements(By.xpath("//div[contains(@class,'past-diagnosis')]"));
+        if(pastDiagnosis.size() > 0){
+            pastDiagnosis.get(0).click();
+        }
         for (Diagnosis diagnosis:diagnoses) {
             List<WebElement> rows = driver.findElements(By.cssSelector(".diagnosis-row"));
             boolean bFound = false;

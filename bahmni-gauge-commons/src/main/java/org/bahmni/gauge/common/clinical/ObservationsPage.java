@@ -196,9 +196,7 @@ public class ObservationsPage extends BahmniPage {
             waitForSpinnerOnDisplayControl();
             uploadFile((rowCount - 1), imageName);
             waitForSpinner();
-            driver.findElement(By.xpath("(//legend/strong[contains(text(),'Images')]/../../..//button[@toggle='observation.showComment'])[" + rowCount + "]")).click();
             driver.findElement(By.xpath("(//textarea[contains(@class,'consultation-img-comments')])[" + rowCount + "]")).sendKeys(row.getCell("Comment"));
-            driver.findElement(By.xpath(("(.//*[contains(@id,'image_addmore_observation_')])"))).click();
             rowCount++;
         }
         save.click();
@@ -207,7 +205,7 @@ public class ObservationsPage extends BahmniPage {
 
     public void removeImage(Integer imageNumber)
     {
-        driver.findElement(By.xpath("(//button[@class='row-remover'])[" + imageNumber + "]")).click();
+        driver.findElement(By.xpath("(//button[contains(@class,'row-remover')])[" + imageNumber + "]")).click();
         save.click();
         waitForSpinner();
     }

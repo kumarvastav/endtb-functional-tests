@@ -46,8 +46,8 @@ public class OrdersFulfillmentPage extends BahmniPage {
     public void verifyOrdersDetails(List<Order> orders) {
         for(Order order:orders){
             try{
-                WebElement element=findElement(By.xpath(String.format(sSectionXpath,order.getName())));
-                Assert.assertTrue("Note " + order.getNote() + " not found",element.getText().contains(order.getNote()));
+                WebElement element=findElement(By.xpath(String.format(sSectionXpath,order.getName()))).findElement(By.tagName("textarea"));
+                Assert.assertTrue("Note " + order.getNote() + " not found",element.getAttribute("value").contains(order.getNote()));
 
             } catch (NoSuchElementException ex){
                 Assert.fail("Order "+order.getName()+" Not found");
