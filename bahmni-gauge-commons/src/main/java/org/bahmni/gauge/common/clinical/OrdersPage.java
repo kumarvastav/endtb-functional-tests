@@ -151,7 +151,9 @@ public class OrdersPage extends BahmniPage {
 
 
                     Actions builder = new Actions(driver);
-                    builder.moveToElement(driver.findElement(By.cssSelector(".ngdialog-overlay")),popup.getLocation().getX()-30, popup.getLocation().getY()-30).click().build().perform();
+                    //builder.sendKeys(Keys.ESCAPE).perform();
+                    driver.findElement(By.cssSelector(".ngdialog-overlay")).click();
+                    //builder.moveToElement(driver.findElement(By.cssSelector(".ngdialog-overlay")),popup.getLocation().getX()-30, popup.getLocation().getY()-30).click().build().perform();
                     waitForElement(driver,ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".ngdialog-overlay")));
                 }
 

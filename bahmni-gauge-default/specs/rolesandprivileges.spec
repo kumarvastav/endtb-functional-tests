@@ -213,10 +213,10 @@ Tags: regression, sanity
       |Programs                 |false          |
       |Clinical                 |false          |
       |ADT                      |false          |
-      |Radiology                |true           |
-      |Patient.Document         |true           |
+      |Radiology                |false          |
+      |Patient.Document         |false          |
       |Admin                    |false          |
-      |Reports                  |true           |
+      |Reports                  |false          |
       |Orders                   |false          |
       |Implementer              |false          |
       |AtomFeed                 |false          |
