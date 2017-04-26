@@ -120,16 +120,17 @@ Tags: regression, sanity
 * Navigate to dashboard
 * Click on clinical app
 * Select existing patient from patient listing page under tab "Active"
-* Expand all sections from display control with Caption "Radiology Orders"
-* Verify display control with Caption "Radiology Orders" on dashboard, has the following details
-    |details|
-    |Note 1|
-    |Note 2|
-    |Note 3|
 * Open the current visit
 * Open "Orders" tab on visit page
 * Expand all sections from display control with Caption "Radiology Orders"
 * Verify display control with Caption "Radiology Orders" on visit page, has the following details
+    |details|
+    |Note 1|
+    |Note 2|
+    |Note 3|
+* Navigate to patient dashboard
+* Expand all sections from display control with Caption "Radiology Orders"
+* Verify display control with Caption "Radiology Orders" on dashboard, has the following details
     |details|
     |Note 1|
     |Note 2|
