@@ -24,7 +24,7 @@ Tags: regression, sanity
 * Select the template "Discharge Summary" from on the observation page
 * Fill "Discharge Summary" template with following observation details
     |Hospital Course|History and Examination Notes|Date of Operation|Operative Procedure|Follow up Date|Lab Investigation Notes|Radiology Notes|Other Notes|Additional Advice on Discharge|Plan for follow up|
-    |Dummy data|Dummy histroy|10/10/2016|Dummy procedure|10/15/2016|dummy note|Radiology Notes|Other Notes|Additional Advice on Discharge|Plan for follow up|
+    |Dummy data||10/10/2016|Dummy procedure|10/15/2016|dummy note|Radiology Notes|Other Notes|Additional Advice on Discharge|Plan for follow up|
 * Select the template "Obstetrics" from on the observation page
 * Fill "Obstetrics" template with following observation details
     |Fundal Height (Weeks)|P/A Presenting Part|FHS|LMP|Amount of Liquor|
@@ -46,7 +46,7 @@ Tags: regression, sanity
     |Normal|
  * Verify display control with Caption "Discharge Summary" on "Consultation" tab, has the following details
       |Hospital Course|History and Examination Notes|Date of Operation|Operative Procedure|Follow up Date|Lab Investigation Notes|Radiology Notes|Other Notes|Additional Advice on Discharge|Plan for follow up|
-      |Dummy data|Dummy histroy|10-Oct-2016|Dummy procedure|15-Oct-2016|dummy note|Radiology Notes|Other Notes|Additional Advice on Discharge|Plan for follow up|
+      |Dummy data||10-Oct-2016|Dummy procedure|15-Oct-2016|dummy note|Radiology Notes|Other Notes|Additional Advice on Discharge|Plan for follow up|
   * Verify display control with Caption "Obstetrics" on "Consultation" tab, has the following details
       |Fundal Height (Weeks)|P/A Presenting Part|FHS|LMP|Amount of Liquor|
       |2|Transverse|Present|11-Nov-2016|90ml|
@@ -79,7 +79,7 @@ Tags: regression, sanity
 * Open "Discharge Summary" tab on visit page
 * Verify display control with Caption "Clinical Notes" on visit page, with labels and details
     |Hospital Course|History and Examination Notes|Date of Operation|Operative Procedure|Follow up Date|Lab Investigation Notes|Radiology Notes|Other Notes|Additional Advice on Discharge|Plan for follow up|
-    |Dummy data|Dummy histroy|10 Oct 2016|Dummy procedure|15 Oct 2016|dummy note|Radiology Notes|Other Notes|Additional Advice on Discharge|Plan for follow up|
+    |Dummy data||10 Oct 2016|Dummy procedure|15 Oct 2016|dummy note|Radiology Notes|Other Notes|Additional Advice on Discharge|Plan for follow up|
 * Verify display control with Caption "Advice on Discharge" on visit page, has the following details
     |Additional Advice on Discharge|Follow up Date|Plan for follow up|
     |Additional Advice on Discharge|15 Oct 16|Plan for follow up|
