@@ -9,7 +9,6 @@ target
 *.xmi
 logs/
 .gauge/
-reports/
 gauge_*/
 out/
 .DS_Store
