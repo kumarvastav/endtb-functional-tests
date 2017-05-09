@@ -198,9 +198,10 @@ Tags: regression, sanity
       |High Blood Pressure CONFIRMED PRIMARY|
 
 
+//The user role with specific permissions doesn't exist.This is no longer needed, Removed from regression
 Scneario: Registarion-App-Read-only should not have "Create New" option, but should have radiology upload, patient documents upload, and running the reports
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
-Tags: regression, sanity
+Tags: sanity
 
 * Create patient and open visit with details through API with details
        |height  |weight |registrationFee|
