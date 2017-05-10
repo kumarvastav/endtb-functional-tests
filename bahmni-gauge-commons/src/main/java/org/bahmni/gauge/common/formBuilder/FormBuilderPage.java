@@ -40,8 +40,14 @@ public class FormBuilderPage extends BahmniPage {
     }
 
     public WebElement findFormByNameAndVersion(String versionNum, String formName) {
-		WebElement formIcon = findFormIcon(formName, versionNum);
-		return formIcon.findElement(By.xpath("../.."));
+		List<WebElement> formList = formTableBody.findElements(By.cssSelector("tr"));
+		for(WebElement form: formList){
+			if(form.findElements(By.cssSelector("td")).get(0).getText().equals(formName) &&
+					form.findElements(By.cssSelector("td")).get(1).getText().equals(versionNum)){
+					return form;
+			}
+		}
+		return null;
 	}
 
 	private WebElement findFormIcon(String formName, String versionNumber) {
