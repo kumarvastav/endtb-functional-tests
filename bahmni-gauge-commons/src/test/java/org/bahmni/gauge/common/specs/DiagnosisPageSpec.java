@@ -38,7 +38,7 @@ public class DiagnosisPageSpec extends BahmniPage {
     public void editDiagnosis(Table table){
         List<Diagnosis> diagnoses=TableTransformer.asEntityList(table, Diagnosis.class);
         DiagnosisPage diagnosisPage= PageFactory.get(DiagnosisPage.class);
-
+        waitForAppReady();
         diagnosisPage.editDiagnoses(diagnoses);
 
     }
