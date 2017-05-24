@@ -38,7 +38,7 @@ public class DriverFactory {
         capability.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
         //capability.setCapability(ChromeOptions.CAPABILITY,options);
         driver = new ChromeDriver(capability);
-        driver.manage().window().setSize(new Dimension(1440, 900));
+        driver.manage().window().setSize(new Dimension(1440, 1200));
 
     }
 
