@@ -8,6 +8,7 @@ import org.bahmni.gauge.util.StringUtil;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -109,8 +110,8 @@ public class DiagnosisPage extends BahmniPage {
                     }
                     if(diagnosis.getStatus().equalsIgnoreCase("inactive")){
                         if(!row.findElement(bStatus).getAttribute("class").contains("active"))
-                            row.findElement(bStatus).scrollIntoView(true);
-                            row.findElement(By.cssSelector(".status button")).click(); //bStatus
+                            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(bStatus));
+                            row.findElement(bStatus).click();
                     }
                 }
 
