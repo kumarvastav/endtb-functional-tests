@@ -109,6 +109,7 @@ public class DiagnosisPage extends BahmniPage {
                     }
                     if(diagnosis.getStatus().equalsIgnoreCase("inactive")){
                         if(!row.findElement(bStatus).getAttribute("class").contains("active"))
+                            row.findElement(bStatus).scrollIntoView(true);
                             row.findElement(By.cssSelector(".status button")).click(); //bStatus
                     }
                 }
