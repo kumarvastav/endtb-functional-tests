@@ -92,7 +92,7 @@ public class DiagnosisPage extends BahmniPage {
             for (WebElement row:rows) {
 
             if(row.getText().contains(diagnosis.getDiagnosis())){
-                    row.findElement(By.cssSelector(".toggle.fr")).click();
+                    //row.findElement(By.cssSelector(".toggle.fr")).click();
 
                     if(diagnosis.getOrder().equalsIgnoreCase("primary")){
                         if(!row.findElements(bOrder).get(0).getAttribute("class").contains("active"))
@@ -111,7 +111,7 @@ public class DiagnosisPage extends BahmniPage {
                     if(diagnosis.getStatus().equalsIgnoreCase("inactive")){
                         if(!row.findElement(bStatus).getAttribute("class").contains("active"))
                             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(bStatus));
-                            row.findElement(bStatus).click();
+                            row.findElement(".status button").click();
                     }
                 }
 
