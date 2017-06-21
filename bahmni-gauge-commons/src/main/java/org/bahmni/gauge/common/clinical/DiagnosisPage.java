@@ -92,7 +92,7 @@ public class DiagnosisPage extends BahmniPage {
             for (WebElement row:rows) {
 
             if(row.getText().contains(diagnosis.getDiagnosis())){
-                    //row.findElement(By.cssSelector(".toggle.fr")).click();
+                    row.findElement(By.cssSelector(".fa-edit")).click();  //".toggle.fr"
 
                     if(diagnosis.getOrder().equalsIgnoreCase("primary")){
                         if(!row.findElements(bOrder).get(0).getAttribute("class").contains("active"))
