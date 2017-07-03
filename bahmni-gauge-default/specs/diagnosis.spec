@@ -61,7 +61,7 @@ Tags: regression, sanity, diagnosis
 * Verify diagnoses on current display control on diagnosis page
 * Edit the following diagnosis
     |type|diagnosis|order|certainty|status|
-    |coded|Anemia, pernicious|PRIMARY|CONFIRMED|Inactive|
+    |coded|Anemia, pernicious|SECONDARY|CONFIRMED|Active|
 * Save the consultation
 * Delete the following diagnoses
     |diagnosis|
@@ -71,19 +71,19 @@ Tags: regression, sanity, diagnosis
 * Navigate to patient dashboard
 * Verify display control "Diagnosis" on dashboard, has the following details
     |details|
-    |Anemia, pernicious CONFIRMED PRIMARY Inactive|
+    |Anemia, pernicious CONFIRMED SECONDARY|
     |Pyloric stenosis PRESUMED SECONDARY Inactive|
 * Open the current visit
 * Verify display control with Caption "Diagnoses" on visit page, has the following details
     |details|
-    |Anemia, pernicious CONFIRMED PRIMARY Inactive|
+    |Anemia, pernicious CONFIRMED SECONDARY|
     |Pyloric stenosis PRESUMED SECONDARY Inactive|
 * Navigate to dashboard
 * Click on inpatient app
 * Select existing patient from patient listing page under tab "All"
 * Verify display control with Caption "Diagnosis" on inpatient dashboard, has the following details
     |details|
-    |Anemia, pernicious CONFIRMED PRIMARY Inactive|
+    |Anemia, pernicious CONFIRMED SECONDARY|
     |Pyloric stenosis PRESUMED SECONDARY Inactive|
 * Navigate to dashboard
 * Logout the user
