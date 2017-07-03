@@ -44,7 +44,7 @@ Tags: regression, sanity
 [Diagnosis] Edit and delete coded diagnosis for existing patient and verify the display controls
 -------------------------------------------------
 
-Tags: regression, sanity, diagnosis
+Tags: sanity, diagnosis
 * Create a new patient and open visit through API
 * Add diagnosis through API
     |type|diagnosis|order|certainty|status|
