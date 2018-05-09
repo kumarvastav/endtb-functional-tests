@@ -12,3 +12,4 @@ logs/
 gauge_*/
 out/
 .DS_Store
+*/reports/**
