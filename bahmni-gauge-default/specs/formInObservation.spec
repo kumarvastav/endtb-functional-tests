@@ -4,7 +4,8 @@ Add New Obs Form In Observation
 Enter the add new obs form dialog in observation page
 -----------------------------------------------------
 
-tags: regression, sanity
+Tags: needs_fix
+//The form "Observation test form" already exists.  Ensure you delete it before creating a new one!!
 
 * Login and create the "Observation test form" form by form builder
 * Verify form is "v1" version and "Draft" status
@@ -94,7 +95,7 @@ tags: regression, sanity
 
 Add a mix of combination of section controls, obs controls and obsGroup controls
 --------------------------------------------------------------------------------
-tags: regression, sanity
+Tags: needs_fix
 
 * Login and create the "Observation test form" form by form builder
 * Verify form is "v1" version and "Draft" status
@@ -237,7 +238,7 @@ tags: regression, sanity
 Create new obs form
 -----------------------------------------------------
 
-tags: regression, sanity
+Tags: needs_fix
 
 * Login and create the "Observation test form" form by form builder
 * Verify form is "v1" version and "Draft" status

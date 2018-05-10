@@ -3,7 +3,8 @@ Episode of Care
 
 Verify Program Specfic data on display controls & Observation Templates
 -----------------------------------------------------------------------
-Tags: regression, sanity
+Tags: needs_fix
+//The Program TB Program doesn't exist
 
 * Enroll patient to program through API
 * Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api
@@ -11,7 +12,7 @@ Tags: regression, sanity
 * Login to the application
 * Click on programs app
 * Select existing patient from patient listing page under tab "All"
-* Navigate to "TB Program" program dashboard
+* Navigate to "TB" program dashboard
 * Navigate to consultation
 * Select the template "Obstetrics" from on the observation page
 * Fill "Obstetrics" template with following observation details
@@ -44,8 +45,7 @@ Tags: regression, sanity
 
 Verify data captured through clinical is not present on Program Specific Patient Summary
 ----------------------------------------------------------------------------------------
-
-Tags: regression, sanity
+Tags: needs_fix
 
 * Enroll patient to program through API
 * Open visit of type "OPD" in "BAHMNI_GAUGE_APP_LOCATION" location for previous patient using api

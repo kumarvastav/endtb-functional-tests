@@ -106,7 +106,7 @@ Tags: regression, sanity
 Stop drug and Verify the details in display controls
 ----------------------------------------------------
 
-Tags: regression, sanity
+Tags: needs_fix
 
 * Create a new patient and open visit through API
 * On the login page

@@ -3,7 +3,7 @@ Multiple Visit
 
 Verify observations captured in different visits
 ------------------------------------------------
-Tags: regression, sanity
+Tags: needs_fix
 * Create the following patient using api
     |prefix|firstName|lastName|gender|dateOfBirth|district|
     |GAN|Hanah|Jones|F|20/01/2011|Bilaspur|
