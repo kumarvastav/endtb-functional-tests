@@ -25,6 +25,13 @@ Running functional tests
         * `cd bahmni-gauge-endtb`
         * `mvn gauge:execute`
 
+Running in docker container (useful for CI)
+-------------------------------------------
+The run-docker.sh script contains instructions on running the functional tests inside a docker container
+* `docker run -v /var/go/.m2:/root/.m2:rw -v $PWD:/gauge -e ENV=$1 -e TAGS=$2 -i bharatak/docker-gauge-chromedriver:chromedriver-2.34 -- sh run.sh`
+* It leverages a maven image and sets up chromedriver, Xvfb and Google Chrome
+* The run.sh script runs inside the docker container which runs the functional tests
+
 FAQ
 --------------------------
 * Xvfb gets stopped on reboot of the machine

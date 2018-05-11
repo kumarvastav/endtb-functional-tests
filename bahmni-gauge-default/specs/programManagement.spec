@@ -3,7 +3,7 @@ Program Enrollemnt, Editing of Program Attributes and End the Program
 
 Enrol the Patient to a Program and verify display controls
 ----------------------------------------------------------
-Tags: regression, sanity
+Tags: needs_fix
 * On the login page
 * Login to the application
 * Create the following patient using api
@@ -23,7 +23,7 @@ Tags: regression, sanity
 
 Delete the patient from an active Program
 -----------------------------------------
-Tags: regression, sanity
+Tags: needs_fix
 * Enroll patient to program through API
 * On the login page
 * Login to the application
@@ -36,7 +36,7 @@ Tags: regression, sanity
 
 Edit the program and verify details
 -----------------------------------
-Tags: regression, sanity
+Tags: needs_fix
 * Enroll patient to program through API
 * On the login page
 * Login to the application
@@ -53,7 +53,7 @@ Tags: regression, sanity
 
 Stop an existing program and verify details
 -------------------------------------------
-Tags: regression, sanity
+Tags: needs_fix
 * Enroll patient to program through API
 * On the login page
 * Login to the application

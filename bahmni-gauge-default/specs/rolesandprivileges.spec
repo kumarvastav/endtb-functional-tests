@@ -127,8 +127,7 @@ Tags: regression, sanity
 
 Program-App role should be able to enroll patient to the program and capture observations.
 -----------------------------------------------------------------------------------------------------------
-
-Tags: regression, sanity
+Tags: needs_fix
 
 * Create patient and open visit with details through API with details
        |height  |weight |registrationFee|
@@ -201,7 +200,7 @@ Tags: regression, sanity
 //The user role with specific permissions doesn't exist.This is no longer needed, Removed from regression
 Scneario: Registarion-App-Read-only should not have "Create New" option, but should have radiology upload, patient documents upload, and running the reports
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
-Tags: sanity
+Tags: needs_fix
 
 * Create patient and open visit with details through API with details
        |height  |weight |registrationFee|
